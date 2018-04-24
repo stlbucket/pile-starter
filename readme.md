@@ -32,11 +32,11 @@ npm install -g postgraphile
 
 ### clone the repo ###
 ```
-git clone https://github.com/stlbucket/sqitch-phile.git
+git clone https://github.com/stlbucket/phile-starter.git
 ```
 ### git on in there ###
 ```
-cd sqitch-phile
+cd phile-starter
 ```
 ### clean out the .git dir ###
 ```
@@ -72,7 +72,7 @@ packages=(
   core-data
 )
 ```
-... then let sqitch-phile configure all your packages ...
+... then let phile-starter configure all your packages ...
 ```
 ./cmd/configure
 ```
