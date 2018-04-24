@@ -1,33 +1,46 @@
+require('./.env')
 const {ApolloEngine} = require('apollo-engine');
-
 const express = require("express");
 const {postgraphile} = require("postgraphile");
 
 const app = express();
 
+const port = process.env.PORT
+const connection = process.env.POSTRGRES_CONNECTION
+const schemas = process.env.POSTGRAPHILE_SCHEMAS.split(',')
+const dynamicJson = process.env.DYNAMIC_JSON === 'true'
+const pgDefaultRole = process.env.DEFAULT_ROLE
+const jwtSecret = process.env.JWT_SECRET
+const jwtPgTypeIdentifier = process.env.JWT_PG_TYPE_IDENTIFIER
+const extendedErrors = process.env.EXTENDED_ERRORS.split(',')
+const disableDefaultMutations = process.env.DISABLE_DEFAULT_MUTATIONS === 'true'
+const enableApolloEngine = process.env.ENABLE_APOLLO_ENGINE === 'true'
+const apolloApiKey = process.env.APOLLO_ENGINE_API_KEY
+
+const engine = new ApolloEngine({
+  apiKey: apolloApiKey
+});
+
 app.use(postgraphile(
-  "postgres://localhost/phile"
-  ,["auth" ,"auth_fn","org","org_fn","ex","ex_fn"]
+  connection
+  ,schemas
   ,{
-    dynamicJson: true
-    ,pgDefaultRole: 'app_anonymous'
-    ,jwtSecret: 'SUPERSECRET'
-    ,jwtPgTypeIdentifier: 'auth.jwt_token'
-    ,extendedErrors: ['hint', 'detail', 'errcode']
-    ,disableDefaultMutations: true
+    dynamicJson: dynamicJson
+    ,pgDefaultRole: pgDefaultRole
+    ,jwtSecret: jwtSecret
+    ,jwtPgTypeIdentifier: jwtPgTypeIdentifier
+    ,extendedErrors: extendedErrors
+    ,disableDefaultMutations: disableDefaultMutations
   }
 ));
 
-const engine = new ApolloEngine({
-  apiKey: "service:stlbucket-4863:E1JvHPJjVn04vWxTF9w2PQ"
-});
+if (enableApolloEngine) {
+  engine.listen({
+    port: port,
+    expressApp: app
+  });
+} else {
+  app.listen(port)
+}
 
-// engine.listen({
-//   port: 5000,
-//   expressApp: app
-// });
-
-app.listen(5000)
-
-
-console.log('listening on 5000')
+console.log(`listening on ${port}`)
