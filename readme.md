@@ -20,7 +20,7 @@ schemas include:
   - requires auth
 - ex:
   - basic counter example
-  - event-driven counter example (first cut - still under development)
+  - event-driven counter example (first cut - still under development - would LOVE feedback on this coz not sure it's the best way to go about it)
 
 ## quick usage ##
 ### install <a href="http://sqitch.org/">sqitch</a> ###
