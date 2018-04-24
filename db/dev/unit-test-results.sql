@@ -82,7 +82,10 @@ select
   ,name
   ,params
   ,result
-from evt.evt;
+  ,created_at
+from evt.evt
+order by
+  created_at;
 
 \echo -----------------------------------     evt.evt
 \echo ----------------------------------------------------
