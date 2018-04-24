@@ -3,8 +3,6 @@ const {ApolloEngine} = require('apollo-engine');
 const express = require("express");
 const {postgraphile} = require("postgraphile");
 
-const app = express();
-
 const port = process.env.PORT
 const connection = process.env.POSTRGRES_CONNECTION
 const schemas = process.env.POSTGRAPHILE_SCHEMAS.split(',')
@@ -17,6 +15,7 @@ const disableDefaultMutations = process.env.DISABLE_DEFAULT_MUTATIONS === 'true'
 const enableApolloEngine = process.env.ENABLE_APOLLO_ENGINE === 'true'
 const apolloApiKey = process.env.APOLLO_ENGINE_API_KEY
 
+const app = express();
 const engine = new ApolloEngine({
   apiKey: apolloApiKey
 });

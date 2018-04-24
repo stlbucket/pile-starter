@@ -25,42 +25,35 @@ describe('ex-counter-evt', function (done) {
 
     countOne()
       .then(counterEvt => {
-        // clog('counterEvt', counterEvt)
         expect(counterEvt).to.be.an('object')
         expect(counterEvt.currentValue > 0).to.equal(true)
         return countOne()
       })
       .then(counterEvt => {
-        // clog('counterEvt', counterEvt)
         expect(counterEvt).to.be.an('object')
         expect(counterEvt.currentValue > 0).to.equal(true)
         return countOne()
       })
       .then(counterEvt => {
-        // clog('counterEvt', counterEvt)
         expect(counterEvt).to.be.an('object')
         expect(counterEvt.currentValue > 0).to.equal(true)
         return countOne()
       })
       .then(counterEvt => {
-        // clog('counterEvt', counterEvt)
         expect(counterEvt).to.be.an('object')
         expect(counterEvt.currentValue > 0).to.equal(true)
         return countOne()
       })
       .then(counterEvt => {
-        clog('counterEvt', counterEvt)
         expect(counterEvt).to.be.an('object')
         expect(counterEvt.currentValue > 0).to.equal(true)
         return countOne()
           .catch(error => {
-            console.log('error', error.toString())
             expect(error.toString().indexOf('Counter exceeds threshold') > -1).to.equal(true)
             return 'SO WHAT'
           })
       })
       .then(what => {
-        console.log('WHAT', what)
         expect(what).to.equal('SO WHAT')
         return countOne()
           .catch(error => {
