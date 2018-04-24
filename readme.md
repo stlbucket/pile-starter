@@ -6,7 +6,7 @@
   using <a href="http://sqitch.org/">sqitch</a> to manage db scripts
 </p>
 
-basic packages include:
+schemas include:
 - app-roles: 
   - creates db roles to support postgres rls security
 - auth: 
@@ -18,7 +18,9 @@ basic packages include:
   - generic organization/location/contact support.
   - org.contact ==> auth.app_user
   - requires auth
-  
+- ex:
+  - basic counter example
+  - event-driven counter example (first cut - still under development)
 
 ## quick usage ##
 ### install <a href="http://sqitch.org/">sqitch</a> ###
