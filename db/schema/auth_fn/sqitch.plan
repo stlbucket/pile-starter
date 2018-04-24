@@ -1,0 +1,10 @@
+%syntax-version=1.0.0
+%project=auth-fn
+%uri=sqitch-phile/auth-fn
+
+structure/schema [auth:structure/schema] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # auth_fnfunctions
+function/authenticate [auth:custom-type/jwt-token auth:structure/app_user] 2018-04-11T20:25:39Z Kevin Burkett <stlbucket@gmail.com> # grant access via jwt
+function/current_app_user [auth:structure/app_user auth:custom-type/jwt-token] 2018-04-11T20:32:48Z Kevin Burkett <stlbucket@gmail.com> # get current app user
+function/build_app_tenant [auth:structure/schema] 2018-04-12T00:48:34Z Kevin Burkett <stlbucket@gmail.com> # builds an app tenant
+function/build_app_user [auth:structure/app_user] 2018-04-12T00:49:05Z Kevin Burkett <stlbucket@gmail.com> # creates an app_user
+function/app_user_has_access [function/current_app_user] 2018-04-16T03:03:42Z Kevin Burkett <stlbucket@gmail.com> # verify if a user has access to an entity based on the app_tenant_id

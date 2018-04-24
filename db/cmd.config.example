@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+database="[YOUR DATABASE NAME]"
+hostname="localhost"
+
+packages=(
+  schema/app-roles
+  schema/auth
+  schema/auth_fn
+  schema/evt
+  schema/org
+  schema/org_fn
+  core-data
+)
+
+function_packages=(
+  schema/org_fn
+)

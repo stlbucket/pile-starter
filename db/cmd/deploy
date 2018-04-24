@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+source ./cmd.config
+source ./cmd/error_exit
+
+echo ""
+echo ""
+echo "DEPLOYING TO HOST:" $hostname
+echo "DEPLOYING TO DATABASE: " $database
+echo ""
+
+for i in ${packages[@]};
+do
+  echo "DEPLOYING PACKAGE ------------------------------------------------------------" $i
+  (cd ./"$i"/ && sqitch deploy) || error_exit "FAILURE TO DEPLOY: $i"
+done

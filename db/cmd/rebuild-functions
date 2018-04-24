@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+source ./cmd.config
+
+echo ""
+echo ""
+echo "REVERTING"
+echo ""
+
+
+for (( idx=${#function_packages[@]}-1 ; idx>=0 ; idx-- )) ; do
+  echo "REVERTING PACKAGE ------------------------------------------------------------" ${function_packages[idx]}
+  (cd ./${function_packages[idx]}/ && sqitch revert -y)
+done
+
+
+for i in ${function_packages[@]};
+do
+  echo "DEPLOYING PACKAGE ------------------------------------------------------------" $i
+  (cd ./"$i"/ && sqitch deploy)
+done

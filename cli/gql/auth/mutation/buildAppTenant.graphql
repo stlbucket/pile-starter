@@ -1,0 +1,15 @@
+mutation BuildAppTenant(
+  $name: String!
+  $identifier: String!
+  ){
+    buildAppTenant(input: {
+      _name: $name
+      _identifier: $identifier
+    }) {
+      appTenant {
+        id
+        name
+        identifier
+      }
+    }
+}

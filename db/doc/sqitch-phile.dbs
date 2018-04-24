@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="phile" id="Project_df2cbc" template="Default" database="PostgreSQL" >
+	<schema name="auth" catalogname="phile" schemaname="auth" >
+		<table name="app_user" >
+			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
+				<defo>uuid_generate_v1()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="username" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="password_hash" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="active" type="bool" length="1" decimal="0" jt="-7" mandatory="y" >
+				<defo>false</defo>
+			</column>
+			<index name="pk_app_user" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="app_user_username_key" unique="UNIQUE" >
+				<column name="username" />
+			</index>
+		</table>
+	</schema>
+	<schema name="org" catalogname="phile" schemaname="org" >
+		<table name="contact" >
+			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
+				<defo>uuid_generate_v1()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="organization_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
+			<column name="location_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
+			<column name="app_user_id" type="uuid" decimal="0" jt="1111" />
+			<column name="first_name" type="text" decimal="0" jt="12" />
+			<column name="last_name" type="text" decimal="0" jt="12" />
+			<column name="email" type="text" decimal="0" jt="12" />
+			<index name="pk_contact" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_contact_app_user" to_schema="auth" to_table="app_user" >
+				<fk_column name="app_user_id" pk="id" />
+			</fk>
+			<fk name="fk_contact_location" to_schema="org" to_table="location" >
+				<fk_column name="location_id" pk="id" />
+			</fk>
+			<fk name="fk_contact_organization" to_schema="org" to_table="organization" >
+				<fk_column name="organization_id" pk="id" />
+			</fk>
+		</table>
+		<table name="location" >
+			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
+				<defo>uuid_generate_v1()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="created_by_location_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="address1" type="text" decimal="0" jt="12" />
+			<column name="address2" type="text" decimal="0" jt="12" />
+			<column name="city" type="text" decimal="0" jt="12" />
+			<column name="state" type="text" decimal="0" jt="12" />
+			<column name="zip" type="text" decimal="0" jt="12" />
+			<column name="lat" type="text" decimal="0" jt="12" />
+			<column name="lon" type="text" decimal="0" jt="12" />
+			<index name="pk_location" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="organization" >
+			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
+				<defo>uuid_generate_v1()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="created_by_organization_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="location_id" type="uuid" decimal="0" jt="1111" />
+			<index name="pk_organization" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_organization_location" to_schema="org" to_table="location" >
+				<fk_column name="location_id" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="phile" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.1.4.jar" driver_desc="Standard" host="localhost" port="5432" instance="phile" user="postgres" passwd="c29ybyRTZWNyZXQ=" />
+	<layout name="auth" id="Layout_4076221" show_relation="columns" >
+		<entity schema="auth" name="app_user" color="bfd4f5" x="45" y="45" />
+	</layout>
+	<layout name="org" id="Layout_27375dd" show_relation="columns" >
+		<entity schema="org" name="contact" color="bfd4f5" x="105" y="45" />
+		<entity schema="org" name="location" color="bfd4f5" x="285" y="45" />
+		<entity schema="org" name="organization" color="bfd4f5" x="45" y="285" />
+	</layout>
+</project>

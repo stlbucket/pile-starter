@@ -1,0 +1,39 @@
+mutation BuildOrganizationLocation(
+    $organizationId: UUID!
+    $name: String!
+    $address1: String!
+    $address2: String!
+    $city: String!
+    $state: String!
+    $zip: String!
+    $lat: String!
+    $lon: String!
+  ) {
+  buildOrganizationLocation(input: {
+    _organizationId: $organizationId
+    _name: $name
+    _address1: $address1
+    _address2: $address2
+    _city: $city
+    _state: $state
+    _zip: $zip
+    _lat: $lat
+    _lon: $lon
+  }) {
+    organization {
+      id
+      name
+      location: locationByLocationId {
+        id
+        name
+        address1
+        address2
+        city
+        state
+        zip
+        lat
+        lon
+      }
+    }
+  }
+}

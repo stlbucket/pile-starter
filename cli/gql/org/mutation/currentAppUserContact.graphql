@@ -1,0 +1,16 @@
+mutation {
+  currentAppUserContact(input:{}) {
+  contact {
+    id
+    lastName
+    firstName
+    email
+    organization: organizationByOrganizationId {
+      id
+      name
+      externalId
+      appTenantId
+    }
+  }
+}
+}

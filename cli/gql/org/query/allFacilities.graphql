@@ -1,0 +1,10 @@
+query AllFacilites{
+  allFacilities {
+    nodes {
+      id
+      name
+      externalId
+      appTenantId
+    }
+  }
+}

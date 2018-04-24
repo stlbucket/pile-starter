@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+source ./cmd.config
+
+echo ""
+echo ""
+echo "CONFIGURING SQITCH TARGET"
+echo ""
+
+for i in ${packages[@]};
+do
+  echo "CONFIGURING PACKAGE ------------------------------------------------------------" $i
+  (cd ./"$i"/ && sqitch target add "$database" db:pg:"$database")
+done

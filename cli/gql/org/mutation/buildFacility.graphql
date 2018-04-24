@@ -1,0 +1,25 @@
+mutation BuildFacility(
+    $organizationId: UUID!
+    $externalId: String!
+    $name: String!
+  ) {
+  buildFacility(input: {
+    _organizationId: $organizationId
+    _externalId: $externalId
+    _name: $name
+  }) {
+    facility {
+      id
+      name
+      locationId
+      externalId
+      appTenantId
+      organizationId
+      organization: organizationByOrganizationId {
+        id
+        name
+        appTenantId
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+mutation BuildTenantOrganization(
+  $name: String!
+  $identifier: String!
+  $primaryContactFirstName: String!
+  $primaryContactLastName: String!
+  $primaryContactEmail: String!
+){
+  buildTenantOrganization(input: {
+    _name: $name
+    _identifier: $identifier
+    _primaryContactFirstName: $primaryContactFirstName
+    _primaryContactLastName: $primaryContactLastName
+    _primaryContactEmail: $primaryContactEmail
+  }) {
+    organization {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=app-roles
+%uri=sqitch-phile/app-roles
+
+roles 2018-04-11T19:23:32Z Kevin Burkett <stlbucket@gmail.com> # roles to support rls and grants

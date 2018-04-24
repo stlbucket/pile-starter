@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+source ./cmd.config
+
+echo ""
+echo ""
+echo "VERIFYING SQITCH DEPLOY"
+echo ""
+
+for i in ${packages[@]};
+do
+  echo "VERIFYING PACKAGE ------------------------------------------------------------" $i
+  (cd ./"$i"/ && sqitch verify)
+done

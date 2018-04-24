@@ -1,0 +1,13 @@
+query AllContacts{
+  allContacts {
+    nodes {
+      id
+      firstName
+      lastName
+      email
+      cellPhone
+      officePhone
+      appTenantId
+    }
+  }
+}

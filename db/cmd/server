@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source ./cmd.config
+
+postgraphile -c postgres://"$hostname"/"$database" -s auth,auth_fn,org,org_fn -j -r app_anonymous -e SUPERSECRET -t auth.jwt_token -M --extended-errors 'hint,detail,errcode' --show-error-stack

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./cmd/init
+./cmd/target
+./cmd/engine

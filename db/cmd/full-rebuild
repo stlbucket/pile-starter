@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source ./cmd.config
+source ./cmd/error_exit
+
+dropdb $database || error_exit "UNABLE TO DROP DATABASE $database"
+createdb $database || error_exit "UNABLE TO DEPLOY $databse"
+./cmd/deploy || error_exit "UNABLE TO DEPLOY"
+#./cmd/server || error_exit "UNABLE TO START SERVER"

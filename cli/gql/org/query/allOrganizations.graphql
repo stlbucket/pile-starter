@@ -1,0 +1,9 @@
+query AllOrganization{
+  allOrganizations {
+    nodes {
+      id
+      name
+      appTenantId
+    }
+  }
+}

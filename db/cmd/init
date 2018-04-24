@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+source ./cmd.config
+
+echo ""
+echo ""
+echo "INITIALIZING SQITCH ENGINE"
+echo ""
+
+for i in ${packages[@]};
+do
+  echo "INITIALIZING PACKAGE ------------------------------------------------------------" $i
+#  (cd ./"$i"/ && cp sqitch.conf.starter sqitch.conf)
+  echo ./cmd/sqitch.conf.starter
+  echo ./"$i"/sqitch.conf
+  (cp ./cmd/sqitch.conf.starter ./"$i"/sqitch.conf)
+done

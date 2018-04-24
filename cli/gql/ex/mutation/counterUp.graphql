@@ -1,0 +1,9 @@
+mutation {
+  counterUp(input:{}){
+    counter {
+      id
+      appTenantId
+      currentValue
+    }
+  }
+}

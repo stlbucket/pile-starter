@@ -1,0 +1,7 @@
+%syntax-version=1.0.0
+%project=evt-fn
+%uri=sqitch-phile/evt-fn
+
+structure/schema [evt:structure/schema] 2018-04-23T16:21:04Z Kevin Burkett <stlbucket@gmail.com> # schema for event functions
+view/vw_evt_processing_status [structure/schema] 2018-04-23T16:22:14Z Kevin Burkett <stlbucket@gmail.com> # controls event processing status
+function/consume_event [structure/schema view/vw_evt_processing_status] 2018-04-23T16:23:39Z Kevin Burkett <stlbucket@gmail.com> # function to manage consuming events

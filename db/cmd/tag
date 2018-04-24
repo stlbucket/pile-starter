@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+source ./cmd.config
+
+echo ""
+echo ""
+echo "TAGGING SQITCH PACKAGES"
+echo ""
+
+for i in ${packages[@]};
+do
+  echo "TAGGING PACKAGE ------------------------------------------------------------" $i
+  (cd ./"$i"/ && sqitch tag $1 $2 $3)
+done
+
+git commit -am $3
+git tag $1 -am $3
+

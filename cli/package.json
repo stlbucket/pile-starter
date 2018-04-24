@@ -1,0 +1,25 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/**/*spec.js --sort --bail"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.1.4",
+    "apollo-client": "^2.2.8",
+    "bluebird": "^3.5.1",
+    "fbkt-clog": "^1.0.5",
+    "graphql": "^0.13.2",
+    "node-fetch": "^2.1.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.0",
+    "sinon": "^4.5.0"
+  }
+}

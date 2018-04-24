@@ -1,0 +1,11 @@
+mutation Authenticate(
+$username: String!
+$password: String!
+){
+  authenticate(input: {
+    _username: $username
+    _password: $password
+  }) {
+    jwtToken
+  }
+}

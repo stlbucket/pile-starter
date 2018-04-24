@@ -1,0 +1,41 @@
+mutation BuildContactLocation(
+    $contactId: UUID!
+    $name: String!
+    $address1: String!
+    $address2: String!
+    $city: String!
+    $state: String!
+    $zip: String!
+    $lat: String!
+    $lon: String!
+  ) {
+  buildContactLocation(input: {
+    _contactId: $contactId
+    _name: $name
+    _address1: $address1
+    _address2: $address2
+    _city: $city
+    _state: $state
+    _zip: $zip
+    _lat: $lat
+    _lon: $lon
+  }) {
+    contact {
+      id
+      firstName
+      lastName
+      email
+      location: locationByLocationId {
+        id
+        name
+        address1
+        address2
+        city
+        state
+        zip
+        lat
+        lon
+      }
+    }
+  }
+}
