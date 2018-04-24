@@ -1,4 +1,4 @@
-# sqitch-phile #
+# phile-starter #
 
 <p>
   boilerplate schemas to support quick implementation 
