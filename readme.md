@@ -67,9 +67,20 @@ packages=(
   schema/app-roles
   schema/auth
   schema/auth_fn
+  schema/evt
+  schema/evt_fn
   schema/org
   schema/org_fn
+  schema/ex
+  schema/ex_fn
   core-data
+)
+
+function_packages=(
+  schema/evt_fn
+  schema/org_fn
+  schema/ex_fn
+
 )
 ```
 ... then let phile-starter configure all your packages ...
