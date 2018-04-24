@@ -80,13 +80,14 @@ packages=(
 ```
 ./cmd/deploy
 ```
-assuming you've got postgraphile installed globally:
+### run the server ###
+in a second terminal, navigate to **./api/** and...
 ```
 ./cmd/server
 ```
 
 ### run unit tests ###
-in a second terminal, navigate to **./cli/** and...
+in a third terminal, navigate to **./cli/** and...
 ```
 npm run test
 ```
