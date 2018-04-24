@@ -91,6 +91,7 @@ npm run test
 
 ## more things you can do from here ... ##
 ### look at data resulting from unit tests ##
+in **./db/**...
 ```
 ./dev/execute unit-test-results
 ```
