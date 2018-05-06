@@ -39,6 +39,9 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE org.location TO app_user;
+  GRANT insert ON TABLE org.location TO app_user;
+  GRANT update ON TABLE org.location TO app_user;
+  GRANT delete ON TABLE org.location TO app_user;
   --||--
   alter table org.location enable row level security;
   --||--

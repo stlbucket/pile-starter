@@ -2,6 +2,9 @@
 
 BEGIN;
 
-  DROP FUNCTION IF EXISTS auth_fn.app_user_has_access();
+  DROP FUNCTION IF EXISTS auth_fn.app_user_has_access(
+    uuid
+    ,text
+  );
 
 COMMIT;

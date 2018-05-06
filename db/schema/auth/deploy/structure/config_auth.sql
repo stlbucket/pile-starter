@@ -11,5 +11,8 @@ BEGIN;
   );
 
   GRANT select ON TABLE auth.config_auth TO app_super_admin;
+  GRANT insert ON TABLE auth.config_auth TO app_super_admin;
+  GRANT update ON TABLE auth.config_auth TO app_super_admin;
+  GRANT delete ON TABLE auth.config_auth TO app_super_admin;
 
 COMMIT;

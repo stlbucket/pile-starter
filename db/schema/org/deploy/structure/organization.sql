@@ -40,6 +40,9 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE org.organization TO app_user;
+  GRANT insert ON TABLE org.organization TO app_user;
+  GRANT update ON TABLE org.organization TO app_user;
+  GRANT delete ON TABLE org.organization TO app_user;
   --||--
   alter table org.organization enable row level security;
   --||--

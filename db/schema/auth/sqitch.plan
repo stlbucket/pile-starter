@@ -10,3 +10,4 @@ structure/app_tenant [structure/schema] 2018-04-11T19:28:23Z Kevin Burkett <stlb
 structure/app_user [structure/extensions structure/schema structure/app_tenant] 2018-04-11T19:29:23Z Kevin Burkett <stlbucket@gmail.com> # application user
 structure/token [structure/app_user] 2018-04-11T19:30:49Z Kevin Burkett <stlbucket@gmail.com> # user login token
 custom-type/jwt-token [structure/schema] 2018-04-11T20:20:17Z Kevin Burkett <stlbucket@gmail.com> # jwt token with user id and role
+structure/permission [structure/schema] 2018-05-04T03:47:39Z Kevin Burkett <stlbucket@gmail.com> # permission to manage functionality

@@ -13,6 +13,9 @@ BEGIN;
   );
   --||--
   GRANT select ON TABLE auth.app_tenant TO app_super_admin;
+  GRANT insert ON TABLE auth.app_tenant TO app_super_admin;
+  GRANT update ON TABLE auth.app_tenant TO app_super_admin;
+  GRANT delete ON TABLE auth.app_tenant TO app_super_admin;
 --  --||--
 --  ALTER TABLE auth.app_tenant ENABLE ROW LEVEL SECURITY;
 --  --||--

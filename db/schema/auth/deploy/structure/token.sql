@@ -12,5 +12,10 @@ CREATE TABLE auth.token (
 );
 --||--
 ALTER TABLE auth.token ADD CONSTRAINT fk_token_user FOREIGN KEY ( app_user_id ) REFERENCES auth.app_user( id );
+--||--
+GRANT select ON TABLE auth.token TO app_user;
+GRANT insert ON TABLE auth.token TO app_user;
+GRANT update ON TABLE auth.token TO app_user;
+GRANT delete ON TABLE auth.token TO app_user;
 
 COMMIT;

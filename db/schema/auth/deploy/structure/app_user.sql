@@ -20,6 +20,9 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE auth.app_user TO app_super_admin;
+  GRANT insert ON TABLE auth.app_user TO app_super_admin;
+  GRANT update ON TABLE auth.app_user TO app_super_admin;
+  GRANT delete ON TABLE auth.app_user TO app_super_admin;
 
   --||--
   CREATE FUNCTION auth.fn_timestamp_update_app_user() RETURNS trigger AS $$

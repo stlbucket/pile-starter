@@ -33,9 +33,11 @@ BEGIN;
     EXECUTE PROCEDURE evt.fn_timestamp_update_evt();
   --||--
 
-
   --||--
   GRANT select ON TABLE evt.evt TO app_user;
+  GRANT insert ON TABLE evt.evt TO app_user;
+  GRANT update ON TABLE evt.evt TO app_user;
+  GRANT delete ON TABLE evt.evt TO app_user;
   --||--
   alter table evt.evt enable row level security;
   --||--

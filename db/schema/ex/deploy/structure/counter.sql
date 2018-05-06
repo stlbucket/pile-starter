@@ -30,6 +30,9 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE ex.counter TO app_user;
+  GRANT insert ON TABLE ex.counter TO app_user;
+  GRANT update ON TABLE ex.counter TO app_user;
+  GRANT delete ON TABLE ex.counter TO app_user;
 
   --||--
   alter table ex.counter enable row level security;

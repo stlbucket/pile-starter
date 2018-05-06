@@ -38,6 +38,9 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE org.facility TO app_user;
+  GRANT insert ON TABLE org.facility TO app_user;
+  GRANT update ON TABLE org.facility TO app_user;
+  GRANT delete ON TABLE org.facility TO app_user;
   --||--
   alter table org.facility enable row level security;
   --||--

@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=app_jobs_fn
+%uri=sqitch-phile/app_jobs_fn
+
+structure/schema [app_jobs:structure/schema] 2018-05-06T17:08:25Z Kevin Burkett <stlbucket@gmail.com> # schema for app_jobs functions

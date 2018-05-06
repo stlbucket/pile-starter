@@ -6,6 +6,7 @@ packages=(
   schema/app-roles
   schema/auth
   schema/auth_fn
+  schema/app_jobs
   schema/evt
   schema/org
   schema/org_fn

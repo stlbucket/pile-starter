@@ -48,6 +48,9 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE org.contact TO app_user;
+  GRANT insert ON TABLE org.contact TO app_user;
+  GRANT update ON TABLE org.contact TO app_user;
+  GRANT delete ON TABLE org.contact TO app_user;
   --||--
   alter table org.contact enable row level security;
   --||--
