@@ -9,6 +9,8 @@
 schemas include:
 - app-roles: 
   - creates db roles to support postgres rls security
+- app_jobs
+  - process asyncronous jobs on a queue
 - auth: 
   - app_user management and login support.  
   - this version supports the basic auth described in the postgraphile docs.
@@ -18,6 +20,8 @@ schemas include:
   - generic organization/location/contact support.
   - org.contact ==> auth.app_user
   - requires auth
+- evt:
+  - record replayable events *** experimental
 - ex:
   - basic counter example
   - event-driven counter example (first cut - still under development - would LOVE feedback on this coz not sure it's the best way to go about it)
@@ -60,13 +64,15 @@ cp cmd.config.example cmd.config
 ... then set your database name in **cmd.config** ...
 ```
 #!/usr/bin/env bash
-database="[YOUR DATABASE NAME]"
+database="phile"
 hostname="localhost"
 
 packages=(
   schema/app-roles
   schema/auth
   schema/auth_fn
+  schema/app_jobs
+  schema/app_jobs_fn
   schema/evt
   schema/evt_fn
   schema/org
@@ -77,12 +83,11 @@ packages=(
 )
 
 function_packages=(
+  schema/app_jobs_fn
   schema/evt_fn
   schema/org_fn
   schema/ex_fn
-
-)
-```
+)```
 ... then let phile-starter configure all your packages ...
 ```
 ./cmd/configure
