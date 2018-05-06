@@ -3,3 +3,7 @@
 %uri=sqitch-phile/app_jobs_fn
 
 structure/schema [app_jobs:structure/schema] 2018-05-06T17:08:25Z Kevin Burkett <stlbucket@gmail.com> # schema for app_jobs functions
+function/do_notify [structure/schema] 2018-05-06T17:19:03Z Kevin Burkett <stlbucket@gmail.com> # notify listeners of new jobs in queue
+function/update_timestamps [structure/schema] 2018-05-06T17:23:53Z Kevin Burkett <stlbucket@gmail.com> # set timestamps when saving jobs to queue
+trigger/update_timestamps [function/update_timestamps] 2018-05-06T17:32:20Z Kevin Burkett <stlbucket@gmail.com> # trigger to update job timestamps
+trigger/notify_worker [structure/schema function/do_notify] 2018-05-06T17:35:22Z Kevin Burkett <stlbucket@gmail.com> # trigger to notify worker
