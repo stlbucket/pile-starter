@@ -9,3 +9,4 @@ trigger/update_timestamps [function/update_timestamps] 2018-05-06T17:32:20Z Kevi
 trigger/notify_worker [structure/schema function/do_notify] 2018-05-06T17:35:22Z Kevin Burkett <stlbucket@gmail.com> # trigger to notify worker
 function/jobs__decrease_job_queue_count [structure/schema] 2018-05-06T17:46:13Z Kevin Burkett <stlbucket@gmail.com> # decrease count of jobs in queue
 trigger/jobs__decrease_job_queue_count [function/jobs__decrease_job_queue_count] 2018-05-06T17:49:35Z Kevin Burkett <stlbucket@gmail.com> # trigger for jobs__decrease_job_queue_count
+function/jobs__increase_job_queue_count [structure/schema] 2018-05-06T20:37:45Z Kevin Burkett <stlbucket@gmail.com> # jobs__increase_job_queue_count
