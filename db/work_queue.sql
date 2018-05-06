@@ -96,9 +96,9 @@
 --   INSERT INTO app_jobs.job(task_identifier, queue_name, payload) VALUES(identifier, queue_name, payload) RETURNING *;
 -- $$ LANGUAGE sql;
 
-CREATE FUNCTION app_jobs.schedule_job(identifier varchar, queue_name varchar, payload json, run_at timestamptz) RETURNS app_jobs.job AS $$
-  INSERT INTO app_jobs.job(task_identifier, queue_name, payload, run_at) VALUES(identifier, queue_name, payload, run_at) RETURNING *;
-$$ LANGUAGE sql;
+-- CREATE FUNCTION app_jobs.schedule_job(identifier varchar, queue_name varchar, payload json, run_at timestamptz) RETURNS app_jobs.job AS $$
+--   INSERT INTO app_jobs.job(task_identifier, queue_name, payload, run_at) VALUES(identifier, queue_name, payload, run_at) RETURNING *;
+-- $$ LANGUAGE sql;
 
 CREATE FUNCTION app_jobs.complete_job(worker_id varchar, job_id int) RETURNS app_jobs.job AS $$
 DECLARE
