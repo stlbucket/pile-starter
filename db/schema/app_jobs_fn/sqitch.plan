@@ -10,3 +10,4 @@ trigger/notify_worker [structure/schema function/do_notify] 2018-05-06T17:35:22Z
 function/jobs__decrease_job_queue_count [structure/schema] 2018-05-06T17:46:13Z Kevin Burkett <stlbucket@gmail.com> # decrease count of jobs in queue
 trigger/jobs__decrease_job_queue_count [function/jobs__decrease_job_queue_count] 2018-05-06T17:49:35Z Kevin Burkett <stlbucket@gmail.com> # trigger for jobs__decrease_job_queue_count
 function/jobs__increase_job_queue_count [structure/schema] 2018-05-06T20:37:45Z Kevin Burkett <stlbucket@gmail.com> # jobs__increase_job_queue_count
+trigger/jobs__increase_job_queue_count [function/jobs__increase_job_queue_count] 2018-05-06T20:41:32Z Kevin Burkett <stlbucket@gmail.com> # trigger for jobs__increase_job_queue_count
