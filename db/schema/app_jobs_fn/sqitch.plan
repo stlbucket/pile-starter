@@ -13,3 +13,4 @@ function/jobs__increase_job_queue_count [structure/schema] 2018-05-06T20:37:45Z 
 trigger/jobs__increase_job_queue_count [function/jobs__increase_job_queue_count] 2018-05-06T20:41:32Z Kevin Burkett <stlbucket@gmail.com> # trigger for jobs__increase_job_queue_count
 function/add_job [app_jobs:structure/job] 2018-05-06T20:46:14Z Kevin Burkett <stlbucket@gmail.com> # add a job to a queue
 function/add_job_with_queue [app_jobs:structure/job] 2018-05-06T20:52:25Z Kevin Burkett <stlbucket@gmail.com> # add a job to a queue
+function/schedule_job [app_jobs:structure/job] 2018-05-06T20:54:12Z Kevin Burkett <stlbucket@gmail.com> # schedule a job
