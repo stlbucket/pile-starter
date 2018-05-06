@@ -15,3 +15,4 @@ function/add_job [app_jobs:structure/job] 2018-05-06T20:46:14Z Kevin Burkett <st
 function/add_job_with_queue [app_jobs:structure/job] 2018-05-06T20:52:25Z Kevin Burkett <stlbucket@gmail.com> # add a job to a queue
 function/schedule_job [app_jobs:structure/job] 2018-05-06T20:54:12Z Kevin Burkett <stlbucket@gmail.com> # schedule a job
 function/complete_job [app_jobs:structure/job] 2018-05-06T20:57:38Z Kevin Burkett <stlbucket@gmail.com> # complete a job
+function/fail_job [app_jobs:structure/job] 2018-05-06T20:59:13Z Kevin Burkett <stlbucket@gmail.com> # fail a job
