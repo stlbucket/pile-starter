@@ -87,7 +87,8 @@ function_packages=(
   schema/evt_fn
   schema/org_fn
   schema/ex_fn
-)```
+)
+```
 ... then let phile-starter configure all your packages ...
 ```
 ./cmd/configure
