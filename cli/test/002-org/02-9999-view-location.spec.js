@@ -1,4 +1,3 @@
-const expect = require('chai').expect
 const clog = require('fbkt-clog')
 const apolloClient = require('../../apolloClient')
 const readFileSync = require('fs').readFileSync
@@ -7,9 +6,9 @@ const allLocations = readFileSync(__dirname + '/../../gql/org/query/allLocations
 
 // const allLocations = require('../../gql/query/allLocations')
 
-describe('org-view-location', function(done){
+describe('org-view-location', () => {
 
-  it('should allow appsuperadmin to see all locations', function (done) {
+  test('should allow appsuperadmin to see all locations', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',
@@ -26,8 +25,8 @@ describe('org-view-location', function(done){
             return acc.includes(location.appTenantId) ? acc : acc.concat([location.appTenantId])
           }, []
         )
-        expect(appTenantIds.length).to.equal(2)
-        expect(locations.length).to.equal(4)
+        expect(appTenantIds.length).toBe(2)
+        expect(locations.length).toBe(4)
         done()
       })
       .catch(error => {

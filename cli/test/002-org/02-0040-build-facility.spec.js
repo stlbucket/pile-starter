@@ -1,4 +1,3 @@
-const expect = require('chai').expect
 const clog = require('fbkt-clog')
 const apolloClient = require('../../apolloClient')
 const readFileSync = require('fs').readFileSync
@@ -8,9 +7,9 @@ const buildFacilityLocation = readFileSync(__dirname + '/../../gql/org/mutation/
 //
 // // const allLocations = require('../../gql/query/allLocations')
 //
-describe('org-facility', function(done){
+describe('org-facility', () => {
 
-  it('should build a new facility for test org 1', function (done) {
+  test('should build a new facility for test org 1', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -34,8 +33,8 @@ describe('org-facility', function(done){
         })
       })
       .then(facility => {
-        expect(facility).to.be.an('object')
-        expect(facility.name).to.equal('TestOrg1Facility1')
+        expect(typeof facility).toBe('object')
+        expect(facility.name).toBe('TestOrg1Facility1')
         return apolloClient.mutate({
           mutation: buildFacilityLocation,
           variables: {
@@ -53,8 +52,8 @@ describe('org-facility', function(done){
         })
       })
       .then(facility => {
-        expect(facility).to.be.an('object')
-        expect(facility.name).to.equal('TestOrg1Facility1')
+        expect(typeof facility).toBe('object')
+        expect(facility.name).toBe('TestOrg1Facility1')
         done()
       })
       .catch(error => {
@@ -62,7 +61,7 @@ describe('org-facility', function(done){
       })
   })
 
-  it('should build a new facility for test org 2', function (done) {
+  test('should build a new facility for test org 2', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'peter.testaroo@testyorg.org',
@@ -86,8 +85,8 @@ describe('org-facility', function(done){
         })
       })
       .then(facility => {
-        expect(facility).to.be.an('object')
-        expect(facility.name).to.equal('TestOrg2Facility1')
+        expect(typeof facility).toBe('object')
+        expect(facility.name).toBe('TestOrg2Facility1')
         return apolloClient.mutate({
           mutation: buildFacilityLocation,
           variables: {
@@ -105,8 +104,8 @@ describe('org-facility', function(done){
         })
       })
       .then(facility => {
-        expect(facility).to.be.an('object')
-        expect(facility.name).to.equal('TestOrg2Facility1')
+        expect(typeof facility).toBe('object')
+        expect(facility.name).toBe('TestOrg2Facility1')
         done()
       })
       .catch(error => {

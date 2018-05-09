@@ -1,4 +1,3 @@
-const expect = require('chai').expect
 const clog = require('fbkt-clog')
 const apolloClient = require('../../apolloClient')
 const readFileSync = require('fs').readFileSync
@@ -7,8 +6,8 @@ const allOrganizations = readFileSync(__dirname + '/../../gql/org/query/allOrgan
 const buildOrganizationLocation = readFileSync(__dirname + '/../../gql/org/mutation/buildOrganizationLocation.graphql', 'utf8')
 const currentAppUserContact = readFileSync(__dirname + '/../../gql/org/mutation/currentAppUserContact.graphql', 'utf8')
 
-describe('org-app-tenant-org', function(done){
-  it('should build a new app tenant organization', function (done) {
+describe('org-app-tenant-org', () => {
+  test('should build a new app tenant organization', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',
@@ -27,8 +26,8 @@ describe('org-app-tenant-org', function(done){
       resultPath: 'buildTenantOrganization.organization'
     })
       .then(organization => {
-        expect(organization).to.be.an('object')
-        expect(organization.name).to.equal('Test Tenant Org 1')
+        expect(typeof organization).toBe('object')
+        expect(organization.name).toBe('Test Tenant Org 1')
 
         apolloClient.setCredentials({
           username: 'testy.mctesterson@testyorg.org',
@@ -38,15 +37,15 @@ describe('org-app-tenant-org', function(done){
         return apolloClient.connect()
       })
       .then(client => {
-        expect(client).to.be.an('object')
+        expect(typeof client).toBe('object')
         return apolloClient.query({
           query: allOrganizations,
           resultPath: 'allOrganizations.nodes'
         })
       })
       .then(organizations => {
-        expect(organizations.length).to.equal(1)
-        expect(organizations[0].name).to.equal('Test Tenant Org 1')
+        expect(organizations.length).toBe(1)
+        expect(organizations[0].name).toBe('Test Tenant Org 1')
         done()
       })
       .catch(error => {
@@ -54,7 +53,7 @@ describe('org-app-tenant-org', function(done){
       })
   })
 
-  it('should build location for a test organization', function (done) {
+  test('should build location for a test organization', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -67,8 +66,8 @@ describe('org-app-tenant-org', function(done){
       resultPath: 'currentAppUserContact.contact'
     })
       .then(contact => {
-        expect(contact).to.be.an('object')
-        expect(contact.email).to.equal('testy.mctesterson@testyorg.org')
+        expect(typeof contact).toBe('object')
+        expect(contact.email).toBe('testy.mctesterson@testyorg.org')
         return apolloClient.mutate({
           mutation: buildOrganizationLocation,
           variables: {
@@ -86,10 +85,10 @@ describe('org-app-tenant-org', function(done){
         })
       })
       .then(organizationLocation => {
-        expect(organizationLocation).to.be.an('object')
-        expect(organizationLocation.name).to.equal('Test Tenant Org 1')
-        expect(organizationLocation.location).to.be.an('object')
-        expect(organizationLocation.location.name).to.equal('Test organization location')
+        expect(typeof organizationLocation).toBe('object')
+        expect(organizationLocation.name).toBe('Test Tenant Org 1')
+        expect(typeof organizationLocation.location).toBe('object')
+        expect(organizationLocation.location.name).toBe('Test organization location')
         done()
       })
       .catch(error => {
@@ -97,7 +96,7 @@ describe('org-app-tenant-org', function(done){
       })
   })
 
-  it('should build a second app tenant organization', function (done) {
+  test('should build a second app tenant organization', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',
@@ -116,8 +115,8 @@ describe('org-app-tenant-org', function(done){
       resultPath: 'buildTenantOrganization.organization'
     })
       .then(organization => {
-        expect(organization).to.be.an('object')
-        expect(organization.name).to.equal('Test Tenant Org 2')
+        expect(typeof organization).toBe('object')
+        expect(organization.name).toBe('Test Tenant Org 2')
 
         apolloClient.setCredentials({
           username: 'peter.testaroo@testyorg.org',
@@ -127,15 +126,15 @@ describe('org-app-tenant-org', function(done){
         return apolloClient.connect()
       })
       .then(client => {
-        expect(client).to.be.an('object')
+        expect(typeof client).toBe('object')
         return apolloClient.query({
           query: allOrganizations,
           resultPath: 'allOrganizations.nodes'
         })
       })
       .then(organizations => {
-        expect(organizations.length).to.equal(1)
-        expect(organizations[0].name).to.equal('Test Tenant Org 2')
+        expect(organizations.length).toBe(1)
+        expect(organizations[0].name).toBe('Test Tenant Org 2')
         done()
       })
       .catch(error => {
@@ -143,7 +142,7 @@ describe('org-app-tenant-org', function(done){
       })
   })
 
-  it('user should see only own app tenant organization', function (done) {
+  test('user should see only own app tenant organization', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -155,8 +154,8 @@ describe('org-app-tenant-org', function(done){
       resultPath: 'allOrganizations.nodes'
     })
       .then(organizations => {
-        expect(organizations.length).to.equal(1)
-        expect(organizations[0].name).to.equal('Test Tenant Org 1')
+        expect(organizations.length).toBe(1)
+        expect(organizations[0].name).toBe('Test Tenant Org 1')
         done()
       })
       .catch(error => {
@@ -164,7 +163,7 @@ describe('org-app-tenant-org', function(done){
       })
   })
 
-  it('should allow appsuperadmin to see all organizations', function (done) {
+  test('should allow appsuperadmin to see all organizations', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',
@@ -176,7 +175,7 @@ describe('org-app-tenant-org', function(done){
       resultPath: 'allOrganizations.nodes'
     })
       .then(organizations => {
-        expect(organizations.length).to.equal(2)
+        expect(organizations.length).toBe(2)
         done()
       })
       .catch(error => {

@@ -1,4 +1,3 @@
-const expect = require('chai').expect
 const clog = require('fbkt-clog')
 const apolloClient = require('../../apolloClient')
 const readFileSync = require('fs').readFileSync
@@ -6,9 +5,9 @@ const counterUpEvt = readFileSync(__dirname + '/../../gql/ex/mutation/counterUpE
 //
 // // const allLocations = require('../../gql/query/allLocations')
 //
-describe('ex-counter-evt', function (done) {
+describe('ex-counter-evt', () => {
 
-  it('should call counterUpEvt mutation', function (done) {
+  test('should call counterUpEvt mutation', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -25,44 +24,44 @@ describe('ex-counter-evt', function (done) {
 
     countOne()
       .then(counterEvt => {
-        expect(counterEvt).to.be.an('object')
-        expect(counterEvt.currentValue > 0).to.equal(true)
+        expect(typeof counterEvt).toBe('object')
+        expect(counterEvt.currentValue > 0).toBe(true)
         return countOne()
       })
       .then(counterEvt => {
-        expect(counterEvt).to.be.an('object')
-        expect(counterEvt.currentValue > 0).to.equal(true)
+        expect(typeof counterEvt).toBe('object')
+        expect(counterEvt.currentValue > 0).toBe(true)
         return countOne()
       })
       .then(counterEvt => {
-        expect(counterEvt).to.be.an('object')
-        expect(counterEvt.currentValue > 0).to.equal(true)
+        expect(typeof counterEvt).toBe('object')
+        expect(counterEvt.currentValue > 0).toBe(true)
         return countOne()
       })
       .then(counterEvt => {
-        expect(counterEvt).to.be.an('object')
-        expect(counterEvt.currentValue > 0).to.equal(true)
+        expect(typeof counterEvt).toBe('object')
+        expect(counterEvt.currentValue > 0).toBe(true)
         return countOne()
       })
       .then(counterEvt => {
-        expect(counterEvt).to.be.an('object')
-        expect(counterEvt.currentValue > 0).to.equal(true)
+        expect(typeof counterEvt).toBe('object')
+        expect(counterEvt.currentValue > 0).toBe(true)
         return countOne()
           .catch(error => {
-            expect(error.toString().indexOf('Counter exceeds threshold') > -1).to.equal(true)
+            expect(error.toString().indexOf('Counter exceeds threshold') > -1).toBe(true)
             return 'SO WHAT'
-          })
+          });
       })
       .then(what => {
-        expect(what).to.equal('SO WHAT')
+        expect(what).toBe('SO WHAT')
         return countOne()
           .catch(error => {
-            expect(error.toString().indexOf('Event captured but not processed - queue currently offline') > -1).to.equal(true )
+            expect(error.toString().indexOf('Event captured but not processed - queue currently offline') > -1).toBe(true)
             return 'SO WHAT'
-          })
+          });
       })
       .then(what => {
-        expect(what).to.equal('SO WHAT')
+        expect(what).toBe('SO WHAT')
         done()
       })
       .catch(error => {

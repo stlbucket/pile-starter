@@ -1,4 +1,3 @@
-const expect = require('chai').expect
 const clog = require('fbkt-clog')
 const apolloClient = require('../../apolloClient')
 const readFileSync = require('fs').readFileSync
@@ -6,9 +5,9 @@ const counterUp = readFileSync(__dirname + '/../../gql/ex/mutation/counterUp.gra
 //
 // // const allLocations = require('../../gql/query/allLocations')
 //
-describe('ex-counter', function (done) {
+describe('ex-counter', () => {
 
-  it('should call counterUp mutation', function (done) {
+  test('should call counterUp mutation', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -22,8 +21,8 @@ describe('ex-counter', function (done) {
     })
       .then(counter => {
         // clog('counter', counter)
-        expect(counter).to.be.an('object')
-        expect(counter.currentValue > 0).to.equal(true)
+        expect(typeof counter).toBe('object')
+        expect(counter.currentValue > 0).toBe(true)
         done()
       })
       .catch(error => {

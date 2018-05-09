@@ -1,0 +1,57 @@
+Arguments: 
+  /Users/buckfactor/.nvm/versions/node/v8.10.0/bin/node /Users/buckfactor/.nvm/versions/node/v8.10.0/bin/yarn install jest
+
+PATH: 
+  /usr/local/opt/postgresql@9.5/bin:/Applications/google-cloud-sdk/bin:/Users/buckfactor/learn/flutter/bin:/Library/PostgreSQL/9.5/bin:/usr/local/bin/ffmpeg:/usr/local/bin/gifsicle:/usr/local/sbin/rabbitmq-server:/usr/local/mysql/bin:/usr/local/psql:/usr/local/sbin:/bin/cat:/Library/Frameworks/Python.framework/Versions/3.4/bin:/Users/buckfactor/.nvm/versions/node/v8.10.0/bin:/Users/buckfactor/.sdkman/candidates/groovy/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/mysql/bin/mysql:/usr/local/sbin:/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.10.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "cli",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "mocha ./test/**/*spec.js --sort --bail"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "apollo-boost": "^0.1.4",
+      "apollo-client": "^2.2.8",
+      "bluebird": "^3.5.1",
+      "fbkt-clog": "^1.0.5",
+      "graphql": "^0.13.2",
+      "node-fetch": "^2.1.2"
+    },
+    "devDependencies": {
+      "chai": "^4.1.2",
+      "jest": "^22.4.3",
+      "mocha": "^5.1.0",
+      "sinon": "^4.5.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: `install` has been replaced with `add` to add new dependencies. Run "yarn add jest" instead.
+      at new MessageError (/Users/buckfactor/.nvm/versions/node/v8.10.0/lib/node_modules/yarn/lib/cli.js:186:110)
+      at Object.<anonymous> (/Users/buckfactor/.nvm/versions/node/v8.10.0/lib/node_modules/yarn/lib/cli.js:21987:13)
+      at Generator.next (<anonymous>)
+      at step (/Users/buckfactor/.nvm/versions/node/v8.10.0/lib/node_modules/yarn/lib/cli.js:98:30)
+      at /Users/buckfactor/.nvm/versions/node/v8.10.0/lib/node_modules/yarn/lib/cli.js:109:13
+      at <anonymous>
