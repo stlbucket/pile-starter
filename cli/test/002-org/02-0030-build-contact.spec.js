@@ -12,7 +12,7 @@ describe('org-contact', () => {
 
   test(
     'should build a new contact for current user organization',
-    () => {
+    done => {
       apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
       apolloClient.setCredentials({
         username: 'testy.mctesterson@testyorg.org',
@@ -53,7 +53,7 @@ describe('org-contact', () => {
     }
   )
 
-  test('should get current user contact', () => {
+  test('should get current user contact', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -75,7 +75,7 @@ describe('org-contact', () => {
       })
   })
 
-  test('should get organization contacts', () => {
+  test('should get organization contacts', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -97,7 +97,7 @@ describe('org-contact', () => {
       })
   })
 
-  test('should build location for a contact', () => {
+  test('should build location for a contact', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',

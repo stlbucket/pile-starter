@@ -2,7 +2,7 @@ const clog = require('fbkt-clog')
 const apolloClient = require('../../apolloClient')
 
 describe('apollo client', () => {
-  test('should connect to the server', () => {
+  test('should connect to the server', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',

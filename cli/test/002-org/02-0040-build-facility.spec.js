@@ -9,7 +9,7 @@ const buildFacilityLocation = readFileSync(__dirname + '/../../gql/org/mutation/
 //
 describe('org-facility', () => {
 
-  test('should build a new facility for test org 1', () => {
+  test('should build a new facility for test org 1', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -61,7 +61,7 @@ describe('org-facility', () => {
       })
   })
 
-  test('should build a new facility for test org 2', () => {
+  test('should build a new facility for test org 2', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'peter.testaroo@testyorg.org',

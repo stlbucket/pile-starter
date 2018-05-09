@@ -5,7 +5,7 @@ const mutation = readFileSync(__dirname + '/../../gql/org/mutation/currentAppUse
 
 describe('org-current-app-user-contact', () => {
 
-  test('should get the current user contact info', () => {
+  test('should get the current user contact info', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
 
     apolloClient.setCredentials({

@@ -4,7 +4,7 @@ const readFileSync = require('fs').readFileSync
 const mutation = readFileSync(__dirname + '/../../gql/auth/mutation/buildAppTenant.graphql', 'utf8')
 
 describe('auth', () => {
-  test('should build a new app tenant', () => {
+  test('should build a new app tenant', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',

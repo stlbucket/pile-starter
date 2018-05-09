@@ -7,7 +7,7 @@ const counterUp = readFileSync(__dirname + '/../../gql/ex/mutation/counterUp.gra
 //
 describe('ex-counter', () => {
 
-  test('should call counterUp mutation', () => {
+  test('should call counterUp mutation', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',

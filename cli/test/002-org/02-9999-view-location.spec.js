@@ -8,7 +8,7 @@ const allLocations = readFileSync(__dirname + '/../../gql/org/query/allLocations
 
 describe('org-view-location', () => {
 
-  test('should allow appsuperadmin to see all locations', () => {
+  test('should allow appsuperadmin to see all locations', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',

@@ -7,7 +7,7 @@ const buildOrganizationLocation = readFileSync(__dirname + '/../../gql/org/mutat
 const currentAppUserContact = readFileSync(__dirname + '/../../gql/org/mutation/currentAppUserContact.graphql', 'utf8')
 
 describe('org-app-tenant-org', () => {
-  test('should build a new app tenant organization', () => {
+  test('should build a new app tenant organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',
@@ -53,7 +53,7 @@ describe('org-app-tenant-org', () => {
       })
   })
 
-  test('should build location for a test organization', () => {
+  test('should build location for a test organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -96,7 +96,7 @@ describe('org-app-tenant-org', () => {
       })
   })
 
-  test('should build a second app tenant organization', () => {
+  test('should build a second app tenant organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',
@@ -142,7 +142,7 @@ describe('org-app-tenant-org', () => {
       })
   })
 
-  test('user should see only own app tenant organization', () => {
+  test('user should see only own app tenant organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'testy.mctesterson@testyorg.org',
@@ -163,7 +163,7 @@ describe('org-app-tenant-org', () => {
       })
   })
 
-  test('should allow appsuperadmin to see all organizations', () => {
+  test('should allow appsuperadmin to see all organizations', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
       username: 'appsuperadmin',
