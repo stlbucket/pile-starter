@@ -1,0 +1,21 @@
+{
+  "database": "phile",
+  "hostname": "localhost",
+  "packages": [
+    {
+      "path": "release/001/001-app-roles"
+    },
+    {
+      "path": "release/001/002-auth"
+    },
+    {
+      "path": "release/001/003-auth_fn"
+    },
+    {
+      "path": "release/001/004-org"
+    },
+    {
+      "path": "release/001/005-org_fn"
+    }
+  ]
+}
