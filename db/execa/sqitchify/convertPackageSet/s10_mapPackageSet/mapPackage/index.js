@@ -16,13 +16,13 @@ function convertPackage(package){
       return mapArtifactType(artifactType.name, package.sourceDir)
       .then(result => {
         return Object.assign(artifactType, {
-          obj: result
+          migrations: result
         })
       })
     })
     .then(result => {
       return Object.assign(package, {
-        obj: result
+        migrationSets: result
       })
     })
 }

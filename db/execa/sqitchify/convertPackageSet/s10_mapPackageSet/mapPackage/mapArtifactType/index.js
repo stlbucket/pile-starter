@@ -20,7 +20,7 @@ function mapArtifactType(artifactType, reldir) {
           oldPatchNumber: file.split('-')[1],
           baseName: file.split('-').slice(2).join('-'),
           filename: file,
-          result: result
+          migrationObj: result
         }
 
         return acc.concat([retval])
@@ -28,11 +28,6 @@ function mapArtifactType(artifactType, reldir) {
     },
     []
   )
-  .then(result => {
-    return {
-      [artifactType]: result
-    }
-  })
 }
 
 module.exports = mapArtifactType
