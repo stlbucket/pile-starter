@@ -1,0 +1,9 @@
+%syntax-version=1.0.0
+%project=099-tunz
+%uri=sqitch-phile/099-tunz
+
+structure/001-schema [002-auth:structure/002-schema] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # tunz schema
+structure/002-band [structure/001-schema] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any band
+structure/003-venue [structure/002-band] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any venue
+structure/004-show [structure/003-venue] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any show
+structure/005-player [structure/004-show] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player

@@ -12,6 +12,7 @@ function applyPkgCmd (title, pkgArray, cmdTemplate) {
           pkgArray,
           pkg => {
             const cmd = cmdTemplate(pkg)
+            clog('COMMAND', cmd)
             return execa.shell(cmd)
               .then(result => {
                 clog(`${title} result`, result.stdout)
