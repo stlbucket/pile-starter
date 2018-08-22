@@ -57,7 +57,7 @@ this minimal command will create a subdirectiory structure as follows
         |_permissions
         |_roles
         |_structure
-          |_020-0010-my-first-patch.sql
+          |_0010-my-first-patch.sql
         |_triggers
         |_user_types
         |_views
@@ -68,7 +68,7 @@ this minimal command will create a subdirectiory structure as follows
         |_permissions
         |_roles
         |_structure
-          |_020-0010-my-first-patch.sql
+          |_0010-my-first-patch.sql
         |_triggers
         |_user_types
         |_views
@@ -79,7 +79,7 @@ this minimal command will create a subdirectiory structure as follows
         |_permissions
         |_roles
         |_structure
-          |_020-0010-my-first-patch.sql
+          |_0010-my-first-patch.sql
         |_triggers
         |_user_types
         |_views
@@ -143,14 +143,13 @@ which updates directory structure to the following (collapsed)
     |_0020-new-feature
       |_deploy
         |_function
-          |_040-0010-new-function-1.sql
-          |_040-0020-new-function-2.sql
+          |_0010-new-function-1.sql
+          |_0020-new-function-2.sql
       |_revert
       |_verify
       |_test
-        |-020-0010-my-first-feature.test.010.sql
-        |-040-0010-new-function-1.test.010.sql
-        |-040-0020-new-function-2.test.010.sql
+        |-0010-new-function-1.test.010.sql
+        |-0020-new-function-2.test.010.sql
       |_sqitch.plan
 ```
 we always work within the context of one feature at a time.
