@@ -6,23 +6,23 @@ const Pm2ProcessesPlugin = makeExtendSchemaPlugin(build => {
   const { pgSql: sql } = build;
   return {
     typeDefs: gql`
-    type SyncProcess {
+    type Process {
       pid: String!
       name: String!
       status: String!
     }
 
-    type SyncProcessCollection {
-      nodes: [SyncProcess]!
+    type ProcessCollection {
+      nodes: [Process]!
     }
 
     extend type Query {
-      syncProcesses: SyncProcessCollection!
+      Processes: ProcessCollection!
     }
   `,
   resolvers: {
       Query: {
-        syncProcesses: async (
+        Processes: async (
           _query,
           args,
           context,
