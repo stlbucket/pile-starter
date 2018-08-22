@@ -1,0 +1,2420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html>
+<html lang='en' xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<title>products</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+<link rel="shortcut icon" href="https://www.dbschema.com/images/favicon.ico">
+<style type='text/css'>
+body {
+    font-family: 'Segoe UI', 'Lucida sans', Dialog;
+    font-size: 13px;
+    background-color:#f5f5f5;
+    margin: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class='svg-container'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1995' height='1310' viewBox='0 0 1995 1310' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','scene'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#000000; font-family: System, 'Trebuchet MS', Dialog; font-size:12px; }
+  a text:hover        { fill:#94025f; text-shadow: 0px 0px 6px #d0ce00; font-size:13px; }
+  text.highlight      { fill:#94025f; text-shadow: 0px 0px 4px #eac533; font-size:13px; }
+  text.colType        { fill:#b3b3b3; }
+  text.relName        { fill:#b09c7c; }
+  path                { stroke:#5c554f; stroke-width:1.15; fill:none; }
+  path                { stroke:#5c554f; stroke-width:1.15; fill:none;}
+  path.virtual        { stroke:#b7642d; }
+  path.logo           { fill:#fbeac0;fill-opacity:1;stroke-width:0.3;stroke:#222222; }
+  path.dotted         { stroke-dasharray:4,2; }
+  path.scene          { stroke-width:10; opacity:0;}
+  path.highlight      { stroke-width:5; stroke:#c1a662; opacity:0.6;}
+  rect.entity         { fill:#ffffff; stroke:#aaa; stroke-width:1;shape-rendering:crispEdges;filter:url(#shadow); }
+  line.delim          { stroke-width:1; shape-rendering:crispEdges; }
+  text.callout        { fill:#000000; font-family: Trebuchet MS, 'Trebuchet MS', Dialog; font-size:12px; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#bebdbd; stroke-width:0.5; filter: url(#shadow);}
+  rect.grp            { stroke:#b1b1b1; stroke-width:1.7; opacity:0.8; }
+  path.st0            { fill:#ececec;fill-opacity:1;stroke-width:0.6;stroke:#d0d0d0; }
+</style>
+<defs>
+  <pattern id='layoutBgA' patternUnits='userSpaceOnUse'  width='10' height='20' x='0' y='0' viewBox='0 0 5 10'>  
+     <line x1='-2' y1='1' x2='7' y2='10' stroke='#f3f3f3' stroke-width='.5'/>  
+     <line x1='-2' y1='6' x2='7' y2='15' stroke='#f3f3f3' stroke-width='.5'/>  
+     <line x1='-2' y1='-4' x2='7' y2='5' stroke='#f3f3f3' stroke-width='.5'/>  
+  </pattern>  
+  <radialGradient id='layoutBgB' gradientUnits='userSpaceOnUse' cx='50%' cy='50%' r='75%' fx='46%' fy='22%'>
+     <stop offset='0%' stop-opacity='.2' stop-color='#f5f5f5' />  
+     <stop offset='100%' stop-color='#efefef' />  
+  </radialGradient>
+  <pattern id='layoutBgTr' patternUnits='userSpaceOnUse'  width='300' height='300' x='0' y='0' viewBox='0 0 300 300'>  
+  <path class='st0' d='m 62.011835,91.267143 c 3.536475,3.175214 2.262669,8.705999 -1.637711,11.015197 -3.594697,5.8423 -6.34682,-2.892623 -9.715478,-4.653898 -5.609222,-2.838926 2.050802,-6.680123 4.77004,-8.319046 2.334696,-0.724067 4.935143,0.312302 6.583149,1.957747 z m -2.720492,2.538595 c -2.698397,-3.517732 -9.282815,1.269287 -3.69635,3.568637 2.765331,5.605665 7.052809,-0.56184 3.69635,-3.568637 z' />
+  <path class='st0' d='m 72.25864,84.624638 c 4.108046,3.143003 -0.737059,6.895259 -1.994918,8.323564 -3.586718,5.561143 -6.495079,-4.197379 -10.07759,-5.582178 -4.443422,-1.088878 1.349298,-7.249213 2.503526,-2.503449 2.464639,4.517161 2.304019,-3.70697 6.291113,-1.995914 1.280083,0.137865 2.410691,0.864819 3.277869,1.757977 z m -2.646109,2.323242 c -4.797162,-3.078383 -2.810517,6.305507 0.515161,1.990646 0.296432,-0.688582 0.01209,-1.493412 -0.515161,-1.990646 z' />
+  <path class='st0' d='m 78.230641,79.436735 c 4.142121,3.027466 -2.020102,10.435276 -3.450543,5.477315 3.306312,-5.248112 -9.186019,-2.220094 -5.805994,-8.77679 -0.544141,-3.93011 6.797826,-2.102227 3.386015,0.245477 -0.181085,2.915838 4.637371,1.019311 5.870522,3.053982 z' />
+  <path class='st0' d='m 82.744502,72.597397 c -4.901605,1.926521 1.146497,6.285555 2.559694,2.225783 6.21817,3.539297 -6.640186,8.416664 -7.590325,1.997457 -2.24365,-2.914883 4.026676,-10.148618 5.030631,-4.22324 z' />
+  <path class='st0' d='m 90.727458,64.259158 c 1.583987,1.690029 3.321317,3.2696 4.81267,5.026353 -2.535706,6.849794 -6.445583,-5.918773 -8.388458,-0.167017 0.782768,2.03426 5.877405,3.752079 2.670979,5.711199 -3.315119,1.519161 -5.782422,-5.157931 -8.858893,-6.780537 -4.229842,-1.139816 1.510134,-7.074128 2.586227,-2.385939 3.141198,5.495193 1.840537,-5.598295 7.177489,-1.404062 z' />
+  <path class='st0' d='m 99.622027,58.374253 c 1.493293,1.9548 -6.281936,7.024659 -0.885258,4.740447 0.386238,-4.434477 6.131941,-1.133173 2.175851,1.618005 -4.421491,6.12739 -13.666659,-3.151506 -7.058299,-7.136537 1.785129,-1.119329 4.348209,-0.743179 5.767706,0.778085 z m -2.900824,1.89746 c -3.608188,-2.208543 -2.280489,5.00803 -0.12563,0.329531 z' />
+  <path class='st0' d='m 115.18023,50.570441 c -1.61703,5.201678 -4.6204,-0.364502 -7.01598,-1.749619 -4.40977,2.122562 4.89641,4.913939 1.89606,7.018157 -2.48061,3.877635 -4.11404,-4.060614 -7.01192,-2.6391 -1.76318,3.107252 7.28394,6.252304 0.87346,7.876177 -1.74515,-2.956649 -9.055498,-5.610518 -3.950378,-8.66062 1.696478,1.897023 1.770418,-5.43503 5.347308,-3.072411 -0.44014,-5.474701 6.11995,-4.950882 7.7846,-0.815355 0.69076,0.682329 1.39587,1.351469 2.07685,2.042771 z' />
+  <path class='st0' d='m 120.54891,39.417125 c 2.50681,1.334124 4.80466,4.941837 0.75044,5.297362 -0.46414,1.89865 -5.25369,5.602652 -8.01742,1.815475 -3.87345,-2.809139 -0.0676,-7.603869 2.3036,-8.133924 1.6795,-3.853018 3.16703,-1.199465 4.96338,1.021087 z m -2.2464,2.175828 c -4.8049,-2.992167 -3.08987,6.380358 0.42374,2.036159 0.33052,-0.677508 0.12099,-1.525836 -0.42374,-2.036159 z' />
+  <path class='st0' d='m 128.50836,24.06821 c -5.10403,3.035506 3.20535,6.383175 5.05938,9.450276 -0.91853,2.95886 -4.06493,3.650723 -5.34691,0.265618 -2.25715,-2.089033 -4.65672,-6.948595 -7.07024,-2.584686 -4.71758,-3.764394 3.81217,-5.812054 5.12382,-9.226328 0.75738,0.677487 1.38637,1.498638 2.23389,2.095175 z' />
+  <path class='st0' d='m 137.14366,22.299812 c -3.09615,2.259885 0.71537,4.412454 1.99042,6.435866 -3.08975,5.080354 -5.91384,-2.98648 -8.92144,-4.094939 1.44369,-3.219573 3.3497,-1.335928 4.27156,-4.41058 0.97822,-0.894325 1.75044,1.871047 2.65946,2.069653 z' />
+  <path class='st0' d='m 136.85093,14.890174 c 2.31562,5.283511 -7.17975,1.771993 -1.29675,-0.475107 l 0.7108,0.08973 z m 4.867,5.317354 c 2.56912,1.439678 4.26517,4.725219 0.30678,5.233637 -1.56592,-3.098864 -9.51683,-5.749448 -3.64502,-8.633714 1.17746,0.325095 2.15375,2.591149 3.33824,3.400077 z' />
+  <path class='st0' d='m 149.95578,11.976423 c 2.50679,1.334142 4.80455,4.94192 0.75041,5.297394 -0.4641,1.898604 -5.25368,5.602645 -8.0174,1.81545 -3.87347,-2.80918 -0.0676,-7.603844 2.30366,-8.133968 1.67949,-3.8530525 3.16695,-1.1993573 4.96333,1.021124 z m -2.24641,2.175828 c -4.80489,-2.992177 -3.08986,6.380343 0.42374,2.036167 0.33055,-0.677518 0.121,-1.52585 -0.42374,-2.036167 z' />
+  <path class='st0' d='m 153.26135,7.538431 c 2.60497,1.5799548 6.03999,5.944272 1.08117,6.050232 -2.53319,-3.231828 -7.20316,-6.4304525 -8.84748,-9.4582682 1.89121,-2.8664883 3.78452,-2.247699 5.38514,0.8929426 0.78017,0.8503859 1.57195,1.6911437 2.38118,2.5150667 z' />
+  </pattern>  
+  <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+          <stop offset='0%' stop-color='#999999' stop-opacity='0.7'/> 
+          <stop offset='100%' stop-color='#999999' stop-opacity='0' /> 
+   </linearGradient>
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+	   <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f8f6d1' />
+  </radialGradient>
+  <filter id='shadow' width='120%' height='120%'> 
+      <feOffset result='offOut' in='SourceGraphic' dx='1' dy='1' /> 
+      <feColorMatrix result='matrixOut' in='offOut' type='matrix' 
+      values='0.1 0 0 0 0 0 0.4 0 0 0 0 0 0.6 0 0 0 0 0 0.3 0' /> 
+      <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' /> 
+      <feBlend in='SourceGraphic' in2='blurOut' mode='normal' /> 
+    </filter> 
+  <filter id='fkShadow' height='130%'> 
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+    <feMergeNode/> <!-- this contains the offset blurred image -->
+    <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' fx='5%' fy='5%' r='75%' spreadMethod='pad'>
+          <stop offset='0%' stop-color='#eefbf2' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#cff9cb' stop-opacity='1' /> 
+   </radialGradient>
+  <symbol id='calloutArrowDown' overflow='visible' >
+      <path d='M 0,0 L 7,11 L 15,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+      <path d='M 0,0 L 7,11 L 15,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' overflow='visible' >
+      <path d='M 0,15 L 7,3 L 15,15 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+      <path d='M 0,15 L 7,3 L 15,15' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <path style='fill:#fffa7d;stroke:#765f03;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+        d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+     <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+        style='fill:#ffe5a5;fill-opacity:1;stroke:#854e31;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='dist' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <path style='fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;' d='M 0.177,11.431 12.28,11.449'/>
+      <path style='fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;' d='m 6.124,3.954 0.066,7.154 v 0'/>
+      <rect width='11.78' height='3.40' x='0.40' y='0.44' style='fill:#fffa7d;stroke:#765f03;stroke-width:0.6;' ry='0.83'/>
+      <rect width='11.78' height='3.40' x='0.40' y='5.609' style='fill:#fffa7d;stroke:#765f03;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='unq' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.8' y='7.4' style='font-size:7px;fill:#8a8a8a;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#f3e1b7;stroke:#7e471f;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+      d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#f3e1b7;stroke:#7e471f;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag0' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag1' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#f4a393;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag2' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#77ec8b;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' overflow='visible' >
+  <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='view' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <line x1='12' y1='6' x2='19' y2='0' stroke='black' stroke-width='0.5' />
+     <line x1='0' y1='6' x2='7' y2='0' stroke='black' stroke-width='0.5' />
+     <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+     <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+    </g>
+  </symbol>
+  <marker id='arrow01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 7.500,3.750 L 15.000,3.750 L 7.500,0.000 L 15.000,3.750 L 7.500,7.500' />
+  </marker>
+  <marker id='arrow1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 7.500,3.750 L 15.000,3.750 L 7.500,0.000 L 15.000,3.750 L 7.500,7.500' />
+  </marker>
+  <marker id='foot01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot0p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+  <marker id='foot1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot1p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+  <linearGradient id='tbg_c1d8ee' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#e4edf5' /> 
+     <stop offset='60%' stop-color='#c1d8ee' /> 
+     <stop offset='100%' stop-color='#e4edf5' /> 
+  </linearGradient>
+</defs>
+
+<!-- == Desktop == -->
+<rect x='1' y='1' width='1993' height='1308' rx='7' ry='7' style='fill:url(#layoutBgB); stroke:#777777; stroke-width:0.5;' />
+<rect x='1' y='1' width='1993' height='1308' rx='7' ry='7' style='fill:url(#layoutBgA); stroke:#777777; stroke-width:0.5;' />
+
+<!-- == Legend == -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='330' height='56' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='20' y='43'>products</text> 
+  <text x='20' y='57' style='fill:#aaaaaa; font-size:11px;'><tspan>Move the mouse over tables &amp; columns to read the comments.</tspan></text> 
+<a xlink:href='https://www.dbschema.com'> <path class='logo' d='m 32.309685,20.963194 c 0.411708,4.732616 -4.298055,7.925636 -8.723583,6.970196 -6.616967,1.8448 -2.656457,-6.434594 -3.911969,-10.01566 -2.15469,-5.89407 6.06247,-3.508505 9.167655,-2.863689 2.199228,1.054873 3.389343,3.582089 3.467897,5.909153 z m -3.720955,0.01451 c 0.434195,-4.414565 -7.644142,-5.37533 -5.137307,0.107342 -1.812268,5.992146 5.532698,4.379388 5.137307,-0.107342 z' /> <path class='logo' d='m 44.329732,23.050637 c 0.850982,5.097305 -5.250434,4.558924 -7.144836,4.752415 -6.418993,1.64391 -1.872992,-7.49274 -3.541914,-10.942842 -2.499646,-3.817859 5.939283,-4.402698 3.538545,-0.13612 -1.287874,4.989123 4.215411,-1.154796 5.956717,2.809584 0.840273,0.970849 1.168829,2.272413 1.191488,3.516963 z m -3.519477,-0.09299 c -1.398216,-5.518069 -6.361061,2.717467 -0.984368,1.810718 0.686994,-0.30388 1.029454,-1.087638 0.984368,-1.810718 z' /> <path class='logo' d='m 52.234961,23.301163 c 0.954818,5.035675 -8.606408,6.284861 -6.262292,1.674914 6.000358,-1.604717 -5.188764,-7.870044 1.75972,-10.384908 2.288682,-3.253567 6.399287,3.075831 2.304111,2.48058 -2.124941,2.016587 2.688777,3.89858 2.198472,6.229403 z' /> <path class='logo' d='m 60.204336,21.349224 c -4.894917,-1.916474 -3.458707,5.391212 0.347494,3.37231 2.120589,6.821713 -10.599623,1.664746 -6.906229,-3.691132 0.354172,-3.663246 9.875349,-4.711252 6.558735,0.318822 z' /> <path class='logo' d='m 71.730617,20.654299 c 0.0013,2.316285 0.190131,4.655698 0.07825,6.958009 -6.532419,3.303565 -0.660423,-8.722256 -6.009639,-5.821653 -0.818815,2.024533 1.726403,6.746337 -1.95327,6.005484 -3.458346,-1.137537 -0.696275,-7.713407 -1.833252,-10.994208 -2.308916,-3.710131 5.93704,-4.164951 3.518609,0.0063 -1.462376,6.166445 5.169629,-2.857523 6.19931,3.846079 z' /> <path class='logo' d='m 82.245738,22.378957 c -0.24581,2.448954 -9.386766,0.8867 -3.885979,2.877055 3.312576,-2.99157 5.250902,3.334514 0.482647,2.665545 -7.415384,1.492275 -7.823196,-11.597641 -0.275476,-10.032117 2.068161,0.391458 3.682204,2.408824 3.678808,4.489517 z m -3.414436,-0.578473 c -1.124703,-4.072004 -5.087405,2.125488 -0.316922,0.156453 z' /> <path class='logo' d='m 98.936899,27.222794 c -4.73541,2.718339 -3.1239,-3.406557 -3.92611,-6.050494 -4.66985,-1.438471 0.21621,6.932413 -3.41219,6.438039 -4.46096,1.160054 -0.22824,-5.774711 -3.31526,-6.700429 -3.410722,1.082173 1.04451,9.536575 -4.745091,6.372895 0.746632,-3.355214 -2.776394,-10.269232 3.034971,-9.038963 -0.058,2.544602 5.00686,-2.785359 6.00342,1.37844 3.42021,-4.316316 7.851251,0.524966 6.24018,4.690538 0.0379,0.969988 0.0954,1.940046 0.12008,2.909974 z' /> <path class='logo' d='m 110.47859,22.686058 c 0.91826,2.682088 0.13016,6.890551 -3.0725,4.397004 -1.63641,1.077877 -7.664291,0.541832 -7.09365,-4.114836 -0.907891,-4.692933 5.14729,-5.625578 7.24058,-4.40354 3.85932,-1.686263 3.13176,1.271515 2.92557,4.121372 z m -3.12695,0.0704 c -1.46278,-5.460062 -6.61615,2.5826 -1.08221,1.782003 0.70431,-0.272594 1.13111,-1.037444 1.08221,-1.782003 z' /> </a>
+</g>
+
+<g transform='translate(0,110)'>
+<!-- == Fk 'product_attachment_fk_product_attachment_attachment' == -->
+<path id='product_attachment_fk_product_attachment_attachment'  onmouseover="hghl(['product_attachment_fk_product_attachment_attachment','soro.product_attachment.attachment_id','soro.attachment.id'])" onmouseout="uhghl(['product_attachment_fk_product_attachment_attachment','soro.product_attachment.attachment_id','soro.attachment.id'])" transform='translate(7,0)' class='scene' d='M 945 1020 L 645,1020' >
+	<title>Fk fk_product_attachment_attachment
+product_attachment ref attachment ( attachment_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 945 1020 L 645,1020' ></path>
+<text x='874' y='1016' transform='rotate(0 874,1016)' title='Fk fk_product_attachment_attachment
+product_attachment ref attachment ( attachment_id -&gt; id )' class='relName' style='fill:#909aa4'>attachment_id</text>
+<!-- == Fk 'product_attachment_fk_product_attachment_product' == -->
+<path id='product_attachment_fk_product_attachment_product'  onmouseover="hghl(['product_attachment_fk_product_attachment_product','soro.product_attachment.product_id','soro.product.id'])" onmouseout="uhghl(['product_attachment_fk_product_attachment_product','soro.product_attachment.product_id','soro.product.id'])" transform='translate(7,0)' class='scene' d='M 1095 1035 L 1185,1035' >
+	<title>Fk fk_product_attachment_product
+product_attachment ref product ( product_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1095 1035 L 1185,1035' ></path>
+<text x='1104' y='1031' transform='rotate(0 1104,1031)' title='Fk fk_product_attachment_product
+product_attachment ref product ( product_id -&gt; id )' class='relName' style='fill:#909aa4'>product_id</text>
+<!-- == Fk 'brand_fk_brand_parent_brand' == -->
+<path id='brand_fk_brand_parent_brand'  onmouseover="hghl(['brand_fk_brand_parent_brand','soro.brand.parent_brand_id','soro.brand.id'])" onmouseout="uhghl(['brand_fk_brand_parent_brand','soro.brand.parent_brand_id','soro.brand.id'])" transform='translate(7,0)' class='scene' d='M 1710 735 L 1717,735 Q 1725,735 1725,742 L 1725,757 Q 1725,765 1717,765 L 1702,765 Q 1695,765 1695,757 L 1695,750' >
+	<title>Fk fk_brand_parent_brand
+brand ref brand ( parent_brand_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1710 735 L 1717,735 Q 1725,735 1725,742 L 1725,757 Q 1725,765 1717,765 L 1702,765 Q 1695,765 1695,757 L 1695,750' ></path>
+<text x='1719' y='731' transform='rotate(0 1719,731)' title='Fk fk_brand_parent_brand
+brand ref brand ( parent_brand_id -&gt; id )' class='relName' style='fill:#909aa4'>parent_brand_id</text>
+<!-- == Fk 'brand_fk_brand_family' == -->
+<path id='brand_fk_brand_family'  onmouseover="hghl(['brand_fk_brand_family','soro.brand.family_id','soro.brand_family.id'])" onmouseout="uhghl(['brand_fk_brand_family','soro.brand.family_id','soro.brand_family.id'])" transform='translate(7,0)' class='scene' d='M 1710 630 L 1830,630' >
+	<title>Fk fk_brand_family
+brand ref brand_family ( family_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1710 630 L 1830,630' ></path>
+<text x='1719' y='626' transform='rotate(0 1719,626)' title='Fk fk_brand_family
+brand ref brand_family ( family_id -&gt; id )' class='relName' style='fill:#909aa4'>family_id</text>
+<!-- == Fk 'display_name_mask_fk_display_name_mask_inventory_type' == -->
+<path id='display_name_mask_fk_display_name_mask_inventory_type'  onmouseover="hghl(['display_name_mask_fk_display_name_mask_inventory_type','soro.display_name_mask.inventory_type_id','soro.inventory_type.id'])" onmouseout="uhghl(['display_name_mask_fk_display_name_mask_inventory_type','soro.display_name_mask.inventory_type_id','soro.inventory_type.id'])" transform='translate(7,0)' class='scene' d='M 195 120 L 1035,120' >
+	<title>Fk fk_display_name_mask_inventory_type
+display_name_mask ref inventory_type ( inventory_type_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 195 120 L 1035,120' ></path>
+<text x='204' y='116' transform='rotate(0 204,116)' title='Fk fk_display_name_mask_inventory_type
+display_name_mask ref inventory_type ( inventory_type_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_type_id</text>
+<!-- == Fk 'display_name_mask_fk_display_name_mask_strain' == -->
+<path id='display_name_mask_fk_display_name_mask_strain'  onmouseover="hghl(['display_name_mask_fk_display_name_mask_strain','soro.display_name_mask.strain_id','soro.strain.id'])" onmouseout="uhghl(['display_name_mask_fk_display_name_mask_strain','soro.display_name_mask.strain_id','soro.strain.id'])" transform='translate(7,0)' class='scene' d='M 180 195 L 180,712 Q 180,720 187,720 L 540,720' >
+	<title>Fk fk_display_name_mask_strain
+display_name_mask ref strain ( strain_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 180 195 L 180,712 Q 180,720 187,720 L 540,720' ></path>
+<text x='195' y='197' transform='rotate(90 195,197)' title='Fk fk_display_name_mask_strain
+display_name_mask ref strain ( strain_id -&gt; id )' class='relName' style='fill:#909aa4'>strain_id</text>
+<!-- == Fk 'inventory_lot_fk_inventory_lot_inventory_type' == -->
+<path id='inventory_lot_fk_inventory_lot_inventory_type'  onmouseover="hghl(['inventory_lot_fk_inventory_lot_inventory_type','soro.inventory_lot.inventory_type_id','soro.inventory_type.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_inventory_type','soro.inventory_lot.inventory_type_id','soro.inventory_type.id'])" transform='translate(7,0)' class='scene' d='M 660 240 L 1035,240' >
+	<title>Fk fk_inventory_lot_inventory_type
+inventory_lot ref inventory_type ( inventory_type_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 660 240 L 1035,240' ></path>
+<text x='669' y='236' transform='rotate(0 669,236)' title='Fk fk_inventory_lot_inventory_type
+inventory_lot ref inventory_type ( inventory_type_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_type_id</text>
+<!-- == Fk 'inventory_lot_fk_inventory_lot_strain' == -->
+<path id='inventory_lot_fk_inventory_lot_strain'  onmouseover="hghl(['inventory_lot_fk_inventory_lot_strain','soro.inventory_lot.strain_id','soro.strain.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_strain','soro.inventory_lot.strain_id','soro.strain.id'])" transform='translate(7,0)' class='scene' d='M 570 495 L 570,705' >
+	<title>Fk fk_inventory_lot_strain
+inventory_lot ref strain ( strain_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 570 495 L 570,705' ></path>
+<text x='585' y='497' transform='rotate(90 585,497)' title='Fk fk_inventory_lot_strain
+inventory_lot ref strain ( strain_id -&gt; id )' class='relName' style='fill:#909aa4'>strain_id</text>
+<!-- == Fk 'inventory_lot_fk_inventory_lot_inventory_group' == -->
+<path id='inventory_lot_fk_inventory_lot_inventory_group'  onmouseover="hghl(['inventory_lot_fk_inventory_lot_inventory_group','soro.inventory_lot.inventory_group_id','soro.inventory_group.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_inventory_group','soro.inventory_lot.inventory_group_id','soro.inventory_group.id'])" transform='translate(7,0)' class='scene' d='M 660 330 L 780,330' >
+	<title>Fk fk_inventory_lot_inventory_group
+inventory_lot ref inventory_group ( inventory_group_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 660 330 L 780,330' ></path>
+<text x='669' y='326' transform='rotate(0 669,326)' title='Fk fk_inventory_lot_inventory_group
+inventory_lot ref inventory_group ( inventory_group_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_group_id</text>
+<!-- == Fk 'inventory_lot_fk_inventory_lot_room' == -->
+<path id='inventory_lot_fk_inventory_lot_room'  onmouseover="hghl(['inventory_lot_fk_inventory_lot_room','soro.inventory_lot.room_id','soro.room.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_room','soro.inventory_lot.room_id','soro.room.id'])" transform='translate(7,0)' class='scene' d='M 495 225 L 435,225' >
+	<title>Fk fk_inventory_lot_room
+inventory_lot ref room ( room_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 495 225 L 435,225' ></path>
+<text x='460' y='221' transform='rotate(0 460,221)' title='Fk fk_inventory_lot_room
+inventory_lot ref room ( room_id -&gt; id )' class='relName' style='fill:#909aa4'>room_id</text>
+<!-- == Fk 'inventory_group_fk_inventory_group_strain' == -->
+<path id='inventory_group_fk_inventory_group_strain'  onmouseover="hghl(['inventory_group_fk_inventory_group_strain','soro.inventory_group.strain_id','soro.strain.id'])" onmouseout="uhghl(['inventory_group_fk_inventory_group_strain','soro.inventory_group.strain_id','soro.strain.id'])" transform='translate(7,0)' class='scene' d='M 810 510 L 810,682 Q 810,690 802,690 L 682,690 Q 675,690 675,697 L 675,705' >
+	<title>Fk fk_inventory_group_strain
+inventory_group ref strain ( strain_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 810 510 L 810,682 Q 810,690 802,690 L 682,690 Q 675,690 675,697 L 675,705' ></path>
+<text x='825' y='512' transform='rotate(90 825,512)' title='Fk fk_inventory_group_strain
+inventory_group ref strain ( strain_id -&gt; id )' class='relName' style='fill:#909aa4'>strain_id</text>
+<!-- == Fk 'inventory_group_fk_inventory_group_inventory_type' == -->
+<path id='inventory_group_fk_inventory_group_inventory_type'  onmouseover="hghl(['inventory_group_fk_inventory_group_inventory_type','soro.inventory_group.inventory_type_id','soro.inventory_type.id'])" onmouseout="uhghl(['inventory_group_fk_inventory_group_inventory_type','soro.inventory_group.inventory_type_id','soro.inventory_type.id'])" transform='translate(7,0)' class='scene' d='M 945 345 L 1035,345' >
+	<title>Fk fk_inventory_group_inventory_type
+inventory_group ref inventory_type ( inventory_type_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 945 345 L 1035,345' ></path>
+<text x='954' y='341' transform='rotate(0 954,341)' title='Fk fk_inventory_group_inventory_type
+inventory_group ref inventory_type ( inventory_type_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_type_id</text>
+<!-- == Fk 'product_group_fk_product_group_inventory_group' == -->
+<path id='product_group_fk_product_group_inventory_group'  onmouseover="hghl(['product_group_fk_product_group_inventory_group','soro.product_group.inventory_group_id','soro.inventory_group.id'])" onmouseout="uhghl(['product_group_fk_product_group_inventory_group','soro.product_group.inventory_group_id','soro.inventory_group.id'])" transform='translate(7,0)' class='scene' d='M 960 615 L 960,502 Q 960,495 952,495 L 945,495' >
+	<title>Fk fk_product_group_inventory_group
+product_group ref inventory_group ( inventory_group_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 960 615 L 960,502 Q 960,495 952,495 L 945,495' ></path>
+<text x='963' y='611' transform='rotate(270 963,611)' title='Fk fk_product_group_inventory_group
+product_group ref inventory_group ( inventory_group_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_group_id</text>
+<!-- == Fk 'product_group_fk_product_group_product' == -->
+<path id='product_group_fk_product_group_product'  onmouseover="hghl(['product_group_fk_product_group_product','soro.product_group.product_id','soro.product.id'])" onmouseout="uhghl(['product_group_fk_product_group_product','soro.product_group.product_id','soro.product.id'])" transform='translate(7,0)' class='scene' d='M 1080 645 L 1185,645' >
+	<title>Fk fk_product_group_product
+product_group ref product ( product_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1080 645 L 1185,645' ></path>
+<text x='1089' y='641' transform='rotate(0 1089,641)' title='Fk fk_product_group_product
+product_group ref product ( product_id -&gt; id )' class='relName' style='fill:#909aa4'>product_id</text>
+<!-- == Fk 'seller_inventory_type_category_fk_seller_inventory_type_category_category' == -->
+<path id='seller_inventory_type_category_fk_seller_inventory_type_category_category'  onmouseover="hghl(['seller_inventory_type_category_fk_seller_inventory_type_category_category','soro.seller_inventory_type_category.inventory_category_id','soro.inventory_category.id'])" onmouseout="uhghl(['seller_inventory_type_category_fk_seller_inventory_type_category_category','soro.seller_inventory_type_category.inventory_category_id','soro.inventory_category.id'])" transform='translate(7,0)' class='scene' d='M 1575 225 L 1635,225' >
+	<title>Fk fk_seller_inventory_type_category_category
+seller_inventory_type_category ref inventory_category ( inventory_category_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1575 225 L 1635,225' ></path>
+<text x='1584' y='221' transform='rotate(0 1584,221)' title='Fk fk_seller_inventory_type_category_category
+seller_inventory_type_category ref inventory_category ( inventory_category_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_category_id</text>
+<!-- == Fk 'seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type' == -->
+<path id='seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type'  onmouseover="hghl(['seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type','soro.seller_inventory_type_category.inventory_type_id','soro.inventory_type.id'])" onmouseout="uhghl(['seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type','soro.seller_inventory_type_category.inventory_type_id','soro.inventory_type.id'])" transform='translate(7,0)' class='scene' d='M 1365 210 L 1245,210' >
+	<title>Fk fk_seller_inventory_type_category_inventory_type
+seller_inventory_type_category ref inventory_type ( inventory_type_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1365 210 L 1245,210' ></path>
+<text x='1276' y='206' transform='rotate(0 1276,206)' title='Fk fk_seller_inventory_type_category_inventory_type
+seller_inventory_type_category ref inventory_type ( inventory_type_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_type_id</text>
+<!-- == Fk 'inventory_reservation_fk_inventory_reservation_inventory_lot' == -->
+<path id='inventory_reservation_fk_inventory_reservation_inventory_lot'  onmouseover="hghl(['inventory_reservation_fk_inventory_reservation_inventory_lot','soro.inventory_reservation.inventory_lot_id','soro.inventory_lot.id'])" onmouseout="uhghl(['inventory_reservation_fk_inventory_reservation_inventory_lot','soro.inventory_reservation.inventory_lot_id','soro.inventory_lot.id'])" transform='translate(7,0)' class='scene' d='M 450 420 L 495,420' >
+	<title>Fk fk_inventory_reservation_inventory_lot
+inventory_reservation ref inventory_lot ( inventory_lot_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 450 420 L 495,420' ></path>
+<text x='459' y='416' transform='rotate(0 459,416)' title='Fk fk_inventory_reservation_inventory_lot
+inventory_reservation ref inventory_lot ( inventory_lot_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_lot_id</text>
+<!-- == Fk 'product_fk_product_inventory_type' == -->
+<path id='product_fk_product_inventory_type'  onmouseover="hghl(['product_fk_product_inventory_type','soro.product.inventory_type_id','soro.inventory_type.id'])" onmouseout="uhghl(['product_fk_product_inventory_type','soro.product.inventory_type_id','soro.inventory_type.id'])" transform='translate(7,0)' class='scene' d='M 1215 600 L 1215,480' >
+	<title>Fk fk_product_inventory_type
+product ref inventory_type ( inventory_type_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1215 600 L 1215,480' ></path>
+<text x='1218' y='596' transform='rotate(270 1218,596)' title='Fk fk_product_inventory_type
+product ref inventory_type ( inventory_type_id -&gt; id )' class='relName' style='fill:#909aa4'>inventory_type_id</text>
+<!-- == Fk 'product_fk_product_strain' == -->
+<path id='product_fk_product_strain'  onmouseover="hghl(['product_fk_product_strain','soro.product.strain_id','soro.strain.id'])" onmouseout="uhghl(['product_fk_product_strain','soro.product.strain_id','soro.strain.id'])" transform='translate(7,0)' class='scene' d='M 1185 750 L 690,750' >
+	<title>Fk fk_product_strain
+product ref strain ( strain_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1185 750 L 690,750' ></path>
+<text x='1147' y='746' transform='rotate(0 1147,746)' title='Fk fk_product_strain
+product ref strain ( strain_id -&gt; id )' class='relName' style='fill:#909aa4'>strain_id</text>
+<!-- == Fk 'product_fk_product_brand' == -->
+<path id='product_fk_product_brand'  onmouseover="hghl(['product_fk_product_brand','soro.product.brand_id','soro.brand.id'])" onmouseout="uhghl(['product_fk_product_brand','soro.product.brand_id','soro.brand.id'])" transform='translate(7,0)' class='scene' d='M 1425 630 L 1560,630' >
+	<title>Fk fk_product_brand
+product ref brand ( brand_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1425 630 L 1560,630' ></path>
+<text x='1434' y='626' transform='rotate(0 1434,626)' title='Fk fk_product_brand
+product ref brand ( brand_id -&gt; id )' class='relName' style='fill:#909aa4'>brand_id</text>
+<!-- == Fk 'product_fk_product_flavor' == -->
+<path id='product_fk_product_flavor'  onmouseover="hghl(['product_fk_product_flavor','soro.product.flavor_id','soro.flavor.id'])" onmouseout="uhghl(['product_fk_product_flavor','soro.product.flavor_id','soro.flavor.id'])" transform='translate(7,0)' class='scene' d='M 1425 825 L 1590,825' >
+	<title>Fk fk_product_flavor
+product ref flavor ( flavor_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1425 825 L 1590,825' ></path>
+<text x='1434' y='821' transform='rotate(0 1434,821)' title='Fk fk_product_flavor
+product ref flavor ( flavor_id -&gt; id )' class='relName' style='fill:#909aa4'>flavor_id</text>
+<!-- == Fk 'product_fk_product_potency' == -->
+<path id='product_fk_product_potency'  onmouseover="hghl(['product_fk_product_potency','soro.product.potency_id','soro.potency.id'])" onmouseout="uhghl(['product_fk_product_potency','soro.product.potency_id','soro.potency.id'])" transform='translate(7,0)' class='scene' d='M 1425 1005 L 1605,1005' >
+	<title>Fk fk_product_potency
+product ref potency ( potency_id -&gt; id )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1425 1005 L 1605,1005' ></path>
+<text x='1434' y='1001' transform='rotate(0 1434,1001)' title='Fk fk_product_potency
+product ref potency ( potency_id -&gt; id )' class='relName' style='fill:#909aa4'>potency_id</text>
+<!-- == Table 'brand_family' == -->
+<rect class='entity' x='1845' y='608' width='90' height='90' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1845 634 L 1845 615 Q 1845 608 1852 608 L 1928 608 Q 1935 608 1935 615 L 1935 634 L1845 634 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1845' y='608' width='90' height='90' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#brand_family'><text x='1851' y='626'>brand_family</text><title>Table soro.brand_family
+one or the other</title></a>
+  <use id='nn' x='1847' y='642' xlink:href='#nn'/><a xlink:href='#brand_family.id'><use id='pk' x='1847' y='641' xlink:href='#pk'/><title>Pk pk_brand_family ( id ) </title></a>
+<a xlink:href='#brand_family.id'><text id='soro.brand_family.id' x='1863' y='651' onmouseover="hghl(['brand_fk_brand_family','soro.brand.family_id'])" onmouseout="uhghl(['brand_fk_brand_family','soro.brand.family_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#brand_family.id'><use id='ref' x='1924' y='641' xlink:href='#ref'/><title>Referred by brand ( family_id -&gt; id ) </title></a>
+  <use id='nn' x='1847' y='657' xlink:href='#nn'/><a xlink:href='#brand_family.seller_id'><use id='unq' x='1847' y='656' xlink:href='#unq'/><title>Unq uq_brand_family ( seller_id, name ) </title></a>
+<a xlink:href='#brand_family.seller_id'><text id='soro.brand_family.seller_id' x='1863' y='666'>seller_id</text><title>seller_id
+* uuid</title></a>
+  <use id='nn' x='1847' y='672' xlink:href='#nn'/><a xlink:href='#brand_family.name'><use id='unq' x='1847' y='671' xlink:href='#unq'/><title>Unq uq_brand_family ( seller_id, name ) </title></a>
+<a xlink:href='#brand_family.name'><text id='soro.brand_family.name' x='1863' y='681'>name</text><title>name
+* text</title></a>
+<text x='1932' y='678' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'room' == -->
+<rect class='entity' x='330' y='173' width='105' height='165' rx='7' ry='7' style='stroke:none'/>
+<path d='M 330 199 L 330 180 Q 330 173 337 173 L 428 173 Q 435 173 435 180 L 435 199 L330 199 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='330' y='173' width='105' height='165' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#room'><text x='365' y='191'>room</text><title>Table soro.room</title></a>
+  <use id='nn' x='332' y='207' xlink:href='#nn'/><a xlink:href='#room.id'><use id='pk' x='332' y='206' xlink:href='#pk'/><title>Pk pk_bt_vendor ( id ) </title></a>
+<a xlink:href='#room.id'><text id='soro.room.id' x='348' y='216' onmouseover="hghl(['inventory_lot_fk_inventory_lot_room','soro.inventory_lot.room_id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_room','soro.inventory_lot.room_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#room.id'><use id='ref' x='424' y='206' xlink:href='#ref'/><title>Referred by inventory_lot ( room_id -&gt; id ) </title></a>
+  <use id='nn' x='332' y='222' xlink:href='#nn'/><a xlink:href='#room.name'><text id='soro.room.name' x='348' y='231'>name</text><title>name
+* text</title></a>
+<text x='432' y='228' text-anchor='end' class='colType'>t</text>  <use id='nn' x='332' y='237' xlink:href='#nn'/><a xlink:href='#room.room_type'><text id='soro.room.room_type' x='348' y='246'>room_type</text><title>room_type
+* room_type</title></a>
+<text x='432' y='243' text-anchor='end' class='colType'>t</text>  <a xlink:href='#room.external_id'><text id='soro.room.external_id' x='348' y='261'>external_id</text><title>external_id
+text</title></a>
+<text x='432' y='258' text-anchor='end' class='colType'>t</text>  <use id='nn' x='332' y='267' xlink:href='#nn'/><a xlink:href='#room.seller_id'><text id='soro.room.seller_id' x='348' y='276' onmouseover="hghl(['room_fk_room_seller','soro.seller.id'])" onmouseout="uhghl(['room_fk_room_seller','soro.seller.id'])">seller_id</text><title>seller_id
+* uuid</title></a>
+<a xlink:href='#room.seller_id'><use id='fk' x='424' y='266' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <use id='nn' x='332' y='282' xlink:href='#nn'/><a xlink:href='#room.location_id'><text id='soro.room.location_id' x='348' y='291' onmouseover="hghl(['room_fk_room_location','soro.location.id'])" onmouseout="uhghl(['room_fk_room_location','soro.location.id'])">location_id</text><title>location_id
+* uuid</title></a>
+<a xlink:href='#room.location_id'><use id='fk' x='424' y='281' xlink:href='#fk'/><title>References location ( location_id -&gt; id ) </title></a>
+  <use id='nn' x='332' y='297' xlink:href='#nn'/><a xlink:href='#room.quarantine'><text id='soro.room.quarantine' x='348' y='306'>quarantine</text><title>quarantine
+* bool</title></a>
+<text x='432' y='303' text-anchor='end' class='colType'>b</text>  <use id='nn' x='332' y='312' xlink:href='#nn'/><a xlink:href='#room.deleted'><text id='soro.room.deleted' x='348' y='321'>deleted</text><title>deleted
+* bool default false</title></a>
+<text x='432' y='318' text-anchor='end' class='colType'>b</text>
+<!-- == Table 'product_attachment' == -->
+<rect class='entity' x='960' y='1013' width='135' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 960 1039 L 960 1020 Q 960 1013 967 1013 L 1088 1013 Q 1095 1013 1095 1020 L 1095 1039 L960 1039 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='960' y='1013' width='135' height='105' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#product_attachment'><text x='967' y='1031'>product_attachment</text><title>Table soro.product_attachment</title></a>
+  <use id='nn' x='962' y='1047' xlink:href='#nn'/><a xlink:href='#product_attachment.id'><use id='pk' x='962' y='1046' xlink:href='#pk'/><title>Pk pk_product_attachment ( id ) </title></a>
+<a xlink:href='#product_attachment.id'><text id='soro.product_attachment.id' x='978' y='1056'>id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+  <use id='nn' x='962' y='1062' xlink:href='#nn'/><a xlink:href='#product_attachment.seller_id'><text id='soro.product_attachment.seller_id' x='978' y='1071'>seller_id</text><title>seller_id
+* uuid</title></a>
+  <use id='nn' x='962' y='1077' xlink:href='#nn'/><a xlink:href='#product_attachment.attachment_id'><text id='soro.product_attachment.attachment_id' x='978' y='1086' onmouseover="hghl(['product_attachment_fk_product_attachment_attachment','soro.attachment.id'])" onmouseout="uhghl(['product_attachment_fk_product_attachment_attachment','soro.attachment.id'])">attachment_id</text><title>attachment_id
+* uuid</title></a>
+<a xlink:href='#product_attachment.attachment_id'><use id='fk' x='1084' y='1076' xlink:href='#fk'/><title>References attachment ( attachment_id -&gt; id ) </title></a>
+  <use id='nn' x='962' y='1092' xlink:href='#nn'/><a xlink:href='#product_attachment.product_id'><text id='soro.product_attachment.product_id' x='978' y='1101' onmouseover="hghl(['product_attachment_fk_product_attachment_product','soro.product.id'])" onmouseout="uhghl(['product_attachment_fk_product_attachment_product','soro.product.id'])">product_id</text><title>product_id
+* uuid</title></a>
+<a xlink:href='#product_attachment.product_id'><use id='fk' x='1084' y='1091' xlink:href='#fk'/><title>References product ( product_id -&gt; id ) </title></a>
+
+<!-- == Table 'attachment' == -->
+<rect class='entity' x='510' y='983' width='135' height='120' rx='7' ry='7' style='stroke:none'/>
+<path d='M 510 1009 L 510 990 Q 510 983 517 983 L 638 983 Q 645 983 645 990 L 645 1009 L510 1009 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='510' y='983' width='135' height='120' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#attachment'><text x='542' y='1001'>attachment</text><title>Table soro.attachment
+belongs in another schema</title></a>
+  <use id='nn' x='512' y='1017' xlink:href='#nn'/><a xlink:href='#attachment.id'><use id='pk' x='512' y='1016' xlink:href='#pk'/><title>Pk pk_attachment ( id ) </title></a>
+<a xlink:href='#attachment.id'><text id='soro.attachment.id' x='528' y='1026' onmouseover="hghl(['product_attachment_fk_product_attachment_attachment','soro.product_attachment.attachment_id'])" onmouseout="uhghl(['product_attachment_fk_product_attachment_attachment','soro.product_attachment.attachment_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#attachment.id'><use id='ref' x='634' y='1016' xlink:href='#ref'/><title>Referred by product_attachment ( attachment_id -&gt; id ) </title></a>
+  <use id='nn' x='512' y='1032' xlink:href='#nn'/><a xlink:href='#attachment.seller_id'><use id='unq' x='512' y='1031' xlink:href='#unq'/><title>Unq uq_attachment ( seller_id, url ) </title></a>
+<a xlink:href='#attachment.seller_id'><text id='soro.attachment.seller_id' x='528' y='1041'>seller_id</text><title>seller_id
+* uuid</title></a>
+  <use id='nn' x='512' y='1047' xlink:href='#nn'/><a xlink:href='#attachment.name'><text id='soro.attachment.name' x='528' y='1056'>name</text><title>name
+* text</title></a>
+<text x='642' y='1053' text-anchor='end' class='colType'>t</text>  <use id='nn' x='512' y='1062' xlink:href='#nn'/><a xlink:href='#attachment.url'><use id='unq' x='512' y='1061' xlink:href='#unq'/><title>Unq uq_attachment ( seller_id, url ) </title></a>
+<a xlink:href='#attachment.url'><text id='soro.attachment.url' x='528' y='1071'>url</text><title>url
+* text</title></a>
+<text x='642' y='1068' text-anchor='end' class='colType'>t</text>  <use id='nn' x='512' y='1077' xlink:href='#nn'/><a xlink:href='#attachment.attachment_type'><text id='soro.attachment.attachment_type' x='528' y='1086'>attachment_type</text><title>attachment_type
+* attachment_type</title></a>
+<text x='642' y='1083' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'brand' == -->
+<rect class='entity' x='1575' y='608' width='135' height='135' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1575 634 L 1575 615 Q 1575 608 1582 608 L 1703 608 Q 1710 608 1710 615 L 1710 634 L1575 634 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1575' y='608' width='135' height='135' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#brand'><text x='1623' y='626'>brand</text><title>Table soro.brand</title></a>
+  <use id='nn' x='1577' y='642' xlink:href='#nn'/><a xlink:href='#brand.id'><use id='pk' x='1577' y='641' xlink:href='#pk'/><title>Pk pk_brand ( id ) </title></a>
+<a xlink:href='#brand.id'><text id='soro.brand.id' x='1593' y='651' onmouseover="hghl(['brand_fk_brand_parent_brand','soro.brand.parent_brand_id','product_fk_product_brand','soro.product.brand_id'])" onmouseout="uhghl(['brand_fk_brand_parent_brand','soro.brand.parent_brand_id','product_fk_product_brand','soro.product.brand_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#brand.id'><use id='ref' x='1699' y='641' xlink:href='#ref'/><title>Referred by brand ( parent_brand_id -&gt; id ) 
+Referred by product ( brand_id -&gt; id ) </title></a>
+  <use id='nn' x='1577' y='657' xlink:href='#nn'/><a xlink:href='#brand.seller_id'><use id='unq' x='1577' y='656' xlink:href='#unq'/><title>Unq uq_brand ( seller_id, name ) </title></a>
+<a xlink:href='#brand.seller_id'><text id='soro.brand.seller_id' x='1593' y='666'>seller_id</text><title>seller_id
+* uuid</title></a>
+  <use id='nn' x='1577' y='672' xlink:href='#nn'/><a xlink:href='#brand.name'><use id='unq' x='1577' y='671' xlink:href='#unq'/><title>Unq uq_brand ( seller_id, name ) </title></a>
+<a xlink:href='#brand.name'><text id='soro.brand.name' x='1593' y='681'>name</text><title>name
+* text</title></a>
+<text x='1707' y='678' text-anchor='end' class='colType'>t</text>  <a xlink:href='#brand.alias'><text id='soro.brand.alias' x='1593' y='696'>alias</text><title>alias
+text</title></a>
+<text x='1707' y='693' text-anchor='end' class='colType'>t</text>  <a xlink:href='#brand.parent_brand_id'><text id='soro.brand.parent_brand_id' x='1593' y='711' onmouseover="hghl(['brand_fk_brand_parent_brand','soro.brand.id'])" onmouseout="uhghl(['brand_fk_brand_parent_brand','soro.brand.id'])">parent_brand_id</text><title>parent_brand_id
+uuid</title></a>
+<a xlink:href='#brand.parent_brand_id'><use id='fk' x='1699' y='701' xlink:href='#fk'/><title>References brand ( parent_brand_id -&gt; id ) </title></a>
+  <a xlink:href='#brand.family_id'><text id='soro.brand.family_id' x='1593' y='726' onmouseover="hghl(['brand_fk_brand_family','soro.brand_family.id'])" onmouseout="uhghl(['brand_fk_brand_family','soro.brand_family.id'])">family_id</text><title>family_id
+uuid</title></a>
+<a xlink:href='#brand.family_id'><use id='fk' x='1699' y='716' xlink:href='#fk'/><title>References brand_family ( family_id -&gt; id ) </title></a>
+
+<!-- == Table 'display_name_mask' == -->
+<rect class='entity' x='45' y='68' width='150' height='120' rx='7' ry='7' style='stroke:none'/>
+<path d='M 45 94 L 45 75 Q 45 68 52 68 L 188 68 Q 195 68 195 75 L 195 94 L45 94 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='45' y='68' width='150' height='120' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#display_name_mask'><text x='61' y='86'>display_name_mask</text><title>Table soro.display_name_mask
+likely to be completely redone</title></a>
+  <use id='nn' x='47' y='102' xlink:href='#nn'/><a xlink:href='#display_name_mask.id'><use id='pk' x='47' y='101' xlink:href='#pk'/><title>Pk pk_seller_display_name_mask ( id ) </title></a>
+<a xlink:href='#display_name_mask.id'><text id='soro.display_name_mask.id' x='63' y='111'>id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+  <a xlink:href='#display_name_mask.product_name_mask'><text id='soro.display_name_mask.product_name_mask' x='63' y='126'>product_name_mask</text><title>product_name_mask
+text</title></a>
+<text x='192' y='123' text-anchor='end' class='colType'>t</text>  <use id='nn' x='47' y='132' xlink:href='#nn'/><a xlink:href='#display_name_mask.seller_id'><text id='soro.display_name_mask.seller_id' x='63' y='141' onmouseover="hghl(['display_name_mask_fk_display_name_mask_seller','soro.seller.id'])" onmouseout="uhghl(['display_name_mask_fk_display_name_mask_seller','soro.seller.id'])">seller_id</text><title>seller_id
+* uuid</title></a>
+<a xlink:href='#display_name_mask.seller_id'><use id='fk' x='184' y='131' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <use id='nn' x='47' y='147' xlink:href='#nn'/><a xlink:href='#display_name_mask.inventory_type_id'><text id='soro.display_name_mask.inventory_type_id' x='63' y='156' onmouseover="hghl(['display_name_mask_fk_display_name_mask_inventory_type','soro.inventory_type.id'])" onmouseout="uhghl(['display_name_mask_fk_display_name_mask_inventory_type','soro.inventory_type.id'])">inventory_type_id</text><title>inventory_type_id
+* uuid</title></a>
+<a xlink:href='#display_name_mask.inventory_type_id'><use id='fk' x='184' y='146' xlink:href='#fk'/><title>References inventory_type ( inventory_type_id -&gt; id ) </title></a>
+  <a xlink:href='#display_name_mask.strain_id'><text id='soro.display_name_mask.strain_id' x='63' y='171' onmouseover="hghl(['display_name_mask_fk_display_name_mask_strain','soro.strain.id'])" onmouseout="uhghl(['display_name_mask_fk_display_name_mask_strain','soro.strain.id'])">strain_id</text><title>strain_id
+uuid</title></a>
+<a xlink:href='#display_name_mask.strain_id'><use id='fk' x='184' y='161' xlink:href='#fk'/><title>References strain ( strain_id -&gt; id ) </title></a>
+
+<!-- == Table 'inventory_lot' == -->
+<rect class='entity' x='510' y='218' width='150' height='270' rx='7' ry='7' style='stroke:none'/>
+<path d='M 510 244 L 510 225 Q 510 218 517 218 L 653 218 Q 660 218 660 225 L 660 244 L510 244 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='510' y='218' width='150' height='270' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#inventory_lot'><text x='546' y='236'>inventory_lot</text><title>Table soro.inventory_lot
+from external</title></a>
+  <use id='nn' x='512' y='252' xlink:href='#nn'/><a xlink:href='#inventory_lot.id'><use id='pk' x='512' y='251' xlink:href='#pk'/><title>Pk pk_inventory_lot ( id ) </title></a>
+<a xlink:href='#inventory_lot.id'><text id='soro.inventory_lot.id' x='528' y='261' onmouseover="hghl(['inventory_reservation_fk_inventory_reservation_inventory_lot','soro.inventory_reservation.inventory_lot_id','order_line_item_fk_order_line_item_inventory_lot','soro.order_line_item.inventory_lot_id','order_source_lot_fk_order_source_lot_inventory_lot','soro.order_source_lot.inventory_lot_id','quote_target_lot_fk_quote_source_target_inventory_lot','soro.quote_target_lot.target_inventory_lot_id'])" onmouseout="uhghl(['inventory_reservation_fk_inventory_reservation_inventory_lot','soro.inventory_reservation.inventory_lot_id','order_line_item_fk_order_line_item_inventory_lot','soro.order_line_item.inventory_lot_id','order_source_lot_fk_order_source_lot_inventory_lot','soro.order_source_lot.inventory_lot_id','quote_target_lot_fk_quote_source_target_inventory_lot','soro.quote_target_lot.target_inventory_lot_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#inventory_lot.id'><use id='ref' x='649' y='251' xlink:href='#ref'/><title>Referred by inventory_reservation ( inventory_lot_id -&gt; id ) 
+Referred by order_line_item ( inventory_lot_id -&gt; id ) 
+Referred by order_source_lot ( inventory_lot_id -&gt; id ) 
+Referred by quote_target_lot ( target_inventory_lot_id -&gt; id ) </title></a>
+  <use id='nn' x='512' y='267' xlink:href='#nn'/><a xlink:href='#inventory_lot.category_name'><text id='soro.inventory_lot.category_name' x='528' y='276'>category_name</text><title>category_name
+* text</title></a>
+<text x='657' y='273' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_lot.usable_weight'><text id='soro.inventory_lot.usable_weight' x='528' y='291'>usable_weight</text><title>usable_weight
+numeric(20,2)</title></a>
+<text x='657' y='288' text-anchor='end' class='colType'>#</text>  <use id='nn' x='512' y='297' xlink:href='#nn'/><a xlink:href='#inventory_lot.updated_at'><text id='soro.inventory_lot.updated_at' x='528' y='306'>updated_at</text><title>updated_at
+* timestamp default now()</title></a>
+<text x='657' y='303' text-anchor='end' class='colType'>d</text>  <a xlink:href='#inventory_lot.inventory_type_id'><text id='soro.inventory_lot.inventory_type_id' x='528' y='321' onmouseover="hghl(['inventory_lot_fk_inventory_lot_inventory_type','soro.inventory_type.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_inventory_type','soro.inventory_type.id'])">inventory_type_id</text><title>inventory_type_id
+uuid</title></a>
+<a xlink:href='#inventory_lot.inventory_type_id'><use id='fk' x='649' y='311' xlink:href='#fk'/><title>References inventory_type ( inventory_type_id -&gt; id ) </title></a>
+  <use id='nn' x='512' y='327' xlink:href='#nn'/><a xlink:href='#inventory_lot.seller_id'><use id='unq' x='512' y='326' xlink:href='#unq'/><title>Unq uq_inventory_lot ( external_id, seller_id ) </title></a>
+<a xlink:href='#inventory_lot.seller_id'><text id='soro.inventory_lot.seller_id' x='528' y='336' onmouseover="hghl(['inventory_lot_fk_inventory_lot_seller','soro.seller.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_seller','soro.seller.id'])">seller_id</text><title>seller_id
+* uuid</title></a>
+<a xlink:href='#inventory_lot.seller_id'><use id='fk' x='649' y='326' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <a xlink:href='#inventory_lot.strain_id'><text id='soro.inventory_lot.strain_id' x='528' y='351' onmouseover="hghl(['inventory_lot_fk_inventory_lot_strain','soro.strain.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_strain','soro.strain.id'])">strain_id</text><title>strain_id
+uuid</title></a>
+<a xlink:href='#inventory_lot.strain_id'><use id='fk' x='649' y='341' xlink:href='#fk'/><title>References strain ( strain_id -&gt; id ) </title></a>
+  <use id='nn' x='512' y='357' xlink:href='#nn'/><a xlink:href='#inventory_lot.created_at'><text id='soro.inventory_lot.created_at' x='528' y='366'>created_at</text><title>created_at
+* timestamp default now()</title></a>
+<text x='657' y='363' text-anchor='end' class='colType'>d</text>  <a xlink:href='#inventory_lot.external_id'><use id='unq' x='512' y='371' xlink:href='#unq'/><title>Unq uq_inventory_lot ( external_id, seller_id ) idx_soro_inventory_lot_id ( external_id ) </title></a>
+<a xlink:href='#inventory_lot.external_id'><text id='soro.inventory_lot.external_id' x='528' y='381'>external_id</text><title>external_id
+text</title></a>
+<text x='657' y='378' text-anchor='end' class='colType'>t</text>  <use id='nn' x='512' y='387' xlink:href='#nn'/><a xlink:href='#inventory_lot.remaining_quantity'><text id='soro.inventory_lot.remaining_quantity' x='528' y='396'>remaining_quantity</text><title>remaining_quantity
+* numeric(20,2)</title></a>
+<text x='657' y='393' text-anchor='end' class='colType'>#</text>  <use id='nn' x='512' y='402' xlink:href='#nn'/><a xlink:href='#inventory_lot.status'><text id='soro.inventory_lot.status' x='528' y='411'>status</text><title>status
+* inventory_lot_status</title></a>
+<text x='657' y='408' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_lot.inventory_group_id'><text id='soro.inventory_lot.inventory_group_id' x='528' y='426' onmouseover="hghl(['inventory_lot_fk_inventory_lot_inventory_group','soro.inventory_group.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_inventory_group','soro.inventory_group.id'])">inventory_group_id</text><title>inventory_group_id
+uuid</title></a>
+<a xlink:href='#inventory_lot.inventory_group_id'><use id='fk' x='649' y='416' xlink:href='#fk'/><title>References inventory_group ( inventory_group_id -&gt; id ) </title></a>
+  <a xlink:href='#inventory_lot.room_id'><text id='soro.inventory_lot.room_id' x='528' y='441' onmouseover="hghl(['inventory_lot_fk_inventory_lot_room','soro.room.id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_room','soro.room.id'])">room_id</text><title>room_id
+uuid</title></a>
+<a xlink:href='#inventory_lot.room_id'><use id='fk' x='649' y='431' xlink:href='#fk'/><title>References room ( room_id -&gt; id ) </title></a>
+  <a xlink:href='#inventory_lot.description'><text id='soro.inventory_lot.description' x='528' y='456'>description</text><title>description
+text</title></a>
+<text x='657' y='453' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_lot.legacy_id'><text id='soro.inventory_lot.legacy_id' x='528' y='471'>legacy_id</text><title>legacy_id
+text</title></a>
+<text x='657' y='468' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'inventory_group' == -->
+<rect class='entity' x='795' y='323' width='150' height='180' rx='7' ry='7' style='stroke:none'/>
+<path d='M 795 349 L 795 330 Q 795 323 802 323 L 938 323 Q 945 323 945 330 L 945 349 L795 349 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='795' y='323' width='150' height='180' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#inventory_group'><text x='821' y='341'>inventory_group</text><title>Table soro.inventory_group
+auto-created</title></a>
+  <use id='nn' x='797' y='357' xlink:href='#nn'/><a xlink:href='#inventory_group.id'><use id='pk' x='797' y='356' xlink:href='#pk'/><title>Pk pk_inventory_group ( id ) </title></a>
+<a xlink:href='#inventory_group.id'><text id='soro.inventory_group.id' x='813' y='366' onmouseover="hghl(['inventory_lot_fk_inventory_lot_inventory_group','soro.inventory_lot.inventory_group_id','product_group_fk_product_group_inventory_group','soro.product_group.inventory_group_id'])" onmouseout="uhghl(['inventory_lot_fk_inventory_lot_inventory_group','soro.inventory_lot.inventory_group_id','product_group_fk_product_group_inventory_group','soro.product_group.inventory_group_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#inventory_group.id'><use id='ref' x='934' y='356' xlink:href='#ref'/><title>Referred by inventory_lot ( inventory_group_id -&gt; id ) 
+Referred by product_group ( inventory_group_id -&gt; id ) </title></a>
+  <use id='nn' x='797' y='372' xlink:href='#nn'/><a xlink:href='#inventory_group.strain_id'><text id='soro.inventory_group.strain_id' x='813' y='381' onmouseover="hghl(['inventory_group_fk_inventory_group_strain','soro.strain.id'])" onmouseout="uhghl(['inventory_group_fk_inventory_group_strain','soro.strain.id'])">strain_id</text><title>strain_id
+* uuid</title></a>
+<a xlink:href='#inventory_group.strain_id'><use id='fk' x='934' y='371' xlink:href='#fk'/><title>References strain ( strain_id -&gt; id ) </title></a>
+  <a xlink:href='#inventory_group.name'><text id='soro.inventory_group.name' x='813' y='396'>name</text><title>name
+text</title></a>
+<text x='942' y='393' text-anchor='end' class='colType'>t</text>  <use id='nn' x='797' y='402' xlink:href='#nn'/><a xlink:href='#inventory_group.physical_units'><text id='soro.inventory_group.physical_units' x='813' y='411'>physical_units</text><title>physical_units
+* numeric(20,2) default 0</title></a>
+<text x='942' y='408' text-anchor='end' class='colType'>#</text>  <use id='nn' x='797' y='417' xlink:href='#nn'/><a xlink:href='#inventory_group.available_units'><text id='soro.inventory_group.available_units' x='813' y='426'>available_units</text><title>available_units
+* numeric(20,2) default 0</title></a>
+<text x='942' y='423' text-anchor='end' class='colType'>#</text>  <use id='nn' x='797' y='432' xlink:href='#nn'/><a xlink:href='#inventory_group.reserved_units'><text id='soro.inventory_group.reserved_units' x='813' y='441'>reserved_units</text><title>reserved_units
+* numeric(20,2) default 0</title></a>
+<text x='942' y='438' text-anchor='end' class='colType'>#</text>  <use id='nn' x='797' y='447' xlink:href='#nn'/><a xlink:href='#inventory_group.inventory_type_id'><text id='soro.inventory_group.inventory_type_id' x='813' y='456' onmouseover="hghl(['inventory_group_fk_inventory_group_inventory_type','soro.inventory_type.id'])" onmouseout="uhghl(['inventory_group_fk_inventory_group_inventory_type','soro.inventory_type.id'])">inventory_type_id</text><title>inventory_type_id
+* uuid</title></a>
+<a xlink:href='#inventory_group.inventory_type_id'><use id='fk' x='934' y='446' xlink:href='#fk'/><title>References inventory_type ( inventory_type_id -&gt; id ) </title></a>
+  <use id='nn' x='797' y='462' xlink:href='#nn'/><a xlink:href='#inventory_group.seller_id'><use id='idx' x='797' y='461' xlink:href='#idx'/><title>idx_soro_inventory_group_seller ( seller_id ) </title></a>
+<a xlink:href='#inventory_group.seller_id'><text id='soro.inventory_group.seller_id' x='813' y='471' onmouseover="hghl(['inventory_group_fk_inventory_group_seller','soro.seller.id'])" onmouseout="uhghl(['inventory_group_fk_inventory_group_seller','soro.seller.id'])">seller_id</text><title>seller_id
+* uuid</title></a>
+<a xlink:href='#inventory_group.seller_id'><use id='fk' x='934' y='461' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <a xlink:href='#inventory_group.base_product_name'><text id='soro.inventory_group.base_product_name' x='813' y='486'>base_product_name</text><title>base_product_name
+text</title></a>
+<text x='942' y='483' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'product_group' == -->
+<rect class='entity' x='930' y='623' width='150' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 930 649 L 930 630 Q 930 623 937 623 L 1073 623 Q 1080 623 1080 630 L 1080 649 L930 649 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='930' y='623' width='150' height='105' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#product_group'><text x='960' y='641'>product_group</text><title>Table soro.product_group
+auto-first</title></a>
+  <use id='nn' x='932' y='657' xlink:href='#nn'/><a xlink:href='#product_group.id'><use id='pk' x='932' y='656' xlink:href='#pk'/><title>Pk pk_product_group ( id ) </title></a>
+<a xlink:href='#product_group.id'><text id='soro.product_group.id' x='948' y='666'>id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+  <a xlink:href='#product_group.name'><text id='soro.product_group.name' x='948' y='681'>name</text><title>name
+text</title></a>
+<text x='1077' y='678' text-anchor='end' class='colType'>t</text>  <a xlink:href='#product_group.product_id'><text id='soro.product_group.product_id' x='948' y='696' onmouseover="hghl(['product_group_fk_product_group_product','soro.product.id'])" onmouseout="uhghl(['product_group_fk_product_group_product','soro.product.id'])">product_id</text><title>product_id
+uuid</title></a>
+<a xlink:href='#product_group.product_id'><use id='fk' x='1069' y='686' xlink:href='#fk'/><title>References product ( product_id -&gt; id ) </title></a>
+  <use id='nn' x='932' y='702' xlink:href='#nn'/><a xlink:href='#product_group.inventory_group_id'><text id='soro.product_group.inventory_group_id' x='948' y='711' onmouseover="hghl(['product_group_fk_product_group_inventory_group','soro.inventory_group.id'])" onmouseout="uhghl(['product_group_fk_product_group_inventory_group','soro.inventory_group.id'])">inventory_group_id</text><title>inventory_group_id
+* uuid</title></a>
+<a xlink:href='#product_group.inventory_group_id'><use id='fk' x='1069' y='701' xlink:href='#fk'/><title>References inventory_group ( inventory_group_id -&gt; id ) </title></a>
+
+<!-- == Table 'inventory_type' == -->
+<rect class='entity' x='1050' y='113' width='195' height='360' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1050 139 L 1050 120 Q 1050 113 1057 113 L 1238 113 Q 1245 113 1245 120 L 1245 139 L1050 139 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1050' y='113' width='195' height='360' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#inventory_type'><text x='1103' y='131'>inventory_type</text><title>Table soro.inventory_type
+state-defined</title></a>
+  <use id='nn' x='1052' y='147' xlink:href='#nn'/><a xlink:href='#inventory_type.id'><use id='pk' x='1052' y='146' xlink:href='#pk'/><title>Pk pk_inventory_type ( id ) </title></a>
+<a xlink:href='#inventory_type.id'><text id='soro.inventory_type.id' x='1068' y='156' onmouseover="hghl(['conversion_definition_fk_conversion_definition_inventory_type','soro.conversion_definition.inventory_type_id','conversion_source_definition_fk_conversion_source_definition_inventory_type','soro.conversion_source_definition.inventory_type_id','conversion_target_definition_fk_conversion_target_definition_inventory_type','soro.conversion_target_definition.inventory_type_id','display_name_mask_fk_display_name_mask_inventory_type','soro.display_name_mask.inventory_type_id','inventory_group_fk_inventory_group_inventory_type','soro.inventory_group.inventory_type_id','inventory_lot_fk_inventory_lot_inventory_type','soro.inventory_lot.inventory_type_id','inventory_transfer_rule_fk_inventory_transfer_rule_inventory_type','soro.inventory_transfer_rule.inventory_type_id','order_source_lot_fk_order_source_lot_inventory_type','soro.order_source_lot.inventory_type_id','product_fk_product_inventory_type','soro.product.inventory_type_id','seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type','soro.seller_inventory_type_category.inventory_type_id'])" onmouseout="uhghl(['conversion_definition_fk_conversion_definition_inventory_type','soro.conversion_definition.inventory_type_id','conversion_source_definition_fk_conversion_source_definition_inventory_type','soro.conversion_source_definition.inventory_type_id','conversion_target_definition_fk_conversion_target_definition_inventory_type','soro.conversion_target_definition.inventory_type_id','display_name_mask_fk_display_name_mask_inventory_type','soro.display_name_mask.inventory_type_id','inventory_group_fk_inventory_group_inventory_type','soro.inventory_group.inventory_type_id','inventory_lot_fk_inventory_lot_inventory_type','soro.inventory_lot.inventory_type_id','inventory_transfer_rule_fk_inventory_transfer_rule_inventory_type','soro.inventory_transfer_rule.inventory_type_id','order_source_lot_fk_order_source_lot_inventory_type','soro.order_source_lot.inventory_type_id','product_fk_product_inventory_type','soro.product.inventory_type_id','seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type','soro.seller_inventory_type_category.inventory_type_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#inventory_type.id'><use id='ref' x='1234' y='146' xlink:href='#ref'/><title>Referred by conversion_definition ( inventory_type_id -&gt; id ) 
+Referred by conversion_source_definition ( inventory_type_id -&gt; id ) 
+Referred by conversion_target_definition ( inventory_type_id -&gt; id ) 
+Referred by display_name_mask ( inventory_type_id -&gt; id ) 
+Referred by inventory_group ( inventory_type_id -&gt; id ) 
+Referred by inventory_lot ( inventory_type_id -&gt; id ) 
+Referred by inventory_transfer_rule ( inventory_type_id -&gt; id ) 
+Referred by order_source_lot ( inventory_type_id -&gt; id ) 
+Referred by product ( inventory_type_id -&gt; id ) 
+Referred by seller_inventory_type_category ( inventory_type_id -&gt; id ) </title></a>
+  <use id='nn' x='1052' y='162' xlink:href='#nn'/><a xlink:href='#inventory_type.created_at'><text id='soro.inventory_type.created_at' x='1068' y='171'>created_at</text><title>created_at
+* timestamp default now()</title></a>
+<text x='1242' y='168' text-anchor='end' class='colType'>d</text>  <use id='nn' x='1052' y='177' xlink:href='#nn'/><a xlink:href='#inventory_type.updated_at'><text id='soro.inventory_type.updated_at' x='1068' y='186'>updated_at</text><title>updated_at
+* timestamp default now()</title></a>
+<text x='1242' y='183' text-anchor='end' class='colType'>d</text>  <use id='nn' x='1052' y='192' xlink:href='#nn'/><a xlink:href='#inventory_type.name'><text id='soro.inventory_type.name' x='1068' y='201'>name</text><title>name
+* text</title></a>
+<text x='1242' y='198' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_type.default_product_name_mask'><text id='soro.inventory_type.default_product_name_mask' x='1068' y='216'>default_product_name_mask</text><title>default_product_name_mask
+text</title></a>
+<text x='1242' y='213' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1052' y='222' xlink:href='#nn'/><a xlink:href='#inventory_type.product_stage'><text id='soro.inventory_type.product_stage' x='1068' y='231'>product_stage</text><title>product_stage
+* product_stage</title></a>
+<text x='1242' y='228' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1052' y='237' xlink:href='#nn'/><a xlink:href='#inventory_type.quote_method'><text id='soro.inventory_type.quote_method' x='1068' y='246'>quote_method</text><title>quote_method
+* inventory_type_quote_method</title></a>
+<text x='1242' y='243' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_type.external_id'><text id='soro.inventory_type.external_id' x='1068' y='261'>external_id</text><title>external_id
+text</title></a>
+<text x='1242' y='258' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_type.tags'><text id='soro.inventory_type.tags' x='1068' y='276'>tags</text><title>tags
+text</title></a>
+<text x='1242' y='273' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1052' y='282' xlink:href='#nn'/><a xlink:href='#inventory_type.unit_of_weight'><text id='soro.inventory_type.unit_of_weight' x='1068' y='291'>unit_of_weight</text><title>unit_of_weight
+* unit_of_weight</title></a>
+<text x='1242' y='288' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1052' y='297' xlink:href='#nn'/><a xlink:href='#inventory_type.sourcing_method'><text id='soro.inventory_type.sourcing_method' x='1068' y='306'>sourcing_method</text><title>sourcing_method
+* sourcing_method default 'SubLot'::sourcing_method</title></a>
+<text x='1242' y='303' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1052' y='312' xlink:href='#nn'/><a xlink:href='#inventory_type.to_producer'><text id='soro.inventory_type.to_producer' x='1068' y='321'>to_producer</text><title>to_producer
+* bool</title></a>
+<text x='1242' y='318' text-anchor='end' class='colType'>b</text>  <use id='nn' x='1052' y='327' xlink:href='#nn'/><a xlink:href='#inventory_type.to_processor'><text id='soro.inventory_type.to_processor' x='1068' y='336'>to_processor</text><title>to_processor
+* bool</title></a>
+<text x='1242' y='333' text-anchor='end' class='colType'>b</text>  <use id='nn' x='1052' y='342' xlink:href='#nn'/><a xlink:href='#inventory_type.to_retailer'><text id='soro.inventory_type.to_retailer' x='1068' y='351'>to_retailer</text><title>to_retailer
+* bool</title></a>
+<text x='1242' y='348' text-anchor='end' class='colType'>b</text>  <use id='nn' x='1052' y='357' xlink:href='#nn'/><a xlink:href='#inventory_type.to_medical'><text id='soro.inventory_type.to_medical' x='1068' y='366'>to_medical</text><title>to_medical
+* bool</title></a>
+<text x='1242' y='363' text-anchor='end' class='colType'>b</text>  <use id='nn' x='1052' y='372' xlink:href='#nn'/><a xlink:href='#inventory_type.to_q_a_lab'><text id='soro.inventory_type.to_q_a_lab' x='1068' y='381'>to_q_a_lab</text><title>to_q_a_lab
+* bool</title></a>
+<text x='1242' y='378' text-anchor='end' class='colType'>b</text>  <a xlink:href='#inventory_type.conversion_to_strategy'><text id='soro.inventory_type.conversion_to_strategy' x='1068' y='396'>conversion_to_strategy</text><title>conversion_to_strategy
+text</title></a>
+<text x='1242' y='393' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1052' y='402' xlink:href='#nn'/><a xlink:href='#inventory_type.can_adjust'><text id='soro.inventory_type.can_adjust' x='1068' y='411'>can_adjust</text><title>can_adjust
+* bool</title></a>
+<text x='1242' y='408' text-anchor='end' class='colType'>b</text>  <use id='nn' x='1052' y='417' xlink:href='#nn'/><a xlink:href='#inventory_type.employee_can_sample'><text id='soro.inventory_type.employee_can_sample' x='1068' y='426'>employee_can_sample</text><title>employee_can_sample
+* bool</title></a>
+<text x='1242' y='423' text-anchor='end' class='colType'>b</text>  <a xlink:href='#inventory_type.im_key'><use id='unq' x='1052' y='431' xlink:href='#unq'/><title>Unq inventory_type_im_key_key ( im_key ) </title></a>
+<a xlink:href='#inventory_type.im_key'><text id='soro.inventory_type.im_key' x='1068' y='441'>im_key</text><title>im_key
+text</title></a>
+<text x='1242' y='438' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_type.icon_key'><text id='soro.inventory_type.icon_key' x='1068' y='456'>icon_key</text><title>icon_key
+text</title></a>
+<text x='1242' y='453' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'inventory_category' == -->
+<rect class='entity' x='1650' y='158' width='120' height='165' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1650 184 L 1650 165 Q 1650 158 1657 158 L 1763 158 Q 1770 158 1770 165 L 1770 184 L1650 184 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1650' y='158' width='120' height='165' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#inventory_category'><text x='1653' y='176'>inventory_category</text><title>Table soro.inventory_category
+soro-defined</title></a>
+  <use id='nn' x='1652' y='192' xlink:href='#nn'/><a xlink:href='#inventory_category.id'><use id='pk' x='1652' y='191' xlink:href='#pk'/><title>Pk pk_inventory_category ( id ) </title></a>
+<a xlink:href='#inventory_category.id'><text id='soro.inventory_category.id' x='1668' y='201' onmouseover="hghl(['seller_inventory_type_category_fk_seller_inventory_type_category_category','soro.seller_inventory_type_category.inventory_category_id'])" onmouseout="uhghl(['seller_inventory_type_category_fk_seller_inventory_type_category_category','soro.seller_inventory_type_category.inventory_category_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#inventory_category.id'><use id='ref' x='1759' y='191' xlink:href='#ref'/><title>Referred by seller_inventory_type_category ( inventory_category_id -&gt; id ) </title></a>
+  <use id='nn' x='1652' y='207' xlink:href='#nn'/><a xlink:href='#inventory_category.created_at'><text id='soro.inventory_category.created_at' x='1668' y='216'>created_at</text><title>created_at
+* timestamp default now()</title></a>
+<text x='1767' y='213' text-anchor='end' class='colType'>d</text>  <use id='nn' x='1652' y='222' xlink:href='#nn'/><a xlink:href='#inventory_category.updated_at'><text id='soro.inventory_category.updated_at' x='1668' y='231'>updated_at</text><title>updated_at
+* timestamp default now()</title></a>
+<text x='1767' y='228' text-anchor='end' class='colType'>d</text>  <use id='nn' x='1652' y='237' xlink:href='#nn'/><a xlink:href='#inventory_category.name'><text id='soro.inventory_category.name' x='1668' y='246'>name</text><title>name
+* text</title></a>
+<text x='1767' y='243' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_category.seller_id'><text id='soro.inventory_category.seller_id' x='1668' y='261' onmouseover="hghl(['inventory_category_fk_inventory_category_seller','soro.seller.id'])" onmouseout="uhghl(['inventory_category_fk_inventory_category_seller','soro.seller.id'])">seller_id</text><title>seller_id
+uuid</title></a>
+<a xlink:href='#inventory_category.seller_id'><use id='fk' x='1759' y='251' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <a xlink:href='#inventory_category.external_id'><text id='soro.inventory_category.external_id' x='1668' y='276'>external_id</text><title>external_id
+text</title></a>
+<text x='1767' y='273' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_category.tags'><text id='soro.inventory_category.tags' x='1668' y='291'>tags</text><title>tags
+text</title></a>
+<text x='1767' y='288' text-anchor='end' class='colType'>t</text>  <a xlink:href='#inventory_category.icon_key'><text id='soro.inventory_category.icon_key' x='1668' y='306'>icon_key</text><title>icon_key
+text</title></a>
+<text x='1767' y='303' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'seller_inventory_type_category' == -->
+<rect class='entity' x='1380' y='203' width='195' height='135' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1380 229 L 1380 210 Q 1380 203 1387 203 L 1568 203 Q 1575 203 1575 210 L 1575 229 L1380 229 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1380' y='203' width='195' height='135' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#seller_inventory_type_category'><text x='1387' y='221'>seller_inventory_type_category</text><title>Table soro.seller_inventory_type_category
+soro-defined</title></a>
+  <use id='nn' x='1382' y='237' xlink:href='#nn'/><a xlink:href='#seller_inventory_type_category.id'><use id='pk' x='1382' y='236' xlink:href='#pk'/><title>Pk pk_seller_inventory_type_category ( id ) </title></a>
+<a xlink:href='#seller_inventory_type_category.id'><text id='soro.seller_inventory_type_category.id' x='1398' y='246'>id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+  <use id='nn' x='1382' y='252' xlink:href='#nn'/><a xlink:href='#seller_inventory_type_category.created_at'><text id='soro.seller_inventory_type_category.created_at' x='1398' y='261'>created_at</text><title>created_at
+* timestamp default now()</title></a>
+<text x='1572' y='258' text-anchor='end' class='colType'>d</text>  <use id='nn' x='1382' y='267' xlink:href='#nn'/><a xlink:href='#seller_inventory_type_category.updated_at'><text id='soro.seller_inventory_type_category.updated_at' x='1398' y='276'>updated_at</text><title>updated_at
+* timestamp default now()</title></a>
+<text x='1572' y='273' text-anchor='end' class='colType'>d</text>  <a xlink:href='#seller_inventory_type_category.seller_id'><use id='idx' x='1382' y='281' xlink:href='#idx'/><title>idx_seller_inventory_category_seller_id ( seller_id ) </title></a>
+<a xlink:href='#seller_inventory_type_category.seller_id'><text id='soro.seller_inventory_type_category.seller_id' x='1398' y='291' onmouseover="hghl(['seller_inventory_type_category_fk_seller_inventory_type_category_seller','soro.seller.id'])" onmouseout="uhghl(['seller_inventory_type_category_fk_seller_inventory_type_category_seller','soro.seller.id'])">seller_id</text><title>seller_id
+uuid</title></a>
+<a xlink:href='#seller_inventory_type_category.seller_id'><use id='fk' x='1564' y='281' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <use id='nn' x='1382' y='297' xlink:href='#nn'/><a xlink:href='#seller_inventory_type_category.inventory_category_id'><use id='idx' x='1382' y='296' xlink:href='#idx'/><title>idx_seller_inventory_type_category_inventory_category_id ( inventory_category_id ) </title></a>
+<a xlink:href='#seller_inventory_type_category.inventory_category_id'><text id='soro.seller_inventory_type_category.inventory_category_id' x='1398' y='306' onmouseover="hghl(['seller_inventory_type_category_fk_seller_inventory_type_category_category','soro.inventory_category.id'])" onmouseout="uhghl(['seller_inventory_type_category_fk_seller_inventory_type_category_category','soro.inventory_category.id'])">inventory_category_id</text><title>inventory_category_id
+* uuid</title></a>
+<a xlink:href='#seller_inventory_type_category.inventory_category_id'><use id='fk' x='1564' y='296' xlink:href='#fk'/><title>References inventory_category ( inventory_category_id -&gt; id ) </title></a>
+  <use id='nn' x='1382' y='312' xlink:href='#nn'/><a xlink:href='#seller_inventory_type_category.inventory_type_id'><use id='idx' x='1382' y='311' xlink:href='#idx'/><title>idx_seller_inventory_type_category_inventory_type_id ( inventory_type_id ) </title></a>
+<a xlink:href='#seller_inventory_type_category.inventory_type_id'><text id='soro.seller_inventory_type_category.inventory_type_id' x='1398' y='321' onmouseover="hghl(['seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type','soro.inventory_type.id'])" onmouseout="uhghl(['seller_inventory_type_category_fk_seller_inventory_type_category_inventory_type','soro.inventory_type.id'])">inventory_type_id</text><title>inventory_type_id
+* uuid</title></a>
+<a xlink:href='#seller_inventory_type_category.inventory_type_id'><use id='fk' x='1564' y='311' xlink:href='#fk'/><title>References inventory_type ( inventory_type_id -&gt; id ) </title></a>
+
+<!-- == Table 'inventory_reservation' == -->
+<rect class='entity' x='315' y='398' width='135' height='120' rx='7' ry='7' style='stroke:none'/>
+<path d='M 315 424 L 315 405 Q 315 398 322 398 L 443 398 Q 450 398 450 405 L 450 424 L315 424 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='315' y='398' width='135' height='120' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#inventory_reservation'><text x='319' y='416'>inventory_reservation</text><title>Table soro.inventory_reservation</title></a>
+  <use id='nn' x='317' y='432' xlink:href='#nn'/><a xlink:href='#inventory_reservation.id'><use id='pk' x='317' y='431' xlink:href='#pk'/><title>Pk pk_inventory_reservation ( id ) </title></a>
+<a xlink:href='#inventory_reservation.id'><text id='soro.inventory_reservation.id' x='333' y='441'>id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+  <use id='nn' x='317' y='447' xlink:href='#nn'/><a xlink:href='#inventory_reservation.seller_id'><text id='soro.inventory_reservation.seller_id' x='333' y='456' onmouseover="hghl(['inventory_reservation_fk_inventory_reservation_seller','soro.seller.id'])" onmouseout="uhghl(['inventory_reservation_fk_inventory_reservation_seller','soro.seller.id'])">seller_id</text><title>seller_id
+* uuid</title></a>
+<a xlink:href='#inventory_reservation.seller_id'><use id='fk' x='439' y='446' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <use id='nn' x='317' y='462' xlink:href='#nn'/><a xlink:href='#inventory_reservation.inventory_lot_id'><text id='soro.inventory_reservation.inventory_lot_id' x='333' y='471' onmouseover="hghl(['inventory_reservation_fk_inventory_reservation_inventory_lot','soro.inventory_lot.id'])" onmouseout="uhghl(['inventory_reservation_fk_inventory_reservation_inventory_lot','soro.inventory_lot.id'])">inventory_lot_id</text><title>inventory_lot_id
+* uuid</title></a>
+<a xlink:href='#inventory_reservation.inventory_lot_id'><use id='fk' x='439' y='461' xlink:href='#fk'/><title>References inventory_lot ( inventory_lot_id -&gt; id ) </title></a>
+  <use id='nn' x='317' y='477' xlink:href='#nn'/><a xlink:href='#inventory_reservation.reason'><text id='soro.inventory_reservation.reason' x='333' y='486'>reason</text><title>reason
+* inventory_reservation_reason</title></a>
+<text x='447' y='483' text-anchor='end' class='colType'>t</text>  <use id='nn' x='317' y='492' xlink:href='#nn'/><a xlink:href='#inventory_reservation.quantity'><text id='soro.inventory_reservation.quantity' x='333' y='501'>quantity</text><title>quantity
+* numeric(20,2)</title></a>
+<text x='447' y='498' text-anchor='end' class='colType'>#</text>
+<!-- == Table 'flavor' == -->
+<rect class='entity' x='1605' y='818' width='90' height='90' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1605 844 L 1605 825 Q 1605 818 1612 818 L 1688 818 Q 1695 818 1695 825 L 1695 844 L1605 844 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1605' y='818' width='90' height='90' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#flavor'><text x='1631' y='836'>flavor</text><title>Table soro.flavor</title></a>
+  <use id='nn' x='1607' y='852' xlink:href='#nn'/><a xlink:href='#flavor.id'><use id='pk' x='1607' y='851' xlink:href='#pk'/><title>Pk pk_flavor ( id ) </title></a>
+<a xlink:href='#flavor.id'><text id='soro.flavor.id' x='1623' y='861' onmouseover="hghl(['product_fk_product_flavor','soro.product.flavor_id'])" onmouseout="uhghl(['product_fk_product_flavor','soro.product.flavor_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#flavor.id'><use id='ref' x='1684' y='851' xlink:href='#ref'/><title>Referred by product ( flavor_id -&gt; id ) </title></a>
+  <use id='nn' x='1607' y='867' xlink:href='#nn'/><a xlink:href='#flavor.seller_id'><use id='unq' x='1607' y='866' xlink:href='#unq'/><title>Unq uq_flavor ( seller_id, name ) </title></a>
+<a xlink:href='#flavor.seller_id'><text id='soro.flavor.seller_id' x='1623' y='876'>seller_id</text><title>seller_id
+* uuid</title></a>
+  <use id='nn' x='1607' y='882' xlink:href='#nn'/><a xlink:href='#flavor.name'><use id='unq' x='1607' y='881' xlink:href='#unq'/><title>Unq uq_flavor ( seller_id, name ) </title></a>
+<a xlink:href='#flavor.name'><text id='soro.flavor.name' x='1623' y='891'>name</text><title>name
+* text</title></a>
+<text x='1692' y='888' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'potency' == -->
+<rect class='entity' x='1620' y='998' width='90' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1620 1024 L 1620 1005 Q 1620 998 1627 998 L 1703 998 Q 1710 998 1710 1005 L 1710 1024 L1620 1024 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1620' y='998' width='90' height='105' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#potency'><text x='1639' y='1016'>potency</text><title>Table soro.potency
+also container size?</title></a>
+  <use id='nn' x='1622' y='1032' xlink:href='#nn'/><a xlink:href='#potency.id'><use id='pk' x='1622' y='1031' xlink:href='#pk'/><title>Pk pk_potency ( id ) </title></a>
+<a xlink:href='#potency.id'><text id='soro.potency.id' x='1638' y='1041' onmouseover="hghl(['product_fk_product_potency','soro.product.potency_id'])" onmouseout="uhghl(['product_fk_product_potency','soro.product.potency_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#potency.id'><use id='ref' x='1699' y='1031' xlink:href='#ref'/><title>Referred by product ( potency_id -&gt; id ) </title></a>
+  <use id='nn' x='1622' y='1047' xlink:href='#nn'/><a xlink:href='#potency.seller_id'><text id='soro.potency.seller_id' x='1638' y='1056'>seller_id</text><title>seller_id
+* uuid</title></a>
+  <use id='nn' x='1622' y='1062' xlink:href='#nn'/><a xlink:href='#potency.amount'><text id='soro.potency.amount' x='1638' y='1071'>amount</text><title>amount
+* text</title></a>
+<text x='1707' y='1068' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1622' y='1077' xlink:href='#nn'/><a xlink:href='#potency.uom'><text id='soro.potency.uom' x='1638' y='1086'>uom</text><title>uom
+* text</title></a>
+<text x='1707' y='1083' text-anchor='end' class='colType'>t</text>
+<!-- == Table 'product' == -->
+<rect class='entity' x='1200' y='608' width='225' height='540' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1200 634 L 1200 615 Q 1200 608 1207 608 L 1418 608 Q 1425 608 1425 615 L 1425 634 L1200 634 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1200' y='608' width='225' height='540' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#product'><text x='1287' y='626'>product</text><title>Table soro.product
+auto-first</title></a>
+  <use id='nn' x='1202' y='642' xlink:href='#nn'/><a xlink:href='#product.id'><use id='pk' x='1202' y='641' xlink:href='#pk'/><title>Pk pk_product ( id ) </title></a>
+<a xlink:href='#product.id'><text id='soro.product.id' x='1218' y='651' onmouseover="hghl(['order_line_item_fk_order_line_item_product','soro.order_line_item.product_id','product_group_fk_product_group_product','soro.product_group.product_id','quotable_status_adjustment_fk_quotable_status_adjustment','soro.quotable_status_adjustment.product_id','quote_line_item_fk_quote_line_item_product','soro.quote_line_item.product_id','quote_target_lot_fk_quote_source_target_product','soro.quote_target_lot.product_id','product_attachment_fk_product_attachment_product','soro.product_attachment.product_id'])" onmouseout="uhghl(['order_line_item_fk_order_line_item_product','soro.order_line_item.product_id','product_group_fk_product_group_product','soro.product_group.product_id','quotable_status_adjustment_fk_quotable_status_adjustment','soro.quotable_status_adjustment.product_id','quote_line_item_fk_quote_line_item_product','soro.quote_line_item.product_id','quote_target_lot_fk_quote_source_target_product','soro.quote_target_lot.product_id','product_attachment_fk_product_attachment_product','soro.product_attachment.product_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#product.id'><use id='ref' x='1414' y='641' xlink:href='#ref'/><title>Referred by order_line_item ( product_id -&gt; id ) 
+Referred by product_group ( product_id -&gt; id ) 
+Referred by quotable_status_adjustment ( product_id -&gt; id ) 
+Referred by quote_line_item ( product_id -&gt; id ) 
+Referred by quote_target_lot ( product_id -&gt; id ) 
+Referred by product_attachment ( product_id -&gt; id ) </title></a>
+  <use id='nn' x='1202' y='657' xlink:href='#nn'/><a xlink:href='#product.category_name'><use id='idx' x='1202' y='656' xlink:href='#idx'/><title>idx_product_category_name ( category_name ) </title></a>
+<a xlink:href='#product.category_name'><text id='soro.product.category_name' x='1218' y='666'>category_name</text><title>category_name
+* text</title></a>
+<text x='1422' y='663' text-anchor='end' class='colType'>t</text>  <a xlink:href='#product.display_name'><use id='idx' x='1202' y='671' xlink:href='#idx'/><title>idx_product_display_name ( display_name ) </title></a>
+<a xlink:href='#product.display_name'><text id='soro.product.display_name' x='1218' y='681'>display_name</text><title>display_name
+text
+and manifest name?</title></a>
+<text x='1422' y='678' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1202' y='687' xlink:href='#nn'/><a xlink:href='#product.quote_method'><text id='soro.product.quote_method' x='1218' y='696'>quote_method</text><title>quote_method
+* inventory_type_quote_method</title></a>
+<text x='1422' y='693' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1202' y='702' xlink:href='#nn'/><a xlink:href='#product.physical_units'><text id='soro.product.physical_units' x='1218' y='711'>physical_units</text><title>physical_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='708' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='717' xlink:href='#nn'/><a xlink:href='#product.offered_units'><text id='soro.product.offered_units' x='1218' y='726'>offered_units</text><title>offered_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='723' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='732' xlink:href='#nn'/><a xlink:href='#product.desired_units'><text id='soro.product.desired_units' x='1218' y='741'>desired_units</text><title>desired_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='738' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='747' xlink:href='#nn'/><a xlink:href='#product.quoted_units'><text id='soro.product.quoted_units' x='1218' y='756'>quoted_units</text><title>quoted_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='753' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='762' xlink:href='#nn'/><a xlink:href='#product.ordered_units'><text id='soro.product.ordered_units' x='1218' y='771'>ordered_units</text><title>ordered_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='768' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='777' xlink:href='#nn'/><a xlink:href='#product.available_units'><text id='soro.product.available_units' x='1218' y='786'>available_units</text><title>available_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='783' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='792' xlink:href='#nn'/><a xlink:href='#product.tested_units'><text id='soro.product.tested_units' x='1218' y='801'>tested_units</text><title>tested_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='798' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='807' xlink:href='#nn'/><a xlink:href='#product.un_tested_units'><text id='soro.product.un_tested_units' x='1218' y='816'>un_tested_units</text><title>un_tested_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='813' text-anchor='end' class='colType'>#</text>  <a xlink:href='#product.allowed_customer_license_types'><text id='soro.product.allowed_customer_license_types' x='1218' y='831'>allowed_customer_license_types</text><title>allowed_customer_license_types
+_state_license_type</title></a>
+<text x='1422' y='828' text-anchor='end' class='colType'>[]</text>  <a xlink:href='#product.price_per_unit_default'><text id='soro.product.price_per_unit_default' x='1218' y='846'>price_per_unit_default</text><title>price_per_unit_default
+numeric(20,2)</title></a>
+<text x='1422' y='843' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='852' xlink:href='#nn'/><a xlink:href='#product.unit_of_weight'><text id='soro.product.unit_of_weight' x='1218' y='861'>unit_of_weight</text><title>unit_of_weight
+* unit_of_weight</title></a>
+<text x='1422' y='858' text-anchor='end' class='colType'>t</text>  <a xlink:href='#product.usable_weight'><text id='soro.product.usable_weight' x='1218' y='876'>usable_weight</text><title>usable_weight
+numeric(20,2)
+weight of product?</title></a>
+<text x='1422' y='873' text-anchor='end' class='colType'>#</text>  <a xlink:href='#product.product_name'><text id='soro.product.product_name' x='1218' y='891'>product_name</text><title>product_name
+text</title></a>
+<text x='1422' y='888' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1202' y='897' xlink:href='#nn'/><a xlink:href='#product.updated_at'><text id='soro.product.updated_at' x='1218' y='906'>updated_at</text><title>updated_at
+* timestamp default now()</title></a>
+<text x='1422' y='903' text-anchor='end' class='colType'>d</text>  <use id='nn' x='1202' y='912' xlink:href='#nn'/><a xlink:href='#product.inventory_type_id'><use id='idx' x='1202' y='911' xlink:href='#idx'/><title>idx_product_inventory_type_id ( inventory_type_id ) </title></a>
+<a xlink:href='#product.inventory_type_id'><text id='soro.product.inventory_type_id' x='1218' y='921' onmouseover="hghl(['product_fk_product_inventory_type','soro.inventory_type.id'])" onmouseout="uhghl(['product_fk_product_inventory_type','soro.inventory_type.id'])">inventory_type_id</text><title>inventory_type_id
+* uuid</title></a>
+<a xlink:href='#product.inventory_type_id'><use id='fk' x='1414' y='911' xlink:href='#fk'/><title>References inventory_type ( inventory_type_id -&gt; id ) </title></a>
+  <use id='nn' x='1202' y='927' xlink:href='#nn'/><a xlink:href='#product.seller_id'><use id='idx' x='1202' y='926' xlink:href='#idx'/><title>idx_product_seller_id ( seller_id ) </title></a>
+<a xlink:href='#product.seller_id'><text id='soro.product.seller_id' x='1218' y='936' onmouseover="hghl(['product_fk_product_seller','soro.seller.id'])" onmouseout="uhghl(['product_fk_product_seller','soro.seller.id'])">seller_id</text><title>seller_id
+* uuid</title></a>
+<a xlink:href='#product.seller_id'><use id='fk' x='1414' y='926' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <use id='nn' x='1202' y='942' xlink:href='#nn'/><a xlink:href='#product.created_at'><text id='soro.product.created_at' x='1218' y='951'>created_at</text><title>created_at
+* timestamp default now()</title></a>
+<text x='1422' y='948' text-anchor='end' class='colType'>d</text>  <a xlink:href='#product.external_id'><text id='soro.product.external_id' x='1218' y='966'>external_id</text><title>external_id
+text</title></a>
+<text x='1422' y='963' text-anchor='end' class='colType'>t</text>  <a xlink:href='#product.description'><text id='soro.product.description' x='1218' y='981'>description</text><title>description
+text</title></a>
+<text x='1422' y='978' text-anchor='end' class='colType'>t</text>  <a xlink:href='#product.genetics'><text id='soro.product.genetics' x='1218' y='996'>genetics</text><title>genetics
+text</title></a>
+<text x='1422' y='993' text-anchor='end' class='colType'>t</text>  <a xlink:href='#product.other_information'><text id='soro.product.other_information' x='1218' y='1011'>other_information</text><title>other_information
+text</title></a>
+<text x='1422' y='1008' text-anchor='end' class='colType'>t</text>  <use id='nn' x='1202' y='1017' xlink:href='#nn'/><a xlink:href='#product.discontinued'><text id='soro.product.discontinued' x='1218' y='1026'>discontinued</text><title>discontinued
+* bool default false</title></a>
+<text x='1422' y='1023' text-anchor='end' class='colType'>b</text>  <a xlink:href='#product.default_price_per_unit'><text id='soro.product.default_price_per_unit' x='1218' y='1041'>default_price_per_unit</text><title>default_price_per_unit
+numeric(20,2)</title></a>
+<text x='1422' y='1038' text-anchor='end' class='colType'>#</text>  <use id='nn' x='1202' y='1047' xlink:href='#nn'/><a xlink:href='#product.reserved_units'><text id='soro.product.reserved_units' x='1218' y='1056'>reserved_units</text><title>reserved_units
+* numeric(20,2) default 0</title></a>
+<text x='1422' y='1053' text-anchor='end' class='colType'>#</text>  <a xlink:href='#product.strain_id'><text id='soro.product.strain_id' x='1218' y='1071' onmouseover="hghl(['product_fk_product_strain','soro.strain.id'])" onmouseout="uhghl(['product_fk_product_strain','soro.strain.id'])">strain_id</text><title>strain_id
+uuid</title></a>
+<a xlink:href='#product.strain_id'><use id='fk' x='1414' y='1061' xlink:href='#fk'/><title>References strain ( strain_id -&gt; id ) </title></a>
+  <a xlink:href='#product.brand_id'><text id='soro.product.brand_id' x='1218' y='1086' onmouseover="hghl(['product_fk_product_brand','soro.brand.id'])" onmouseout="uhghl(['product_fk_product_brand','soro.brand.id'])">brand_id</text><title>brand_id
+uuid</title></a>
+<a xlink:href='#product.brand_id'><use id='fk' x='1414' y='1076' xlink:href='#fk'/><title>References brand ( brand_id -&gt; id ) </title></a>
+  <a xlink:href='#product.sku'><use id='unq' x='1202' y='1091' xlink:href='#unq'/><title>Unq product_sku_key ( sku ) </title></a>
+<a xlink:href='#product.sku'><text id='soro.product.sku' x='1218' y='1101'>sku</text><title>sku
+uuid</title></a>
+  <a xlink:href='#product.flavor_id'><text id='soro.product.flavor_id' x='1218' y='1116' onmouseover="hghl(['product_fk_product_flavor','soro.flavor.id'])" onmouseout="uhghl(['product_fk_product_flavor','soro.flavor.id'])">flavor_id</text><title>flavor_id
+uuid</title></a>
+<a xlink:href='#product.flavor_id'><use id='fk' x='1414' y='1106' xlink:href='#fk'/><title>References flavor ( flavor_id -&gt; id ) </title></a>
+  <a xlink:href='#product.potency_id'><text id='soro.product.potency_id' x='1218' y='1131' onmouseover="hghl(['product_fk_product_potency','soro.potency.id'])" onmouseout="uhghl(['product_fk_product_potency','soro.potency.id'])">potency_id</text><title>potency_id
+uuid</title></a>
+<a xlink:href='#product.potency_id'><use id='fk' x='1414' y='1121' xlink:href='#fk'/><title>References potency ( potency_id -&gt; id ) </title></a>
+
+<!-- == Table 'strain' == -->
+<rect class='entity' x='555' y='713' width='135' height='195' rx='7' ry='7' style='stroke:none'/>
+<path d='M 555 739 L 555 720 Q 555 713 562 713 L 683 713 Q 690 713 690 720 L 690 739 L555 739 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='555' y='713' width='135' height='195' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<a xlink:href='#strain'><text x='604' y='731'>strain</text><title>Table soro.strain
+from external</title></a>
+  <use id='nn' x='557' y='747' xlink:href='#nn'/><a xlink:href='#strain.id'><use id='pk' x='557' y='746' xlink:href='#pk'/><title>Pk pk_strain ( id ) </title></a>
+<a xlink:href='#strain.id'><text id='soro.strain.id' x='573' y='756' onmouseover="hghl(['display_name_mask_fk_display_name_mask_strain','soro.display_name_mask.strain_id','inventory_group_fk_inventory_group_strain','soro.inventory_group.strain_id','inventory_lot_fk_inventory_lot_strain','soro.inventory_lot.strain_id','product_fk_product_strain','soro.product.strain_id'])" onmouseout="uhghl(['display_name_mask_fk_display_name_mask_strain','soro.display_name_mask.strain_id','inventory_group_fk_inventory_group_strain','soro.inventory_group.strain_id','inventory_lot_fk_inventory_lot_strain','soro.inventory_lot.strain_id','product_fk_product_strain','soro.product.strain_id'])">id</text><title>id
+* uuid default uuid_generate_v1()</title></a>
+<a xlink:href='#strain.id'><use id='ref' x='679' y='746' xlink:href='#ref'/><title>Referred by display_name_mask ( strain_id -&gt; id ) 
+Referred by inventory_group ( strain_id -&gt; id ) 
+Referred by inventory_lot ( strain_id -&gt; id ) 
+Referred by product ( strain_id -&gt; id ) </title></a>
+  <use id='nn' x='557' y='762' xlink:href='#nn'/><a xlink:href='#strain.created_at'><text id='soro.strain.created_at' x='573' y='771'>created_at</text><title>created_at
+* timestamp default now()</title></a>
+<text x='687' y='768' text-anchor='end' class='colType'>d</text>  <use id='nn' x='557' y='777' xlink:href='#nn'/><a xlink:href='#strain.updated_at'><text id='soro.strain.updated_at' x='573' y='786'>updated_at</text><title>updated_at
+* timestamp default now()</title></a>
+<text x='687' y='783' text-anchor='end' class='colType'>d</text>  <use id='nn' x='557' y='792' xlink:href='#nn'/><a xlink:href='#strain.name'><use id='idx' x='557' y='791' xlink:href='#idx'/><title>idx_strain_name ( name ) </title></a>
+<a xlink:href='#strain.name'><text id='soro.strain.name' x='573' y='801'>name</text><title>name
+* text</title></a>
+<text x='687' y='798' text-anchor='end' class='colType'>t</text>  <a xlink:href='#strain.thc'><text id='soro.strain.thc' x='573' y='816'>thc</text><title>thc
+numeric(5,2)</title></a>
+<text x='687' y='813' text-anchor='end' class='colType'>#</text>  <a xlink:href='#strain.cbd'><text id='soro.strain.cbd' x='573' y='831'>cbd</text><title>cbd
+numeric(5,2)</title></a>
+<text x='687' y='828' text-anchor='end' class='colType'>#</text>  <use id='nn' x='557' y='837' xlink:href='#nn'/><a xlink:href='#strain.seller_id'><use id='idx' x='557' y='836' xlink:href='#idx'/><title>idx_strain_seller_id ( seller_id ) </title></a>
+<a xlink:href='#strain.seller_id'><text id='soro.strain.seller_id' x='573' y='846' onmouseover="hghl(['strain_fk_strain_seller','soro.seller.id'])" onmouseout="uhghl(['strain_fk_strain_seller','soro.seller.id'])">seller_id</text><title>seller_id
+* uuid</title></a>
+<a xlink:href='#strain.seller_id'><use id='fk' x='679' y='836' xlink:href='#fk'/><title>References seller ( seller_id -&gt; id ) </title></a>
+  <a xlink:href='#strain.external_id'><text id='soro.strain.external_id' x='573' y='861'>external_id</text><title>external_id
+text</title></a>
+<text x='687' y='858' text-anchor='end' class='colType'>t</text>  <a xlink:href='#strain.genetic_category'><text id='soro.strain.genetic_category' x='573' y='876'>genetic_category</text><title>genetic_category
+genetic_category</title></a>
+<text x='687' y='873' text-anchor='end' class='colType'>t</text>  <a xlink:href='#strain.genetic_details'><text id='soro.strain.genetic_details' x='573' y='891'>genetic_details</text><title>genetic_details
+text</title></a>
+<text x='687' y='888' text-anchor='end' class='colType'>t</text>
+<!-- == Callout == -->
+<rect class='callout' x='1845' y='570' width='120' height='32' rx='15' ry='15'  />
+<text x='1867' y='570' class='callout'>
+    <tspan x='1848' dx='7' dy='17'>one or the other</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='510' y='945' width='180' height='32' rx='15' ry='15'  />
+<text x='532' y='945' class='callout'>
+    <tspan x='513' dx='7' dy='17'>belongs in another schema</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='45' y='30' width='195' height='32' rx='15' ry='15'  />
+<text x='67' y='30' class='callout'>
+    <tspan x='48' dx='7' dy='17'>likely to be completely redone</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='510' y='180' width='90' height='32' rx='15' ry='15'  />
+<text x='532' y='180' class='callout'>
+    <tspan x='513' dx='7' dy='17'>from external</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='795' y='285' width='90' height='32' rx='15' ry='15'  />
+<text x='817' y='285' class='callout'>
+    <tspan x='798' dx='7' dy='17'>auto&#45;created</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='930' y='585' width='75' height='32' rx='15' ry='15'  />
+<text x='952' y='585' class='callout'>
+    <tspan x='933' dx='7' dy='17'>auto&#45;first</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1200' y='570' width='75' height='32' rx='15' ry='15'  />
+<text x='1222' y='570' class='callout'>
+    <tspan x='1203' dx='7' dy='17'>auto&#45;first</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1050' y='75' width='105' height='32' rx='15' ry='15'  />
+<text x='1072' y='75' class='callout'>
+    <tspan x='1053' dx='7' dy='17'>state&#45;defined</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1380' y='165' width='90' height='32' rx='15' ry='15'  />
+<text x='1402' y='165' class='callout'>
+    <tspan x='1383' dx='7' dy='17'>soro&#45;defined</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1650' y='120' width='90' height='32' rx='15' ry='15'  />
+<text x='1672' y='120' class='callout'>
+    <tspan x='1653' dx='7' dy='17'>soro&#45;defined</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='555' y='675' width='90' height='32' rx='15' ry='15'  />
+<text x='577' y='675' class='callout'>
+    <tspan x='558' dx='7' dy='17'>from external</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1725' y='750' width='120' height='32' rx='15' ry='15'  />
+<text x='1747' y='750' class='callout'>
+    <tspan x='1728' dx='7' dy='17'>one or the other</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1620' y='960' width='135' height='32' rx='15' ry='15'  />
+<text x='1642' y='960' class='callout'>
+    <tspan x='1623' dx='7' dy='17'>also container size&#63;</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1200' y='630' width='135' height='32' rx='15' ry='15'  />
+<text x='1222' y='630' class='callout'>
+    <tspan x='1203' dx='7' dy='17'>and manifest name&#63;</tspan>
+</text>
+<!-- == Callout == -->
+<rect class='callout' x='1200' y='825' width='135' height='32' rx='15' ry='15'  />
+<text x='1222' y='825' class='callout'>
+    <tspan x='1203' dx='7' dy='17'>weight of product&#63;</tspan>
+</text>
+</g></svg></div>
+
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='attachment' onclick='window.scrollTo(310, 990);return false;' style='cursor:pointer;'><h4 class='card-title'>Table attachment</h4></a>
+<p class="text-muted">belongs in another schema</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='attachment.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='attachment.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='attachment.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='attachment.url'>url</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='attachment.attachment_type'>attachment&#95;type</a></td>
+		<td> attachment&#95;type   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;attachment</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>uq&#95;attachment</td>
+		<td> ON seller&#95;id&#44; url</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Constraints</th></tr>
+	<tr>
+		<td>&nbsp;</td><td> attachment_name_valid </td><td> name &lt;&gt; &#39;&#39;&#58;&#58;text </td><td> </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='brand' onclick='window.scrollTo(1375, 615);return false;' style='cursor:pointer;'><h4 class='card-title'>Table brand</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='brand.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='brand.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='brand.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='brand.alias'>alias</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='brand.parent_brand_id'>parent&#95;brand&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='brand.family_id'>family&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;brand</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>uq&#95;brand</td>
+		<td> ON seller&#95;id&#44; name</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_brand_parent_brand</td>
+		<td > ( parent&#95;brand&#95;id ) ref <a href='#brand'>brand</a> (id) </td>
+		<td> one or the other </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_brand_family</td>
+		<td > ( family&#95;id ) ref <a href='#brand&#95;family'>brand&#95;family</a> (id) </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Constraints</th></tr>
+	<tr>
+		<td>&nbsp;</td><td> brand_name_valid </td><td> name &lt;&gt; &#39;&#39;&#58;&#58;text </td><td> </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='brand_family' onclick='window.scrollTo(1645, 615);return false;' style='cursor:pointer;'><h4 class='card-title'>Table brand_family</h4></a>
+<p class="text-muted">one or the other</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='brand_family.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='brand_family.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='brand_family.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;brand&#95;family</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>uq&#95;brand&#95;family</td>
+		<td> ON seller&#95;id&#44; name</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Constraints</th></tr>
+	<tr>
+		<td>&nbsp;</td><td> brand_family_name_valid </td><td> name &lt;&gt; &#39;&#39;&#58;&#58;text </td><td> </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='display_name_mask' onclick='window.scrollTo(60, 75);return false;' style='cursor:pointer;'><h4 class='card-title'>Table display_name_mask</h4></a>
+<p class="text-muted">likely to be completely redone</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='display_name_mask.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='display_name_mask.product_name_mask'>product&#95;name&#95;mask</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='display_name_mask.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='display_name_mask.inventory_type_id'>inventory&#95;type&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='display_name_mask.strain_id'>strain&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;seller&#95;display&#95;name&#95;mask</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_display_name_mask_inventory_type</td>
+		<td > ( inventory&#95;type&#95;id ) ref <a href='#inventory&#95;type'>inventory&#95;type</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_display_name_mask_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_display_name_mask_strain</td>
+		<td > ( strain&#95;id ) ref <a href='#strain'>strain</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='flavor' onclick='window.scrollTo(1405, 825);return false;' style='cursor:pointer;'><h4 class='card-title'>Table flavor</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='flavor.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='flavor.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='flavor.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;flavor</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>uq&#95;flavor</td>
+		<td> ON seller&#95;id&#44; name</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Constraints</th></tr>
+	<tr>
+		<td>&nbsp;</td><td> flavor_name_valid </td><td> name &lt;&gt; &#39;&#39;&#58;&#58;text </td><td> </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='inventory_category' onclick='window.scrollTo(1450, 165);return false;' style='cursor:pointer;'><h4 class='card-title'>Table inventory_category</h4></a>
+<p class="text-muted">soro-defined</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='inventory_category.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_category.created_at'>created&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_category.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_category.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_category.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_category.external_id'>external&#95;id</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_category.tags'>tags</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_category.icon_key'>icon&#95;key</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;inventory&#95;category</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_category_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='inventory_group' onclick='window.scrollTo(595, 330);return false;' style='cursor:pointer;'><h4 class='card-title'>Table inventory_group</h4></a>
+<p class="text-muted">auto-created</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='inventory_group.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_group.strain_id'>strain&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_group.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_group.physical_units'>physical&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_group.available_units'>available&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_group.reserved_units'>reserved&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_group.inventory_type_id'>inventory&#95;type&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_group.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_group.base_product_name'>base&#95;product&#95;name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;inventory&#95;group</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;soro&#95;inventory&#95;group&#95;seller</td>
+		<td> ON seller&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_group_strain</td>
+		<td > ( strain&#95;id ) ref <a href='#strain'>strain</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_group_inventory_type</td>
+		<td > ( inventory&#95;type&#95;id ) ref <a href='#inventory&#95;type'>inventory&#95;type</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_group_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='inventory_lot' onclick='window.scrollTo(310, 225);return false;' style='cursor:pointer;'><h4 class='card-title'>Table inventory_lot</h4></a>
+<p class="text-muted">from external</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='inventory_lot.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_lot.category_name'>category&#95;name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_lot.usable_weight'>usable&#95;weight</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_lot.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_lot.inventory_type_id'>inventory&#95;type&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_lot.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_lot.strain_id'>strain&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_lot.created_at'>created&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='inventory_lot.external_id'>external&#95;id</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_lot.remaining_quantity'>remaining&#95;quantity</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_lot.status'>status</a></td>
+		<td> inventory&#95;lot&#95;status   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_lot.inventory_group_id'>inventory&#95;group&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_lot.room_id'>room&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_lot.description'>description</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_lot.legacy_id'>legacy&#95;id</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;inventory&#95;lot</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>uq&#95;inventory&#95;lot</td>
+		<td> ON external&#95;id&#44; seller&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;soro&#95;inventory&#95;lot&#95;id</td>
+		<td> ON external&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_lot_inventory_type</td>
+		<td > ( inventory&#95;type&#95;id ) ref <a href='#inventory&#95;type'>inventory&#95;type</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_lot_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_lot_strain</td>
+		<td > ( strain&#95;id ) ref <a href='#strain'>strain</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_lot_inventory_group</td>
+		<td > ( inventory&#95;group&#95;id ) ref <a href='#inventory&#95;group'>inventory&#95;group</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_lot_room</td>
+		<td > ( room&#95;id ) ref <a href='#room'>room</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='inventory_reservation' onclick='window.scrollTo(115, 405);return false;' style='cursor:pointer;'><h4 class='card-title'>Table inventory_reservation</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='inventory_reservation.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_reservation.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='inventory_reservation.inventory_lot_id'>inventory&#95;lot&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_reservation.reason'>reason</a></td>
+		<td> inventory&#95;reservation&#95;reason   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_reservation.quantity'>quantity</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;inventory&#95;reservation</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_reservation_inventory_lot</td>
+		<td > ( inventory&#95;lot&#95;id ) ref <a href='#inventory&#95;lot'>inventory&#95;lot</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_inventory_reservation_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='inventory_type' onclick='window.scrollTo(850, 120);return false;' style='cursor:pointer;'><h4 class='card-title'>Table inventory_type</h4></a>
+<p class="text-muted">state-defined</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='inventory_type.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.created_at'>created&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_type.default_product_name_mask'>default&#95;product&#95;name&#95;mask</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.product_stage'>product&#95;stage</a></td>
+		<td> product&#95;stage   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.quote_method'>quote&#95;method</a></td>
+		<td> inventory&#95;type&#95;quote&#95;method   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_type.external_id'>external&#95;id</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_type.tags'>tags</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.unit_of_weight'>unit&#95;of&#95;weight</a></td>
+		<td> unit&#95;of&#95;weight   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.sourcing_method'>sourcing&#95;method</a></td>
+		<td> sourcing&#95;method   DEFAULT 'SubLot'::sourcing_method </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.to_producer'>to&#95;producer</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.to_processor'>to&#95;processor</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.to_retailer'>to&#95;retailer</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.to_medical'>to&#95;medical</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.to_q_a_lab'>to&#95;q&#95;a&#95;lab</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_type.conversion_to_strategy'>conversion&#95;to&#95;strategy</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.can_adjust'>can&#95;adjust</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='inventory_type.employee_can_sample'>employee&#95;can&#95;sample</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='inventory_type.im_key'>im&#95;key</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='inventory_type.icon_key'>icon&#95;key</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;inventory&#95;type</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>inventory&#95;type&#95;im&#95;key&#95;key</td>
+		<td> ON im&#95;key</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='potency' onclick='window.scrollTo(1420, 1005);return false;' style='cursor:pointer;'><h4 class='card-title'>Table potency</h4></a>
+<p class="text-muted">also container size?</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='potency.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='potency.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='potency.amount'>amount</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='potency.uom'>uom</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;potency</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Constraints</th></tr>
+	<tr>
+		<td>&nbsp;</td><td> potency_amount_valid </td><td> amount &lt;&gt; &#39;&#39;&#58;&#58;text </td><td> </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td> potency_uom_valid </td><td> uom &lt;&gt; &#39;&#39;&#58;&#58;text </td><td> </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='product' onclick='window.scrollTo(1000, 615);return false;' style='cursor:pointer;'><h4 class='card-title'>Table product</h4></a>
+<p class="text-muted">auto-first</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='product.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='product.category_name'>category&#95;name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='product.display_name'>display&#95;name</a></td>
+		<td> text   </td>
+		<td> and manifest name&#63; </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.quote_method'>quote&#95;method</a></td>
+		<td> inventory&#95;type&#95;quote&#95;method   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.physical_units'>physical&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.offered_units'>offered&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.desired_units'>desired&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.quoted_units'>quoted&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.ordered_units'>ordered&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.available_units'>available&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.tested_units'>tested&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.un_tested_units'>un&#95;tested&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.allowed_customer_license_types'>allowed&#95;customer&#95;license&#95;types</a></td>
+		<td> &#95;state&#95;license&#95;type   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.price_per_unit_default'>price&#95;per&#95;unit&#95;default</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.unit_of_weight'>unit&#95;of&#95;weight</a></td>
+		<td> unit&#95;of&#95;weight   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.usable_weight'>usable&#95;weight</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   </td>
+		<td> weight of product&#63; </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.product_name'>product&#95;name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product.inventory_type_id'>inventory&#95;type&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.created_at'>created&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.external_id'>external&#95;id</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.description'>description</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.genetics'>genetics</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.other_information'>other&#95;information</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.discontinued'>discontinued</a></td>
+		<td> bool   DEFAULT false </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.default_price_per_unit'>default&#95;price&#95;per&#95;unit</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.reserved_units'>reserved&#95;units</a></td>
+		<td> numeric&#40; 20&#44; 2 &#41;   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product.strain_id'>strain&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product.brand_id'>brand&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='product.sku'>sku</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product.flavor_id'>flavor&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product.potency_id'>potency&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;product</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;product&#95;category&#95;name</td>
+		<td> ON category&#95;name</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;product&#95;display&#95;name</td>
+		<td> ON display&#95;name</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;product&#95;inventory&#95;type&#95;id</td>
+		<td> ON inventory&#95;type&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;product&#95;seller&#95;id</td>
+		<td> ON seller&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>product&#95;sku&#95;key</td>
+		<td> ON sku</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_inventory_type</td>
+		<td > ( inventory&#95;type&#95;id ) ref <a href='#inventory&#95;type'>inventory&#95;type</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_strain</td>
+		<td > ( strain&#95;id ) ref <a href='#strain'>strain</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_brand</td>
+		<td > ( brand&#95;id ) ref <a href='#brand'>brand</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_flavor</td>
+		<td > ( flavor&#95;id ) ref <a href='#flavor'>flavor</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_potency</td>
+		<td > ( potency&#95;id ) ref <a href='#potency'>potency</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='product_attachment' onclick='window.scrollTo(760, 1020);return false;' style='cursor:pointer;'><h4 class='card-title'>Table product_attachment</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='product_attachment.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product_attachment.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product_attachment.attachment_id'>attachment&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product_attachment.product_id'>product&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;product&#95;attachment</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_attachment_attachment</td>
+		<td > ( attachment&#95;id ) ref <a href='#attachment'>attachment</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_attachment_product</td>
+		<td > ( product&#95;id ) ref <a href='#product'>product</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='product_group' onclick='window.scrollTo(730, 630);return false;' style='cursor:pointer;'><h4 class='card-title'>Table product_group</h4></a>
+<p class="text-muted">auto-first</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='product_group.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product_group.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product_group.product_id'>product&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='product_group.inventory_group_id'>inventory&#95;group&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;product&#95;group</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_group_inventory_group</td>
+		<td > ( inventory&#95;group&#95;id ) ref <a href='#inventory&#95;group'>inventory&#95;group</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_product_group_product</td>
+		<td > ( product&#95;id ) ref <a href='#product'>product</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='room' onclick='window.scrollTo(130, 180);return false;' style='cursor:pointer;'><h4 class='card-title'>Table room</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='room.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='room.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='room.room_type'>room&#95;type</a></td>
+		<td> room&#95;type   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='room.external_id'>external&#95;id</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='room.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='room.location_id'>location&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='room.quarantine'>quarantine</a></td>
+		<td> bool   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='room.deleted'>deleted</a></td>
+		<td> bool   DEFAULT false </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;bt&#95;vendor</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_room_location</td>
+		<td > ( location&#95;id ) ref <a href='#location'>location</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_room_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='seller_inventory_type_category' onclick='window.scrollTo(1180, 210);return false;' style='cursor:pointer;'><h4 class='card-title'>Table seller_inventory_type_category</h4></a>
+<p class="text-muted">soro-defined</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='seller_inventory_type_category.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='seller_inventory_type_category.created_at'>created&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='seller_inventory_type_category.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='seller_inventory_type_category.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='seller_inventory_type_category.inventory_category_id'>inventory&#95;category&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='seller_inventory_type_category.inventory_type_id'>inventory&#95;type&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;seller&#95;inventory&#95;type&#95;category</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;seller&#95;inventory&#95;category&#95;seller&#95;id</td>
+		<td> ON seller&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;seller&#95;inventory&#95;type&#95;category&#95;inventory&#95;category&#95;id</td>
+		<td> ON inventory&#95;category&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;seller&#95;inventory&#95;type&#95;category&#95;inventory&#95;type&#95;id</td>
+		<td> ON inventory&#95;type&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_seller_inventory_type_category_category</td>
+		<td > ( inventory&#95;category&#95;id ) ref <a href='#inventory&#95;category'>inventory&#95;category</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_seller_inventory_type_category_inventory_type</td>
+		<td > ( inventory&#95;type&#95;id ) ref <a href='#inventory&#95;type'>inventory&#95;type</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_seller_inventory_type_category_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='strain' onclick='window.scrollTo(355, 720);return false;' style='cursor:pointer;'><h4 class='card-title'>Table strain</h4></a>
+<p class="text-muted">from external</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='strain.id'>id</a></td>
+		<td> uuid   DEFAULT uuid_generate_v1() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='strain.created_at'>created&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='strain.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   DEFAULT now() </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='strain.name'>name</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='strain.thc'>thc</a></td>
+		<td> numeric&#40; 5&#44; 2 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='strain.cbd'>cbd</a></td>
+		<td> numeric&#40; 5&#44; 2 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='strain.seller_id'>seller&#95;id</a></td>
+		<td> uuid   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='strain.external_id'>external&#95;id</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='strain.genetic_category'>genetic&#95;category</a></td>
+		<td> genetic&#95;category   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='strain.genetic_details'>genetic&#95;details</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;strain</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;strain&#95;name</td>
+		<td> ON name</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;strain&#95;seller&#95;id</td>
+		<td> ON seller&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_strain_seller</td>
+		<td > ( seller&#95;id ) ref <a href='#seller'>seller</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<p align='right'><a href='https://www.dbschema.com' style='color:#aaa'>Powered by DbSchema</a></p></body></html>

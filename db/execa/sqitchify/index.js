@@ -6,11 +6,14 @@ const packages = [
   { 
     name: 'projects',
     sourceDir: '/release/001/010-prj-mig/migrations/',
-    targetDir: '/release/001/010-prj/migrations/'
+    targetDir: '/release/001/010-prj/'
   }
 ]
 
 convertPackageSet(packages)
 .then(result => {
   clog('SQITCHIFIED', result)
+})
+.catch(error => {
+  clog.error('NOT SQITCHIFIED', error)
 })
