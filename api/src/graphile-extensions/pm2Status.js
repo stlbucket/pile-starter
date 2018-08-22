@@ -17,7 +17,7 @@ const Pm2ProcessesPlugin = makeExtendSchemaPlugin(build => {
     }
 
     extend type Query {
-      Processes: ProcessCollection!
+      processes: ProcessCollection!
     }
   `,
   resolvers: {
