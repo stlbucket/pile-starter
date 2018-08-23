@@ -6,23 +6,23 @@ const Pm2ProcessesPlugin = makeExtendSchemaPlugin(build => {
   const { pgSql: sql } = build;
   return {
     typeDefs: gql`
-    type Process {
+    type SyncProcess {
       pid: String!
       name: String!
       status: String!
     }
 
-    type ProcessCollection {
-      nodes: [Process]!
+    type SyncProcessCollection {
+      nodes: [SyncProcess]!
     }
 
     extend type Query {
-      processes: ProcessCollection!
+      syncProcesses: SyncProcessCollection!
     }
   `,
   resolvers: {
       Query: {
-        Processes: async (
+        syncProcesses: async (
           _query,
           args,
           context,
@@ -33,14 +33,11 @@ const Pm2ProcessesPlugin = makeExtendSchemaPlugin(build => {
 
           pm2.connect(function(err) {
             if (err) {
-              console.error(err);
-              process.exit(2);
+              throw err
             }
             
             pm2.list({
             }, function(err, apps) {
-              pm2.disconnect();   // Disconnects from PM2
-
               if (err) d.reject(err)
               else {
                 d.resolve({
