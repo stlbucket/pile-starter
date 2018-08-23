@@ -33,7 +33,7 @@ const Pm2ProcessesPlugin = makeExtendSchemaPlugin(build => {
 
           pm2.connect(function(err) {
             if (err) {
-              throw err
+              d.reject(err)
             }
             
             pm2.list({
