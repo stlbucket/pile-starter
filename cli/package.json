@@ -10,16 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-boost": "^0.1.4",
-    "apollo-client": "^2.2.8",
-    "bluebird": "^3.5.1",
+    "apollo-boost": "^0.1.22",
+    "apollo-client": "^2.4.7",
+    "bluebird": "^3.5.3",
     "fbkt-clog": "^1.0.5",
-    "graphql": "^0.13.2",
-    "node-fetch": "^2.1.2"
+    "graphql": "^14.0.2",
+    "node-fetch": "^2.3.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "jest": "^22.4.3",
-    "sinon": "^4.5.0"
+    "chai": "^4.2.0",
+    "jest": "^23.6.0",
+    "sinon": "^7.2.2"
   }
 }
