@@ -33,6 +33,7 @@ app.use(postgraphile(
     ,extendedErrors: extendedErrors
     ,disableDefaultMutations: disableDefaultMutations
     ,watchPg: watchPg
+    ,ignoreRBAC: false
   }
 ));
 

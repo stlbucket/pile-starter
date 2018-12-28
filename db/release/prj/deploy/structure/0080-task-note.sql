@@ -5,6 +5,8 @@
 BEGIN;
 CREATE TABLE IF NOT EXISTS prj.task_note (
   id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
+  created_at timestamp NOT NULL DEFAULT current_timestamp,
+  updated_at timestamp NOT NULL,
   prj_note_id bigint NOT NULL,
   task_id bigint NOT NULL,
   app_tenant_id bigint NOT NULL,

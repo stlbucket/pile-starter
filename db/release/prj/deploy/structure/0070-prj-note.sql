@@ -5,7 +5,8 @@
 BEGIN;
 CREATE TABLE IF NOT EXISTS prj.prj_note (
   id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
-  created_at timestamp with time zone not null default current_timestamp,
+  created_at timestamp NOT NULL DEFAULT current_timestamp,
+  updated_at timestamp NOT NULL,
   app_tenant_id bigint NOT NULL,
   created_by_contact_id bigint NOT NULL,
   title text,
