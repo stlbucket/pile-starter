@@ -24,11 +24,24 @@ GRANT delete ON TABLE prj.task TO app_user;
 --||--
 alter table prj.task enable row level security;
 --||--
-create policy select_project on prj.task for select
+create policy select_task on prj.task for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
 GRANT select ON TABLE prj.task TO soro_user;
 
 comment on table prj.task is E'@omit create,update,delete';
+
+--||--
+CREATE FUNCTION prj.fn_timestamp_update_task() RETURNS trigger AS $$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $$ LANGUAGE plpgsql;
+--||--
+CREATE TRIGGER tg_timestamp_update_task
+  BEFORE INSERT OR UPDATE ON prj.task
+  FOR EACH ROW
+  EXECUTE PROCEDURE prj.fn_timestamp_update_task();
+--||--
 
 COMMIT;

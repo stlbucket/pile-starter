@@ -20,9 +20,22 @@ GRANT delete ON TABLE prj.task_dependency TO app_user;
 --||--
 alter table prj.task_dependency enable row level security;
 --||--
-create policy select_project on prj.task_dependency for select
+create policy select_task_dependency on prj.task_dependency for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
 comment on table prj.task_dependency is E'@omit create,update,delete';
+
+--||--
+CREATE FUNCTION prj.fn_timestamp_update_task_dependency() RETURNS trigger AS $$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $$ LANGUAGE plpgsql;
+--||--
+CREATE TRIGGER tg_timestamp_update_task_dependency
+  BEFORE INSERT OR UPDATE ON prj.task_dependency
+  FOR EACH ROW
+  EXECUTE PROCEDURE prj.fn_timestamp_update_task_dependency();
+--||--
 
 COMMIT;

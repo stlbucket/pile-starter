@@ -20,9 +20,22 @@ GRANT delete ON TABLE prj.milestone_dependency TO app_user;
 --||--
 alter table prj.milestone_dependency enable row level security;
 --||--
-create policy select_project on prj.milestone_dependency for select
+create policy select_milestone_dependency on prj.milestone_dependency for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
 comment on table prj.milestone_dependency is E'@omit create,update,delete';
+
+--||--
+CREATE FUNCTION prj.fn_timestamp_update_milestone_dependency() RETURNS trigger AS $$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $$ LANGUAGE plpgsql;
+--||--
+CREATE TRIGGER tg_timestamp_update_milestone_dependency
+  BEFORE INSERT OR UPDATE ON prj.milestone_dependency
+  FOR EACH ROW
+  EXECUTE PROCEDURE prj.fn_timestamp_update_milestone_dependency();
+--||--
 
 COMMIT;

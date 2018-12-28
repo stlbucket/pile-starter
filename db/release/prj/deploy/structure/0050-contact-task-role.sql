@@ -22,9 +22,23 @@ GRANT delete ON TABLE prj.contact_task_role TO app_user;
 --||--
 alter table prj.contact_task_role enable row level security;
 --||--
-create policy select_project on prj.contact_task_role for select
+create policy select_contact_task_role on prj.contact_task_role for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
 comment on table prj.contact_task_role is E'@omit create,update,delete';
+
+--||--
+CREATE FUNCTION prj.fn_timestamp_update_contact_task_role() RETURNS trigger AS $$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $$ LANGUAGE plpgsql;
+--||--
+CREATE TRIGGER tg_timestamp_update_contact_task_role
+  BEFORE INSERT OR UPDATE ON prj.contact_task_role
+  FOR EACH ROW
+  EXECUTE PROCEDURE prj.fn_timestamp_update_contact_task_role();
+--||--
+
 
 COMMIT;

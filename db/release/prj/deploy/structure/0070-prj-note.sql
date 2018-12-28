@@ -21,9 +21,23 @@ GRANT delete ON TABLE prj.prj_note TO app_user;
 --||--
 alter table prj.prj_note enable row level security;
 --||--
-create policy select_project on prj.prj_note for select
+create policy select_prj_note on prj.prj_note for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
 comment on table prj.prj_note is E'@omit create,update,delete';
+
+--||--
+CREATE FUNCTION prj.fn_timestamp_update_prj_note() RETURNS trigger AS $$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $$ LANGUAGE plpgsql;
+--||--
+CREATE TRIGGER tg_timestamp_update_prj_note
+  BEFORE INSERT OR UPDATE ON prj.prj_note
+  FOR EACH ROW
+  EXECUTE PROCEDURE prj.fn_timestamp_update_prj_note();
+--||--
+
 
 COMMIT;

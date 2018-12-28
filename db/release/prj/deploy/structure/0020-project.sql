@@ -23,6 +23,19 @@ alter table prj.project enable row level security;
 create policy select_project on prj.project for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
---comment on table prj.project is E'@omit create,update,delete';
+comment on table prj.project is E'@omit create,update,delete';
+
+  --||--
+  CREATE FUNCTION prj.fn_timestamp_update_project() RETURNS trigger AS $$
+  BEGIN
+    NEW.updated_at = current_timestamp;
+    RETURN NEW;
+  END; $$ LANGUAGE plpgsql;
+  --||--
+  CREATE TRIGGER tg_timestamp_update_project
+    BEFORE INSERT OR UPDATE ON prj.project
+    FOR EACH ROW
+    EXECUTE PROCEDURE prj.fn_timestamp_update_project();
+  --||--
 
 COMMIT;

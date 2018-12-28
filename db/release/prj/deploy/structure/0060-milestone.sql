@@ -24,9 +24,23 @@ GRANT delete ON TABLE prj.milestone TO app_user;
 --||--
 alter table prj.milestone enable row level security;
 --||--
-create policy select_project on prj.milestone for select
+create policy select_milestone on prj.milestone for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
 comment on table prj.milestone is E'@omit create,update,delete';
+
+--||--
+CREATE FUNCTION prj.fn_timestamp_update_milestone() RETURNS trigger AS $$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $$ LANGUAGE plpgsql;
+--||--
+CREATE TRIGGER tg_timestamp_update_milestone
+  BEFORE INSERT OR UPDATE ON prj.milestone
+  FOR EACH ROW
+  EXECUTE PROCEDURE prj.fn_timestamp_update_milestone();
+--||--
+
 
 COMMIT;
