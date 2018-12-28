@@ -16,5 +16,16 @@ CREATE TABLE IF NOT EXISTS prj.milestone (
   CONSTRAINT pk_milestone PRIMARY KEY (id)
 );
 --||--
-GRANT select ON TABLE prj.milestone TO soro_user;
+GRANT select ON TABLE prj.milestone TO app_user;
+GRANT insert ON TABLE prj.milestone TO app_user;
+GRANT update ON TABLE prj.milestone TO app_user;
+GRANT delete ON TABLE prj.milestone TO app_user;
+--||--
+alter table prj.milestone enable row level security;
+--||--
+create policy select_project on prj.milestone for select
+  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+--||--
+comment on table prj.milestone is E'@omit create,update,delete';
+
 COMMIT;

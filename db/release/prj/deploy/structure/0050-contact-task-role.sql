@@ -13,5 +13,16 @@ CREATE TABLE IF NOT EXISTS prj.contact_task_role (
   CONSTRAINT pk_contact_task_role PRIMARY KEY (id)
 );
 --||--
-GRANT select ON TABLE prj.contact_task_role TO soro_user;
+GRANT select ON TABLE prj.contact_task_role TO app_user;
+GRANT insert ON TABLE prj.contact_task_role TO app_user;
+GRANT update ON TABLE prj.contact_task_role TO app_user;
+GRANT delete ON TABLE prj.contact_task_role TO app_user;
+--||--
+alter table prj.contact_task_role enable row level security;
+--||--
+create policy select_project on prj.contact_task_role for select
+  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+--||--
+comment on table prj.contact_task_role is E'@omit create,update,delete';
+
 COMMIT;

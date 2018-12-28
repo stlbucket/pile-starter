@@ -47,4 +47,7 @@ BEGIN;
   create policy select_facility on org.facility for select
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
+
+  comment on table org.facility is E'@omit create,update,delete';
+
 COMMIT;

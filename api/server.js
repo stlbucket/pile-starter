@@ -14,6 +14,7 @@ const extendedErrors = process.env.EXTENDED_ERRORS.split(',')
 const disableDefaultMutations = process.env.DISABLE_DEFAULT_MUTATIONS === 'true'
 const enableApolloEngine = process.env.ENABLE_APOLLO_ENGINE === 'true'
 const apolloApiKey = process.env.APOLLO_ENGINE_API_KEY
+const watchPg = process.env.WATCH_PG === 'true'
 
 const app = express();
 const engine = new ApolloEngine({
@@ -31,6 +32,7 @@ app.use(postgraphile(
     ,pgDefaultRole: pgDefaultRole
     ,extendedErrors: extendedErrors
     ,disableDefaultMutations: disableDefaultMutations
+    ,watchPg: watchPg
   }
 ));
 

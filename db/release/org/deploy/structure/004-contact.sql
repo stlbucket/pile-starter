@@ -57,4 +57,7 @@ BEGIN;
   create policy select_contact on org.contact for select
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
+
+  comment on table org.contact is E'@omit create,update,delete';
+
 COMMIT;

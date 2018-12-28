@@ -15,5 +15,7 @@ BEGIN;
   GRANT update ON TABLE org.config_org TO app_super_admin;
   GRANT delete ON TABLE org.config_org TO app_super_admin;
 
+  comment on table org.config_org is E'@omit create,update,delete';
+
 
 COMMIT;

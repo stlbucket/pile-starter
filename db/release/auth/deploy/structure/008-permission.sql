@@ -30,4 +30,6 @@ BEGIN;
     EXECUTE PROCEDURE auth.fn_timestamp_update_permission();
   --||--
 
+  comment on table auth.permission is E'@omit create,update,delete';
+
 COMMIT;

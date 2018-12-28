@@ -37,4 +37,6 @@ BEGIN;
     EXECUTE PROCEDURE auth.fn_timestamp_update_app_user();
   --||--
 
+  comment on table auth.app_user is E'@omit create,update,delete';
+
 COMMIT;

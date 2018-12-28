@@ -18,4 +18,6 @@ GRANT insert ON TABLE auth.token TO app_user;
 GRANT update ON TABLE auth.token TO app_user;
 GRANT delete ON TABLE auth.token TO app_user;
 
+comment on table auth.token is E'@omit create,update,delete';
+
 COMMIT;

@@ -49,4 +49,6 @@ BEGIN;
   create policy select_organization on org.organization for select
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
+  comment on table org.organization is E'@omit create,update,delete';
+
 COMMIT;

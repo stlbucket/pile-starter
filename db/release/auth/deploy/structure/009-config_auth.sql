@@ -15,4 +15,6 @@ BEGIN;
   GRANT update ON TABLE auth.config_auth TO app_super_admin;
   GRANT delete ON TABLE auth.config_auth TO app_super_admin;
 
+  comment on table auth.config_auth is E'@omit create,update,delete';
+
 COMMIT;

@@ -13,5 +13,16 @@ CREATE TABLE IF NOT EXISTS prj.prj_note (
   CONSTRAINT pk_prj_note PRIMARY KEY (id)
 );
 --||--
-GRANT select ON TABLE prj.prj_note TO soro_user;
+GRANT select ON TABLE prj.prj_note TO app_user;
+GRANT insert ON TABLE prj.prj_note TO app_user;
+GRANT update ON TABLE prj.prj_note TO app_user;
+GRANT delete ON TABLE prj.prj_note TO app_user;
+--||--
+alter table prj.prj_note enable row level security;
+--||--
+create policy select_project on prj.prj_note for select
+  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+--||--
+comment on table prj.prj_note is E'@omit create,update,delete';
+
 COMMIT;
