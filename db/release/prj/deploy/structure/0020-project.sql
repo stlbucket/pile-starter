@@ -16,7 +16,7 @@ GRANT insert ON TABLE prj.project TO app_user;
 GRANT update ON TABLE prj.project TO app_user;
 GRANT delete ON TABLE prj.project TO app_user;
 
---REVOKE UPDATE(created_at), INSERT(created_at), REFERENCES(created_at) ON prj.project FROM app_user;
+-- REVOKE UPDATE(created_at), INSERT(created_at), REFERENCES(created_at) ON prj.project FROM app_user;
 --||--
 alter table prj.project enable row level security;
 --||--
