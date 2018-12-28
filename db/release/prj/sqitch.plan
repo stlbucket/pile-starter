@@ -1,0 +1,17 @@
+%syntax-version=1.0.0
+%project=prj
+%uri=sqitch-phile/prj
+
+structure/0010-schema [002-auth:structure/002-schema] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # prj schema
+structure/0020-project [structure/0010-schema] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # project table
+structure/0030-task [structure/0020-project] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # task table
+structure/0040-task-role [structure/0030-task] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # task_role table
+structure/0050-contact-task-role [structure/0040-task-role] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # contact_task_role table
+structure/0060-milestone [structure/0050-contact-task-role] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # milestone table
+structure/0070-prj-note [structure/0060-milestone] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # prj-note table
+structure/0080-task-note [structure/0070-prj-note] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # task-note table
+structure/0090-project-note [structure/0080-task-note] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # project-note table
+structure/0100-milestone-note [structure/0090-project-note] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # milestone table
+structure/0110-task-dependency [structure/0100-milestone-note] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # task-dependency table
+structure/0120-milestone-dependency [structure/0110-task-dependency] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # milestone-dependency table
+structure/9000-relationships [structure/0120-milestone-dependency] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # relationships
