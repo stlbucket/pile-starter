@@ -28,6 +28,7 @@ app.use(postgraphile(
     ,pgDefaultRole: pgDefaultRole
     ,jwtSecret: jwtSecret
     ,jwtPgTypeIdentifier: jwtPgTypeIdentifier
+    ,pgDefaultRole: pgDefaultRole
     ,extendedErrors: extendedErrors
     ,disableDefaultMutations: disableDefaultMutations
   }

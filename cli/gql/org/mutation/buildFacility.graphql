@@ -1,5 +1,5 @@
 mutation BuildFacility(
-    $organizationId: UUID!
+    $organizationId: BigInt!
     $externalId: String!
     $name: String!
   ) {

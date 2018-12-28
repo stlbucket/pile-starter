@@ -15,7 +15,7 @@ describe('org-contact', () => {
     done => {
       apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
       apolloClient.setCredentials({
-        username: 'testy.mctesterson@testyorg.org',
+        username: 'appadmintest@tst.tst',
         password: 'badpassword'
       })
 
@@ -56,7 +56,7 @@ describe('org-contact', () => {
   test('should get current user contact', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'testy.mctesterson@testyorg.org',
+      username: 'appadmintest@tst.tst',
       password: 'badpassword'
     })
 
@@ -67,7 +67,7 @@ describe('org-contact', () => {
       })
       .then(contact => {
         expect(typeof contact).toBe('object')
-        expect(contact.email).toBe('testy.mctesterson@testyorg.org')
+        expect(contact.email).toBe('appadmintest@tst.tst')
         done()
       })
       .catch(error => {
@@ -78,7 +78,7 @@ describe('org-contact', () => {
   test('should get organization contacts', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'testy.mctesterson@testyorg.org',
+      username: 'appadmintest@tst.tst',
       password: 'badpassword'
     })
 
@@ -100,7 +100,7 @@ describe('org-contact', () => {
   test('should build location for a contact', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'testy.mctesterson@testyorg.org',
+      username: 'appadmintest@tst.tst',
       password: 'badpassword'
     })
 
@@ -111,7 +111,7 @@ describe('org-contact', () => {
       })
       .then(contact => {
         expect(typeof contact).toBe('object')
-        expect(contact.email).toBe('testy.mctesterson@testyorg.org')
+        expect(contact.email).toBe('appadmintest@tst.tst')
         return apolloClient.mutate({
           mutation: buildContactLocation,
           variables: {
@@ -130,7 +130,7 @@ describe('org-contact', () => {
       })
       .then(contactLocation => {
         expect(typeof contactLocation).toBe('object')
-        expect(contactLocation.email).toBe('testy.mctesterson@testyorg.org')
+        expect(contactLocation.email).toBe('appadmintest@tst.tst')
         expect(typeof contactLocation.location).toBe('object')
         expect(contactLocation.location.name).toBe('Test contact location')
         done()

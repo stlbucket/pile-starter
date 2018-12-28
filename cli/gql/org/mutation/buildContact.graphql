@@ -7,7 +7,7 @@ mutation BuildContact(
     $title: String!
     $nickname: String!
     $externalId: String!
-    $organizationId: UUID!
+    $organizationId: BigInt!
   ) {
   buildContact(input: {
     _firstName: $firstName

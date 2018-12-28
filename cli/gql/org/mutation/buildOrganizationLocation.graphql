@@ -1,5 +1,5 @@
 mutation BuildOrganizationLocation(
-    $organizationId: UUID!
+    $organizationId: BigInt!
     $name: String!
     $address1: String!
     $address2: String!

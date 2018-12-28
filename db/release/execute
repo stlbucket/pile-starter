@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+psql -U postgres -f $1 -d phile_starter -h 0.0.0.0 --field-separator=,
+

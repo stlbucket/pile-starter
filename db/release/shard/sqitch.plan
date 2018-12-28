@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=001-shard
+%uri=sqitch-phile/001-shard
+
+001-shard 2018-04-11T19:23:32Z Kevin Burkett <stlbucket@gmail.com> # support for sharding id

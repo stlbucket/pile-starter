@@ -10,5 +10,5 @@ echo ""
 
 for (( idx=${#packages[@]}-1 ; idx>=0 ; idx-- )) ; do
   echo "REVERTING PACKAGE ------------------------------------------------------------" ${packages[idx]}
-  (cd ./${packages[idx]}/ && sqitch revert -y)
+  (cd ./release/ && sqitch revert --target ${packages[idx]} -y)
 done

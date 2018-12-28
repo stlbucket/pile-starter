@@ -12,5 +12,5 @@ echo ""
 for i in ${packages[@]};
 do
   echo "DEPLOYING PACKAGE ------------------------------------------------------------" $i
-  (cd ./"$i"/ && sqitch deploy) || error_exit "FAILURE TO DEPLOY: $i"
+  (cd ./release && sqitch deploy --target $i) || error_exit "FAILURE TO DEPLOY: $i"
 done

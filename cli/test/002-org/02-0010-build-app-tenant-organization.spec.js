@@ -26,6 +26,7 @@ describe('org-app-tenant-org', () => {
       resultPath: 'buildTenantOrganization.organization'
     })
       .then(organization => {
+        // clog('organization', organization)
         expect(typeof organization).toBe('object')
         expect(organization.name).toBe('Test Tenant Org 1')
 
@@ -44,6 +45,7 @@ describe('org-app-tenant-org', () => {
         })
       })
       .then(organizations => {
+        // clog('organizations', organizations)
         expect(organizations.length).toBe(1)
         expect(organizations[0].name).toBe('Test Tenant Org 1')
         done()
@@ -56,7 +58,7 @@ describe('org-app-tenant-org', () => {
   test('should build location for a test organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'testy.mctesterson@testyorg.org',
+      username: 'appadmintest@tst.tst',
       password: 'badpassword'
     })
 
@@ -67,7 +69,7 @@ describe('org-app-tenant-org', () => {
     })
       .then(contact => {
         expect(typeof contact).toBe('object')
-        expect(contact.email).toBe('testy.mctesterson@testyorg.org')
+        expect(contact.email).toBe('appadmintest@tst.tst')
         return apolloClient.mutate({
           mutation: buildOrganizationLocation,
           variables: {
@@ -85,8 +87,9 @@ describe('org-app-tenant-org', () => {
         })
       })
       .then(organizationLocation => {
+        // clog('organizationLocation', organizationLocation)
         expect(typeof organizationLocation).toBe('object')
-        expect(organizationLocation.name).toBe('Test Tenant Org 1')
+        expect(organizationLocation.name).toBe('Default Test Tenant')
         expect(typeof organizationLocation.location).toBe('object')
         expect(organizationLocation.location.name).toBe('Test organization location')
         done()
@@ -145,7 +148,7 @@ describe('org-app-tenant-org', () => {
   test('user should see only own app tenant organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'testy.mctesterson@testyorg.org',
+      username: 'appadmintest@tst.tst',
       password: 'badpassword'
     })
 
@@ -155,7 +158,7 @@ describe('org-app-tenant-org', () => {
     })
       .then(organizations => {
         expect(organizations.length).toBe(1)
-        expect(organizations[0].name).toBe('Test Tenant Org 1')
+        expect(organizations[0].name).toBe('Default Test Tenant')
         done()
       })
       .catch(error => {
@@ -175,7 +178,7 @@ describe('org-app-tenant-org', () => {
       resultPath: 'allOrganizations.nodes'
     })
       .then(organizations => {
-        expect(organizations.length).toBe(2)
+        expect(organizations.length).toBe(3)
         done()
       })
       .catch(error => {

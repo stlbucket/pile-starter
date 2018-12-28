@@ -1,5 +1,5 @@
 mutation BuildContactLocation(
-    $contactId: UUID!
+    $contactId: BigInt!
     $name: String!
     $address1: String!
     $address2: String!
