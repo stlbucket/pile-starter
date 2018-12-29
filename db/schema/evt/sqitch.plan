@@ -1,8 +1,0 @@
-%syntax-version=1.0.0
-%project=evt
-%uri=sqitch-phile/evt
-
-structure/extensions 2018-04-22T20:54:12Z Kevin Burkett <stlbucket@gmail.com> # extensions for evt schema"
-structure/schema [auth:structure/schema structure/extensions] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # schema for event driven microservice support
-custom-type/evt_processing_result [structure/schema] 2018-04-22T21:04:59Z Kevin Burkett <stlbucket@gmail.com> # enum for event processing result
-structure/evt [custom-type/evt_processing_result] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # any kind of event
