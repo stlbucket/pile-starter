@@ -6,9 +6,7 @@ SELECT
   id,
   created_at,
   updated_at,
-  contact_id,
-  stage_name,
-  bio_blurb
+  contact_id
   FROM tunz.player
  WHERE FALSE;
 

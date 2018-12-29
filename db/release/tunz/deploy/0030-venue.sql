@@ -9,14 +9,19 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     external_id text,
-    organization_id bigint NOT NULL UNIQUE,
-    facility_id bigint NOT NULL,
+    organization_id bigint NULL,
+    location_id bigint NULL,
+    facility_id bigint NULL,
     CONSTRAINT pk_venue PRIMARY KEY (id)
   );
   --||--
   ALTER TABLE tunz.venue ADD CONSTRAINT fk_venue_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
   --||--
   ALTER TABLE tunz.venue ADD CONSTRAINT fk_venue_organization FOREIGN KEY ( organization_id ) REFERENCES org.organization( id );
+  --||--
+  ALTER TABLE tunz.venue ADD CONSTRAINT fk_venue_location FOREIGN KEY ( location_id ) REFERENCES org.location( id );
+  --||--
+  ALTER TABLE tunz.venue ADD CONSTRAINT fk_venue_facility FOREIGN KEY ( facility_id ) REFERENCES org.facility( id );
 
   --||--
   CREATE FUNCTION tunz.fn_timestamp_update_venue() RETURNS trigger AS $$

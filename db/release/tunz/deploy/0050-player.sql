@@ -9,8 +9,6 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     contact_id bigint NOT NULL,
-    stage_name text,
-    bio_blurb text,
     CONSTRAINT pk_player PRIMARY KEY (id)
   );
   --||--

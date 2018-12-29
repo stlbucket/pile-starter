@@ -10,6 +10,9 @@ BEGIN;
     updated_at timestamp NOT NULL,
     external_id text,
     venue_id bigint not null,
+    booker_id bigint null,
+    promoter_id bigint null,
+    sound_person_id bigint null,
     show_date date,
     door_time time,
     CONSTRAINT pk_show PRIMARY KEY (id)
