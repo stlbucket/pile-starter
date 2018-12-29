@@ -8,13 +8,17 @@ BEGIN;
     app_tenant_id bigint NOT NULL,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
+    song_id bigint NOT NULL,
     contact_id bigint NOT NULL,
+    note text,
     CONSTRAINT pk_songwriter PRIMARY KEY (id)
   );
   --||--
   ALTER TABLE tunz.songwriter ADD CONSTRAINT fk_songwriter_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
   --||--
-  ALTER TABLE tunz.songwriter ADD CONSTRAINT fk_songwriter_contact FOREIGN KEY ( contact_id ) REFERENCES org.contact( id );
+  ALTER TABLE tunz.songwriter ADD CONSTRAINT fk_songwriter_song FOREIGN KEY ( song_id ) REFERENCES tunz.song( id );
+  --||--
+  ALTER TABLE tunz.songwriter ADD CONSTRAINT fk_writng_credit_songwriter FOREIGN KEY ( contact_id ) REFERENCES org.contact( id );
 
   --||--
   CREATE FUNCTION tunz.fn_timestamp_update_songwriter() RETURNS trigger AS $$

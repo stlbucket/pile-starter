@@ -9,15 +9,14 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     recording_session_id bigint NOT NULL,
-    player_id bigint NOT NULL,
+    contact_id bigint NOT NULL,
     note text,
-    instrument_id bigint NOT NULL,
     CONSTRAINT pk_session_player PRIMARY KEY (id)
   );
   --||--
   ALTER TABLE tunz.session_player ADD CONSTRAINT fk_session_player_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
   --||--
-  ALTER TABLE tunz.session_player ADD CONSTRAINT fk_session_player_player FOREIGN KEY ( player_id ) REFERENCES tunz.player( id );
+  ALTER TABLE tunz.session_player ADD CONSTRAINT fk_session_player_contact FOREIGN KEY ( contact_id ) REFERENCES org.contact( id );
   --||--
   ALTER TABLE tunz.session_player ADD CONSTRAINT fk_session_player_recording_session FOREIGN KEY ( recording_session_id ) REFERENCES tunz.recording_session( id );
 

@@ -8,13 +8,17 @@ BEGIN;
     app_tenant_id bigint NOT NULL,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
+    show_id bigint NOT NULL,
     contact_id bigint NOT NULL,
+    note text,
     CONSTRAINT pk_booker PRIMARY KEY (id)
   );
   --||--
   ALTER TABLE tunz.booker ADD CONSTRAINT fk_booker_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
   --||--
   ALTER TABLE tunz.booker ADD CONSTRAINT fk_booker_contact FOREIGN KEY ( contact_id ) REFERENCES org.contact( id );
+  --||--
+  ALTER TABLE tunz.booker ADD CONSTRAINT fk_booker_show FOREIGN KEY ( show_id ) REFERENCES tunz.show( id );
 
   --||--
   CREATE FUNCTION tunz.fn_timestamp_update_booker() RETURNS trigger AS $$

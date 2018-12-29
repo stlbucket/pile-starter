@@ -8,11 +8,15 @@ BEGIN;
     app_tenant_id bigint NOT NULL,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
+    show_id bigint NOT NULL,
     contact_id bigint NOT NULL,
+    note text,
     CONSTRAINT pk_sound_person PRIMARY KEY (id)
   );
   --||--
   ALTER TABLE tunz.sound_person ADD CONSTRAINT fk_sound_person_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
+  --||--
+  ALTER TABLE tunz.sound_person ADD CONSTRAINT fk_sound_person_show FOREIGN KEY ( show_id ) REFERENCES tunz.show( id );
   --||--
   ALTER TABLE tunz.sound_person ADD CONSTRAINT fk_sound_person_contact FOREIGN KEY ( contact_id ) REFERENCES org.contact( id );
 

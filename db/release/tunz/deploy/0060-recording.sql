@@ -8,15 +8,17 @@ BEGIN;
     app_tenant_id bigint NOT NULL,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
-    contact_id bigint NOT NULL,
     song_id bigint NULL,
     title text default 'untitled',
+    other_titles text[],
+    key text,
+    description text,
+    bpm integer,
+    lyrics text,
     CONSTRAINT pk_recording PRIMARY KEY (id)
   );
   --||--
   ALTER TABLE tunz.recording ADD CONSTRAINT fk_recording_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
-  --||--
-  ALTER TABLE tunz.recording ADD CONSTRAINT fk_recording_contact FOREIGN KEY ( contact_id ) REFERENCES org.contact( id );
   --||--
   ALTER TABLE tunz.recording ADD CONSTRAINT fk_recording_song FOREIGN KEY ( song_id ) REFERENCES tunz.song( id );
 

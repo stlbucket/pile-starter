@@ -9,6 +9,7 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     title text default 'untitled',
+    lyrics text,
     CONSTRAINT pk_song PRIMARY KEY (id)
   );
   --||--
