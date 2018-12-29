@@ -2,6 +2,6 @@
 
 BEGIN;
 
-  DROP TYPE IF EXISTS msg.message_status CASCADE;
+  DROP TYPE IF EXISTS msg.message_delivery_method CASCADE;
 
 COMMIT;

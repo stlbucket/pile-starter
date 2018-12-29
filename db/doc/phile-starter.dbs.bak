@@ -231,6 +231,77 @@ AS $function$
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_evt BEFORE INSERT OR UPDATE ON evt.evt FOR EACH ROW EXECUTE PROCEDURE evt.fn_timestamp_update_evt()]]></string>
 		</trigger>
 	</schema>
+	<schema name="msg" catalogname="phile_starter" schemaname="msg" >
+		<table name="message" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created_by_app_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="subject_line" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="content" type="text" decimal="0" jt="12" mandatory="y" />
+			<index name="pk_message" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="message_delivery" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="message_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="to_contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="delivery_status" type="&quot;msg&quot;.&quot;message_delivery_status&quot;" decimal="0" jt="12" mandatory="y" >
+				<defo>&#039;Requested&#039;::msg.message_delivery_status</defo>
+			</column>
+			<column name="delivery_method" type="&quot;msg&quot;.&quot;message_delivery_method&quot;" decimal="0" jt="12" mandatory="y" >
+				<defo>&#039;IN_APP&#039;::msg.message_delivery_method</defo>
+			</column>
+			<index name="pk_message_delivery" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_message_delivery_message" to_schema="msg" to_table="message" >
+				<fk_column name="message_id" pk="id" />
+			</fk>
+		</table>
+		<procedure name="fn_timestamp_update_message" id="Procedure_4f9fb" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION msg.fn_timestamp_update_message()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+  BEGIN
+    NEW.updated_at = current_timestamp;
+    RETURN NEW;
+  END; $function$
+]]></string>
+		</procedure>
+		<procedure name="fn_timestamp_update_message_delivery" id="Procedure_41890c0" isSystem="false" params_known="y" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION msg.fn_timestamp_update_message_delivery()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+  BEGIN
+    NEW.updated_at = current_timestamp;
+    RETURN NEW;
+  END; $function$
+]]></string>
+			<result_param name="returnValue" jt="1111" type="trigger" />
+		</procedure>
+		<trigger name="tg_timestamp_update_message" table="message" id="Trigger_30d9c43" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_message BEFORE INSERT OR UPDATE ON msg.message FOR EACH ROW EXECUTE PROCEDURE msg.fn_timestamp_update_message()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_message_delivery" table="message_delivery" id="Trigger_52665fd" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_message_delivery BEFORE INSERT OR UPDATE ON msg.message_delivery FOR EACH ROW EXECUTE PROCEDURE msg.fn_timestamp_update_message_delivery()]]></string>
+		</trigger>
+	</schema>
 	<schema name="org" catalogname="phile_starter" schemaname="org" >
 		<table name="config_org" >
 			<comment><![CDATA[@omit create,update,delete]]></comment>
@@ -826,35 +897,20 @@ END; $function$
 		<entity schema="auth" name="config_auth" color="C7F4BE" x="496" y="48" />
 		<entity schema="auth" name="permission" color="C7F4BE" x="640" y="48" />
 		<entity schema="auth" name="token" color="BED3F4" x="288" y="304" />
-		<entity schema="app_jobs" name="job" color="3986C1" x="240" y="368" />
-		<entity schema="app_jobs" name="job_queue" color="3986C1" x="448" y="368" />
-		<entity schema="evt" name="evt" color="3986C1" x="624" y="368" />
-		<entity schema="org" name="config_org" color="3986C1" x="880" y="368" />
-		<entity schema="org" name="contact" color="3986C1" x="1024" y="368" />
-		<entity schema="org" name="facility" color="3986C1" x="1216" y="368" />
-		<entity schema="org" name="location" color="3986C1" x="1424" y="368" />
-		<entity schema="org" name="organization" color="3986C1" x="1600" y="368" />
-		<entity schema="prj" name="contact_task_role" color="3986C1" x="928" y="512" />
-		<entity schema="prj" name="milestone" color="3986C1" x="1104" y="512" />
-		<entity schema="prj" name="milestone_dependency" color="3986C1" x="1328" y="512" />
-		<entity schema="prj" name="milestone_note" color="3986C1" x="1552" y="512" />
-		<entity schema="prj" name="prj_note" color="3986C1" x="1728" y="512" />
-		<entity schema="prj" name="project" color="3986C1" x="928" y="512" />
-		<entity schema="prj" name="project_note" color="3986C1" x="1104" y="512" />
-		<entity schema="prj" name="task" color="3986C1" x="1296" y="512" />
-		<entity schema="prj" name="task_dependency" color="3986C1" x="1488" y="512" />
-		<entity schema="prj" name="task_note" color="3986C1" x="1680" y="512" />
-		<entity schema="prj" name="task_role" color="3986C1" x="928" y="512" />
 	</layout>
 	<layout name="evt" id="Layout_427404d" show_relation="columns" >
 		<entity schema="evt" name="evt" color="3986C1" x="48" y="48" />
 	</layout>
+	<layout name="msg" id="Layout_32c7948" show_relation="columns" >
+		<entity schema="msg" name="message" color="3986C1" x="48" y="48" />
+		<entity schema="msg" name="message_delivery" color="3986C1" x="368" y="48" />
+	</layout>
 	<layout name="org" id="Layout_24f103c" show_relation="columns" >
-		<entity schema="org" name="config_org" color="3986C1" x="96" y="48" />
-		<entity schema="org" name="contact" color="3986C1" x="48" y="272" />
-		<entity schema="org" name="facility" color="3986C1" x="544" y="272" />
-		<entity schema="org" name="location" color="3986C1" x="304" y="272" />
-		<entity schema="org" name="organization" color="3986C1" x="304" y="688" />
+		<entity schema="org" name="contact" color="3986C1" x="48" y="48" />
+		<entity schema="org" name="facility" color="3986C1" x="544" y="48" />
+		<entity schema="org" name="location" color="3986C1" x="304" y="48" />
+		<entity schema="org" name="organization" color="3986C1" x="304" y="464" />
+		<entity schema="org" name="config_org" color="3986C1" x="928" y="48" />
 	</layout>
 	<layout name="prj" id="Layout_54993eb" show_relation="columns" >
 		<entity schema="prj" name="milestone" color="3986C1" x="560" y="240" />
