@@ -8,15 +8,15 @@ BEGIN;
     app_tenant_id bigint NOT NULL,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
-    external_id text,
-    first_name text,
-    last_name text,
+    contact_id bigint NOT NULL,
     stage_name text,
     bio_blurb text,
     CONSTRAINT pk_player PRIMARY KEY (id)
   );
   --||--
   ALTER TABLE tunz.player ADD CONSTRAINT fk_player_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
+  --||--
+  ALTER TABLE tunz.player ADD CONSTRAINT fk_player_contact FOREIGN KEY ( contact_id ) REFERENCES org.contact( id );
 
   --||--
   CREATE FUNCTION tunz.fn_timestamp_update_player() RETURNS trigger AS $$

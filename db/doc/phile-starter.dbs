@@ -902,8 +902,8 @@ END; $function$
 		<entity schema="evt" name="evt" color="3986C1" x="48" y="48" />
 	</layout>
 	<layout name="msg" id="Layout_32c7948" show_relation="columns" >
-		<entity schema="msg" name="message" color="3986C1" x="48" y="48" />
 		<entity schema="msg" name="message_delivery" color="3986C1" x="368" y="48" />
+		<entity schema="msg" name="message" color="3986C1" x="48" y="48" />
 	</layout>
 	<layout name="org" id="Layout_24f103c" show_relation="columns" >
 		<entity schema="org" name="contact" color="3986C1" x="48" y="48" />

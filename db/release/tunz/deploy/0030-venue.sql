@@ -10,6 +10,7 @@ BEGIN;
     updated_at timestamp NOT NULL,
     external_id text,
     organization_id bigint NOT NULL UNIQUE,
+    facility_id bigint NOT NULL,
     CONSTRAINT pk_venue PRIMARY KEY (id)
   );
   --||--

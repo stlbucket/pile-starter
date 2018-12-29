@@ -6,6 +6,6 @@ BEGIN;
   DROP TABLE IF EXISTS msg.message_delivery CASCADE;
 
   --||--
-  DROP FUNCTION IF EXISTS evt.fn_timestamp_update_message_delivery();
+  DROP FUNCTION IF EXISTS msg.fn_timestamp_update_message_delivery();
   
 COMMIT;

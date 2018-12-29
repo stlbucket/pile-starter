@@ -252,12 +252,12 @@ AS $function$
 			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
 				<defo>shard_1.id_generator()</defo>
 			</column>
-			<column name="message_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="message_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="to_contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="delivery_status" type="&quot;msg&quot;.&quot;message_delivery_status&quot;" decimal="0" jt="12" mandatory="y" >
 				<defo>&#039;Requested&#039;::msg.message_delivery_status</defo>

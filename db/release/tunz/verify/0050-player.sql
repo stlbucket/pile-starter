@@ -6,9 +6,7 @@ SELECT
   id,
   created_at,
   updated_at,
-  external_id,
-  first_name,
-  last_name,
+  contact_id,
   stage_name,
   bio_blurb
   FROM tunz.player
