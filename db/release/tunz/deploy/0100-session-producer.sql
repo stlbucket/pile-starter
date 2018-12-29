@@ -9,7 +9,7 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     recording_session_id bigint NOT NULL,
-    producer_id bigint NULL,
+    producer_id bigint NOT NULL,
     note text,
     CONSTRAINT pk_session_producer PRIMARY KEY (id)
   );

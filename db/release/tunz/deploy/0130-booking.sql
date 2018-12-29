@@ -9,7 +9,7 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     band_id bigint NOT NULL,
-    show_id bigint NULL,
+    show_id bigint NOT NULL,
     note text,
     performance_order integer,
     CONSTRAINT pk_booking PRIMARY KEY (id)

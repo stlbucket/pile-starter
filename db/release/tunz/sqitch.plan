@@ -13,7 +13,10 @@
 0053-producer [0052-sound-person] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
 0054-booker [0053-producer] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
 0055-promoter [0054-booker] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
-0060-recording [0055-promoter] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
+0056-songwriter [0055-promoter] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
+0059-song [0056-songwriter] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
+0060-recording [0059-song] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
+0062-writing-credit [0060-recording] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
 0070-recording-session [0060-recording] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
 0080-session-player [0070-recording-session] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player
 0090-session-recording-engineer [0080-session-player] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any player

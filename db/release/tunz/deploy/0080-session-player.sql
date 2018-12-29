@@ -9,7 +9,7 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     recording_session_id bigint NOT NULL,
-    player_id bigint NULL,
+    player_id bigint NOT NULL,
     note text,
     instrument_id bigint NOT NULL,
     CONSTRAINT pk_session_player PRIMARY KEY (id)
