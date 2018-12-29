@@ -1,0 +1,7 @@
+%syntax-version=1.0.0
+%project=msg
+%uri=phile-starter/msg
+
+0010-schema [auth:0020-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # schema for message support
+0020-message-status [0010-schema] 2018-04-22T21:04:59Z Kevin Burkett <stlbucket@gmail.com> # enum for message status
+0030-message [0020-message-status] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # a message

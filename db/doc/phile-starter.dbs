@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="phile" id="Project_df2cbc" template="Default" database="PostgreSQL" >
-	<schema name="auth" catalogname="phile" schemaname="auth" >
+<project name="phile-starter" id="Project_5eda269" template="Default" database="PostgreSQL" >
+	<schema name="app_jobs" catalogname="phile_starter" schemaname="app_jobs" >
+		<table name="job" >
+			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
+			<column name="queue_name" type="varchar" decimal="0" jt="12" mandatory="y" >
+				<defo>(gen_random_uuid())::character varying</defo>
+			</column>
+			<column name="task_identifier" type="varchar" decimal="0" jt="12" mandatory="y" />
+			<column name="payload" type="json" decimal="0" jt="2000" mandatory="y" >
+				<defo>&#039;{}&#039;::json</defo>
+			</column>
+			<column name="priority" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="run_at" type="timestamptz" length="35" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="attempts" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="last_error" type="varchar" decimal="0" jt="12" />
+			<column name="created_at" type="timestamptz" length="35" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamptz" length="35" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<index name="job_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="job_queue" >
+			<column name="queue_name" type="varchar" decimal="0" jt="12" mandatory="y" />
+			<column name="job_count" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="locked_at" type="timestamptz" length="35" decimal="6" jt="93" />
+			<column name="locked_by" type="varchar" decimal="0" jt="12" />
+			<index name="job_queue_pkey" unique="PRIMARY_KEY" >
+				<column name="queue_name" />
+			</index>
+		</table>
+		<sequence name="job_id_seq" start="1" />
+		<trigger name="_100_timestamps" id="Trigger_3c72ceb" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_jobs.job FOR EACH ROW EXECUTE PROCEDURE app_jobs_fn.update_timestamps()]]></string>
+		</trigger>
+		<trigger name="_500_decrease_job_queue_count" id="Trigger_3c82265" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER _500_decrease_job_queue_count BEFORE DELETE ON app_jobs.job FOR EACH ROW EXECUTE PROCEDURE app_jobs_fn.jobs__decrease_job_queue_count()]]></string>
+		</trigger>
+		<trigger name="_500_increase_job_queue_count" id="Trigger_e97adf" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER _500_increase_job_queue_count AFTER INSERT ON app_jobs.job FOR EACH ROW EXECUTE PROCEDURE app_jobs_fn.jobs__increase_job_queue_count()]]></string>
+		</trigger>
+		<trigger name="_900_notify_worker" id="Trigger_4ed689a" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER _900_notify_worker AFTER INSERT ON app_jobs.job FOR EACH STATEMENT EXECUTE PROCEDURE app_jobs_fn.do_notify('jobs:insert')]]></string>
+		</trigger>
+	</schema>
+	<schema name="auth" catalogname="phile_starter" schemaname="auth" >
 		<table name="app_tenant" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
@@ -16,16 +72,17 @@
 			</index>
 		</table>
 		<table name="app_user" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
 			<column name="username" type="text" decimal="0" jt="12" mandatory="y" />
 			<column name="password_hash" type="text" decimal="0" jt="12" mandatory="y" />
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
 			<column name="inactive" type="bool" length="1" decimal="0" jt="-7" mandatory="y" >
 				<defo>false</defo>
 			</column>
@@ -39,10 +96,14 @@
 			<index name="app_user_username_key" unique="UNIQUE" >
 				<column name="username" />
 			</index>
+			<fk name="fk_app_user_app_tenant" to_schema="auth" to_table="app_tenant" >
+				<fk_column name="app_tenant_id" pk="id" />
+			</fk>
 		</table>
 		<table name="config_auth" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
 			<column name="key" type="text" decimal="0" jt="12" />
 			<column name="value" type="text" decimal="0" jt="12" />
@@ -51,8 +112,9 @@
 			</index>
 		</table>
 		<table name="permission" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
@@ -66,10 +128,11 @@
 			</constraint>
 		</table>
 		<table name="token" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
-			<column name="app_user_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
+			<column name="app_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
@@ -86,7 +149,7 @@
 				<fk_column name="app_user_id" pk="id" />
 			</fk>
 		</table>
-		<procedure name="fn_timestamp_update_app_tenant" id="Procedure_1a6a249" isSystem="false" params_known="y" >
+		<procedure name="fn_timestamp_update_app_tenant" id="Procedure_2b7cdf1" isSystem="false" params_known="y" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION auth.fn_timestamp_update_app_tenant()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -98,7 +161,7 @@ AS $function$
 ]]></string>
 			<result_param name="returnValue" jt="1111" type="trigger" />
 		</procedure>
-		<procedure name="fn_timestamp_update_app_user" id="Procedure_49fb8ed" isSystem="false" params_known="y" >
+		<procedure name="fn_timestamp_update_app_user" id="Procedure_4bdd59d" isSystem="false" params_known="y" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION auth.fn_timestamp_update_app_user()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -110,7 +173,7 @@ AS $function$
 ]]></string>
 			<result_param name="returnValue" jt="1111" type="trigger" />
 		</procedure>
-		<procedure name="fn_timestamp_update_permission" id="Procedure_fd58b" isSystem="false" params_known="y" >
+		<procedure name="fn_timestamp_update_permission" id="Procedure_81c990" isSystem="false" params_known="y" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION auth.fn_timestamp_update_permission()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -122,20 +185,57 @@ AS $function$
 ]]></string>
 			<result_param name="returnValue" jt="1111" type="trigger" />
 		</procedure>
-		<trigger name="tg_timestamp_update_app_tenant" table="app_tenant" id="Trigger_4ba5d65" isSystem="false" >
+		<trigger name="tg_timestamp_update_app_tenant" table="app_tenant" id="Trigger_aa1f42" isSystem="false" >
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_app_tenant BEFORE INSERT OR UPDATE ON auth.app_tenant FOR EACH ROW EXECUTE PROCEDURE auth.fn_timestamp_update_app_tenant()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_app_user" table="app_user" id="Trigger_13a7568" isSystem="false" >
+		<trigger name="tg_timestamp_update_app_user" table="app_user" id="Trigger_244ffb8" isSystem="false" >
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_app_user BEFORE INSERT OR UPDATE ON auth.app_user FOR EACH ROW EXECUTE PROCEDURE auth.fn_timestamp_update_app_user()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_permission" table="permission" id="Trigger_2dfbf61" isSystem="false" >
+		<trigger name="tg_timestamp_update_permission" table="permission" id="Trigger_5b8258a" isSystem="false" >
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_permission BEFORE INSERT OR UPDATE ON auth.permission FOR EACH ROW EXECUTE PROCEDURE auth.fn_timestamp_update_permission()]]></string>
 		</trigger>
 	</schema>
-	<schema name="org" catalogname="phile" schemaname="org" >
+	<schema name="evt" catalogname="phile_starter" schemaname="evt" >
+		<table name="evt" >
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created_by_app_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="name" type="text" decimal="0" jt="12" mandatory="y" />
+			<column name="params" type="jsonb" decimal="0" jt="1111" mandatory="y" >
+				<defo>&#039;{}&#039;::jsonb</defo>
+			</column>
+			<column name="outcomes" type="jsonb" decimal="0" jt="1111" />
+			<column name="result" type="&quot;evt&quot;.&quot;evt_processing_result&quot;" decimal="0" jt="12" mandatory="y" />
+			<index name="pk_evt" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<procedure name="fn_timestamp_update_evt" id="Procedure_165df80" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION evt.fn_timestamp_update_evt()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+  BEGIN
+    NEW.updated_at = current_timestamp;
+    RETURN NEW;
+  END; $function$
+]]></string>
+		</procedure>
+		<trigger name="tg_timestamp_update_evt" id="Trigger_556366" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_evt BEFORE INSERT OR UPDATE ON evt.evt FOR EACH ROW EXECUTE PROCEDURE evt.fn_timestamp_update_evt()]]></string>
+		</trigger>
+	</schema>
+	<schema name="org" catalogname="phile_starter" schemaname="org" >
 		<table name="config_org" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
 			<column name="key" type="text" decimal="0" jt="12" />
 			<column name="value" type="text" decimal="0" jt="12" />
@@ -144,21 +244,22 @@ AS $function$
 			</index>
 		</table>
 		<table name="contact" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="organization_id" type="uuid" decimal="0" jt="1111" />
-			<column name="location_id" type="uuid" decimal="0" jt="1111" />
-			<column name="app_user_id" type="uuid" decimal="0" jt="1111" />
+			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="app_user_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="external_id" type="text" decimal="0" jt="12" />
 			<column name="first_name" type="text" decimal="0" jt="12" />
 			<column name="last_name" type="text" decimal="0" jt="12" />
 			<column name="email" type="text" decimal="0" jt="12" />
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
 			<column name="cell_phone" type="text" decimal="0" jt="12" />
 			<column name="office_phone" type="text" decimal="0" jt="12" />
 			<column name="title" type="text" decimal="0" jt="12" />
@@ -174,30 +275,25 @@ AS $function$
 				<column name="app_tenant_id" />
 				<column name="external_id" />
 			</index>
-			<fk name="fk_contact_app_user" to_schema="auth" to_table="app_user" >
-				<fk_column name="app_user_id" pk="id" />
-			</fk>
 			<fk name="fk_contact_location" to_schema="org" to_table="location" >
 				<fk_column name="location_id" pk="id" />
 			</fk>
 			<fk name="fk_contact_organization" to_schema="org" to_table="organization" >
 				<fk_column name="organization_id" pk="id" />
 			</fk>
-			<fk name="fk_contact_app_tenant" to_schema="auth" to_table="app_tenant" >
-				<fk_column name="app_tenant_id" pk="id" />
-			</fk>
 		</table>
 		<table name="facility" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="organization_id" type="uuid" decimal="0" jt="1111" />
-			<column name="location_id" type="uuid" decimal="0" jt="1111" />
+			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="name" type="text" decimal="0" jt="12" />
 			<column name="external_id" type="text" decimal="0" jt="12" />
 			<index name="pk_facility" unique="PRIMARY_KEY" >
@@ -215,13 +311,16 @@ AS $function$
 			</fk>
 		</table>
 		<table name="location" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="external_id" type="text" decimal="0" jt="12" />
 			<column name="name" type="text" decimal="0" jt="12" />
 			<column name="address1" type="text" decimal="0" jt="12" />
 			<column name="address2" type="text" decimal="0" jt="12" />
@@ -230,8 +329,6 @@ AS $function$
 			<column name="zip" type="text" decimal="0" jt="12" />
 			<column name="lat" type="text" decimal="0" jt="12" />
 			<column name="lon" type="text" decimal="0" jt="12" />
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
 			<index name="pk_location" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -239,23 +336,21 @@ AS $function$
 				<column name="app_tenant_id" />
 				<column name="external_id" />
 			</index>
-			<fk name="fk_location_app_tenant" to_schema="auth" to_table="app_tenant" >
-				<fk_column name="app_tenant_id" pk="id" />
-			</fk>
 		</table>
 		<table name="organization" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="actual_app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<column name="location_id" type="uuid" decimal="0" jt="1111" />
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
-			<column name="actual_app_tenant_id" type="uuid" decimal="0" jt="1111" />
 			<column name="external_id" type="text" decimal="0" jt="12" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<index name="pk_organization" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
@@ -269,14 +364,8 @@ AS $function$
 			<fk name="fk_organization_location" to_schema="org" to_table="location" >
 				<fk_column name="location_id" pk="id" />
 			</fk>
-			<fk name="fk_organization_actual_app_tenant" to_schema="auth" to_table="app_tenant" >
-				<fk_column name="actual_app_tenant_id" pk="id" />
-			</fk>
-			<fk name="fk_organization_app_tenant" to_schema="auth" to_table="app_tenant" >
-				<fk_column name="app_tenant_id" pk="id" />
-			</fk>
 		</table>
-		<procedure name="fn_timestamp_update_contact" id="Procedure_1745525" isSystem="false" params_known="y" >
+		<procedure name="fn_timestamp_update_contact" id="Procedure_1598" isSystem="false" params_known="n" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION org.fn_timestamp_update_contact()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -286,9 +375,8 @@ AS $function$
     RETURN NEW;
   END; $function$
 ]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
 		</procedure>
-		<procedure name="fn_timestamp_update_facility" id="Procedure_3f70589" isSystem="false" params_known="y" >
+		<procedure name="fn_timestamp_update_facility" id="Procedure_317ae2f" isSystem="false" params_known="n" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION org.fn_timestamp_update_facility()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -298,9 +386,8 @@ AS $function$
     RETURN NEW;
   END; $function$
 ]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
 		</procedure>
-		<procedure name="fn_timestamp_update_location" id="Procedure_1f25541" isSystem="false" params_known="y" >
+		<procedure name="fn_timestamp_update_location" id="Procedure_39646b4" isSystem="false" params_known="n" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION org.fn_timestamp_update_location()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -310,9 +397,8 @@ AS $function$
     RETURN NEW;
   END; $function$
 ]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
 		</procedure>
-		<procedure name="fn_timestamp_update_organization" id="Procedure_bafe89" isSystem="false" params_known="y" >
+		<procedure name="fn_timestamp_update_organization" id="Procedure_25c27a5" isSystem="false" params_known="n" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION org.fn_timestamp_update_organization()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -322,113 +408,315 @@ AS $function$
     RETURN NEW;
   END; $function$
 ]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
 		</procedure>
-		<trigger name="tg_timestamp_update_contact" table="contact" id="Trigger_41e443" isSystem="false" >
+		<trigger name="tg_timestamp_update_contact" id="Trigger_167c97" isSystem="false" >
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_contact BEFORE INSERT OR UPDATE ON org.contact FOR EACH ROW EXECUTE PROCEDURE org.fn_timestamp_update_contact()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_facility" table="facility" id="Trigger_4d6fcfa" isSystem="false" >
+		<trigger name="tg_timestamp_update_facility" id="Trigger_1c62ece" isSystem="false" >
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_facility BEFORE INSERT OR UPDATE ON org.facility FOR EACH ROW EXECUTE PROCEDURE org.fn_timestamp_update_facility()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_location" table="location" id="Trigger_636228" isSystem="false" >
+		<trigger name="tg_timestamp_update_location" id="Trigger_10653b1" isSystem="false" >
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_location BEFORE INSERT OR UPDATE ON org.location FOR EACH ROW EXECUTE PROCEDURE org.fn_timestamp_update_location()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_organization" table="organization" id="Trigger_34a1f7c" isSystem="false" >
+		<trigger name="tg_timestamp_update_organization" id="Trigger_3d14ea6" isSystem="false" >
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_organization BEFORE INSERT OR UPDATE ON org.organization FOR EACH ROW EXECUTE PROCEDURE org.fn_timestamp_update_organization()]]></string>
 		</trigger>
 	</schema>
-	<schema name="tunz" catalogname="phile" schemaname="tunz" >
-		<table name="band" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+	<schema name="prj" catalogname="phile_starter" schemaname="prj" >
+		<table name="contact_task_role" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="organization_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
-			<index name="pk_band" unique="PRIMARY_KEY" >
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="task_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="task_role_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="pk_contact_task_role" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<index name="band_organization_id_key" unique="UNIQUE" >
-				<column name="organization_id" />
-			</index>
-			<fk name="fk_band_app_tenant" to_schema="auth" to_table="app_tenant" >
-				<fk_column name="app_tenant_id" pk="id" />
+			<fk name="fk_contact_task_role_contact" to_schema="org" to_table="contact" >
+				<fk_column name="contact_id" pk="id" />
 			</fk>
-			<fk name="fk_band_organization" to_schema="org" to_table="organization" >
-				<fk_column name="organization_id" pk="id" />
+			<fk name="fk_contact_task_role_task" to_schema="prj" to_table="task" >
+				<fk_column name="task_id" pk="id" />
+			</fk>
+			<fk name="fk_contact_task_role_task_role" to_schema="prj" to_table="task_role" >
+				<fk_column name="task_role_id" pk="id" />
 			</fk>
 		</table>
-		<table name="player" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+		<table name="milestone" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="first_name" type="text" decimal="0" jt="12" />
-			<column name="last_name" type="text" decimal="0" jt="12" />
-			<column name="stage_name" type="text" decimal="0" jt="12" />
-			<column name="bio_blurb" type="text" decimal="0" jt="12" />
-			<index name="pk_player" unique="PRIMARY_KEY" >
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="milestone_identifier" type="text" decimal="0" jt="12" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="description" type="text" decimal="0" jt="12" />
+			<column name="project_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="due_at" type="timestamptz" length="35" decimal="6" jt="93" />
+			<column name="completed_at" type="timestamptz" length="35" decimal="6" jt="93" />
+			<index name="pk_milestone" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<fk name="fk_player_app_tenant" to_schema="auth" to_table="app_tenant" >
-				<fk_column name="app_tenant_id" pk="id" />
+			<fk name="fk_milestone_project" to_schema="prj" to_table="project" >
+				<fk_column name="project_id" pk="id" />
 			</fk>
 		</table>
-		<table name="show" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+		<table name="milestone_dependency" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="venue_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
-			<column name="show_date" type="date" length="13" decimal="0" jt="91" />
-			<column name="door_time" type="time" length="15" decimal="6" jt="92" />
-			<index name="pk_show" unique="PRIMARY_KEY" >
+			<column name="parent_milestone_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="child_milestone_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="pk_milestone_dependency" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<fk name="fk_show_venue" to_schema="tunz" to_table="venue" >
-				<fk_column name="venue_id" pk="id" />
+			<fk name="fk_milestone_dependency_child" to_schema="prj" to_table="milestone" >
+				<fk_column name="child_milestone_id" pk="id" />
+			</fk>
+			<fk name="fk_milestone_dependency_parent" to_schema="prj" to_table="milestone" >
+				<fk_column name="parent_milestone_id" pk="id" />
 			</fk>
 		</table>
-		<table name="venue" >
-			<column name="id" type="uuid" decimal="0" jt="1111" mandatory="y" >
-				<defo>uuid_generate_v1()</defo>
+		<table name="milestone_note" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
 			</column>
-			<column name="app_tenant_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
 			</column>
 			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="organization_id" type="uuid" decimal="0" jt="1111" mandatory="y" />
-			<index name="pk_venue" unique="PRIMARY_KEY" >
+			<column name="prj_note_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="milestone_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="pk_milestone_note" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<index name="venue_organization_id_key" unique="UNIQUE" >
-				<column name="organization_id" />
-			</index>
-			<fk name="fk_venue_app_tenant" to_schema="auth" to_table="app_tenant" >
-				<fk_column name="app_tenant_id" pk="id" />
+			<fk name="fk_milestone_note_milestone" to_schema="prj" to_table="milestone" >
+				<fk_column name="milestone_id" pk="id" />
 			</fk>
-			<fk name="fk_venue_organization" to_schema="org" to_table="organization" >
-				<fk_column name="organization_id" pk="id" />
+			<fk name="fk_milestone_note_prj_note" to_schema="prj" to_table="prj_note" >
+				<fk_column name="prj_note_id" pk="id" />
 			</fk>
 		</table>
-		<procedure name="fn_timestamp_update_band" id="Procedure_3dbdd9b" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_band()
+		<table name="prj_note" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created_by_contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="title" type="text" decimal="0" jt="12" />
+			<column name="content" type="text" decimal="0" jt="12" />
+			<index name="pk_prj_note" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_prj_note_contact" to_schema="org" to_table="contact" >
+				<fk_column name="created_by_contact_id" pk="id" />
+			</fk>
+		</table>
+		<table name="project" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<index name="pk_project" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="project_note" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="prj_note_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="project_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="pk_project_note" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_project_note_prj_note" to_schema="prj" to_table="prj_note" >
+				<fk_column name="prj_note_id" pk="id" />
+			</fk>
+			<fk name="fk_project_note_project" to_schema="prj" to_table="project" >
+				<fk_column name="project_id" pk="id" />
+			</fk>
+		</table>
+		<table name="task" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="task_identifier" type="text" decimal="0" jt="12" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="description" type="text" decimal="0" jt="12" />
+			<column name="project_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="milestone_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="due_at" type="timestamptz" length="35" decimal="6" jt="93" />
+			<column name="completed_at" type="timestamptz" length="35" decimal="6" jt="93" />
+			<index name="pk_task" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_task_milestone" to_schema="prj" to_table="milestone" >
+				<fk_column name="milestone_id" pk="id" />
+			</fk>
+			<fk name="fk_task_project" to_schema="prj" to_table="project" >
+				<fk_column name="project_id" pk="id" />
+			</fk>
+		</table>
+		<table name="task_dependency" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="parent_task_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="child_task_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="pk_task_dependency" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_task_dependency_child" to_schema="prj" to_table="task" >
+				<fk_column name="child_task_id" pk="id" />
+			</fk>
+			<fk name="fk_task_dependency_parent" to_schema="prj" to_table="task" >
+				<fk_column name="parent_task_id" pk="id" />
+			</fk>
+		</table>
+		<table name="task_note" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="prj_note_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="task_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="pk_task_note" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_task_note_prj_note" to_schema="prj" to_table="prj_note" >
+				<fk_column name="prj_note_id" pk="id" />
+			</fk>
+			<fk name="fk_task_note_task" to_schema="prj" to_table="task" >
+				<fk_column name="task_id" pk="id" />
+			</fk>
+		</table>
+		<table name="task_role" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+			</column>
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="pk_task_role" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<procedure name="fn_timestamp_update_contact_task_role" id="Procedure_28da43d" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_contact_task_role()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
+]]></string>
+		</procedure>
+		<procedure name="fn_timestamp_update_milestone" id="Procedure_785ca" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_milestone()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
+]]></string>
+		</procedure>
+		<procedure name="fn_timestamp_update_milestone_dependency" id="Procedure_2418ee8" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_milestone_dependency()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
+]]></string>
+		</procedure>
+		<procedure name="fn_timestamp_update_milestone_note" id="Procedure_40f856d" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_milestone_note()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
+]]></string>
+		</procedure>
+		<procedure name="fn_timestamp_update_prj_note" id="Procedure_d54077" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_prj_note()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
+]]></string>
+		</procedure>
+		<procedure name="fn_timestamp_update_project" id="Procedure_28fccd0" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_project()
  RETURNS trigger
  LANGUAGE plpgsql
 AS $function$
@@ -438,68 +726,128 @@ AS $function$
   END; $function$
 ]]></string>
 		</procedure>
-		<procedure name="fn_timestamp_update_player" id="Procedure_19a77e5" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_player()
+		<procedure name="fn_timestamp_update_project_note" id="Procedure_4f4f792" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_project_note()
  RETURNS trigger
  LANGUAGE plpgsql
 AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
 ]]></string>
 		</procedure>
-		<procedure name="fn_timestamp_update_show" id="Procedure_71a5b2" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_show()
+		<procedure name="fn_timestamp_update_task" id="Procedure_576d850" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_task()
  RETURNS trigger
  LANGUAGE plpgsql
 AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
 ]]></string>
 		</procedure>
-		<procedure name="fn_timestamp_update_venue" id="Procedure_c8b0db" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_venue()
+		<procedure name="fn_timestamp_update_task_dependency" id="Procedure_37b2571" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_task_dependency()
  RETURNS trigger
  LANGUAGE plpgsql
 AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
 ]]></string>
 		</procedure>
-		<trigger name="tg_timestamp_update_band" id="Trigger_38be77a" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_band BEFORE INSERT OR UPDATE ON tunz.band FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_band()]]></string>
+		<procedure name="fn_timestamp_update_task_note" id="Procedure_1d7e8a5" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_task_note()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
+]]></string>
+		</procedure>
+		<procedure name="fn_timestamp_update_task_role" id="Procedure_50b347b" isSystem="false" params_known="n" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION prj.fn_timestamp_update_task_role()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = current_timestamp;
+  RETURN NEW;
+END; $function$
+]]></string>
+		</procedure>
+		<trigger name="tg_timestamp_update_contact_task_role" id="Trigger_5a6ef54" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_contact_task_role BEFORE INSERT OR UPDATE ON prj.contact_task_role FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_contact_task_role()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_player" id="Trigger_49410ed" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_player BEFORE INSERT OR UPDATE ON tunz.player FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_player()]]></string>
+		<trigger name="tg_timestamp_update_milestone" id="Trigger_880696" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_milestone BEFORE INSERT OR UPDATE ON prj.milestone FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_milestone()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_show" id="Trigger_2a9b32c" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_show BEFORE INSERT OR UPDATE ON tunz.show FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_show()]]></string>
+		<trigger name="tg_timestamp_update_milestone_dependency" id="Trigger_38bd6c8" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_milestone_dependency BEFORE INSERT OR UPDATE ON prj.milestone_dependency FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_milestone_dependency()]]></string>
 		</trigger>
-		<trigger name="tg_timestamp_update_venue" id="Trigger_14ade4" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_venue BEFORE INSERT OR UPDATE ON tunz.venue FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_venue()]]></string>
+		<trigger name="tg_timestamp_update_milestone_note" id="Trigger_2de8c67" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_milestone_note BEFORE INSERT OR UPDATE ON prj.milestone_note FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_milestone_note()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_prj_note" id="Trigger_c55960" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_prj_note BEFORE INSERT OR UPDATE ON prj.prj_note FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_prj_note()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_project" id="Trigger_a1287" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_project BEFORE INSERT OR UPDATE ON prj.project FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_project()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_project_note" id="Trigger_4d04b0" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_project_note BEFORE INSERT OR UPDATE ON prj.project_note FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_project_note()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_task" id="Trigger_47724b3" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_task BEFORE INSERT OR UPDATE ON prj.task FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_task()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_task_dependency" id="Trigger_44ff1c8" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_task_dependency BEFORE INSERT OR UPDATE ON prj.task_dependency FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_task_dependency()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_task_note" id="Trigger_3bea4ee" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_task_note BEFORE INSERT OR UPDATE ON prj.task_note FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_task_note()]]></string>
+		</trigger>
+		<trigger name="tg_timestamp_update_task_role" id="Trigger_1362fae" isSystem="false" >
+			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_task_role BEFORE INSERT OR UPDATE ON prj.task_role FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_task_role()]]></string>
 		</trigger>
 	</schema>
-	<connector name="phile" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.1.4.jar" driver_desc="Standard" host="localhost" port="5432" instance="phile" user="postgres" passwd="c29ybyRTZWNyZXQ=" />
-	<layout name="auth" id="Layout_4076221" show_relation="columns" >
-		<entity schema="auth" name="app_user" color="bfd4f5" x="45" y="45" />
+	<connector name="phile-starter" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.2.2.jar" driver_desc="Standard" host="0.0.0.0" port="5432" instance="phile_starter" user="postgres" passwd="MTIzNA==" />
+	<layout name="app_jobs" id="Layout_4f3875c" show_relation="columns" >
+		<entity schema="app_jobs" name="job" color="3986C1" x="48" y="48" />
+		<entity schema="app_jobs" name="job_queue" color="3986C1" x="304" y="48" />
 	</layout>
-	<layout name="org" id="Layout_27375dd" show_relation="columns" >
-		<entity schema="org" name="contact" color="bfd4f5" x="105" y="45" />
-		<entity schema="org" name="location" color="bfd4f5" x="285" y="45" />
-		<entity schema="org" name="organization" color="bfd4f5" x="45" y="285" />
+	<layout name="auth" id="Layout_14ed5cd" show_relation="columns" >
+		<entity schema="auth" name="app_tenant" color="BED3F4" x="288" y="48" />
+		<entity schema="auth" name="app_user" color="BED3F4" x="48" y="48" />
+		<entity schema="auth" name="config_auth" color="C7F4BE" x="496" y="48" />
+		<entity schema="auth" name="permission" color="C7F4BE" x="640" y="48" />
+		<entity schema="auth" name="token" color="BED3F4" x="288" y="304" />
 	</layout>
-	<layout name="tunz" id="Layout_64faf4" show_relation="columns" >
-		<entity schema="tunz" name="band" color="bfd4f5" x="210" y="300" />
-		<entity schema="tunz" name="player" color="bfd4f5" x="45" y="60" />
-		<entity schema="org" name="location" color="c1d8ee" x="750" y="795" />
-		<entity schema="tunz" name="venue" color="bfd4f5" x="270" y="600" />
-		<entity schema="tunz" name="show" color="bfd4f5" x="75" y="585" />
-		<entity schema="org" name="organization" color="c1d8ee" x="690" y="465" />
-		<entity schema="org" name="contact" color="c1d8ee" x="810" y="45" />
+	<layout name="evt" id="Layout_427404d" show_relation="columns" >
+		<entity schema="evt" name="evt" color="3986C1" x="48" y="48" />
+	</layout>
+	<layout name="org" id="Layout_24f103c" show_relation="columns" >
+		<entity schema="org" name="contact" color="3986C1" x="48" y="48" />
+		<entity schema="org" name="facility" color="3986C1" x="544" y="48" />
+		<entity schema="org" name="location" color="3986C1" x="304" y="48" />
+		<entity schema="org" name="organization" color="3986C1" x="304" y="464" />
+		<entity schema="org" name="config_org" color="3986C1" x="928" y="48" />
+	</layout>
+	<layout name="prj" id="Layout_54993eb" show_relation="columns" >
+		<entity schema="prj" name="milestone" color="3986C1" x="560" y="240" />
+		<entity schema="prj" name="milestone_dependency" color="3986C1" x="832" y="240" />
+		<entity schema="prj" name="task" color="3986C1" x="304" y="240" />
+		<entity schema="prj" name="task_dependency" color="3986C1" x="48" y="320" />
+		<entity schema="prj" name="project" color="3986C1" x="656" y="48" />
+		<entity schema="prj" name="project_note" color="3986C1" x="1040" y="160" />
+		<entity schema="prj" name="milestone_note" color="3986C1" x="832" y="448" />
+		<entity schema="prj" name="task_note" color="3986C1" x="480" y="496" />
+		<entity schema="prj" name="contact_task_role" color="3986C1" x="208" y="576" />
+		<entity schema="prj" name="task_role" color="3986C1" x="432" y="720" />
+		<entity schema="prj" name="prj_note" color="3986C1" x="816" y="688" />
 	</layout>
 </project>
