@@ -15,6 +15,8 @@ const disableDefaultMutations = process.env.DISABLE_DEFAULT_MUTATIONS === 'true'
 const enableApolloEngine = process.env.ENABLE_APOLLO_ENGINE === 'true'
 const apolloApiKey = process.env.APOLLO_ENGINE_API_KEY
 const watchPg = process.env.WATCH_PG === 'true'
+const graphiql = process.env.GRAPHIQL === 'true'
+
 
 const app = express();
 const engine = new ApolloEngine({
@@ -33,7 +35,9 @@ app.use(postgraphile(
     ,extendedErrors: extendedErrors
     ,disableDefaultMutations: disableDefaultMutations
     ,watchPg: watchPg
-    ,ignoreRBAC: false
+    ,ignoreRBAC: false  // postgraphile 5.0 plans to make this default to false so hardcoding to this default for now
+    ,graphiql: graphiql
+    ,enhanceGraphiql: graphiql
   }
 ));
 

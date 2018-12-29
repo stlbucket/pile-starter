@@ -1,10 +1,10 @@
 %syntax-version=1.0.0
-%project=004-org
-%uri=sqitch-phile/004-org
+%project=org
+%uri=phile-starter/org
 
-structure/001-schema [002-auth:structure/002-schema] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # org schema
-structure/002-location [structure/001-schema] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any location
-structure/003-organization [structure/002-location] 2018-04-11T19:35:32Z Kevin Burkett <stlbucket@gmail.com> # any organization
-structure/004-contact [structure/003-organization] 2018-04-11T19:35:49Z Kevin Burkett <stlbucket@gmail.com> # any contact
-structure/005-config_org [structure/001-schema] 2018-04-15T22:56:18Z Kevin Burkett <stlbucket@gmail.com> # config for org schema
-structure/006-facility [structure/001-schema structure/002-location structure/003-organization] 2018-04-18T22:10:55Z Kevin Burkett <stlbucket@gmail.com> # any type of facility
+0010-schema [auth:0060-app-user] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # org schema
+0020-location [0010-schema] 2018-04-11T19:35:12Z Kevin Burkett <stlbucket@gmail.com> # any location
+0030-organization [0020-location] 2018-04-11T19:35:32Z Kevin Burkett <stlbucket@gmail.com> # any organization
+0040-contact [0030-organization] 2018-04-11T19:35:49Z Kevin Burkett <stlbucket@gmail.com> # any contact
+0050-config_org [0040-contact] 2018-04-15T22:56:18Z Kevin Burkett <stlbucket@gmail.com> # config for org schema
+0060-facility [0050-config_org] 2018-04-18T22:10:55Z Kevin Burkett <stlbucket@gmail.com> # any type of facility

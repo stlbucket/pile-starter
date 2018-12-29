@@ -1,13 +1,13 @@
 %syntax-version=1.0.0
-%project=002-auth
-%uri=sqitch-phile/002-auth
+%project=auth
+%uri=phile-starter/auth
 
-ext/001-extensions 2018-04-11T19:23:40Z Kevin Burkett <stlbucket@gmail.com> # postgresql extensions
-structure/002-schema [001-app-roles:001-roles] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # auth schema
-custom-type/003-permission-key [structure/002-schema] 2018-04-11T19:27:05Z Kevin Burkett <stlbucket@gmail.com> # user master permission level
-custom-type/004-jwt-token [structure/002-schema] 2018-04-11T19:28:05Z Kevin Burkett <stlbucket@gmail.com> # jwt token with user id and role
-structure/005-app_tenant [structure/002-schema] 2018-04-11T19:28:23Z Kevin Burkett <stlbucket@gmail.com> # application tenant
-structure/006-app_user [ext/001-extensions structure/002-schema structure/005-app_tenant] 2018-04-11T19:29:23Z Kevin Burkett <stlbucket@gmail.com> # application user
-structure/007-token [structure/006-app_user] 2018-04-11T19:30:49Z Kevin Burkett <stlbucket@gmail.com> # user login token
-structure/008-permission [structure/002-schema] 2018-05-04T03:47:39Z Kevin Burkett <stlbucket@gmail.com> # permission to manage functionality
-structure/009-config_auth [structure/002-schema] 2018-05-04T03:48:39Z Kevin Burkett <stlbucket@gmail.com> # key/value pairs to support config
+0010-extensions [shard:0010-shard] 2018-04-11T19:23:40Z Kevin Burkett <stlbucket@gmail.com> # postgresql extensions
+0020-schema [0010-extensions app-roles:0010-roles] 2018-04-11T19:25:04Z Kevin Burkett <stlbucket@gmail.com> # auth schema
+0030-permission-key [0020-schema] 2018-04-11T19:27:05Z Kevin Burkett <stlbucket@gmail.com> # user master permission level
+0040-jwt-token [0030-permission-key] 2018-04-11T19:28:05Z Kevin Burkett <stlbucket@gmail.com> # jwt token with user id and role
+0050-app-tenant [0040-jwt-token] 2018-04-11T19:28:23Z Kevin Burkett <stlbucket@gmail.com> # application tenant
+0060-app-user [0050-app-tenant] 2018-04-11T19:29:23Z Kevin Burkett <stlbucket@gmail.com> # application user
+0070-token [0060-app-user] 2018-04-11T19:30:49Z Kevin Burkett <stlbucket@gmail.com> # user login token
+0080-permission [0070-token] 2018-05-04T03:47:39Z Kevin Burkett <stlbucket@gmail.com> # permission to manage functionality
+0090-config-auth [0080-permission] 2018-05-04T03:48:39Z Kevin Burkett <stlbucket@gmail.com> # key/value pairs to support config

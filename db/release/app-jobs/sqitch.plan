@@ -1,7 +1,7 @@
 %syntax-version=1.0.0
-%project=app_jobs
-%uri=sqitch-phile/app-jobs
+%project=app-jobs
+%uri=phile-starter/app-jobs
 
-structure/0010-schema [002-auth:structure/002-schema] 2018-05-06T16:43:15Z Kevin Burkett <stlbucket@gmail.com> # schema to support asynchronous job processing
-structure/0020-job_queue [structure/0010-schema] 2018-05-06T16:46:58Z Kevin Burkett <stlbucket@gmail.com> # a queue for jobs
-structure/0030-job [structure/0020-job_queue] 2018-05-06T17:00:35Z Kevin Burkett <stlbucket@gmail.com> # a job to jobby job
+0010-schema [auth:0020-schema] 2018-05-06T16:43:15Z Kevin Burkett <stlbucket@gmail.com> # schema to support asynchronous job processing
+0020-job_queue [0010-schema] 2018-05-06T16:46:58Z Kevin Burkett <stlbucket@gmail.com> # a queue for jobs
+0030-job [0020-job_queue] 2018-05-06T17:00:35Z Kevin Burkett <stlbucket@gmail.com> # a job to jobby job

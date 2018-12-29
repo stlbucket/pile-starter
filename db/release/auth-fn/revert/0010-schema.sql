@@ -1,0 +1,5 @@
+BEGIN;
+
+DROP SCHEMA auth_fn CASCADE;
+
+COMMIT;

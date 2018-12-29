@@ -1,0 +1,16 @@
+%syntax-version=1.0.0
+%project=app_jobs_fn
+%uri=phile-starter/app_jobs_fn
+
+0010-schema [app-jobs:0030-job] 2018-05-06T17:08:25Z Kevin Burkett <stlbucket@gmail.com> # schema for app_jobs functions
+0020-do_notify [0010-schema] 2018-05-06T17:19:03Z Kevin Burkett <stlbucket@gmail.com> # notify listeners of new jobs in queue
+0030-update_timestamps [0010-schema] 2018-05-06T17:23:53Z Kevin Burkett <stlbucket@gmail.com> # set timestamps when saving jobs to queue
+0050-notify_worker [0010-schema] 2018-05-06T17:35:22Z Kevin Burkett <stlbucket@gmail.com> # trigger to notify worker
+0060-jobs__decrease_job_queue_count [0010-schema] 2018-05-06T17:46:13Z Kevin Burkett <stlbucket@gmail.com> # decrease count of jobs in queue
+0080-jobs__increase_job_queue_count [0010-schema] 2018-05-06T20:37:45Z Kevin Burkett <stlbucket@gmail.com> # jobs__increase_job_queue_count
+0100-add_job [0010-schema] 2018-05-06T20:46:14Z Kevin Burkett <stlbucket@gmail.com> # add a job to a queue
+0110-add_job_with_queue [0010-schema] 2018-05-06T20:52:25Z Kevin Burkett <stlbucket@gmail.com> # add a job to a queue
+0120-schedule_job [0010-schema] 2018-05-06T20:54:12Z Kevin Burkett <stlbucket@gmail.com> # schedule a job
+0130-complete_job [0010-schema] 2018-05-06T20:57:38Z Kevin Burkett <stlbucket@gmail.com> # complete a job
+0140-fail_job [0010-schema] 2018-05-06T20:59:13Z Kevin Burkett <stlbucket@gmail.com> # fail a job
+0150-get_job [0010-schema] 2018-05-06T21:01:16Z Kevin Burkett <stlbucket@gmail.com> # get a job

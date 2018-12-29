@@ -1,0 +1,15 @@
+%syntax-version=1.0.0
+%project=org-fn
+%uri=phile-starter/org-fn
+
+0010-schema [org:0060-facility] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # org schema
+0020-current_app_user_contact [0010-schema] 2018-04-11T20:39:53Z Kevin Burkett <stlbucket@gmail.com> # get contact information for currently logged in user
+0030-build_location [0010-schema] 2018-04-12T01:36:41Z Kevin Burkett <stlbucket@gmail.com> # creates a location
+0040-build_organization [0010-schema] 2018-04-12T01:37:12Z Kevin Burkett <stlbucket@gmail.com> # creates an organization
+0050-build_contact [0010-schema] 2018-04-12T01:37:30Z Kevin Burkett <stlbucket@gmail.com> # creates a contact
+0060-build_tenant_organization [0010-schema] 2018-04-15T15:37:39Z Kevin Burkett <stlbucket@gmail.com> # build a tenant organization
+0070-build_contact_location [0010-schema] 2018-04-17T09:52:29Z Kevin Burkett <stlbucket@gmail.com> # build location for a contact
+0080-build_organization_location [0010-schema] 2018-04-18T21:12:04Z Kevin Burkett <stlbucket@gmail.com> # build default location for organization
+0090-modify_location [0010-schema] 2018-04-18T21:27:55Z Kevin Burkett <stlbucket@gmail.com> # modify a location
+0100-build_facility [0010-schema] 2018-04-18T22:20:28Z Kevin Burkett <stlbucket@gmail.com> # build a facility
+0110-build_facility_location [0010-schema] 2018-04-18T22:32:50Z Kevin Burkett <stlbucket@gmail.com> # build location for a facility
