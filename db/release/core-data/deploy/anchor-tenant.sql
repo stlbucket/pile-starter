@@ -12,6 +12,7 @@ BEGIN;
     (SELECT id FROM auth.app_tenant WHERE identifier = 'T000001')
     ,'appsuperadmin'
     ,'badpassword'
+    ,'appsuperadmin@tst.tst'
     ,'SuperAdmin'
   )
   ;

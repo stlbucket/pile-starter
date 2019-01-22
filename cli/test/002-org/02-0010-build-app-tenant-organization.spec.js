@@ -58,7 +58,7 @@ describe('org-app-tenant-org', () => {
   test('should build location for a test organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'appadmintest@tst.tst',
+      username: 'defaultadmin@tst.tst',
       password: 'badpassword'
     })
 
@@ -69,7 +69,7 @@ describe('org-app-tenant-org', () => {
     })
       .then(contact => {
         expect(typeof contact).toBe('object')
-        expect(contact.email).toBe('appadmintest@tst.tst')
+        expect(contact.email).toBe('defaultadmin@tst.tst')
         return apolloClient.mutate({
           mutation: buildOrganizationLocation,
           variables: {
@@ -148,7 +148,7 @@ describe('org-app-tenant-org', () => {
   test('user should see only own app tenant organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'appadmintest@tst.tst',
+      username: 'defaultadmin@tst.tst',
       password: 'badpassword'
     })
 

@@ -1,0 +1,9 @@
+%syntax-version=1.0.0
+%project=wf
+%uri=phile-starter/wf
+
+0010-schema [auth:0020-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # schema for event driven microservice support
+0020-workflow [0010-schema] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # any kind of event
+0030-workflow-step [0020-workflow] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # any kind of event
+0040-workflow-step-dependency [0030-workflow-step] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # any kind of event
+1000-workflow-instance [0040-workflow-step-dependency] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # any kind of event

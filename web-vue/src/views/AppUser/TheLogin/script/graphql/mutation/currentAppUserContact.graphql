@@ -1,0 +1,9 @@
+mutation CurrentAppUserContact {
+  currentAppUserContact(input: {}) {
+    contact {
+      firstName
+      lastName
+      email
+    }
+  }
+}

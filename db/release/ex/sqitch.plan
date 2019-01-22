@@ -1,0 +1,6 @@
+%syntax-version=1.0.0
+%project=ex
+%uri=phile-starter/ex
+
+0010-schema [auth:0020-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # schema for event driven microservice support
+0030-special-json [0010-schema] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # any kind of event

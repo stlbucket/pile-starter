@@ -4,6 +4,7 @@ BEGIN;
     _app_tenant_id bigint,
     _username text,
     _password text,
+    _recovery_email text,
     _permission_key auth.permission_key
   ) returns auth.app_user AS $$
   DECLARE
@@ -23,6 +24,7 @@ BEGIN;
         ,username
         ,password_hash
         ,password_reset_required
+        ,recovery_email
         ,permission_key
       )
       SELECT
@@ -30,6 +32,7 @@ BEGIN;
         ,_username
         ,public.crypt(_password, public.gen_salt('bf'))
         ,true
+        ,_recovery_email
         ,_permission_key
       RETURNING *
       INTO _app_user
@@ -44,11 +47,13 @@ BEGIN;
     bigint,
     text,
     text,
+    text,
     auth.permission_key
   ) is 'Creates a new app user';
   --||--
   GRANT execute ON FUNCTION auth_fn.build_app_user(
     bigint,
+    text,
     text,
     text,
     auth.permission_key

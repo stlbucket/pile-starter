@@ -1,0 +1,10 @@
+%syntax-version=1.0.0
+%project=app
+%uri=phile-starter/app
+
+0010-schema [auth:0060-app-user] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # app schema
+0020-application [0010-schema] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # app schema
+0030-license-type [0020-application] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # app schema
+0040-license-type-permission [0030-license-type] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # app schema
+0050-license [0040-license-type-permission] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # app schema
+0060-license-permission [0050-license] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # app schema

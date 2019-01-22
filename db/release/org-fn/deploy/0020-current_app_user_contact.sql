@@ -4,7 +4,7 @@
 
 BEGIN;
 
-create function org_fn.current_app_user_contact()
+create or replace function org_fn.current_app_user_contact()
 returns org.contact as $$
 declare
   _app_user auth.app_user;

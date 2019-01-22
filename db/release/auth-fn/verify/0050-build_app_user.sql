@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT has_function_privilege('auth_fn.build_app_user(bigint, text, text, auth.permission_key)', 'execute');
+SELECT has_function_privilege('auth_fn.build_app_user(bigint, text, text, text, auth.permission_key)', 'execute');
 
 ROLLBACK;

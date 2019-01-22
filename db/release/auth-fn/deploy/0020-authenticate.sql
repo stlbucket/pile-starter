@@ -1,6 +1,6 @@
 BEGIN;
 
-  CREATE function auth_fn.authenticate(
+  CREATE or replace function auth_fn.authenticate(
     _username text,
     _password text
   ) returns auth.jwt_token AS $$
@@ -11,6 +11,7 @@ BEGIN;
     INTO _app_user
     FROM auth.app_user
     WHERE username = _username;
+  -- RAISE EXCEPTION 'WTF: %', _app_user;
 
     IF _app_user.password_hash = crypt(_password, _app_user.password_hash) THEN
       IF _app_user.permission_key = 'SuperAdmin' THEN

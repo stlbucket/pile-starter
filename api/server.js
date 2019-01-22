@@ -4,7 +4,7 @@ const express = require("express");
 const {postgraphile} = require("postgraphile");
 
 const port = process.env.PORT
-const connection = process.env.POSTRGRES_CONNECTION
+const connection = process.env.POSTGRES_CONNECTION
 const schemas = process.env.POSTGRAPHILE_SCHEMAS.split(',')
 const dynamicJson = process.env.DYNAMIC_JSON === 'true'
 const pgDefaultRole = process.env.DEFAULT_ROLE
@@ -16,7 +16,10 @@ const enableApolloEngine = process.env.ENABLE_APOLLO_ENGINE === 'true'
 const apolloApiKey = process.env.APOLLO_ENGINE_API_KEY
 const watchPg = process.env.WATCH_PG === 'true'
 const graphiql = process.env.GRAPHIQL === 'true'
+const enableCors = process.env.ENABLE_CORS === 'true'
 
+const mutationHooks = require('./mutation-hooks')
+const dbInspector = require('postgraphile-db-inspector-extension')
 
 const app = express();
 const engine = new ApolloEngine({
@@ -38,6 +41,14 @@ app.use(postgraphile(
     ,ignoreRBAC: false  // postgraphile 5.0 plans to make this default to false so hardcoding to this default for now
     ,graphiql: graphiql
     ,enhanceGraphiql: graphiql
+    ,enableCors: enableCors
+    ,appendPlugins: [
+      mutationHooks.coolJson,
+      dbInspector
+    ]
+    ,graphileBuildOptions: {
+      app: app
+    }
   }
 ));
 

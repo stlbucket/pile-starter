@@ -46,6 +46,7 @@ begin
         _app_tenant.id
         ,_primary_contact_email
         ,'badpassword'
+        ,_primary_contact_email
         ,'Admin'
       )
     ;

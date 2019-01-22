@@ -6,6 +6,7 @@ BEGIN;
     bigint,
     text,
     text,
+    text,
     auth.permission_key
   );
 

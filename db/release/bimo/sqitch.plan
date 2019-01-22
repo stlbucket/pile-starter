@@ -1,0 +1,14 @@
+%syntax-version=1.0.0
+%project=bimo
+%uri=phile-starter/bimo
+
+0010-schema [org:0060-facility] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+0020-game [0010-schema] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+0100-match [0020-game] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+0200-side [0100-match] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+0300-gamer [0200-side] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+0400-side-gamer [0300-gamer] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+0401-gamer-game-preferences [0400-side-gamer] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+1000-tournament [0401-gamer-game-preferences] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+1100-tournament-entry [1000-tournament] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema
+1200-tournament-match [1000-tournament] 2018-04-11T19:34:28Z Kevin Burkett <stlbucket@gmail.com> # bimo schema

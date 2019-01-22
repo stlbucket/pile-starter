@@ -8,6 +8,6 @@ $$ language sql stable;
 --||--
 comment on function auth_fn.current_app_user() is 'Gets the user who was identified by our JWT.  This function is meant for use only on server';
 --||--
---GRANT execute ON FUNCTION auth_fn.current_app_user() TO soro_user;
+GRANT execute ON FUNCTION auth_fn.current_app_user() TO app_user;
 
 COMMIT;

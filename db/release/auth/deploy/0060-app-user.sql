@@ -9,6 +9,7 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     username text UNIQUE NOT NULL,
+    recovery_email text UNIQUE NOT NULL,
     password_hash text NOT NULL,
     inactive boolean NOT NULL DEFAULT false,
     password_reset_required boolean NOT NULL DEFAULT false,
@@ -23,6 +24,13 @@ BEGIN;
   GRANT insert ON TABLE auth.app_user TO app_super_admin;
   GRANT update ON TABLE auth.app_user TO app_super_admin;
   GRANT delete ON TABLE auth.app_user TO app_super_admin;
+
+  -- alter table auth.app_user enable row level security;
+  -- --||--
+  -- create policy select_app_user on auth.app_user for select
+  --   using (
+  --     (select app_tenant_id from auth.app_user where id = current_setting('jwt.claims.app_user_id')::bigint) = app_tenant_id
+  --   );
 
   --||--
   CREATE FUNCTION auth.fn_timestamp_update_app_user() RETURNS trigger AS $$

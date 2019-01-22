@@ -9,7 +9,7 @@ describe('org-current-app-user-contact', () => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
 
     apolloClient.setCredentials({
-      username: 'appadmintest@tst.tst',
+      username: 'defaultadmin@tst.tst',
       password: 'badpassword'
     })
 
@@ -20,7 +20,7 @@ describe('org-current-app-user-contact', () => {
     })
       .then(contact => {
         expect(typeof contact).toBe('object')
-        expect(contact.email).toBe('appadmintest@tst.tst')
+        expect(contact.email).toBe('defaultadmin@tst.tst')
         done()
       })
       .catch(error => {
