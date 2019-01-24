@@ -1,5 +1,7 @@
 <template>
-  <address-book />
+  <v-container>
+    <address-book />
+  </v-container>
 </template>
 
 <script>
