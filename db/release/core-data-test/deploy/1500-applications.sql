@@ -3,6 +3,52 @@
 
 BEGIN;
 
+--------------------------------------------------   license manager
+  insert into app.application(
+    name 
+    ,key
+  ) 
+  values (
+    'License Manager'
+    ,'license-manager'
+  )
+  on conflict(key) 
+  do nothing
+  ;
+
+  insert into app.license_type(
+    name
+    ,key
+    ,application_id
+  )
+  values
+  (
+    'License Manager'
+    ,'license-manager'
+    ,(select id from app.application where key = 'license-manager')
+  )
+  on conflict(key) 
+  do nothing
+  ;
+
+  insert into app.license(
+    app_tenant_id
+    ,license_type_id
+    ,name
+    ,assigned_to_app_user_id
+  )
+  select
+    au.app_tenant_id
+    ,(select id from app.license_type where key = 'license-manager')
+    ,au.username || ' - ' || (select name from app.license_type where key = 'license-manager')
+    ,au.id
+  from auth.app_user au
+  where au.permission_key in ('SuperAdmin', 'Admin')
+  on conflict (assigned_to_app_user_id, license_type_id)
+  do nothing
+  ;
+
+--------------------------------------------------   address book
   insert into app.application(
     name 
     ,key
@@ -11,6 +57,8 @@ BEGIN;
     'address book'
     ,'address-book'
   )
+  on conflict(key) 
+  do nothing
   ;
 
   insert into app.license_type(
@@ -24,6 +72,8 @@ BEGIN;
     ,'address-book'
     ,(select id from app.application where key = 'address-book')
   )
+  on conflict(key) 
+  do nothing
   ;
 
   insert into app.license(
@@ -34,21 +84,24 @@ BEGIN;
   )
   select
     au.app_tenant_id
-    ,lt.id
-    ,au.username || ' - ' || lt.name
+    ,(select id from app.license_type where key = 'address-book')
+    ,au.username || ' - ' || (select name from app.license_type where key = 'address-book')
     ,au.id
   from auth.app_user au
-  cross join app.license_type lt
+  on conflict (assigned_to_app_user_id, license_type_id)
+  do nothing
   ;
 
-
-  -- values
-  -- (
-  --   (select id from auth.app_tenant where external_id = 'T000001')
-  --   ,(select id from app.license_type where key = 'address-book')
-  --   ,'Super Admin Address Book License'
-  --   ,(select id from auth.app_user where username = 'appsuperadmin')
-  -- )
-  -- ;
-
+\echo
+\echo application
+\echo ----------------------------------
+select * from app.application;
+\echo
+\echo license_type
+\echo ----------------------------------
+select * from app.license_type;
+\echo
+\echo license
+\echo ----------------------------------
+select * from app.license;
 COMMIT;

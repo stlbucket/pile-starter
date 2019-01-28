@@ -9,18 +9,16 @@ export default new Vuex.Store({
     createPersistedState()
   ],
   state: {
-    authToken: null,
+    isLoggedIn: false,
     currentAppUserContact: null
   },
   mutations: {
-    authToken (state, payload) {
-      state.authToken = payload.authToken
-    },
-    currentAppUserContact (state, payload) {
+    login (state, payload) {
       state.currentAppUserContact = payload.currentAppUserContact
+      state.isLoggedIn = payload.currentAppUserContact !== null && payload.currentAppUserContact !== undefined
     },
     logout (state) {
-      state.authToken = null
+      state.isLoggedIn = false
       state.currentAppUserContact = null
     }
   },

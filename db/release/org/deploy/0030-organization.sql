@@ -11,7 +11,7 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     external_id text,
-    name text,
+    name text not null CHECK (name <> ''),
     location_id bigint NULL,
     CONSTRAINT uq_organization_app_tenant_and_name UNIQUE (app_tenant_id, name),
     CONSTRAINT uq_organization_actual_app_tenant UNIQUE (actual_app_tenant_id),

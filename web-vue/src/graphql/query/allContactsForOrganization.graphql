@@ -1,0 +1,38 @@
+query AllContactsForOrganization(
+  $organizationId: BigInt!
+) {
+  allContacts (
+    filter: {
+      organizationId: { equalTo: $organizationId }
+    }
+  ) { 
+    nodes {
+      id
+      firstName
+      lastName
+      email
+      cellPhone
+      officePhone
+      title
+      organization: organizationByOrganizationId {
+        id
+        name
+      }
+      appTenant: appTenantByAppTenantId {
+        id
+        name
+      }
+      location: locationByLocationId {
+        id
+        name
+        address1
+        address2
+        city
+        state
+        zip
+        lat
+        lon
+      }
+    }
+  }
+}

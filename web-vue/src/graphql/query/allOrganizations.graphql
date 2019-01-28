@@ -1,0 +1,19 @@
+query AllOrganizations {
+  allOrganizations { 
+    nodes {
+      id
+      name
+      externalId
+      location: locationByLocationId {
+        id
+        city
+      }
+      primaryContact: contactByPrimaryContactId {
+        id
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+}

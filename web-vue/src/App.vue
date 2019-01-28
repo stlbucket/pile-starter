@@ -26,9 +26,9 @@
   </div></template>
 
 <script>
-import AppMenu from './components/AppMenu/AppMenuListVuetify'
-import CurrentAppUserContact from './components/AppUser/CurrentAppUserContact/CurrentAppUserContactVuetify'
-import LoginManager from './components/AppUser/LoginManager/LoginManagerVuetify'
+import AppMenu from '@/components/_common/AppMenu/AppMenuListVuetify'
+import CurrentAppUserContact from '@/components/_common/CurrentAppUserContact/CurrentAppUserContactVuetify'
+import LoginManager from '@/components/_common/LoginManager/LoginManagerVuetify'
 
 export default {
   name: 'App',

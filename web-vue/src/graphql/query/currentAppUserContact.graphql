@@ -1,0 +1,30 @@
+query CurrentAppUserContact{
+  allAppUsers {
+    nodes {
+      id
+      username
+      contact: contactByAppUserId {
+        id
+        lastName
+        firstName
+        email
+      }
+      licenses: licensesByAssignedToAppUserId {
+        nodes {
+          id
+          name
+          licenseType: licenseTypeByLicenseTypeId {
+            id
+            name
+            key
+            application: applicationByApplicationId {
+              id
+              name
+              key
+            }
+          }
+        }
+      }
+    }
+  }
+}

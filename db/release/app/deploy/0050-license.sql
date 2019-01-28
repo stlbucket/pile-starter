@@ -13,6 +13,7 @@ BEGIN;
     name text,
     license_type_id bigint NOT NULL,
     assigned_to_app_user_id bigint NULL,
+    CONSTRAINT uq_license_type_assigned_to UNIQUE (assigned_to_app_user_id, license_type_id),
     CONSTRAINT pk_license PRIMARY KEY (id)
   );
   --||--

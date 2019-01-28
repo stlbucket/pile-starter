@@ -1,0 +1,24 @@
+query ContactById(
+  $id: BigInt!
+) {
+  contactById(id: $id) {
+    id
+    firstName
+    lastName
+    email
+    cellPhone
+    officePhone
+    title
+    location: locationByLocationId {
+      id
+      name
+      address1
+      address2
+      city
+      state
+      zip
+      lat
+      lon
+    }
+  }
+}

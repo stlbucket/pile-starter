@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 // import Login from './views/AppUser/Login.vue'
-import TheLogin from './views/AppUser/TheLogin/TheLogin'
+import TheLogin from './views/TheLogin/TheLoginVuetify'
 
 import AddressBook from './views/AddressBook/TheAddressBook.vue'
 import OrganizationDetail from './views/Org/OrganizationDetailView/OrganizationDetailViewVuetify'

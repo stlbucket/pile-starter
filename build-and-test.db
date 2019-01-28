@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+./db/newdb.sh
+(cd db && cmd/deploy)
+(cd api && pm2 start server.js)
+(cd cli && jest)
+(pm2 stop all)
+(pm2 delete all)

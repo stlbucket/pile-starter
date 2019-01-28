@@ -1,0 +1,23 @@
+query FacilityById(
+  $id: BigInt!
+) {
+  facilityById(id: $id) {
+    id
+    name
+    organization: organizationByOrganizationId {
+      id
+      name
+    }
+    location: locationByLocationId {
+      id
+      name
+      address1
+      address2
+      city
+      state
+      zip
+      lat
+      lon
+    }
+  }
+}
