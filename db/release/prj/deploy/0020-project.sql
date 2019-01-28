@@ -15,15 +15,20 @@ GRANT select ON TABLE prj.project TO app_user;
 GRANT insert ON TABLE prj.project TO app_user;
 GRANT update ON TABLE prj.project TO app_user;
 GRANT delete ON TABLE prj.project TO app_user;
-
--- REVOKE UPDATE(created_at), INSERT(created_at), REFERENCES(created_at) ON prj.project FROM app_user;
 --||--
 alter table prj.project enable row level security;
 --||--
 create policy select_project on prj.project for select
   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 --||--
-comment on table prj.project is E'@omit create,update,delete';
+  comment on column prj.project.id is
+  E'@omit create';
+  comment on column prj.project.created_at is
+  E'@omit create,update';
+  comment on column prj.project.updated_at is
+  E'@omit create,update';
+  comment on column prj.project.app_tenant_id is
+  E'@omit';
 
   --||--
   CREATE FUNCTION prj.fn_timestamp_update_project() RETURNS trigger AS $$

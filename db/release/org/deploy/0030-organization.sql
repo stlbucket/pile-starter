@@ -6,13 +6,15 @@ BEGIN;
   CREATE TABLE org.organization (
     id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
     app_tenant_id bigint NOT NULL,
-    actual_app_tenant_id bigint NULL UNIQUE,
+    actual_app_tenant_id bigint NULL,
+    is_app_tenant boolean default false,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     external_id text,
     name text,
     location_id bigint NULL,
     CONSTRAINT uq_organization_app_tenant_and_name UNIQUE (app_tenant_id, name),
+    CONSTRAINT uq_organization_actual_app_tenant UNIQUE (actual_app_tenant_id),
     CONSTRAINT pk_organization PRIMARY KEY (id)
   );
 
@@ -25,8 +27,12 @@ BEGIN;
 
 
   --||--
-  CREATE FUNCTION org.fn_timestamp_update_organization() RETURNS trigger AS $$
+  CREATE or replace FUNCTION org.fn_timestamp_update_organization() RETURNS trigger AS $$
   BEGIN
+    if NEW.app_tenant_id is null then
+      NEW.app_tenant_id := (select app_tenant_id from auth_fn.current_app_user());
+    end if;
+
     NEW.updated_at = current_timestamp;
     RETURN NEW;
   END; $$ LANGUAGE plpgsql;
@@ -46,9 +52,16 @@ BEGIN;
   --||--
   alter table org.organization enable row level security;
   --||--
-  create policy select_organization on org.organization for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+ CREATE POLICY select_organization ON org.organization FOR ALL
+  using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
-  comment on table org.organization is E'@omit create,update,delete';
+  comment on column org.organization.id is
+  E'@omit create';
+  comment on column org.organization.created_at is
+  E'@omit create,update';
+  comment on column org.organization.updated_at is
+  E'@omit create,update';
+
+  -- comment on table org.organization is E'@omit create,update,delete';
 
 COMMIT;

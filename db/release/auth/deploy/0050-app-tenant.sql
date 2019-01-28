@@ -8,19 +8,17 @@ BEGIN;
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     name text NOT NULL,
-    identifier text,
+    identifier text NOT NULL UNIQUE,
+    CHECK (identifier <> ''),
     CONSTRAINT pk_app_tenant PRIMARY KEY (id)
   );
   --||--
-  GRANT select ON TABLE auth.app_tenant TO app_super_admin;
+  GRANT select ON TABLE auth.app_tenant TO app_user;
   GRANT insert ON TABLE auth.app_tenant TO app_super_admin;
   GRANT update ON TABLE auth.app_tenant TO app_super_admin;
   GRANT delete ON TABLE auth.app_tenant TO app_super_admin;
---  --||--
---  ALTER TABLE auth.app_tenant ENABLE ROW LEVEL SECURITY;
---  --||--
---  CREATE POLICY select_app_tenant ON auth.app_tenant FOR SELECT
---    USING (vendor_id = auth.current_vendor_id());
+ --||--
+
   --||--
   CREATE FUNCTION auth.fn_timestamp_update_app_tenant() RETURNS trigger AS $$
   BEGIN
@@ -35,5 +33,12 @@ BEGIN;
   --||--
 
   comment on table auth.app_tenant is E'@omit create,update,delete';
+
+  comment on column auth.app_tenant.id is
+  E'@omit create';
+  comment on column auth.app_tenant.created_at is
+  E'@omit create,update';
+  comment on column auth.app_tenant.updated_at is
+  E'@omit create,update';
 
 COMMIT;

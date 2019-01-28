@@ -44,10 +44,15 @@ BEGIN;
   --||--
   alter table org.facility enable row level security;
   --||--
-  create policy select_facility on org.facility for select
+  create policy select_facility on org.facility for all
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
 
-  comment on table org.facility is E'@omit create,update,delete';
+  comment on column org.facility.id is
+  E'@omit create';
+  comment on column org.facility.created_at is
+  E'@omit create,update';
+  comment on column org.facility.updated_at is
+  E'@omit create,update';
 
 COMMIT;

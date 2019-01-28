@@ -48,6 +48,11 @@ BEGIN;
   create policy select_location on org.location for select
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
-  comment on table org.location is E'@omit create,update,delete';
+  comment on column org.location.id is
+  E'@omit create';
+  comment on column org.location.created_at is
+  E'@omit create,update';
+  comment on column org.location.updated_at is
+  E'@omit create,update';
 
 COMMIT;

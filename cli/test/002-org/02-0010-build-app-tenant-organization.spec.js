@@ -74,14 +74,14 @@ describe('org-app-tenant-org', () => {
           mutation: buildOrganizationLocation,
           variables: {
             organizationId: contact.organization.id
-            , name: 'Test organization location'
-            , address1: 'blarg'
-            , address2: 'flarn'
-            , city: 'blitty'
-            , state: 'brate'
-            , zip: 'nip'
-            , lat: 'blat'
-            , lon: 'blon'
+            , name: 'Space Needle'
+            , address1: '400 Broad St'
+            , address2: ''
+            , city: 'Seattle'
+            , state: 'WA'
+            , zip: '98109'
+            , lat: '47.6205099'
+            , lon: '-122.3514661' //-122.3514661,17z
           },
           resultPath: 'buildOrganizationLocation.organization'
         })
@@ -91,7 +91,7 @@ describe('org-app-tenant-org', () => {
         expect(typeof organizationLocation).toBe('object')
         expect(organizationLocation.name).toBe('Default Test Tenant')
         expect(typeof organizationLocation.location).toBe('object')
-        expect(organizationLocation.location.name).toBe('Test organization location')
+        expect(organizationLocation.location.name).toBe('Space Needle')
         done()
       })
       .catch(error => {
@@ -157,8 +157,14 @@ describe('org-app-tenant-org', () => {
       resultPath: 'allOrganizations.nodes'
     })
       .then(organizations => {
-        expect(organizations.length).toBe(1)
-        expect(organizations[0].name).toBe('Default Test Tenant')
+        const defaultTestTenant = organizations.find(o => o.name = 'Default Test Tenant')        
+        expect(typeof defaultTestTenant).toBe('object')
+
+        organizations.map(
+          organization => {
+            expect(organization.appTenantId === defaultTestTenant.actualAppTenantId)
+          }
+        )
         done()
       })
       .catch(error => {
@@ -178,7 +184,7 @@ describe('org-app-tenant-org', () => {
       resultPath: 'allOrganizations.nodes'
     })
       .then(organizations => {
-        expect(organizations.length).toBe(3)
+        expect(organizations.length > 3).toBe(true)
         done()
       })
       .catch(error => {

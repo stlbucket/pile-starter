@@ -1,0 +1,14 @@
+mutation BuildOrganization(
+  $name: String!
+  $externalId: String!
+) {
+  buildOrganization(input: {
+    _name: $name
+    _externalId: $externalId
+  }) {
+    organization {
+      id
+      name
+    }
+  }
+}

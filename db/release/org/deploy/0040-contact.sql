@@ -6,11 +6,11 @@ BEGIN;
   CREATE TABLE org.contact (
     id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
     app_tenant_id bigint NOT NULL,
+    app_user_id bigint NULL UNIQUE,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     organization_id bigint NULL,
     location_id bigint NULL,
-    app_user_id bigint NULL,
     external_id text,
     first_name text,
     last_name text,
@@ -54,10 +54,14 @@ BEGIN;
   --||--
   alter table org.contact enable row level security;
   --||--
-  create policy select_contact on org.contact for select
+  create policy select_contact on org.contact for all
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
-
-  comment on table org.contact is E'@omit create,update,delete';
+  comment on column org.contact.id is
+  E'@omit create';
+  comment on column org.contact.created_at is
+  E'@omit create,update';
+  comment on column org.contact.updated_at is
+  E'@omit create,update';
 
 COMMIT;

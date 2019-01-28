@@ -11,3 +11,5 @@
 0070-token [0060-app-user] 2018-04-11T19:30:49Z Kevin Burkett <stlbucket@gmail.com> # user login token
 0080-permission [0070-token] 2018-05-04T03:47:39Z Kevin Burkett <stlbucket@gmail.com> # permission to manage functionality
 0090-config-auth [0080-permission] 2018-05-04T03:48:39Z Kevin Burkett <stlbucket@gmail.com> # key/value pairs to support config
+0500-vw-app-tenant [0090-config-auth] 2018-04-16T03:03:42Z Kevin Burkett <stlbucket@gmail.com> # tenant view to support super admin
+0600-vw-app-user [0500-vw-app-tenant] 2018-04-16T03:03:42Z Kevin Burkett <stlbucket@gmail.com> # user view to support super admin

@@ -5,7 +5,7 @@ BEGIN;
 
   CREATE SCHEMA auth;
   
-  GRANT usage ON SCHEMA auth TO app_super_admin, app_anonymous;
+  GRANT usage ON SCHEMA auth TO app_user, app_anonymous;
   
   ALTER DEFAULT PRIVILEGES REVOKE EXECUTE ON FUNCTIONS FROM PUBLIC;
 

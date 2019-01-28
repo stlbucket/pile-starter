@@ -17,11 +17,7 @@
         <login-manager></login-manager>
       </v-toolbar>
       <v-content>
-        <v-container fluid fill-height>
-          <v-layout justify-center align-center>
-            <router-view></router-view>
-          </v-layout>
-        </v-container>
+        <router-view></router-view>
       </v-content>
       <v-footer app fixed>
         <span>&copy; 2017</span>
@@ -30,16 +26,13 @@
   </div></template>
 
 <script>
-import {hasToken} from './vue-apollo.js'
-import Home from './components/Home'
-import AppMenu from './components/AppMenu/AppMenu/template/AppMenuDefault'
-import CurrentAppUserContact from './components/AppUser/CurrentAppUserContact/template/CurrentAppUserContactDefault'
-import LoginManager from './components/AppUser/LoginManager/template/LoginManagerDefault'
+import AppMenu from './components/AppMenu/AppMenuListVuetify'
+import CurrentAppUserContact from './components/AppUser/CurrentAppUserContact/CurrentAppUserContactVuetify'
+import LoginManager from './components/AppUser/LoginManager/LoginManagerVuetify'
 
 export default {
   name: 'App',
   components: {
-    Home,
     CurrentAppUserContact,
     LoginManager,
     AppMenu

@@ -1,69 +1,113 @@
--- Deploy core-data-test:test-tenent to pg
-
 BEGIN;
-
-    SET jwt.claims.app_user_id TO 12312;
-
-    select org_fn.build_tenant_organization(
-      'Default Test Tenant'
-      ,'T000002'
-      ,'defaultadmin@tst.tst'
-      ,'Default Admin'
-      ,'Test'
-    );
-
-    select org_fn.build_contact(
-      'Default User'
-      ,'Test'
-      ,'defaultuser@tst.tst'
-      ,''
-      ,''
-      ,''
-      ,''
-      ,''
-      ,(select id from org.organization where external_id = 'T000002')
-    )
+    -- create test tenants
+    insert into auth.app_tenant(name, identifier)
+    values
+      ('Test Tenant 001', 'test-001')
+      ,('Test Tenant 002', 'test-002')
+      ,('Test Tenant 003', 'test-003')
+    on conflict (identifier)
+    do nothing
     ;
 
-    select auth_fn.build_app_user(
-      (select id from auth.app_tenant where identifier = 'T000002')
-      ,'defaultuser'
-      ,'badpassword'
-      ,'defaultuser@tst.tst'
+    -- create test users and admins
+    insert into auth.app_user(
+      app_tenant_id
+      ,username
+      ,recovery_email
+      ,password_hash
+      ,permission_key
+    )
+    values 
+    (
+      (select id from auth.app_tenant where identifier = 'test-001')
+      ,'testAdmin001'
+      ,'testAdmin001@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
+      ,'Admin'
+    )
+    ,(
+      (select id from auth.app_tenant where identifier = 'test-001')
+      ,'testUser001'
+      ,'testUser001@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
       ,'User'
     )
-    ;
-
-    select org_fn.build_tenant_organization(
-      'Other Test Tenant'
-      ,'T000003'
-      ,'otheradmin@tst.tst'
-      ,'Other Admin'
-      ,'Test'
-    );
-
-    select org_fn.build_contact(
-      'Other User'
-      ,'Test'
-      ,'otheruser@tst.tst'
-      ,''
-      ,''
-      ,''
-      ,''
-      ,''
-      ,(select id from org.organization where external_id = 'T000003')
+    ,(
+      (select id from auth.app_tenant where identifier = 'test-002')
+      ,'testAdmin002'
+      ,'testAdmin002@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
+      ,'Admin'
     )
-    ;
-
-    select auth_fn.build_app_user(
-      (select id from auth.app_tenant where identifier = 'T000003')
-      ,'otheruser'
-      ,'badpassword'
-      ,'otheruser@tst.tst'
+    ,(
+      (select id from auth.app_tenant where identifier = 'test-002')
+      ,'testUser002'
+      ,'testUser002@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
       ,'User'
     )
+    ,(
+    (select id from auth.app_tenant where identifier = 'test-003')
+      ,'testAdmin003'
+      ,'testAdmin003@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
+      ,'Admin'
+    )
+    ,(
+      (select id from auth.app_tenant where identifier = 'test-003')
+      ,'testUser003'
+      ,'testUser003@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
+      ,'User'
+    )
+    on conflict (username)
+    do nothing
     ;
 
-    update org.contact c set app_user_id = (select id from auth.app_user where recovery_email = c.email);
+    insert into org.organization(
+      app_tenant_id
+      ,actual_app_tenant_id
+      ,name
+      ,is_app_tenant
+      ,external_id
+    )
+    select
+      ten.id
+      ,ten.id
+      ,ten.name
+      ,true
+      ,ten.identifier || '-org'
+    from auth.app_tenant ten
+    on conflict(actual_app_tenant_id)
+    do nothing
+    ;
 
+    insert into org.contact(
+      app_tenant_id
+      ,app_user_id
+      ,organization_id
+      ,first_name
+      ,last_name
+      ,email
+      ,external_id
+    )
+    select
+      au.app_tenant_id
+      ,au.id
+      ,(select id from org.organization where app_tenant_id = au.app_tenant_id)
+      ,au.username
+      ,'Test'
+      ,recovery_email
+      ,au.username
+    from auth.app_user au
+    on conflict
+    do nothing
+    ;
+
+    select name, identifier from auth.app_tenant;
+    select username, recovery_email, app_tenant_id from auth.app_user;
+    select name, is_app_tenant, app_tenant_id from org.organization;
+    select email, app_tenant_id, organization_id from org.contact;
+
+-- ROLLBACK;
 COMMIT;

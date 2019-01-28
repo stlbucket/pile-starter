@@ -35,7 +35,8 @@ app.use(postgraphile(
     ,jwtSecret: jwtSecret
     ,jwtPgTypeIdentifier: jwtPgTypeIdentifier
     ,pgDefaultRole: pgDefaultRole
-    ,extendedErrors: extendedErrors
+    ,showErrorStack: true
+    ,extendedErrors: ['hint', 'detail', 'errcode']//extendedErrors
     ,disableDefaultMutations: disableDefaultMutations
     ,watchPg: watchPg
     ,ignoreRBAC: false  // postgraphile 5.0 plans to make this default to false so hardcoding to this default for now
@@ -43,7 +44,7 @@ app.use(postgraphile(
     ,enhanceGraphiql: graphiql
     ,enableCors: enableCors
     ,appendPlugins: [
-      mutationHooks.coolJson,
+      mutationHooks.filter,
       dbInspector
     ]
     ,graphileBuildOptions: {

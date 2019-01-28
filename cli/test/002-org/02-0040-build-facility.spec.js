@@ -39,21 +39,21 @@ describe('org-facility', () => {
           mutation: buildFacilityLocation,
           variables: {
             facilityId: facility.id
-            , name: 'Test facility location'
-            , address1: 'blarg'
-            , address2: 'flarn'
-            , city: 'blitty'
-            , state: 'brate'
-            , zip: 'nip'
-            , lat: 'blat'
+            , name: 'Gateway Arch'
+            , address1: '11 N 4th St'
+            , address2: ''
+            , city: 'St. Louis'
+            , state: 'MO'
+            , zip: '63102'
+            , lat: '-90.1912848'  //-90.1912848,16z
             , lon: 'blon'
           },
-          resultPath: 'buildFacilityLocation.facility'
+          resultPath: 'buildFacilityLocation.facility.location'
         })
       })
-      .then(facility => {
-        expect(typeof facility).toBe('object')
-        expect(facility.name).toBe('DefaultTestOrgFacility1')
+      .then(location => {
+        expect(typeof location).toBe('object')
+        expect(location.name).toBe('Gateway Arch')
         done()
       })
       .catch(error => {

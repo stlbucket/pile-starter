@@ -1,3 +1,4 @@
+
 -- Deploy auth:0060-app-user to pg
 -- requires: 0050-app-tenant
 
@@ -20,17 +21,15 @@ BEGIN;
   ALTER TABLE auth.app_user ADD CONSTRAINT fk_app_user_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
 
   --||--
-  GRANT select ON TABLE auth.app_user TO app_super_admin;
-  GRANT insert ON TABLE auth.app_user TO app_super_admin;
-  GRANT update ON TABLE auth.app_user TO app_super_admin;
-  GRANT delete ON TABLE auth.app_user TO app_super_admin;
+  GRANT select ON TABLE auth.app_user TO app_user;
+  -- GRANT insert ON TABLE auth.app_user TO app_admin;
+  -- GRANT update ON TABLE auth.app_user TO app_admin;
+  -- GRANT delete ON TABLE auth.app_user TO app_admin;
 
-  -- alter table auth.app_user enable row level security;
-  -- --||--
-  -- create policy select_app_user on auth.app_user for select
-  --   using (
-  --     (select app_tenant_id from auth.app_user where id = current_setting('jwt.claims.app_user_id')::bigint) = app_tenant_id
-  --   );
+  alter table auth.app_user enable row level security;
+  --||--
+  create policy select_app_user on auth.app_user for select
+    using (id = current_setting('jwt.claims.app_user_id')::bigint);
 
   --||--
   CREATE FUNCTION auth.fn_timestamp_update_app_user() RETURNS trigger AS $$
@@ -46,5 +45,14 @@ BEGIN;
   --||--
 
   comment on table auth.app_user is E'@omit create,update,delete';
+
+  comment on column auth.app_user.id is
+  E'@omit create';
+  comment on column auth.app_user.created_at is
+  E'@omit create,update';
+  comment on column auth.app_user.updated_at is
+  E'@omit create,update';
+  comment on column auth.app_user.password_hash is
+  E'@omit';
 
 COMMIT;

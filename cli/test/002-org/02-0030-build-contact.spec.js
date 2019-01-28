@@ -116,14 +116,14 @@ describe('org-contact', () => {
           mutation: buildContactLocation,
           variables: {
             contactId: contact.id,
-            name: 'Test contact location',
-            address1: 'blarg',
-            address2: 'flarn',
-            city: 'blitty',
-            state: 'brate',
-            zip: 'nip',
-            lat: 'blat',
-            lon: 'blon'
+            name: 'Empire State Building',
+            address1: '20 W 34th St',
+            address2: '',
+            city: 'New York',
+            state: 'NY',
+            zip: '10001',
+            lat: '40.7484445',
+            lon: '-73.9878531,17z' //-73.9878531,17z
           },
           resultPath: 'buildContactLocation.contact'
         })
@@ -132,7 +132,7 @@ describe('org-contact', () => {
         expect(typeof contactLocation).toBe('object')
         expect(contactLocation.email).toBe('defaultadmin@tst.tst')
         expect(typeof contactLocation.location).toBe('object')
-        expect(contactLocation.location.name).toBe('Test contact location')
+        expect(contactLocation.location.name).toBe('Empire State Building')
         done()
       })
       .catch(error => {

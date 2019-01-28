@@ -13,9 +13,9 @@ BEGIN;
   ALTER TABLE auth.permission ADD CONSTRAINT permission_key_check CHECK (char_length(key) >= 4);
   --||--
   GRANT select ON TABLE auth.permission TO app_user;
-  GRANT insert ON TABLE auth.permission TO app_admin;
-  GRANT update ON TABLE auth.permission TO app_admin;
-  GRANT delete ON TABLE auth.permission TO app_admin;
+  GRANT insert ON TABLE auth.permission TO app_super_admin;
+  GRANT update ON TABLE auth.permission TO app_super_admin;
+  GRANT delete ON TABLE auth.permission TO app_super_admin;
 
   --||--
   CREATE FUNCTION auth.fn_timestamp_update_permission() RETURNS trigger AS $$
@@ -30,6 +30,6 @@ BEGIN;
     EXECUTE PROCEDURE auth.fn_timestamp_update_permission();
   --||--
 
-  comment on table auth.permission is E'@omit create,update,delete';
+  -- comment on table auth.permission is E'@omit create,update,delete';
 
 COMMIT;

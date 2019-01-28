@@ -1,6 +1,6 @@
 BEGIN;
 
-  CREATE function auth_fn.build_app_user(
+  CREATE or replace function auth_fn.build_app_user(
     _app_tenant_id bigint,
     _username text,
     _password text,
@@ -16,7 +16,7 @@ BEGIN;
     FROM auth.app_user
     WHERE username = _username;
 
-    IF _app_user.id IS NOT NULL AND _app_user.app_tenant_id != _app_tenant_id THEN
+    IF _app_user.id IS NOT NULL THEN
       RAISE EXCEPTION 'username already taken: %', _username;
     ELSE
       INSERT INTO auth.app_user(

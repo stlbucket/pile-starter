@@ -6,6 +6,9 @@ import Home from './views/Home.vue'
 import TheLogin from './views/AppUser/TheLogin/TheLogin'
 
 import AddressBook from './views/AddressBook/TheAddressBook.vue'
+import OrganizationDetail from './views/Org/OrganizationDetailView/OrganizationDetailViewVuetify'
+import ContactDetail from './views/Org/ContactDetailView/ContactDetailViewVuetify'
+import FacilityDetail from './views/Org/FacilityDetailView/FacilityDetailViewVuetify'
 
 Vue.use(Router)
 
@@ -25,6 +28,24 @@ export default new Router({
       path: '/address-book',
       name: 'address-book',
       component: AddressBook
+    },
+    {
+      path: '/address-book/organization/:id',
+      name: 'organization-detail',
+      component: OrganizationDetail,
+      props: true
+    },
+    {
+      path: '/address-book/contact/:id',
+      name: 'contact-detail',
+      component: ContactDetail,
+      props: true
+    },
+    {
+      path: '/address-book/facility/:id',
+      name: 'facility-detail',
+      component: FacilityDetail,
+      props: true
     },
     {
       path: '/about',

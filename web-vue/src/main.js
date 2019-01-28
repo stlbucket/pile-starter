@@ -7,6 +7,10 @@ import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false
 
+// from https://medium.com/vuejobs/create-a-global-event-bus-in-vue-js-838a5d9ab03a
+Vue.prototype.$eventHub = new Vue(); // Global event bus
+
+
 new Vue({
   router,
   store,
