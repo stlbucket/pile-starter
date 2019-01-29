@@ -7,14 +7,6 @@ export default {
     appSelected (app) {
       this.$router.push({name: app.routeName})
     },
-    // calculateAllowedAppList () {
-    //   this.allowedAppList = this.appList.reduce(
-    //     (a, app) => {
-    //       const userLicense = this.currentAppUser ? this.currentAppUser.licenses.nodes.find(l => l.licenseType.application.key === app.key) : null
-    //       return userLicense ? a.concat([app]) : a
-    //     }, []
-    //   )
-    // },
   },
   computed: {
     allowedAppList () {
@@ -34,14 +26,9 @@ export default {
     }
   },
   watch: {
-    currentAppUser () {
-      console.log('cur', this.currentAppUser)
-      // this.calculateAllowedAppList()
-    }
   },
   data () {
     return {
-      // allowedAppList: [],
       appList: [
         {
           key: 'tenant-manager',
