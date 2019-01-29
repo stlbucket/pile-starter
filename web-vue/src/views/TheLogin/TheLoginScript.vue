@@ -34,7 +34,6 @@ export default {
         variables: {}
       })
       .then(result => {
-        console.log('currentAppUser', result)
         this.$store.commit('login', { currentAppUser: result.data.allAppUsers.nodes[0] })
         this.$router.push({name: 'home'})
       })

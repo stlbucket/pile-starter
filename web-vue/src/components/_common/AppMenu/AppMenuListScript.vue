@@ -10,7 +10,6 @@ export default {
   },
   computed: {
     allowedAppList () {
-      console.log('wha', this.currentAppUser)
       return this.appList.reduce(
         (a, app) => {
           const userLicense = this.currentAppUser ? this.currentAppUser.licenses.nodes.find(l => l.licenseType.application.key === app.key) : null

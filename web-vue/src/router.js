@@ -6,6 +6,7 @@ import Home from './views/Home.vue'
 import TheLogin from './views/TheLogin/TheLoginVuetify'
 
 import AddressBook from './views/AddressBook/TheAddressBook.vue'
+import TenantManager from './views/TenantManager/TheTenantManagerVuetify.vue'
 import LicenseManager from './views/LicenseManager/TheLicenseManagerVuetify.vue'
 import ProjectManager from './views/ProjectManager/TheProjectManagerVuetify.vue'
 import OrganizationDetail from './views/Org/OrganizationDetailView/OrganizationDetailViewVuetify'
@@ -30,6 +31,11 @@ export default new Router({
       path: '/address-book',
       name: 'address-book',
       component: AddressBook
+    },
+    {
+      path: '/tenant-manager',
+      name: 'tenant-manager',
+      component: TenantManager
     },
     {
       path: '/license-manager',
