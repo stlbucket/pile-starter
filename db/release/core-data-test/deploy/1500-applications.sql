@@ -3,6 +3,51 @@
 
 BEGIN;
 
+--------------------------------------------------   tenant manager
+  insert into app.application(
+    name 
+    ,key
+  ) 
+  values (
+    'Tenant Manager'
+    ,'tenant-manager'
+  )
+  on conflict(key) 
+  do nothing
+  ;
+
+  insert into app.license_type(
+    name
+    ,key
+    ,application_id
+  )
+  values
+  (
+    'Tenant Manager'
+    ,'tenant-manager'
+    ,(select id from app.application where key = 'tenant-manager')
+  )
+  on conflict(key) 
+  do nothing
+  ;
+
+  insert into app.license(
+    app_tenant_id
+    ,license_type_id
+    ,name
+    ,assigned_to_app_user_id
+  )
+  select
+    au.app_tenant_id
+    ,(select id from app.license_type where key = 'tenant-manager')
+    ,au.username || ' - ' || (select name from app.license_type where key = 'tenant-manager')
+    ,au.id
+  from auth.app_user au
+  where au.permission_key in ('SuperAdmin')
+  on conflict (assigned_to_app_user_id, license_type_id)
+  do nothing
+  ;
+
 --------------------------------------------------   license manager
   insert into app.application(
     name 
@@ -105,3 +150,48 @@ select * from app.license_type;
 \echo ----------------------------------
 select * from app.license;
 COMMIT;
+
+--------------------------------------------------   project manager
+  insert into app.application(
+    name 
+    ,key
+  ) 
+  values (
+    'Project Manager'
+    ,'project-manager'
+  )
+  on conflict(key) 
+  do nothing
+  ;
+
+  insert into app.license_type(
+    name
+    ,key
+    ,application_id
+  )
+  values
+  (
+    'Project Manager'
+    ,'project-manager'
+    ,(select id from app.application where key = 'project-manager')
+  )
+  on conflict(key) 
+  do nothing
+  ;
+
+  insert into app.license(
+    app_tenant_id
+    ,license_type_id
+    ,name
+    ,assigned_to_app_user_id
+  )
+  select
+    au.app_tenant_id
+    ,(select id from app.license_type where key = 'project-manager')
+    ,au.username || ' - ' || (select name from app.license_type where key = 'project-manager')
+    ,au.id
+  from auth.app_user au
+  where au.permission_key in ('SuperAdmin', 'Admin', 'User')
+  on conflict (assigned_to_app_user_id, license_type_id)
+  do nothing
+  ;

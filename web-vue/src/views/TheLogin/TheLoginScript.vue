@@ -1,6 +1,6 @@
 <script>
 import loginMutation from '@/graphql/mutation/login.graphql'
-import currentAppUserContact from '@/graphql/query/currentAppUserContact.graphql'
+import currentAppUser from '@/graphql/query/currentAppUser.graphql'
 import {onLogin} from '@/vue-apollo.js'
 
 export default {
@@ -22,7 +22,6 @@ export default {
         onLogin(this.$apollo, result.data.authenticate.jwtToken)
         this.getCurrentAppUserContact()
         this.$eventHub.$emit('login')
-        // this.$router.push({name: 'home'})
       })
       .catch(error => {
         console.log('ERROR', error)
@@ -30,12 +29,13 @@ export default {
     },
     getCurrentAppUserContact () {
       this.$apollo.query({
-        query: currentAppUserContact,
+        query: currentAppUser,
+        fetchPolicy: 'network-only',
         variables: {}
       })
       .then(result => {
-        console.log('currentAppUserContact', result.data.allAppUsers.nodes[0].contact)
-        this.$store.commit('login', { currentAppUserContact: result.data.allAppUsers.nodes[0].contact })
+        console.log('currentAppUser', result)
+        this.$store.commit('login', { currentAppUser: result.data.allAppUsers.nodes[0] })
         this.$router.push({name: 'home'})
       })
       .catch(error => {

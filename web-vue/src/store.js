@@ -10,16 +10,16 @@ export default new Vuex.Store({
   ],
   state: {
     isLoggedIn: false,
-    currentAppUserContact: null
+    currentAppUser: null
   },
   mutations: {
     login (state, payload) {
-      state.currentAppUserContact = payload.currentAppUserContact
-      state.isLoggedIn = payload.currentAppUserContact !== null && payload.currentAppUserContact !== undefined
+      state.currentAppUser = payload.currentAppUser
+      state.isLoggedIn = payload.currentAppUser !== null && payload.currentAppUser !== undefined
     },
     logout (state) {
       state.isLoggedIn = false
-      state.currentAppUserContact = null
+      state.currentAppUser = null
     }
   },
   actions: {

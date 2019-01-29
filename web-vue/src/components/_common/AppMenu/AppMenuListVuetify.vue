@@ -2,7 +2,7 @@
   <div>
     <v-list :hidden="!showAppList" dense>
       <v-list-tile 
-        v-for="app in appList"
+        v-for="app in allowedAppList"
         @click="appSelected(app)"
         :key="app.key"
       >
