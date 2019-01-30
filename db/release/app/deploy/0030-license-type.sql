@@ -42,6 +42,6 @@ BEGIN;
   -- create policy select_license_type on app.license_type for select
   --   using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
-  comment on table app.license_type is E'@omit create,update,delete';
+  -- comment on table app.license_type is E'@omit create,update,delete';
 
 COMMIT;

@@ -78,13 +78,13 @@ BEGIN;
       ,true
       ,ten.identifier || '-org'
     from auth.app_tenant ten
+    where ten.identifier like 'test%'
     on conflict(actual_app_tenant_id)
     do nothing
     ;
 
     insert into org.contact(
       app_tenant_id
-      ,app_user_id
       ,organization_id
       ,first_name
       ,last_name
@@ -93,14 +93,32 @@ BEGIN;
     )
     select
       au.app_tenant_id
-      ,au.id
       ,(select id from org.organization where app_tenant_id = au.app_tenant_id)
       ,au.username
       ,'Test'
       ,recovery_email
       ,au.username
     from auth.app_user au
+    where au.username like 'test%'
     on conflict
+    do nothing
+    ;
+
+    insert into org.contact_app_user(
+      contact_id
+      ,app_tenant_id
+      ,app_user_id
+      ,username
+    )
+    select
+      c.id
+      ,au.app_tenant_id
+      ,au.id
+      ,au.username
+    from org.contact c
+    join auth.app_user au on au.username = c.external_id
+    where au.username like 'test%'
+    on conflict(username)
     do nothing
     ;
 
@@ -108,6 +126,7 @@ BEGIN;
     select username, recovery_email, app_tenant_id from auth.app_user;
     select name, is_app_tenant, app_tenant_id from org.organization;
     select email, app_tenant_id, organization_id from org.contact;
+    select * from org.contact_app_user;
 
 -- ROLLBACK;
 COMMIT;

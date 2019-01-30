@@ -7,7 +7,7 @@ export default {
   },
   computed: {
     currentAppUserContact () {
-      return (this.$store.state.currentAppUser || {}).contact
+      return (this.$store.state.currentAppUser || { contactAppUser: {}}).contactAppUser.contact
     },
     fullName () {
       return this.currentAppUserContact ? `${this.currentAppUserContact.firstName} ${this.currentAppUserContact.lastName}` : ''

@@ -8,7 +8,6 @@ BEGIN;
     updated_at,
     organization_id,
     location_id,
-    app_user_id,
     first_name,
     last_name,
     email,
@@ -22,6 +21,5 @@ BEGIN;
 
   SELECT 1/COUNT(*) FROM information_schema.table_constraints WHERE constraint_name='fk_contact_organization' AND table_name='contact';
   SELECT 1/COUNT(*) FROM information_schema.table_constraints WHERE constraint_name='fk_contact_location' AND table_name='contact';
-  SELECT 1/COUNT(*) FROM information_schema.table_constraints WHERE constraint_name='fk_contact_app_user' AND table_name='contact';
 
 ROLLBACK;

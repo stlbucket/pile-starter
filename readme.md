@@ -6,28 +6,11 @@
   using <a href="http://sqitch.org/">sqitch</a> to manage db scripts
 </p>
 
-schemas include:
-- app-roles: 
-  - creates db roles to support postgres rls security
-- app_jobs
-  - process asyncronous jobs on a queue
-- auth: 
-  - app_user management and login support.  
-  - this version supports the basic auth described in the postgraphile docs.
-  - support for oauth or other strategies may be added here or in an alternate schema flavor
-  - requires app-roles
-- org: 
-  - generic organization/location/contact support.
-  - org.contact ==> auth.app_user
-  - requires auth
-- evt:
-  - record replayable events *** experimental
-- ex:
-  - basic counter example
-  - event-driven counter example (first cut - still under development - would LOVE feedback on this coz not sure it's the best way to go about it)
 
 ## quick usage ##
-### install <a href="http://sqitch.org/">sqitch</a> ###
+### install <a href="https://www.postgresql.org//">postgres</a> ###
+
+### install <a href="https://sqitch.org/">sqitch</a> ###
 
 ### install <a href="https://www.graphile.org/postgraphile/">postgraphile</a> ###
 ```
@@ -44,7 +27,7 @@ cd phile-starter
 ```
 ### clean out the .git dir ###
 ```
-rm -rf .git
+rm -rf .**git**
 ```
 ### init your git ###
 ```
@@ -131,3 +114,38 @@ when you're ready to release, tag it:
 ./cmd/tag [tag-name] -n '[tag-message]'
 ```
 
+base schemas include:
+
+- app-roles:
+  - creates db roles to support postgres rls security
+- app_jobs
+  - process asyncronous jobs on a queue
+- auth:
+  - app_user management and login support.  
+  - this version supports the basic auth described in the postgraphile docs.
+  - support for oauth or other strategies may be added here or in an alternate schema flavor
+  - requires app-roles
+- org:
+  - generic organization/location/contact support.
+  - org.contact ==> auth.app_user
+  - requires auth
+- app:
+  - component-level licensing support
+  - assign licenses to users to grant access to app components
+- msg:
+  - messaging between app users
+  - hook into external services for email, sms, etc
+- wf:
+  - define custom workflows to be managed through the system
+  - user interaction hooks for tasks such as approvals, data input, etc
+  - app jobs can automate workflow steps where possible
+- prj:
+  - manage simple projects
+  - projects are made of milestones
+  - milestones are made of tasks
+  - can build off workflows for project automation
+- evt:
+  - support for event-sourcing scenarios
+- ex:
+  - basic counter example
+  - event-driven counter example (first cut - still under development - would LOVE feedback on this coz not sure it's the best way to go about it)

@@ -1,8 +1,0 @@
-%syntax-version=1.0.0
-%project=ex-fn
-%uri=sqitch-phile/ex-fn
-
-structure/schema [ex:structure/schema] 2018-04-23T01:00:45Z Kevin Burkett <stlbucket@gmail.com> # schema for ex_fn
-function/counter_up [structure/schema] 2018-04-23T01:02:51Z Kevin Burkett <stlbucket@gmail.com> # add 1 to the ex_fn
-function/counter_up_evt [structure/schema] 2018-04-23T13:20:33Z Kevin Burkett <stlbucket@gmail.com> # event based counter up function
-function/reset_counter_evt [structure/schema] 2018-05-10T14:57:10Z Kevin Burkett <stlbucket@gmail.com> # reset the event counter

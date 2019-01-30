@@ -43,9 +43,9 @@ BEGIN;
   --||--
   alter table app.license_permission enable row level security;
   --||--
-  create policy select_license_permission on app.license_permission for select
+  create policy select_license_permission on app.license_permission for all
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
-  comment on table app.license_permission is E'@omit create,update,delete';
+  -- comment on table app.license_permission is E'@omit create,update,delete';
 
 COMMIT;

@@ -1,0 +1,34 @@
+query AllLicenses{
+  allLicenses {
+    nodes {
+      id
+      name
+      appTenant: appTenantByAppTenantId {
+        id
+        name
+        organization: organizationByActualAppTenantId {
+          id
+          name
+        }
+      }
+      licenseType: licenseTypeByLicenseTypeId {
+        id
+        name
+        key
+        application: applicationByApplicationId {
+          id
+          name
+          key
+        }
+      }
+      contactAppUser: contactAppUserByAssignedToAppUserId {
+        contact: contactByContactId {
+          id
+          firstName
+          lastName
+          email
+        }
+      }
+    }
+  }
+}

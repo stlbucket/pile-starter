@@ -6,7 +6,6 @@ BEGIN;
   CREATE TABLE org.contact (
     id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
     app_tenant_id bigint NOT NULL,
-    app_user_id bigint NULL UNIQUE,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     organization_id bigint NULL,
@@ -27,8 +26,6 @@ BEGIN;
   ALTER TABLE org.contact ADD CONSTRAINT fk_contact_organization FOREIGN KEY ( organization_id ) REFERENCES org.organization( id );
   --||--
   ALTER TABLE org.contact ADD CONSTRAINT fk_contact_location FOREIGN KEY ( location_id ) REFERENCES org.location( id );
-  --||--
-  ALTER TABLE org.contact ADD CONSTRAINT fk_contact_app_user FOREIGN KEY ( app_user_id ) REFERENCES auth.app_user( id );
   --||--
   ALTER TABLE org.contact ADD CONSTRAINT fk_contact_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
 

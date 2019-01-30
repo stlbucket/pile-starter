@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>JOAINIE LOVES BEOTCHY</h1>
+    <h1>Phile Starter</h1>
+    <h2>A starter kit for building GraphQL APIs with Postgraphile.</h2>
   </div>
 </template>
-
 <script>
 
 export default {

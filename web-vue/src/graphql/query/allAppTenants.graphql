@@ -1,0 +1,15 @@
+query {
+  allAppTenants {
+    nodes {
+      id
+      name
+    }
+  }
+  
+  allVwAppTenants {
+    nodes {
+      id
+      name
+    }
+  }
+}

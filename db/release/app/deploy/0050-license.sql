@@ -39,15 +39,16 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE app.license TO app_user;
-  GRANT insert ON TABLE app.license TO app_admin;
+  GRANT insert ON TABLE app.license TO app_super_admin;
   GRANT update ON TABLE app.license TO app_admin;
-  GRANT delete ON TABLE app.license TO app_admin;
+  GRANT delete ON TABLE app.license TO app_super_admin;
   --||--
   alter table app.license enable row level security;
   --||--
-  create policy select_license on app.license for select
+  create policy select_license on app.license for all
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
-  comment on table app.license is E'@omit create,update,delete';
+  -- comment on table app.license is E'@omit create,update,delete';
+  comment on TABLE app.license is E'@foreignKey (assigned_to_app_user_id) references org.contact_app_user(app_user_id)';
 
 COMMIT;

@@ -3,11 +3,13 @@ query CurrentAppUserContact{
     nodes {
       id
       username
-      contact: contactByAppUserId {
-        id
-        lastName
-        firstName
-        email
+      contactAppUser: contactAppUserByAppUserId {
+        contact: contactByContactId {
+          id
+          lastName
+          firstName
+          email
+        }
       }
       licenses: licensesByAssignedToAppUserId {
         nodes {
