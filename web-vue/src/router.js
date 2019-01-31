@@ -8,10 +8,12 @@ import TheLogin from './views/TheLogin/TheLoginVuetify'
 import AddressBook from './views/AddressBook/TheAddressBook.vue'
 import TenantManager from './views/TenantManager/TheTenantManagerVuetify.vue'
 import LicenseManager from './views/LicenseManager/TheLicenseManagerVuetify.vue'
-import ProjectManager from './views/ProjectManager/TheProjectManagerVuetify.vue'
 import OrganizationDetail from './views/Org/OrganizationDetailView/OrganizationDetailViewVuetify'
 import ContactDetail from './views/Org/ContactDetailView/ContactDetailViewVuetify'
 import FacilityDetail from './views/Org/FacilityDetailView/FacilityDetailViewVuetify'
+
+import ProjectManager from './views/ProjectManager/TheProjectManagerVuetify.vue'
+import ProjectDetail from './views/Prj/ProjectDetailView/ProjectDetailViewVuetify.vue'
 
 Vue.use(Router)
 
@@ -46,6 +48,12 @@ export default new Router({
       path: '/project-manager',
       name: 'project-manager',
       component: ProjectManager
+    },
+    {
+      path: '/project-manager/project/:id',
+      name: 'project-detail',
+      component: ProjectDetail,
+      props: true
     },
     {
       path: '/address-book/organization/:id',

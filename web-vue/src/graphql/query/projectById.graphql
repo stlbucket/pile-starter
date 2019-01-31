@@ -1,0 +1,12 @@
+query ProjectById(
+  $id: BigInt!
+) {
+  projectById(id: $id) {
+    id
+    name
+      organization: organizationByAppTenantId {
+        id
+        name
+      }
+  }
+}
