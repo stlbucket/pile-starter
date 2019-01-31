@@ -5,9 +5,13 @@ import Home from './views/Home.vue'
 // import Login from './views/AppUser/Login.vue'
 import TheLogin from './views/TheLogin/TheLoginVuetify'
 
-import AddressBook from './views/AddressBook/TheAddressBook.vue'
 import TenantManager from './views/TenantManager/TheTenantManagerVuetify.vue'
+import AppTenantDetail from './views/Auth/AppTenantDetailView/AppTenantDetailViewVuetify'
+
 import LicenseManager from './views/LicenseManager/TheLicenseManagerVuetify.vue'
+import LicenseDetail from './views/App/LicenseDetailView/LicenseDetailViewVuetify'
+
+import AddressBook from './views/AddressBook/TheAddressBook.vue'
 import OrganizationDetail from './views/Org/OrganizationDetailView/OrganizationDetailViewVuetify'
 import ContactDetail from './views/Org/ContactDetailView/ContactDetailViewVuetify'
 import FacilityDetail from './views/Org/FacilityDetailView/FacilityDetailViewVuetify'
@@ -30,19 +34,31 @@ export default new Router({
       component: TheLogin
     },
     {
-      path: '/address-book',
-      name: 'address-book',
-      component: AddressBook
-    },
-    {
       path: '/tenant-manager',
       name: 'tenant-manager',
       component: TenantManager
     },
     {
+      path: '/app-tenant-manager/app-tenant/:id',
+      name: 'app-tenant-detail',
+      component: AppTenantDetail,
+      props: true
+    },
+    {
       path: '/license-manager',
       name: 'license-manager',
       component: LicenseManager
+    },
+    {
+      path: '/license-manager/license/:id',
+      name: 'license-detail',
+      component: LicenseDetail,
+      props: true
+    },
+    {
+      path: '/address-book',
+      name: 'address-book',
+      component: AddressBook
     },
     {
       path: '/project-manager',

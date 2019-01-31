@@ -13,12 +13,12 @@ export default {
   methods: {
   },
   computed: { 
-    contacts () {
-      return this.appTenant.contacts ? this.appTenant.contacts.nodes || [] : []
-    },
-    facilities () {
-      return this.appTenant.facilities ? this.appTenant.facilities.nodes || [] : []
-    }
+    // contacts () {
+    //   return this.appTenant.contacts ? this.appTenant.contacts.nodes || [] : []
+    // },
+    // facilities () {
+    //   return this.appTenant.facilities ? this.appTenant.facilities.nodes || [] : []
+    // }
   },
   data () {
     return {

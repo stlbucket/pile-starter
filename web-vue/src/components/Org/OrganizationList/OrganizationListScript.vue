@@ -19,7 +19,7 @@ export default {
             city: 'N/A'
           }
 
-          const primaryFacility = organization.primaryFacility || {
+          const primaryContact = organization.primaryContact || {
             firstName: 'N/A',
             lastName: ''
           }
@@ -28,8 +28,8 @@ export default {
             id: organization.id,
             name: organization.name,
             city: location.city,
-            primaryFacilityName: `${primaryFacility.firstName} ${primaryFacility.lastName}`,
-            primaryFacilityId: primaryFacility.id
+            primaryContactName: `${primaryContact.firstName} ${primaryContact.lastName}`,
+            primaryContactId: primaryContact.id
           }
         }
       )

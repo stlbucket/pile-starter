@@ -1,0 +1,43 @@
+query VwAppTenantById(
+  $id: BigInt!
+) {
+  vwAppTenantById(id: $id) {
+      id
+      name
+      organization: organizationByActualAppTenantId {
+        id
+        name
+        primaryContact: contactByPrimaryContactId {
+            id
+            firstName
+            lastName
+            email
+            title
+            cellPhone
+            officePhone
+          }
+          contacts: contactsByOrganizationId {
+          nodes {
+            id
+            firstName
+            lastName
+            email
+            title
+            cellPhone
+            officePhone
+          }
+        }
+        location: locationByLocationId {
+          id
+          name
+          address1
+          address2
+          city
+          state
+          zip
+          lat
+          lon
+        }
+      }
+  }
+}

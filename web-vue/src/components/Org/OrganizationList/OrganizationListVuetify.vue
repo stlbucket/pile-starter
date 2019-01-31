@@ -23,7 +23,7 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'City', value: 'city' },
-        { text: 'Primary Facility', value: 'primaryFacilityName' }
+        { text: 'Primary Contact', value: 'primaryContactName' }
       ],
       columns: [
         { 
@@ -36,7 +36,7 @@ export default {
           } 
         },
         { name: 'city' },
-        { name: 'primaryFacilityName' },
+        { name: 'primaryContactName' },
       ]
     }
   }

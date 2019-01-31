@@ -13,12 +13,12 @@ export default {
   methods: {
   },
   computed: { 
-    contacts () {
-      return this.license.contacts ? this.license.contacts.nodes || [] : []
-    },
-    facilities () {
-      return this.license.facilities ? this.license.facilities.nodes || [] : []
-    }
+    // contacts () {
+    //   return this.license.contacts ? this.license.contacts.nodes || [] : []
+    // },
+    // facilities () {
+    //   return this.license.facilities ? this.license.facilities.nodes || [] : []
+    // }
   },
   data () {
     return {

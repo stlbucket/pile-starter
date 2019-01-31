@@ -2,7 +2,7 @@
   <div>
     <h1>Name: {{ license.name }}</h1>
     <hr>
-    <v-tabs
+    <!-- <v-tabs
       dark
       slider-color="yellow"
     >
@@ -32,22 +32,22 @@
           :facilities="facilities"
         ></facility-list>
       </v-tab-item>
-    </v-tabs>
+    </v-tabs> -->
   </div>
 </template>
 
 <script>
 import LicenseDetailScript from './LicenseDetailScript'
-import ContactList from '../ContactList/ContactListVuetify'
-import FacilityList from '../FacilityList/FacilityListVuetify'
+// import ContactList from '../ContactList/ContactListVuetify'
+// import FacilityList from '../FacilityList/FacilityListVuetify'
 
 
 export default {
   name: "LicenseDetail",
   mixins: [LicenseDetailScript],
   components: {
-    ContactList,
-    FacilityList
+    // ContactList,
+    // FacilityList
   }
 }
 </script>

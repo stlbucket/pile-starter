@@ -8,7 +8,7 @@
 
 <script>
 import LicenseDetailViewScript from './LicenseDetailViewScript'
-import LicenseDetailComponent from '@/components/Org/LicenseDetail/LicenseDetailVuetify'
+import LicenseDetailComponent from '@/components/App/LicenseDetail/LicenseDetailVuetify'
 
 
 export default {

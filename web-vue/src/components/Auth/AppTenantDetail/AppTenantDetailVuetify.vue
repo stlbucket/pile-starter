@@ -2,7 +2,7 @@
   <div>
     <h1>Name: {{ appTenant.name }}</h1>
     <hr>
-    <v-tabs
+    <!-- <v-tabs
       dark
       slider-color="yellow"
     >
@@ -32,22 +32,22 @@
           :facilities="facilities"
         ></facility-list>
       </v-tab-item>
-    </v-tabs>
+    </v-tabs> -->
   </div>
 </template>
 
 <script>
 import AppTenantDetailScript from './AppTenantDetailScript'
-import ContactList from '../ContactList/ContactListVuetify'
-import FacilityList from '../FacilityList/FacilityListVuetify'
+// import ContactList from '../ContactList/ContactListVuetify'
+// import FacilityList from '../FacilityList/FacilityListVuetify'
 
 
 export default {
   name: "AppTenantDetail",
   mixins: [AppTenantDetailScript],
   components: {
-    ContactList,
-    FacilityList
+    // ContactList,
+    // FacilityList
   }
 }
 </script>

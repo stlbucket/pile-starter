@@ -1,0 +1,30 @@
+query LicenseById(
+  $id: BigInt!
+) {
+  licenseById(id: $id) {
+    id
+    name
+    organization: organizationByOrganizationId {
+      id
+      name
+    }
+    licenseType: licenseTypeByLicenseTypeId {
+      id
+      name
+      key
+      application: applicationByApplicationId {
+        id
+        name
+        key
+      }
+    }
+    assignedToAppUserContact: contactAppUserByAssignedToAppUserId {
+    	contact: contactByContactId {
+        id
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+}

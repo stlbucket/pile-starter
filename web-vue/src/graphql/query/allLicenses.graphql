@@ -3,13 +3,9 @@ query AllLicenses{
     nodes {
       id
       name
-      appTenant: appTenantByAppTenantId {
+      organization: organizationByOrganizationId {
         id
         name
-        organization: organizationByActualAppTenantId {
-          id
-          name
-        }
       }
       licenseType: licenseTypeByLicenseTypeId {
         id
@@ -21,14 +17,14 @@ query AllLicenses{
           key
         }
       }
-      contactAppUser: contactAppUserByAssignedToAppUserId {
-        contact: contactByContactId {
-          id
-          firstName
-          lastName
-          email
+    	assignedToAppUserContact: contactAppUserByAssignedToAppUserId {
+    	contact: contactByContactId {
+        id
+        firstName
+        lastName
+        email
         }
-      }
+    	}
     }
   }
 }

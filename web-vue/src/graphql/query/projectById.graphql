@@ -4,7 +4,7 @@ query ProjectById(
   projectById(id: $id) {
     id
     name
-      organization: organizationByAppTenantId {
+      organization: organizationByOrganizationId {
         id
         name
       }

@@ -8,7 +8,7 @@
 
 <script>
 import AppTenantDetailViewScript from './AppTenantDetailViewScript'
-import AppTenantDetailComponent from '@/components/Org/AppTenantDetail/AppTenantDetailVuetify'
+import AppTenantDetailComponent from '@/components/Auth/AppTenantDetail/AppTenantDetailVuetify'
 
 
 export default {

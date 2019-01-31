@@ -7,6 +7,7 @@ BEGIN;
   CREATE TABLE app.license (
     id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
     app_tenant_id bigint NOT NULL,
+    organization_id bigint NOT NULL,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,
     external_id text,
@@ -22,11 +23,14 @@ BEGIN;
   ALTER TABLE app.license ADD CONSTRAINT fk_license_assigned_to_app_user FOREIGN KEY ( assigned_to_app_user_id ) REFERENCES auth.app_user( id );
   --||--
   ALTER TABLE app.license ADD CONSTRAINT fk_license_license_type FOREIGN KEY ( license_type_id ) REFERENCES app.license_type( id );
+  --||--
+  ALTER TABLE app.license ADD CONSTRAINT fk_license_organization_id FOREIGN KEY ( organization_id ) REFERENCES org.organization( id );
 
   --||--
   CREATE FUNCTION app.fn_timestamp_update_license() RETURNS trigger AS $$
   BEGIN
     NEW.updated_at = current_timestamp;
+    NEW.organization_id = (select id from org.organization where actual_app_tenant_id = NEW.app_tenant_id);
     RETURN NEW;
   END; $$ LANGUAGE plpgsql;
   --||--
@@ -39,16 +43,16 @@ BEGIN;
 
   --||--
   GRANT select ON TABLE app.license TO app_user;
-  GRANT insert ON TABLE app.license TO app_super_admin;
-  GRANT update ON TABLE app.license TO app_admin;
-  GRANT delete ON TABLE app.license TO app_super_admin;
+  -- GRANT insert ON TABLE app.license TO app_super_admin;
+  -- GRANT update ON TABLE app.license TO app_admin;
+  -- GRANT delete ON TABLE app.license TO app_super_admin;
   --||--
   alter table app.license enable row level security;
   --||--
   create policy select_license on app.license for all
     using (auth_fn.app_user_has_access(app_tenant_id) = true);
 
-  -- comment on table app.license is E'@omit create,update,delete';
+  comment on table app.license is E'@omit create,update,delete';
   comment on TABLE app.license is E'@foreignKey (assigned_to_app_user_id) references org.contact_app_user(app_user_id)';
 
 COMMIT;

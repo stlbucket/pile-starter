@@ -3,7 +3,7 @@ query AllProjects{
     nodes {
       id
       name
-      organization: organizationByAppTenantId {
+      organization: organizationByOrganizationId {
         id
         name
       }

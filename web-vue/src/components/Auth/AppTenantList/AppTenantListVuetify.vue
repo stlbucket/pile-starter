@@ -23,20 +23,20 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'City', value: 'city' },
-        { text: 'Primary Facility', value: 'primaryFacilityName' }
+        { text: 'Primary Contact', value: 'primaryContactName' }
       ],
       columns: [
         { 
           name: 'name', 
           routeLink: { 
-            name: "appTenant-detail", 
+            name: "app-tenant-detail", 
             params: {
               id: 'id'
             }
           } 
         },
         { name: 'city' },
-        { name: 'primaryFacilityName' },
+        { name: 'primaryContactName' },
       ]
     }
   }

@@ -5,6 +5,7 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS prj.project (
   id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
   app_tenant_id bigint NOT NULL,
+  organization_id bigint NOT NULL,
   name text,
   identifier text,
   created_at timestamp NOT NULL DEFAULT current_timestamp,
@@ -35,7 +36,8 @@ create policy select_project on prj.project for all
   CREATE FUNCTION prj.fn_timestamp_update_project() RETURNS trigger AS $$
   BEGIN
     NEW.updated_at = current_timestamp;
---    if NEW.identifier is null or NEW.identifier = '' then NEW.identifier = NEW.id::text; end if;
+    if NEW.identifier is null or NEW.identifier = '' then NEW.identifier = NEW.id::text; end if;
+    NEW.organization_id = (select id from org.organization where actual_app_tenant_id = NEW.app_tenant_id);
     RETURN NEW;
   END; $$ LANGUAGE plpgsql;
   --||--
