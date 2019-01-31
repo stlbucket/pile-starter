@@ -6,7 +6,7 @@ BEGIN;
   CREATE TABLE org.organization (
     id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
     app_tenant_id bigint NOT NULL,
-    actual_app_tenant_id bigint NULL,
+    actual_app_tenant_id bigint NULL UNIQUE,
     is_app_tenant boolean default false,
     created_at timestamp NOT NULL DEFAULT current_timestamp,
     updated_at timestamp NOT NULL,

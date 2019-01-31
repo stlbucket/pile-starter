@@ -149,7 +149,6 @@ select * from app.license_type;
 \echo license
 \echo ----------------------------------
 select * from app.license;
-COMMIT;
 
 --------------------------------------------------   project manager
   insert into app.application(
@@ -195,3 +194,6 @@ COMMIT;
   on conflict (assigned_to_app_user_id, license_type_id)
   do nothing
   ;
+
+COMMIT;
+

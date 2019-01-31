@@ -1,4 +1,4 @@
--- Verify core-data-test:test-tenent on pg
+-- Verify core-data-test:1100-address-book on pg
 
 BEGIN;
 

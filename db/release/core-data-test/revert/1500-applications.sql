@@ -2,6 +2,8 @@
 
 BEGIN;
 
-  DELETE FROM app.application CASCADE;
+  DELETE FROM app.license;
+  DELETE FROM app.license_type;
+  DELETE FROM app.application;
 
 COMMIT;

@@ -4,4 +4,5 @@
 
 1000-test-tenant 2018-04-14T20:23:06Z Kevin Burkett <stlbucket@gmail.com> # the tenant to use for testing
 1100-address-book [1000-test-tenant] 2018-04-14T20:23:06Z Kevin Burkett <stlbucket@gmail.com> # the tenant to use for testing
-1500-applications 2018-04-14T20:23:06Z Kevin Burkett <stlbucket@gmail.com> # the applications to use for testing
+1500-applications [1000-test-tenant] 2018-04-14T20:23:06Z Kevin Burkett <stlbucket@gmail.com> # the applications to use for testing
+2000-projects [1000-test-tenant] 2018-04-14T20:23:06Z Kevin Burkett <stlbucket@gmail.com> # the projects to use for testing

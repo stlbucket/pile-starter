@@ -3,6 +3,8 @@
 BEGIN;
 -- project
 ALTER TABLE prj.project ADD CONSTRAINT fk_project_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
+comment on TABLE prj.project is E'@foreignKey (app_tenant_id) references org.organization(actual_app_tenant_id)';
+
 
 -- milestone
 ALTER TABLE prj.milestone ADD CONSTRAINT fk_milestone_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );

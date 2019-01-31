@@ -1,0 +1,12 @@
+query AllProjects{
+  allProjects {
+    nodes {
+      id
+      name
+      organization: organizationByAppTenantId {
+        id
+        name
+      }
+    }
+  }
+}

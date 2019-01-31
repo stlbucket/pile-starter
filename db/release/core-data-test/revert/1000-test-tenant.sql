@@ -2,8 +2,8 @@
 
 BEGIN;
 
--- DELETE FROM auth.app_user;
---
--- DELETE FROM auth.app_tenant;
+DELETE FROM auth.app_user where permission_key != 'SuperAdmin';
+
+DELETE FROM auth.app_tenant where key != 'anchor';
 
 COMMIT;

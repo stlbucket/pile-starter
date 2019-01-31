@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS prj.milestone (
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   updated_at timestamp NOT NULL,
   app_tenant_id bigint NOT NULL,
-  milestone_identifier text,
+  identifier text,
   name text,
   description text,
   project_id bigint NULL,
