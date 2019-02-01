@@ -33,6 +33,10 @@
         ></facility-list>
       </v-tab-item>
     </v-tabs>
+    <v-textarea
+      :value="JSON.stringify(organization,0,2)"
+      auto-grow
+    ></v-textarea>
   </div>
 </template>
 

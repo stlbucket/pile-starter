@@ -12,7 +12,10 @@ export default {
   },
   methods: {
   },
-  computed: { 
+  computed: {
+    txt () {
+      return JSON.stringify(this.license,null,2)
+    }
     // contacts () {
     //   return this.license.contacts ? this.license.contacts.nodes || [] : []
     // },

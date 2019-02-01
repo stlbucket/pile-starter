@@ -491,9 +491,6 @@ AS $function$
 			<column name="external_id" type="text" decimal="0" jt="12" />
 			<column name="name" type="text" decimal="0" jt="12" mandatory="y" />
 			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="is_app_tenant" type="bool" length="1" decimal="0" jt="-7" >
-				<defo>false</defo>
-			</column>
 			<column name="primary_contact_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<index name="pk_organization" unique="PRIMARY_KEY" >
 				<column name="id" />

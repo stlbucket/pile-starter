@@ -12,7 +12,7 @@ BEGIN;
     from org.organization o
     where o.external_id like 'test-%'
     and o.external_id not like '%sub'
-    on conflict(app_tenant_id, name)
+    on conflict(app_tenant_id, external_id)
     do nothing
     ;
 
@@ -78,7 +78,7 @@ BEGIN;
       ,o.external_id
       ,o.app_tenant_id
     from org.organization o
-    on conflict
+    on conflict (app_tenant_id, external_id)
     do nothing
     ;
 

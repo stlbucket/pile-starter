@@ -2,6 +2,10 @@
   <div>
     <h1>Name: {{ appTenant.name }}</h1>
     <hr>
+    <v-textarea
+      :value="JSON.stringify(appTenant,0,2)"
+      auto-grow
+    ></v-textarea>
     <!-- <v-tabs
       dark
       slider-color="yellow"

@@ -1,18 +1,40 @@
 #!/usr/bin/env bash
-database="[YOUR DATABASE NAME]"
-hostname="localhost"
+database="phile_starter"
+hostname="0.0.0.0"
 
 packages=(
-  schema/app-roles
-  schema/auth
-  schema/auth_fn
-  schema/app_jobs
-  schema/evt
-  schema/org
-  schema/org_fn
+  app-roles
+  shard
+  auth
+  auth-fn 
+  org
+  app
+  prj
   core-data
+  core-data-test
 )
 
-function_packages=(
-  schema/org_fn
-)
+# app
+# org
+# org-fn
+# prj
+# core-data
+# core-data-test
+#  app-jobs
+#  app-jobs-fn
+#  evt
+#  evt-fn
+#  wf
+#  msg
+#  prj
+#  tunz
+#  bimo
+#  ex
+
+
+#packages=(
+#  app-jobs
+#  prj
+#  core-data
+#  core-data-test
+#)

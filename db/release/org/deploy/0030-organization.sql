@@ -1,70 +1,85 @@
 -- Deploy org:structure/organization to pg
 -- requires: structure/location
 
-BEGIN;
+begin;
 
-  CREATE TABLE org.organization (
-    id bigint UNIQUE NOT NULL DEFAULT shard_1.id_generator(),
-    app_tenant_id bigint NOT NULL,
-    actual_app_tenant_id bigint NULL UNIQUE,
-    is_app_tenant boolean default false,
-    created_at timestamp NOT NULL DEFAULT current_timestamp,
-    updated_at timestamp NOT NULL,
-    external_id text,
-    name text not null CHECK (name <> ''),
-    location_id bigint NULL,
-    CONSTRAINT uq_organization_app_tenant_and_name UNIQUE (app_tenant_id, name),
-    CONSTRAINT uq_organization_actual_app_tenant UNIQUE (actual_app_tenant_id),
-    CONSTRAINT pk_organization PRIMARY KEY (id)
+  -- basic structure
+  create table org.organization (
+    id bigint unique not null DEFAULT shard_1.id_generator(),
+    app_tenant_id bigint not null, -- the auth.app_tenant that owns this database record
+    actual_app_tenant_id bigint null unique,  --  if this organization is an app_tenant, this field will reference that record
+    created_at timestamp not null DEFAULT current_timestamp,  -- this value will never change once it is set
+    updated_at timestamp not null,  -- a insert/update trigger sets this value
+    external_id text, -- a generic-use field when integrating with other systems
+    name text not null CHECK (name <> ''), -- the primary name of this organization
+    location_id bigint null, -- optional foreign-key to an organization's location record
+    constraint uq_app_tenant_external_id unique (app_tenant_id, external_id),
+    constraint pk_organization primary key (id)
   );
+  -- end basic structure
 
+  -- foreign keys
   --||--
-  ALTER TABLE org.organization ADD CONSTRAINT fk_organization_location FOREIGN KEY ( location_id ) REFERENCES org.location( id );
+  alter table org.organization add constraint fk_organization_location foreign key ( location_id ) references org.location( id );
   --||--
-  ALTER TABLE org.organization ADD CONSTRAINT fk_organization_app_tenant FOREIGN KEY ( app_tenant_id ) REFERENCES auth.app_tenant( id );
+  alter table org.organization add constraint fk_organization_app_tenant foreign key ( app_tenant_id ) references auth.app_tenant( id );
   --||--
-  ALTER TABLE org.organization ADD CONSTRAINT fk_organization_actual_app_tenant FOREIGN KEY ( actual_app_tenant_id ) REFERENCES auth.app_tenant( id );
+  alter table org.organization add constraint fk_organization_actual_app_tenant foreign key ( actual_app_tenant_id ) references auth.app_tenant( id );
+  -- end foreign keys
 
 
-  --||--
-  CREATE or replace FUNCTION org.fn_timestamp_update_organization() RETURNS trigger AS $$
-  BEGIN
-    if NEW.app_tenant_id is null then
+  -- before insert/update trigger
+  
+  -- the trigger function
+  create or replace function org.fn_timestamp_update_organization() returns trigger AS $$
+  begin
+    if NEW.app_tenant_id is null then 
+      -- only users with 'SuperAdmin' permission_key will be able to arbitrarily set this value
+      -- rls policy (below) will prevent users from specifying an alternate app_tenant_id
       NEW.app_tenant_id := (select app_tenant_id from auth_fn.current_app_user());
     end if;
 
     NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $$ LANGUAGE plpgsql;
-  --||--
-  CREATE TRIGGER tg_timestamp_update_organization
-    BEFORE INSERT OR UPDATE ON org.organization
-    FOR EACH ROW
-    EXECUTE PROCEDURE org.fn_timestamp_update_organization();
+
+    return NEW;
+  end; $$ language plpgsql;
+
+
+  -- the trigger
+  create trigger tg_timestamp_update_organization
+    before insert or update on org.organization
+    for each row
+    execute procedure org.fn_timestamp_update_organization();
+
+  -- end before insert/update trigger
 
 
 
-  --||--
-  GRANT select ON TABLE org.organization TO app_user;
-  GRANT insert ON TABLE org.organization TO app_user;
-  GRANT update ON TABLE org.organization TO app_user;
-  GRANT delete ON TABLE org.organization TO app_user;
-  --||--
+  -- security
+  -- these settings will vary depending on your application, and should be actively managed
+  -- for most entities, access to app_user role for all CRUD operations will be appropriate
+  grant select ON table org.organization TO app_user;
+  grant insert ON table org.organization TO app_user;
+  grant update ON table org.organization TO app_user;
+  grant delete ON table org.organization TO app_user;
+
+  -- enable row-level security
   alter table org.organization enable row level security;
-  --||--
- CREATE POLICY select_organization ON org.organization FOR ALL
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  -- define a security policy.  your application may require more complexity.
+  create policy all_organization on org.organization for all  -- sql action could change according to your needs
+  using (auth_fn.app_user_has_access(app_tenant_id) = true);  -- this function could be replaced entirely or on individual policies as needed
 
+
+  -- postgraphile smart comments to configure the API:   https://www.graphile.org/postgraphile/smart-comments/
   comment on column org.organization.id is
-  E'@omit create';
+  E'@omit create'; -- id is always set by the db.  this might change in an event-sourcing scenario
   comment on column org.organization.created_at is
-  E'@omit create,update';
+  E'@omit create,update'; -- created_at is always set by the db.  this might change in an event-sourcing scenario
   comment on column org.organization.updated_at is
-  E'@omit create,update';
+  E'@omit create,update'; -- updated_at is always set by the db.  this might change in an event-sourcing scenario
 
-  -- comment on table org.organization is E'@omit create,update,delete';
-
-  comment on TABLE org.organization is E'@foreignKey (actual_app_tenant_id) references auth.vw_app_tenant(id)';
-
+  -- comment on table org.organization is E'@omit create,update,delete';  -- this would be used if we want to disallow mutations
+  comment on table org.organization is E'@foreignKey (actual_app_tenant_id) references auth.vw_app_tenant(id)';
+  -- end smart comments
 
 COMMIT;

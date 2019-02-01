@@ -2,6 +2,10 @@
   <div>
     <h1>Name: {{ license.name }}</h1>
     <hr>
+    <v-textarea
+      :value="txt"
+      auto-grow
+    ></v-textarea>
     <!-- <v-tabs
       dark
       slider-color="yellow"

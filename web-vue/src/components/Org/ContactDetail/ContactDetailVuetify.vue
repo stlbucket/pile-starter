@@ -2,6 +2,10 @@
   <div>
     <h1>Name: {{ fullName }}</h1>
     <hr>
+    <v-textarea
+      :value="JSON.stringify(contact,0,2)"
+      auto-grow
+    ></v-textarea>
     <!-- <v-tabs
       dark
       slider-color="yellow"

@@ -48,14 +48,12 @@ BEGIN;
       app_tenant_id
       ,actual_app_tenant_id
       ,name
-      ,is_app_tenant
       ,external_id
     )
     select
       ten.id
       ,ten.id
       ,ten.name
-      ,true
       ,ten.identifier || '-org'
     from auth.app_tenant ten
     where identifier = 'anchor'

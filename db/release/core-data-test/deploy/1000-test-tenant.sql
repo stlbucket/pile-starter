@@ -68,14 +68,12 @@ BEGIN;
       app_tenant_id
       ,actual_app_tenant_id
       ,name
-      ,is_app_tenant
       ,external_id
     )
     select
       ten.id
       ,ten.id
       ,ten.name
-      ,true
       ,ten.identifier || '-org'
     from auth.app_tenant ten
     where ten.identifier like 'test%'
@@ -124,7 +122,7 @@ BEGIN;
 
     select name, identifier from auth.app_tenant;
     select username, recovery_email, app_tenant_id from auth.app_user;
-    select name, is_app_tenant, app_tenant_id from org.organization;
+    select name, (app_tenant_id is not null) is_app_tenant, app_tenant_id from org.organization;
     select email, app_tenant_id, organization_id from org.contact;
     select * from org.contact_app_user;
 
