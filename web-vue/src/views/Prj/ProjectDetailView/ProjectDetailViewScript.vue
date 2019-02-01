@@ -27,7 +27,7 @@ export default {
       query: projectById,
       fetchPolicy: 'network-only',
       variables () {
-        console.log('id', this.id)
+        // console.log('id', this.id)
         return {
           id: this.id
         }

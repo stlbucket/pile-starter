@@ -1,6 +1,6 @@
 <template>
   <div>
-    LICENSE MANAGER
+    <h1>License Manager</h1>
     <hr>
     <license-list-view></license-list-view>
   </div>

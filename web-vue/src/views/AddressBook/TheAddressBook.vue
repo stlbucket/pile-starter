@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <h1>Address Book</h1>
     <v-tabs
       dark
       slider-color="yellow"
@@ -39,6 +41,7 @@
         <facility-list></facility-list>
       </v-tab-item>
     </v-tabs>
+  </div>
 </template>
 
 <script>

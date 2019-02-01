@@ -21,7 +21,7 @@ export default {
       query: allAppTenants,
       fetchPolicy: 'network-only',
       update (data) {
-        console.log('ten', data)
+        // console.log('ten', data)
         this.appTenants = data.allVwAppTenants.nodes
       }
     }

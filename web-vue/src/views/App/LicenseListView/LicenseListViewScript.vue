@@ -21,8 +21,6 @@ export default {
       fetchPolicy: 'network-only',
       update (data) {
         this.licenses = data.allLicenses.nodes
-        console.log('view', this.licenses
-        )
       }
     }
   }

@@ -11,7 +11,7 @@
       </v-navigation-drawer>
       <v-toolbar app fixed clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Application</v-toolbar-title>
+        <v-toolbar-title><router-link :to="{ name: 'home'}">Phile-Starter</router-link></v-toolbar-title>
         <v-spacer></v-spacer>
         <current-app-user-contact></current-app-user-contact>
         <login-manager></login-manager>

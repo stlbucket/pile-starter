@@ -15,7 +15,7 @@ export default {
     items () {
       return this.licenses.map(
         license => {
-          console.log('license', license)
+          // console.log('license', license)
           const assignedToContact = (license.assignedToAppUserContact || {}).contact || {
             firstName: 'Unassigned',
             lastName: ''

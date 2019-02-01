@@ -1,6 +1,6 @@
 <template>
   <div>
-    TENANT MANAGER
+    <h1>Tenant Manager</h1>
     <hr>
     <app-tenant-list-view></app-tenant-list-view>
   </div>

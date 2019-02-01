@@ -1,6 +1,6 @@
 <template>
   <div>
-    PROJECT MANAGER
+    <h1>Project Manager</h1>
     <hr>
     <project-list-view></project-list-view>
   </div>
