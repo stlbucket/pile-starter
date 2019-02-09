@@ -40,7 +40,7 @@ BEGIN;
   -- alter table app.license_type enable row level security;
   -- --||--
   -- create policy select_license_type on app.license_type for select
-  --   using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  --   using (app_tenant_id = auth_fn.current_app_tenant_id());
 
   -- comment on table app.license_type is E'@omit create,update,delete';
 

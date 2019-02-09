@@ -21,7 +21,7 @@ GRANT delete ON TABLE prj.task_dependency TO app_user;
 alter table prj.task_dependency enable row level security;
 --||--
 create policy select_task_dependency on prj.task_dependency for select
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  using (app_tenant_id = auth_fn.current_app_tenant_id());
 --||--
 comment on table prj.task_dependency is E'@omit create,update,delete';
 

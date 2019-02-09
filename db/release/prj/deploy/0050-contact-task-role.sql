@@ -23,7 +23,7 @@ GRANT delete ON TABLE prj.contact_task_role TO app_user;
 alter table prj.contact_task_role enable row level security;
 --||--
 create policy select_contact_task_role on prj.contact_task_role for select
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  using (app_tenant_id = auth_fn.current_app_tenant_id());
 --||--
 comment on table prj.contact_task_role is E'@omit create,update,delete';
 

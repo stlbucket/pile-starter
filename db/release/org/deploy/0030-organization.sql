@@ -67,7 +67,10 @@ begin;
   alter table org.organization enable row level security;
   -- define a security policy.  your application may require more complexity.
   create policy all_organization on org.organization for all  -- sql action could change according to your needs
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);  -- this function could be replaced entirely or on individual policies as needed
+  using (app_tenant_id = auth_fn.current_app_tenant_id());  -- this function could be replaced entirely or on individual policies as needed
+
+  create policy super_aadmin_organization on org.organization for all to app_super_admin  -- sql action could change according to your needs
+  using (true);  -- this function could be replaced entirely or on individual policies as needed
 
 
   -- postgraphile smart comments to configure the API:   https://www.graphile.org/postgraphile/smart-comments/
@@ -79,7 +82,6 @@ begin;
   E'@omit create,update'; -- updated_at is always set by the db.  this might change in an event-sourcing scenario
 
   -- comment on table org.organization is E'@omit create,update,delete';  -- this would be used if we want to disallow mutations
-  comment on table org.organization is E'@foreignKey (actual_app_tenant_id) references auth.vw_app_tenant(id)';
   -- end smart comments
 
 COMMIT;

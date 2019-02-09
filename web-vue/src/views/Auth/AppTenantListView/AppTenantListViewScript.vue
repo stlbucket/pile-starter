@@ -22,7 +22,7 @@ export default {
       fetchPolicy: 'network-only',
       update (data) {
         // console.log('ten', data)
-        this.appTenants = data.allVwAppTenants.nodes
+        this.appTenants = data.allAppTenants.nodes
       }
     }
   }

@@ -32,7 +32,7 @@ export default {
         }
       },
       update (data) {
-        this.appTenant = data.vwAppTenantById
+        this.appTenant = data.appTenantById
       }
     }
   }

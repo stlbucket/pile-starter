@@ -6,6 +6,7 @@ BEGIN;
   CREATE type auth.jwt_token AS (
     role text,
     app_user_id text,
+    app_tenant_id text,
     token text
   );
 

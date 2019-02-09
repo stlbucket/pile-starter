@@ -117,9 +117,9 @@
   integrity sha512-A2TAGbTFdBw9azHbpVd+/FkdW2T6msN1uct1O9bH3vTerEHKZhTXJUQXy+hNq1B0RagfU8U+KBdqiZpxjhOUQA==
 
 "@types/node@*":
-  version "10.12.19"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.19.tgz#ca1018c26be01f07e66ac7fefbeb6407e4490c61"
-  integrity sha512-2NVovndCjJQj6fUUn9jCgpP4WSqr+u1SoUZMZyJkhGeBFsm6dE46l31S7lPUYt9uQ28XI+ibrJA1f5XyH5HNtA==
+  version "10.12.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.21.tgz#7e8a0c34cf29f4e17a36e9bd0ea72d45ba03908e"
+  integrity sha512-CBgLNk4o3XMnqMc0rhb6lc77IwShMEglz05deDcn2lQxyXEZivfwgYJu7SMha9V5XcrP6qZuevTHV/QrN2vjKQ==
 
 "@types/pg-types@*":
   version "1.11.4"
@@ -769,10 +769,10 @@ postgraphile-core@4.3.1:
     graphile-build "4.3.1"
     graphile-build-pg "4.3.1"
 
-postgraphile-db-inspector-extension@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/postgraphile-db-inspector-extension/-/postgraphile-db-inspector-extension-1.0.0.tgz#8bf0b373c0aa79e709395793f6f19203a743fd3c"
-  integrity sha512-AfxaFSdNss11Svac3/7kwffrAkUmxrQfYZASLYBcFZyp/yOuTDfTqMH0QSBSBvL/RhDV8otkoj67HXi5kmTmiQ==
+postgraphile-db-inspector-extension@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/postgraphile-db-inspector-extension/-/postgraphile-db-inspector-extension-1.0.6.tgz#a2da715a5e77544d8ccdab4567962b6146163b15"
+  integrity sha512-K82uqCxRhAhs+JW0ygy8+S4VoEx1B9t9DFEix4sSMXuECE+dfEAIX4Tim56sRguBlWqUa0w0oSHy3m3IJJPWEw==
   dependencies:
     express "^4.16.4"
     fbkt-clog "^1.0.5"
@@ -785,10 +785,10 @@ postgraphile-plugin-connection-filter@^1.0.0-beta.23, postgraphile-plugin-connec
   resolved "https://registry.yarnpkg.com/postgraphile-plugin-connection-filter/-/postgraphile-plugin-connection-filter-1.0.0-beta.27.tgz#a6350a6e86325a95d6dd33ac3c8845ef069078a6"
   integrity sha512-Lt2+D2VGyaejGpwvHTTuIDWGmUpKK8OgaC9gRRfev+NW/6YbY4fwqGF4AT+b4FumY+OK6iXDAUfe3S5sGNA6vA==
 
-postgraphile@^4.2.0, postgraphile@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/postgraphile/-/postgraphile-4.3.1.tgz#fb961811ce071c48b586ebc3eb9f123457af46d9"
-  integrity sha512-JAzaTlF/DK+Y/NODVbgVk6csw9y9qWKy2BeKyFPn85DXOlFJ2RcLhUgn0A8ncjD8OgX1lMU43l1heir531lovQ==
+postgraphile@^4.2.0, postgraphile@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/postgraphile/-/postgraphile-4.3.2.tgz#1a7d3879c74520295788c0dfd3f3e97d91492cef"
+  integrity sha512-eOpgY9pOFhoaKZQlmbfea73e82FTT8RI1W6tfYA0t2lAaHtKb5ZOUTgOGsGkox0rtIuLemfyr8ATUdo1TQuucw==
   dependencies:
     "@types/graphql" "^14.0.3"
     "@types/jsonwebtoken" "<7.2.1"

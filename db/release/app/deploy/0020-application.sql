@@ -36,7 +36,7 @@ BEGIN;
   -- alter table app.application enable row level security;
   -- --||--
   -- create policy select_application on app.application for select
-  --   using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  --   using (app_tenant_id = auth_fn.current_app_tenant_id());
 
   -- comment on table app.application is E'@omit create,update,delete';
 

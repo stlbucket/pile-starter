@@ -15,13 +15,13 @@ BEGIN;
 
     IF _app_user.password_hash = crypt(_password, _app_user.password_hash) THEN
       IF _app_user.permission_key = 'SuperAdmin' THEN
-        RETURN ('app_super_admin', _app_user.id, null)::auth.jwt_token;
+        RETURN ('app_super_admin', _app_user.id, _app_user.app_tenant_id, null)::auth.jwt_token;
       ELSEIF _app_user.permission_key = 'Admin' THEN
-        RETURN ('app_admin', _app_user.id, null)::auth.jwt_token;
+        RETURN ('app_admin', _app_user.id, _app_user.app_tenant_id, null)::auth.jwt_token;
       ELSEIF _app_user.permission_key = 'User' THEN
-        RETURN ('app_user', _app_user.id, null)::auth.jwt_token;
+        RETURN ('app_user', _app_user.id, _app_user.app_tenant_id, null)::auth.jwt_token;
       ELSEIF _app_user.permission_key = 'Demon' THEN
-        RETURN ('app_sync', _app_user.id, null)::auth.jwt_token;
+        RETURN ('app_sync', _app_user.id, _app_user.app_tenant_id, null)::auth.jwt_token;
       END IF;
   
       RAISE EXCEPTION 'Invalid permission key: %', _soro_user.permission_key;

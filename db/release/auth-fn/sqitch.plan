@@ -8,3 +8,5 @@
 0040-build_app_tenant [0030-current_app_user] 2018-04-12T00:48:34Z Kevin Burkett <stlbucket@gmail.com> # builds an app tenant
 0050-build_app_user [0040-build_app_tenant] 2018-04-12T00:49:05Z Kevin Burkett <stlbucket@gmail.com> # creates an app_user
 0060-app_user_has_access [0050-build_app_user] 2018-04-16T03:03:42Z Kevin Burkett <stlbucket@gmail.com> # verify if a user has access to an entity based on the app_tenant_id
+0070-current-app-tenant-id [0060-app_user_has_access] 2018-04-16T03:03:42Z Kevin Burkett <stlbucket@gmail.com> # current user app_tenant_id
+0080-current-app-user-id [0070-current-app-tenant-id] 2018-04-16T03:03:42Z Kevin Burkett <stlbucket@gmail.com> # current user app_user_id

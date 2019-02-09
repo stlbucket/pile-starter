@@ -43,6 +43,6 @@ BEGIN;
   alter table bimo.side_gamer enable row level security;
   --||--
   create policy select_side_gamer on bimo.side_gamer for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

@@ -43,7 +43,7 @@ BEGIN;
     ,au.username || ' - ' || (select name from app.license_type where key = 'tenant-manager')
     ,au.id
   from auth.app_user au
-  where au.permission_key in ('SuperAdmin')
+  where au.permission_key in ('SuperAdmin', 'Admin')
   on conflict (assigned_to_app_user_id, license_type_id)
   do nothing
   ;

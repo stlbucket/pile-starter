@@ -45,6 +45,6 @@ BEGIN;
   alter table tunz.recording_session enable row level security;
   --||--
   create policy select_recording_session on tunz.recording_session for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

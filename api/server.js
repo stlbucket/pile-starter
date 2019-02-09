@@ -48,7 +48,7 @@ app.use(postgraphile(
       dbInspector
     ]
     ,graphileBuildOptions: {
-      app: app
+      enablePgDbInspector: true
     }
   }
 ));

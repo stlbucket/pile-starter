@@ -46,6 +46,6 @@ BEGIN;
   alter table msg.message_delivery enable row level security;
   --||--
   create policy select_message_delivery on msg.message_delivery for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

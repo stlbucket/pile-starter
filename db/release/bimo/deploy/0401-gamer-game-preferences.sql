@@ -44,6 +44,6 @@ BEGIN;
   alter table bimo.gamer_game_preferences enable row level security;
   --||--
   create policy select_gamer_game_preferences on bimo.gamer_game_preferences for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

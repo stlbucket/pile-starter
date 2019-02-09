@@ -23,7 +23,7 @@ GRANT delete ON TABLE prj.project TO app_user;
 alter table prj.project enable row level security;
 --||--
 create policy select_project on prj.project for all
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  using (app_tenant_id = auth_fn.current_app_tenant_id());
 --||--
   comment on column prj.project.id is
   E'@omit create';

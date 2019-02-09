@@ -39,6 +39,6 @@ BEGIN;
   alter table wf.workflow_step_dependency enable row level security;
   --||--
   create policy select_workflow_step_dependency on wf.workflow_step_dependency for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

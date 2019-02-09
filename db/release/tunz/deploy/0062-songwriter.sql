@@ -43,6 +43,6 @@ BEGIN;
   alter table tunz.songwriter enable row level security;
   --||--
   create policy select_songwriter on tunz.songwriter for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

@@ -50,7 +50,7 @@ BEGIN;
   alter table app.license enable row level security;
   --||--
   create policy select_license on app.license for all
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
   comment on table app.license is E'@omit create,update,delete';
   comment on TABLE app.license is E'@foreignKey (assigned_to_app_user_id) references org.contact_app_user(app_user_id)';

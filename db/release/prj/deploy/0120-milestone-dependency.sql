@@ -21,7 +21,7 @@ GRANT delete ON TABLE prj.milestone_dependency TO app_user;
 alter table prj.milestone_dependency enable row level security;
 --||--
 create policy select_milestone_dependency on prj.milestone_dependency for select
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  using (app_tenant_id = auth_fn.current_app_tenant_id());
 --||--
 comment on table prj.milestone_dependency is E'@omit create,update,delete';
 

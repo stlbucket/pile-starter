@@ -43,6 +43,6 @@ BEGIN;
   alter table tunz.band_member_instrument enable row level security;
   --||--
   create policy select_band_member_instrument on tunz.band_member_instrument for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

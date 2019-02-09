@@ -42,6 +42,6 @@ BEGIN;
   alter table bimo.match enable row level security;
   --||--
   create policy select_match on bimo.match for select
-    using (auth_fn.app_user_has_access(app_tenant_id) = true);
+    using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 COMMIT;

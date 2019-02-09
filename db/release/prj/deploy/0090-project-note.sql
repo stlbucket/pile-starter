@@ -21,7 +21,7 @@ GRANT delete ON TABLE prj.project_note TO app_user;
 alter table prj.project_note enable row level security;
 --||--
 create policy select_project_note on prj.project_note for select
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  using (app_tenant_id = auth_fn.current_app_tenant_id());
 --||--
 comment on table prj.project_note is E'@omit create,update,delete';
 

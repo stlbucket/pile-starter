@@ -1,7 +1,7 @@
-query VwAppTenantById(
+query AppTenantById(
   $id: BigInt!
 ) {
-  vwAppTenantById(id: $id) {
+  appTenantById(id: $id) {
       id
       name
       organization: organizationByActualAppTenantId {

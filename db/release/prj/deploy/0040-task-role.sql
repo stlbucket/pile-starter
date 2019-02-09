@@ -19,7 +19,7 @@ GRANT delete ON TABLE prj.task_role TO app_user;
 alter table prj.task_role enable row level security;
 --||--
 create policy select_task_role on prj.task_role for select
-  using (auth_fn.app_user_has_access(app_tenant_id) = true);
+  using (app_tenant_id = auth_fn.current_app_tenant_id());
 --||--
 comment on table prj.task_role is E'@omit create,update,delete';
 

@@ -26,10 +26,14 @@ BEGIN;
   -- GRANT update ON TABLE auth.app_user TO app_admin;
   -- GRANT delete ON TABLE auth.app_user TO app_admin;
 
-  alter table auth.app_user enable row level security;
-  --||--
-  create policy select_app_user on auth.app_user for select
-    using (id = current_setting('jwt.claims.app_user_id')::bigint);
+  -- alter table auth.app_user enable row level security;
+  -- --||--
+  -- create policy select_app_user_app_user on auth.app_user for select to app_user
+  --   using (id = current_setting('jwt.claims.app_user_id')::bigint);
+  -- create policy select_app_user_app_admin on auth.app_user for select to app_admin
+  --   using (app_tenant_id = current_setting('jwt.claims.app_tenant_id')::bigint);
+  -- create policy select_app_user_app_super_admin on auth.app_user for select to app_super_admin
+  --   using (true);
 
   --||--
   CREATE FUNCTION auth.fn_timestamp_update_app_user() RETURNS trigger AS $$
