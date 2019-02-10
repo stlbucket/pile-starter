@@ -24,6 +24,11 @@ BEGIN;
   CREATE FUNCTION org.fn_timestamp_update_contact_app_user() RETURNS trigger AS $$
   BEGIN
     NEW.updated_at = current_timestamp;
+    if NEW.app_tenant_id is null then 
+      -- only users with 'SuperAdmin' permission_key will be able to arbitrarily set this value
+      -- rls policy (below) will prevent users from specifying an alternate app_tenant_id
+      NEW.app_tenant_id := auth_fn.current_app_tenant_id();
+    end if;
     RETURN NEW;
   END; $$ LANGUAGE plpgsql;
   --||--
@@ -45,6 +50,8 @@ BEGIN;
   create policy select_contact_app_user on org.contact_app_user for all
     using (app_tenant_id = auth_fn.current_app_tenant_id());
 
+  comment on column org.contact_app_user.app_tenant_id is
+  E'@omit create'; -- id is always set by the db.  this might change in an event-sourcing scenario
   comment on column org.contact_app_user.id is
   E'@omit create';
   comment on column org.contact_app_user.created_at is

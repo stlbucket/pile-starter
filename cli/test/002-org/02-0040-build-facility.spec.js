@@ -12,7 +12,7 @@ describe('org-facility', () => {
   test('should build a new facility for test org 1', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'defaultadmin@tst.tst',
+      username: 'testAdmin001',
       password: 'badpassword'
     })
 

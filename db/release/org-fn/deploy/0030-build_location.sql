@@ -3,7 +3,7 @@
 
 BEGIN;
 
-create function org_fn.build_location(
+create or replace function org_fn.build_location(
   _name text,
   _address1 text,
   _address2 text,

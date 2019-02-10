@@ -15,7 +15,7 @@ describe('org-contact', () => {
     done => {
       apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
       apolloClient.setCredentials({
-        username: 'defaultadmin@tst.tst',
+        username: 'testAdmin001',
         password: 'badpassword'
       })
 
@@ -56,7 +56,7 @@ describe('org-contact', () => {
   test('should get current user contact', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'defaultadmin@tst.tst',
+      username: 'testAdmin001',
       password: 'badpassword'
     })
 
@@ -67,7 +67,7 @@ describe('org-contact', () => {
       })
       .then(contact => {
         expect(typeof contact).toBe('object')
-        expect(contact.email).toBe('defaultadmin@tst.tst')
+        expect(contact.email).toBe('testAdmin001@blah.blah')
         done()
       })
       .catch(error => {
@@ -78,7 +78,7 @@ describe('org-contact', () => {
   test('should get organization contacts', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'defaultadmin@tst.tst',
+      username: 'testAdmin001',
       password: 'badpassword'
     })
 
@@ -100,7 +100,7 @@ describe('org-contact', () => {
   test('should build location for a contact', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'defaultadmin@tst.tst',
+      username: 'testAdmin001',
       password: 'badpassword'
     })
 
@@ -111,7 +111,7 @@ describe('org-contact', () => {
       })
       .then(contact => {
         expect(typeof contact).toBe('object')
-        expect(contact.email).toBe('defaultadmin@tst.tst')
+        expect(contact.email).toBe('testAdmin001@blah.blah')
         return apolloClient.mutate({
           mutation: buildContactLocation,
           variables: {
@@ -130,7 +130,7 @@ describe('org-contact', () => {
       })
       .then(contactLocation => {
         expect(typeof contactLocation).toBe('object')
-        expect(contactLocation.email).toBe('defaultadmin@tst.tst')
+        expect(contactLocation.email).toBe('testAdmin001@blah.blah')
         expect(typeof contactLocation.location).toBe('object')
         expect(contactLocation.location.name).toBe('Empire State Building')
         done()

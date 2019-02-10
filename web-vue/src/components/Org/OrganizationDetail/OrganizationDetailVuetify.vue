@@ -1,7 +1,15 @@
 <template>
-  <div>
-    <h1>Name: {{ organization.name }}</h1>
-    <hr>
+  <v-container grid-list-md text-xs-center>
+    <v-layout row wrap>
+      <v-flex xs4>
+        <v-card>
+          <h2 class="headline">Organization</h2>
+          <v-text-field label="Name" :value="organization.name"></v-text-field>
+          <v-text-field label="External Id" :value="organization.externalId"></v-text-field>
+        </v-card>
+        <location-detail :location="organization.location"></location-detail>
+      </v-flex>
+    </v-layout>
     <v-tabs
       dark
       slider-color="yellow"
@@ -37,11 +45,12 @@
       :value="JSON.stringify(organization,0,2)"
       auto-grow
     ></v-textarea>
-  </div>
+  </v-container>
 </template>
 
 <script>
 import OrganizationDetailScript from './OrganizationDetailScript'
+import LocationDetail from '../LocationDetail/LocationDetailVuetify'
 import ContactList from '../ContactList/ContactListVuetify'
 import FacilityList from '../FacilityList/FacilityListVuetify'
 
@@ -51,7 +60,8 @@ export default {
   mixins: [OrganizationDetailScript],
   components: {
     ContactList,
-    FacilityList
+    FacilityList,
+    LocationDetail
   }
 }
 </script>

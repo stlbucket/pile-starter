@@ -8,7 +8,7 @@ describe('org-build-org', () => {
   test('should build a new organization', done => {
     apolloClient.setGraphqlEndpoint('http://localhost:5000/graphql')
     apolloClient.setCredentials({
-      username: 'defaultadmin@tst.tst',
+      username: 'testAdmin001',
       password: 'badpassword'
     })
 

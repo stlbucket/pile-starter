@@ -3,7 +3,7 @@
 
 BEGIN;
 
-  create function org_fn.build_contact_location(
+  create or replace function org_fn.build_contact_location(
     _contact_id bigint
     ,_name text
     ,_address1 text

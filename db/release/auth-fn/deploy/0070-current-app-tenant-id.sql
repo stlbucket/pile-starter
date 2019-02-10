@@ -2,7 +2,7 @@ BEGIN;
   CREATE OR REPLACE function auth_fn.current_app_tenant_id() returns bigint AS $$
   DECLARE
   BEGIN
-    return current_setting('jwt.claims.app_user_id')::bigint;
+    return current_setting('jwt.claims.app_tenant_id')::bigint;
   end;
   $$ language plpgsql strict security definer;
   --||--

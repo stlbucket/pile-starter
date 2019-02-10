@@ -404,7 +404,7 @@ AS $function$
 				<column name="username" />
 			</index>
 			<constraint name="contact_app_user_username_check" >
-				<string>username &lt;&gt; &#039;&#039;::text</string>
+				<string>username &lt;&gt;&#039;&#039;::text</string>
 			</constraint>
 			<fk name="fk_contact_app_user_contact" to_schema="org" to_table="contact" >
 				<fk_column name="contact_id" pk="id" />
@@ -495,15 +495,15 @@ AS $function$
 			<index name="pk_organization" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<index name="uq_organization_actual_app_tenant" unique="UNIQUE" >
+			<index name="organization_actual_app_tenant_id_key" unique="UNIQUE" >
 				<column name="actual_app_tenant_id" />
 			</index>
-			<index name="uq_organization_app_tenant_and_name" unique="UNIQUE" >
+			<index name="uq_app_tenant_external_id" unique="UNIQUE" >
 				<column name="app_tenant_id" />
-				<column name="name" />
+				<column name="external_id" />
 			</index>
 			<constraint name="organization_name_check" >
-				<string>name &lt;&gt; &#039;&#039;::text</string>
+				<string>name &lt;&gt;&#039;&#039;::text</string>
 			</constraint>
 			<fk name="fk_organization_location" to_schema="org" to_table="location" >
 				<fk_column name="location_id" pk="id" />
@@ -936,10 +936,10 @@ END; $function$
 	<layout name="org" id="Layout_24f103c" show_relation="columns" >
 		<entity schema="org" name="organization" color="3986C1" x="304" y="464" />
 		<entity schema="org" name="location" color="3986C1" x="304" y="48" />
-		<entity schema="org" name="contact" color="3986C1" x="48" y="48" />
 		<entity schema="org" name="facility" color="3986C1" x="544" y="48" />
 		<entity schema="org" name="config_org" color="3986C1" x="928" y="48" />
 		<entity schema="org" name="contact_app_user" color="3986C1" x="48" y="512" />
+		<entity schema="org" name="contact" color="3986C1" x="48" y="48" />
 	</layout>
 	<layout name="prj" id="Layout_54993eb" show_relation="columns" >
 		<entity schema="prj" name="milestone" color="3986C1" x="560" y="240" />

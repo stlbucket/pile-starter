@@ -3,7 +3,7 @@
 
 BEGIN;
 
-  create function org_fn.build_organization_location(
+  create or replace function org_fn.build_organization_location(
     _organization_id bigint
     ,_name text
     ,_address1 text

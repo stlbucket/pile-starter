@@ -3,7 +3,7 @@
 
 BEGIN;
 
-  create function org_fn.build_facility(
+  create or replace function org_fn.build_facility(
     _organization_id bigint
     ,_name text
     ,_external_id text

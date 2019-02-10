@@ -3,7 +3,7 @@
 
 BEGIN;
 
-create function org_fn.build_tenant_organization(
+create or replace function org_fn.build_tenant_organization(
   _name text
   ,_identifier text
   ,_primary_contact_email text
@@ -17,9 +17,10 @@ declare
   _organization org.organization;
   _primary_contact org.contact;
 begin
+
   _app_tenant := auth_fn.build_app_tenant(
     _name
-    ,''
+    ,_identifier
   );
 
   SELECT *
@@ -28,18 +29,6 @@ begin
   WHERE app_tenant_id = _app_tenant.id
   AND username = _primary_contact_email
   ;
-
---  RAISE EXCEPTION '
---  _name: %
---  _username: %
---  _app_tenant_id: %
---  _app_user: %
---  '
---  ,_name
---  ,_primary_contact_email
---  ,_app_tenant.id
---  ,_app_user
---  ;
 
   IF _app_user.id IS NULL THEN
     _app_user := auth_fn.build_app_user(
@@ -102,9 +91,9 @@ begin
       ,_organization.id
     );
 
-    UPDATE org.contact
-    SET app_user_id = _app_user.id
-    WHERE id = _primary_contact.id
+    INSERT INTO org.contact_app_user(contact_id, app_user_id, app_tenant_id, username)
+    SELECT _primary_contact.id, _app_user.id, _app_tenant.id, _app_user.username
+    ON conflict do nothing
     ;
   END IF;
 

@@ -36,7 +36,7 @@ app.use(postgraphile(
     ,jwtPgTypeIdentifier: jwtPgTypeIdentifier
     ,pgDefaultRole: pgDefaultRole
     ,showErrorStack: true
-    ,extendedErrors: ['hint', 'detail', 'errcode']//extendedErrors
+    ,extendedErrors: ['severity', 'code', 'detail', 'hint', 'positon', 'internalPosition', 'internalQuery', 'where', 'schema', 'table', 'column', 'dataType', 'constraint', 'file', 'line', 'routine']
     ,disableDefaultMutations: disableDefaultMutations
     ,watchPg: watchPg
     ,ignoreRBAC: false  // postgraphile 5.0 plans to make this default to false so hardcoding to this default for now

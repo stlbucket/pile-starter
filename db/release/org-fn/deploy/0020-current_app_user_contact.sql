@@ -15,7 +15,7 @@ begin
   SELECT *
   INTO _contact
   FROM org.contact
-  WHERE app_user_id = _app_user.id;
+  WHERE id = (select contact_id from org.contact_app_user where app_user_id = _app_user.id);
 
   RETURN _contact;
 

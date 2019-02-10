@@ -3,7 +3,7 @@
 
 BEGIN;
 
-create function org_fn.modify_location(
+create or replace function org_fn.modify_location(
   _id bigint,
   _name text,
   _address1 text,

@@ -36,7 +36,8 @@ begin;
     if NEW.app_tenant_id is null then 
       -- only users with 'SuperAdmin' permission_key will be able to arbitrarily set this value
       -- rls policy (below) will prevent users from specifying an alternate app_tenant_id
-      NEW.app_tenant_id := (select app_tenant_id from auth_fn.current_app_user());
+      NEW.app_tenant_id := auth_fn.current_app_tenant_id();
+      NEW.app_tenant_id := auth_fn.current_app_tenant_id();
     end if;
 
     NEW.updated_at = current_timestamp;
@@ -74,6 +75,8 @@ begin;
 
 
   -- postgraphile smart comments to configure the API:   https://www.graphile.org/postgraphile/smart-comments/
+  comment on column org.organization.app_tenant_id is
+  E'@omit create'; -- id is always set by the db.  this might change in an event-sourcing scenario
   comment on column org.organization.id is
   E'@omit create'; -- id is always set by the db.  this might change in an event-sourcing scenario
   comment on column org.organization.created_at is

@@ -181,61 +181,6 @@ AS $function$
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_license_type_permission BEFORE INSERT OR UPDATE ON app.license_type_permission FOR EACH ROW EXECUTE PROCEDURE app.fn_timestamp_update_license_type_permission()]]></string>
 		</trigger>
 	</schema>
-	<schema name="app_jobs" catalogname="phile_starter" schemaname="app_jobs" >
-		<table name="job" >
-			<column name="id" type="serial" length="10" decimal="0" jt="4" mandatory="y" autoincrement="y" />
-			<column name="queue_name" type="varchar" decimal="0" jt="12" mandatory="y" >
-				<defo>(gen_random_uuid())::character varying</defo>
-			</column>
-			<column name="task_identifier" type="varchar" decimal="0" jt="12" mandatory="y" />
-			<column name="payload" type="json" decimal="0" jt="2000" mandatory="y" >
-				<defo>&#039;{}&#039;::json</defo>
-			</column>
-			<column name="priority" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
-				<defo>0</defo>
-			</column>
-			<column name="run_at" type="timestamptz" length="35" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="attempts" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
-				<defo>0</defo>
-			</column>
-			<column name="last_error" type="varchar" decimal="0" jt="12" />
-			<column name="created_at" type="timestamptz" length="35" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamptz" length="35" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<index name="job_pkey" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="job_queue" >
-			<column name="queue_name" type="varchar" decimal="0" jt="12" mandatory="y" />
-			<column name="job_count" type="integer" length="10" decimal="0" jt="4" mandatory="y" >
-				<defo>0</defo>
-			</column>
-			<column name="locked_at" type="timestamptz" length="35" decimal="6" jt="93" />
-			<column name="locked_by" type="varchar" decimal="0" jt="12" />
-			<index name="job_queue_pkey" unique="PRIMARY_KEY" >
-				<column name="queue_name" />
-			</index>
-		</table>
-		<sequence name="job_id_seq" start="1" />
-		<trigger name="_100_timestamps" id="Trigger_3c72ceb" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_jobs.job FOR EACH ROW EXECUTE PROCEDURE app_jobs_fn.update_timestamps()]]></string>
-		</trigger>
-		<trigger name="_500_decrease_job_queue_count" id="Trigger_3c82265" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER _500_decrease_job_queue_count BEFORE DELETE ON app_jobs.job FOR EACH ROW EXECUTE PROCEDURE app_jobs_fn.jobs__decrease_job_queue_count()]]></string>
-		</trigger>
-		<trigger name="_500_increase_job_queue_count" id="Trigger_e97adf" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER _500_increase_job_queue_count AFTER INSERT ON app_jobs.job FOR EACH ROW EXECUTE PROCEDURE app_jobs_fn.jobs__increase_job_queue_count()]]></string>
-		</trigger>
-		<trigger name="_900_notify_worker" id="Trigger_4ed689a" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER _900_notify_worker AFTER INSERT ON app_jobs.job FOR EACH STATEMENT EXECUTE PROCEDURE app_jobs_fn.do_notify('jobs:insert')]]></string>
-		</trigger>
-	</schema>
 	<schema name="auth" catalogname="phile_starter" schemaname="auth" >
 		<table name="app_tenant" >
 			<comment><![CDATA[@omit create,update,delete]]></comment>
@@ -376,323 +321,6 @@ AS $function$
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_permission BEFORE INSERT OR UPDATE ON auth.permission FOR EACH ROW EXECUTE PROCEDURE auth.fn_timestamp_update_permission()]]></string>
 		</trigger>
 	</schema>
-	<schema name="bimo" catalogname="phile_starter" schemaname="bimo" >
-		<table name="game" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<index name="pk_game" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="gamer" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<index name="pk_gamer" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_gamer_contact" to_schema="org" to_table="contact" >
-				<fk_column name="contact_id" pk="id" />
-			</fk>
-		</table>
-		<table name="gamer_game_preferences" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="gamer_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="game_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="preferences" type="jsonb" decimal="0" jt="1111" mandatory="y" >
-				<defo>&#039;{}&#039;::jsonb</defo>
-			</column>
-			<index name="pk_gamer_game_preferences" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_gamer_game_preferences_game" to_schema="bimo" to_table="game" >
-				<fk_column name="game_id" pk="id" />
-			</fk>
-			<fk name="fk_gamer_game_preferences_gamer" to_schema="bimo" to_table="gamer" >
-				<fk_column name="gamer_id" pk="id" />
-			</fk>
-		</table>
-		<table name="match" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="start_time" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="end_time" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="game_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_match" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_match_game" to_schema="bimo" to_table="game" >
-				<fk_column name="game_id" pk="id" />
-			</fk>
-		</table>
-		<table name="side" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="match_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_side" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_side_contact" to_schema="bimo" to_table="match" >
-				<fk_column name="match_id" pk="id" />
-			</fk>
-		</table>
-		<table name="side_gamer" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="gamer_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="side_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_side_gamer" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_side_gamer_gamer" to_schema="bimo" to_table="gamer" >
-				<fk_column name="gamer_id" pk="id" />
-			</fk>
-			<fk name="fk_side_gamer_side" to_schema="bimo" to_table="side" >
-				<fk_column name="side_id" pk="id" />
-			</fk>
-		</table>
-		<table name="tournament" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="start_time" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="end_time" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="game_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<index name="pk_tournament" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_tournament_game" to_schema="bimo" to_table="game" >
-				<fk_column name="game_id" pk="id" />
-			</fk>
-		</table>
-		<table name="tournament_entry" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="tournament_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="gamer_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_tournament_entry" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_tournament_entry_gamer" to_schema="bimo" to_table="gamer" >
-				<fk_column name="gamer_id" pk="id" />
-			</fk>
-			<fk name="fk_tournament_entry_tournament" to_schema="bimo" to_table="tournament" >
-				<fk_column name="tournament_id" pk="id" />
-			</fk>
-		</table>
-		<table name="tournament_match" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="tournament_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="match_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_tournament_match" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_tournament_match_match" to_schema="bimo" to_table="match" >
-				<fk_column name="match_id" pk="id" />
-			</fk>
-			<fk name="fk_tournament_match_tournament" to_schema="bimo" to_table="tournament" >
-				<fk_column name="tournament_id" pk="id" />
-			</fk>
-		</table>
-		<trigger name="tg_timestamp_update_game" table="game" id="Trigger_1775192" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_game BEFORE INSERT OR UPDATE ON bimo.game FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_game()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_gamer" table="gamer" id="Trigger_4292f62" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_gamer BEFORE INSERT OR UPDATE ON bimo.gamer FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_gamer()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_gamer_game_preferences" table="gamer_game_preferences" id="Trigger_391148a" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_gamer_game_preferences BEFORE INSERT OR UPDATE ON bimo.gamer_game_preferences FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_gamer_game_preferences()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_match" table="match" id="Trigger_23254ad" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_match BEFORE INSERT OR UPDATE ON bimo.match FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_match()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_side" table="side" id="Trigger_41a58c8" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_side BEFORE INSERT OR UPDATE ON bimo.side FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_side()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_side_gamer" table="side_gamer" id="Trigger_3e56bce" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_side_gamer BEFORE INSERT OR UPDATE ON bimo.side_gamer FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_side_gamer()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_tournament" table="tournament" id="Trigger_50ff3dd" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_tournament BEFORE INSERT OR UPDATE ON bimo.tournament FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_tournament()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_tournament_entry" table="tournament_entry" id="Trigger_4f8ee35" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_tournament_entry BEFORE INSERT OR UPDATE ON bimo.tournament_entry FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_tournament_entry()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_tournament_match" table="tournament_match" id="Trigger_4e2c246" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_tournament_match BEFORE INSERT OR UPDATE ON bimo.tournament_match FOR EACH ROW EXECUTE PROCEDURE bimo.fn_timestamp_update_tournament_match()]]></string>
-		</trigger>
-	</schema>
-	<schema name="evt" catalogname="phile_starter" schemaname="evt" >
-		<table name="evt" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_by_app_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" mandatory="y" />
-			<column name="params" type="jsonb" decimal="0" jt="1111" mandatory="y" >
-				<defo>&#039;{}&#039;::jsonb</defo>
-			</column>
-			<column name="outcomes" type="jsonb" decimal="0" jt="1111" />
-			<column name="result" type="&quot;evt&quot;.&quot;evt_processing_result&quot;" decimal="0" jt="12" mandatory="y" />
-			<index name="pk_evt" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<procedure name="fn_timestamp_update_evt" id="Procedure_165df80" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION evt.fn_timestamp_update_evt()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-		</procedure>
-		<trigger name="tg_timestamp_update_evt" id="Trigger_556366" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_evt BEFORE INSERT OR UPDATE ON evt.evt FOR EACH ROW EXECUTE PROCEDURE evt.fn_timestamp_update_evt()]]></string>
-		</trigger>
-	</schema>
-	<schema name="msg" catalogname="phile_starter" schemaname="msg" >
-		<table name="message" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_by_app_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="subject_line" type="text" decimal="0" jt="12" mandatory="y" />
-			<column name="content" type="text" decimal="0" jt="12" mandatory="y" />
-			<index name="pk_message" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="message_delivery" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="message_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="to_contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="delivery_status" type="&quot;msg&quot;.&quot;message_delivery_status&quot;" decimal="0" jt="12" mandatory="y" >
-				<defo>&#039;Requested&#039;::msg.message_delivery_status</defo>
-			</column>
-			<column name="delivery_method" type="&quot;msg&quot;.&quot;message_delivery_method&quot;" decimal="0" jt="12" mandatory="y" >
-				<defo>&#039;IN_APP&#039;::msg.message_delivery_method</defo>
-			</column>
-			<index name="pk_message_delivery" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_message_delivery_message" to_schema="msg" to_table="message" >
-				<fk_column name="message_id" pk="id" />
-			</fk>
-		</table>
-		<procedure name="fn_timestamp_update_message" id="Procedure_4f9fb" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION msg.fn_timestamp_update_message()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-		</procedure>
-		<procedure name="fn_timestamp_update_message_delivery" id="Procedure_41890c0" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION msg.fn_timestamp_update_message_delivery()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<trigger name="tg_timestamp_update_message" table="message" id="Trigger_30d9c43" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_message BEFORE INSERT OR UPDATE ON msg.message FOR EACH ROW EXECUTE PROCEDURE msg.fn_timestamp_update_message()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_message_delivery" table="message_delivery" id="Trigger_52665fd" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_message_delivery BEFORE INSERT OR UPDATE ON msg.message_delivery FOR EACH ROW EXECUTE PROCEDURE msg.fn_timestamp_update_message_delivery()]]></string>
-		</trigger>
-	</schema>
 	<schema name="org" catalogname="phile_starter" schemaname="org" >
 		<table name="config_org" >
 			<comment><![CDATA[@omit create,update,delete]]></comment>
@@ -709,15 +337,18 @@ AS $function$
 			<comment><![CDATA[@omit create,update,delete]]></comment>
 			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
 				<defo>shard_1.id_generator()</defo>
+				<comment><![CDATA[@omit create]]></comment>
 			</column>
 			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
+				<comment><![CDATA[@omit create,update]]></comment>
 			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<comment><![CDATA[@omit create,update]]></comment>
+			</column>
 			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="app_user_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="external_id" type="text" decimal="0" jt="12" />
 			<column name="first_name" type="text" decimal="0" jt="12" />
 			<column name="last_name" type="text" decimal="0" jt="12" />
@@ -744,16 +375,55 @@ AS $function$
 				<fk_column name="organization_id" pk="id" />
 			</fk>
 		</table>
-		<table name="facility" >
-			<comment><![CDATA[@omit create,update,delete]]></comment>
+		<table name="contact_app_user" >
 			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
 				<defo>shard_1.id_generator()</defo>
+				<comment><![CDATA[@omit create]]></comment>
 			</column>
 			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
+				<comment><![CDATA[@omit create,update]]></comment>
 			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<comment><![CDATA[@omit create,update]]></comment>
+			</column>
+			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="app_user_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="username" type="text" decimal="0" jt="12" mandatory="y" />
+			<index name="pk_contact_app_user" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="contact_app_user_app_user_id_key" unique="UNIQUE" >
+				<column name="app_user_id" />
+			</index>
+			<index name="contact_app_user_contact_id_key" unique="UNIQUE" >
+				<column name="contact_id" />
+			</index>
+			<index name="contact_app_user_username_key" unique="UNIQUE" >
+				<column name="username" />
+			</index>
+			<constraint name="contact_app_user_username_check" >
+				<string>username &lt;&gt; &#039;&#039;::text</string>
+			</constraint>
+			<fk name="fk_contact_app_user_contact" to_schema="org" to_table="contact" >
+				<fk_column name="contact_id" pk="id" />
+			</fk>
+		</table>
+		<table name="facility" >
+			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>shard_1.id_generator()</defo>
+				<comment><![CDATA[@omit create]]></comment>
+			</column>
+			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+				<comment><![CDATA[@omit create,update]]></comment>
+			</column>
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<comment><![CDATA[@omit create,update]]></comment>
+			</column>
 			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="name" type="text" decimal="0" jt="12" />
@@ -776,12 +446,16 @@ AS $function$
 			<comment><![CDATA[@omit create,update,delete]]></comment>
 			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
 				<defo>shard_1.id_generator()</defo>
+				<comment><![CDATA[@omit create]]></comment>
 			</column>
 			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
+				<comment><![CDATA[@omit create,update]]></comment>
 			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<comment><![CDATA[@omit create,update]]></comment>
+			</column>
 			<column name="external_id" type="text" decimal="0" jt="12" />
 			<column name="name" type="text" decimal="0" jt="12" />
 			<column name="address1" type="text" decimal="0" jt="12" />
@@ -800,31 +474,42 @@ AS $function$
 			</index>
 		</table>
 		<table name="organization" >
-			<comment><![CDATA[@omit create,update,delete]]></comment>
+			<comment><![CDATA[@foreignKey (actual_app_tenant_id) references auth.vw_app_tenant(id)]]></comment>
 			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
 				<defo>shard_1.id_generator()</defo>
+				<comment><![CDATA[@omit create]]></comment>
 			</column>
 			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
 			<column name="actual_app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
 				<defo>now()</defo>
+				<comment><![CDATA[@omit create,update]]></comment>
 			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<comment><![CDATA[@omit create,update]]></comment>
+			</column>
 			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="name" type="text" decimal="0" jt="12" />
+			<column name="name" type="text" decimal="0" jt="12" mandatory="y" />
 			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="primary_contact_id" type="bigint" length="19" decimal="0" jt="-5" />
 			<index name="pk_organization" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
-			<index name="organization_actual_app_tenant_id_key" unique="UNIQUE" >
+			<index name="uq_organization_actual_app_tenant" unique="UNIQUE" >
 				<column name="actual_app_tenant_id" />
 			</index>
 			<index name="uq_organization_app_tenant_and_name" unique="UNIQUE" >
 				<column name="app_tenant_id" />
 				<column name="name" />
 			</index>
+			<constraint name="organization_name_check" >
+				<string>name &lt;&gt; &#039;&#039;::text</string>
+			</constraint>
 			<fk name="fk_organization_location" to_schema="org" to_table="location" >
 				<fk_column name="location_id" pk="id" />
+			</fk>
+			<fk name="fk_organization_primary_contact" to_schema="org" to_table="contact" >
+				<fk_column name="primary_contact_id" pk="id" />
 			</fk>
 		</table>
 	</schema>
@@ -1221,930 +906,6 @@ END; $function$
 			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_task_role BEFORE INSERT OR UPDATE ON prj.task_role FOR EACH ROW EXECUTE PROCEDURE prj.fn_timestamp_update_task_role()]]></string>
 		</trigger>
 	</schema>
-	<schema name="tunz" catalogname="phile_starter" schemaname="tunz" >
-		<table name="band" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_band" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<index name="band_organization_id_key" unique="UNIQUE" >
-				<column name="organization_id" />
-			</index>
-		</table>
-		<table name="band_member" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="band_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_band_member" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_band_member_band" to_schema="tunz" to_table="band" >
-				<fk_column name="band_id" pk="id" />
-			</fk>
-		</table>
-		<table name="band_member_instrument" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="band_member_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="instrument_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_band_member_instrument" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_band_member_instrument_band_member" to_schema="tunz" to_table="band_member" >
-				<fk_column name="band_member_id" pk="id" />
-			</fk>
-			<fk name="fk_band_member_instrument_instrument" to_schema="tunz" to_table="instrument" >
-				<fk_column name="instrument_id" pk="id" />
-			</fk>
-		</table>
-		<table name="booker" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="show_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<index name="pk_booker" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_booker_show" to_schema="tunz" to_table="show" >
-				<fk_column name="show_id" pk="id" />
-			</fk>
-		</table>
-		<table name="booking" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="band_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="show_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="performance_order" type="integer" length="10" decimal="0" jt="4" />
-			<index name="pk_booking" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_booking_band" to_schema="tunz" to_table="band" >
-				<fk_column name="band_id" pk="id" />
-			</fk>
-			<fk name="fk_booking_show" to_schema="tunz" to_table="show" >
-				<fk_column name="show_id" pk="id" />
-			</fk>
-		</table>
-		<table name="instrument" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<index name="pk_instrument" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="mastering_engineer" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="recording_session_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<index name="pk_mastering_engineer" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_mastering_engineer_recording_session" to_schema="tunz" to_table="recording_session" >
-				<fk_column name="recording_session_id" pk="id" />
-			</fk>
-		</table>
-		<table name="mixing_engineer" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="recording_session_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<index name="pk_mixing_engineer" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_mixing_engineer_recording_session" to_schema="tunz" to_table="recording_session" >
-				<fk_column name="recording_session_id" pk="id" />
-			</fk>
-		</table>
-		<table name="producer" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="recording_session_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_producer" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_producer_recording_session" to_schema="tunz" to_table="recording_session" >
-				<fk_column name="recording_session_id" pk="id" />
-			</fk>
-		</table>
-		<table name="promoter" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="show_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<index name="pk_promoter" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_booker_show" to_schema="tunz" to_table="show" >
-				<fk_column name="show_id" pk="id" />
-			</fk>
-		</table>
-		<table name="recording" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="title" type="text" decimal="0" jt="12" >
-				<defo>&#039;untitled&#039;::text</defo>
-			</column>
-			<column name="song_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="other_titles" type="_text" decimal="0" jt="2003" />
-			<column name="key" type="text" decimal="0" jt="12" />
-			<column name="description" type="text" decimal="0" jt="12" />
-			<column name="bpm" type="integer" length="10" decimal="0" jt="4" />
-			<column name="lyrics" type="text" decimal="0" jt="12" />
-			<index name="pk_recording" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_recording_song" to_schema="tunz" to_table="song" >
-				<fk_column name="song_id" pk="id" />
-			</fk>
-		</table>
-		<table name="recording_engineer" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="recording_session_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<index name="pk_recording_engineer" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_recording_engineer_recording_session" to_schema="tunz" to_table="recording_session" >
-				<fk_column name="recording_session_id" pk="id" />
-			</fk>
-		</table>
-		<table name="recording_session" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="session_start" type="timestamp" length="29" decimal="6" jt="93" />
-			<column name="session_end" type="timestamp" length="29" decimal="6" jt="93" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<column name="recording_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="recording_studio_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<index name="pk_recording_session" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_recording_session_recording" to_schema="tunz" to_table="recording" >
-				<fk_column name="recording_id" pk="id" />
-			</fk>
-			<fk name="fk_recording_session_recording_studio" to_schema="tunz" to_table="recording_studio" >
-				<fk_column name="recording_studio_id" pk="id" />
-			</fk>
-		</table>
-		<table name="recording_studio" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="facility_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<index name="pk_recording_studio" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="release" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="title" type="text" decimal="0" jt="12" >
-				<defo>&#039;untitled&#039;::text</defo>
-			</column>
-			<column name="one_sentence" type="text" decimal="0" jt="12" />
-			<column name="urls" type="_text" decimal="0" jt="2003" />
-			<column name="isrc" type="text" decimal="0" jt="12" />
-			<column name="bar_code" type="text" decimal="0" jt="12" />
-			<column name="description" type="text" decimal="0" jt="12" />
-			<column name="recording_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="copyright" type="text" decimal="0" jt="12" />
-			<column name="publishing_group" type="text" decimal="0" jt="12" />
-			<index name="pk_release" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_release_recording" to_schema="tunz" to_table="recording" >
-				<fk_column name="recording_id" pk="id" />
-			</fk>
-		</table>
-		<table name="session_player" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="recording_session_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_session_player" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_session_player_recording_session" to_schema="tunz" to_table="recording_session" >
-				<fk_column name="recording_session_id" pk="id" />
-			</fk>
-		</table>
-		<table name="session_player_track" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="session_player_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="track_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_session_player_track" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_session_player_track_session_player" to_schema="tunz" to_table="session_player" >
-				<fk_column name="session_player_id" pk="id" />
-			</fk>
-			<fk name="fk_session_player_track_track" to_schema="tunz" to_table="track" >
-				<fk_column name="track_id" pk="id" />
-			</fk>
-		</table>
-		<table name="show" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="venue_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="show_date" type="date" length="13" decimal="0" jt="91" />
-			<column name="door_time" type="time" length="15" decimal="6" jt="92" />
-			<index name="pk_show" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_show_venue" to_schema="tunz" to_table="venue" >
-				<fk_column name="venue_id" pk="id" />
-			</fk>
-		</table>
-		<table name="song" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="title" type="text" decimal="0" jt="12" >
-				<defo>&#039;untitled&#039;::text</defo>
-			</column>
-			<column name="lyrics" type="text" decimal="0" jt="12" />
-			<index name="pk_song" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="songwriter" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="song_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<index name="pk_songwriter" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_songwriter_song" to_schema="tunz" to_table="song" >
-				<fk_column name="song_id" pk="id" />
-			</fk>
-		</table>
-		<table name="sound_person" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="contact_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="show_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<index name="pk_sound_person" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_sound_person_show" to_schema="tunz" to_table="show" >
-				<fk_column name="show_id" pk="id" />
-			</fk>
-		</table>
-		<table name="track" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="recording_session_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="note" type="text" decimal="0" jt="12" />
-			<column name="instrument_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="status" type="&quot;tunz&quot;.&quot;track_status&quot;" decimal="0" jt="12" mandatory="y" >
-				<defo>&#039;Recorded&#039;::tunz.track_status</defo>
-			</column>
-			<index name="pk_track" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_track_instrument" to_schema="tunz" to_table="instrument" >
-				<fk_column name="instrument_id" pk="id" />
-			</fk>
-			<fk name="fk_track_recording_session" to_schema="tunz" to_table="recording_session" >
-				<fk_column name="recording_session_id" pk="id" />
-			</fk>
-		</table>
-		<table name="venue" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="created_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
-				<defo>now()</defo>
-			</column>
-			<column name="updated_at" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
-			<column name="external_id" type="text" decimal="0" jt="12" />
-			<column name="organization_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="location_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<column name="facility_id" type="bigint" length="19" decimal="0" jt="-5" />
-			<index name="pk_venue" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<procedure name="fn_timestamp_update_band" id="Procedure_18e26d5" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_band()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_band_member" id="Procedure_447b5a5" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_band_member()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_band_member_instrument" id="Procedure_38105af" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_band_member_instrument()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_booker" id="Procedure_5b8c0c" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_booker()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_booking" id="Procedure_223f941" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_booking()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_instrument" id="Procedure_13ab3d8" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_instrument()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_mastering_engineer" id="Procedure_49d60bd" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_mastering_engineer()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_mixing_engineer" id="Procedure_415e312" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_mixing_engineer()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_producer" id="Procedure_3ccf525" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_producer()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_promoter" id="Procedure_21b89cc" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_promoter()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_recording" id="Procedure_317cd1a" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_recording()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_recording_engineer" id="Procedure_8e0f53" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_recording_engineer()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_recording_session" id="Procedure_268f124" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_recording_session()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_recording_studio" id="Procedure_5ec2433" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_recording_studio()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_release" id="Procedure_1c0dc58" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_release()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_session_player" id="Procedure_1cbe09a" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_session_player()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_session_player_track" id="Procedure_135ecd7" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_session_player_track()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_show" id="Procedure_39f7595" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_show()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_song" id="Procedure_524ad9b" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_song()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_songwriter" id="Procedure_48150e7" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_songwriter()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_sound_person" id="Procedure_3266a10" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_sound_person()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_track" id="Procedure_2ca68ae" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_track()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<procedure name="fn_timestamp_update_venue" id="Procedure_2e38a13" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION tunz.fn_timestamp_update_venue()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-			<result_param name="returnValue" jt="1111" type="trigger" />
-		</procedure>
-		<trigger name="tg_timestamp_update_band" table="band" id="Trigger_3e6238c" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_band BEFORE INSERT OR UPDATE ON tunz.band FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_band()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_band_member" table="band_member" id="Trigger_3a54006" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_band_member BEFORE INSERT OR UPDATE ON tunz.band_member FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_band_member()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_band_member_instrument" table="band_member_instrument" id="Trigger_32bf5c7" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_band_member_instrument BEFORE INSERT OR UPDATE ON tunz.band_member_instrument FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_band_member_instrument()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_booker" table="booker" id="Trigger_4dbdf61" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_booker BEFORE INSERT OR UPDATE ON tunz.booker FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_booker()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_booking" table="booking" id="Trigger_1212ff8" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_booking BEFORE INSERT OR UPDATE ON tunz.booking FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_booking()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_instrument" table="instrument" id="Trigger_1ca6859" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_instrument BEFORE INSERT OR UPDATE ON tunz.instrument FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_instrument()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_mastering_engineer" table="mastering_engineer" id="Trigger_18e1b5a" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_mastering_engineer BEFORE INSERT OR UPDATE ON tunz.mastering_engineer FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_mastering_engineer()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_mixing_engineer" table="mixing_engineer" id="Trigger_4ab3705" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_mixing_engineer BEFORE INSERT OR UPDATE ON tunz.mixing_engineer FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_mixing_engineer()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_producer" table="producer" id="Trigger_205f26b" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_producer BEFORE INSERT OR UPDATE ON tunz.producer FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_producer()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_promoter" table="promoter" id="Trigger_539832c" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_promoter BEFORE INSERT OR UPDATE ON tunz.promoter FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_promoter()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_recording" table="recording" id="Trigger_1e0805e" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_recording BEFORE INSERT OR UPDATE ON tunz.recording FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_recording()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_recording_engineer" table="recording_engineer" id="Trigger_44ac30" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_recording_engineer BEFORE INSERT OR UPDATE ON tunz.recording_engineer FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_recording_engineer()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_recording_session" table="recording_session" id="Trigger_5e6fd14" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_recording_session BEFORE INSERT OR UPDATE ON tunz.recording_session FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_recording_session()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_recording_studio" table="recording_studio" id="Trigger_e3c903" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_recording_studio BEFORE INSERT OR UPDATE ON tunz.recording_studio FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_recording_studio()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_release" table="release" id="Trigger_2551b7b" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_release BEFORE INSERT OR UPDATE ON tunz.release FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_release()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_session_player" table="session_player" id="Trigger_48837bd" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_session_player BEFORE INSERT OR UPDATE ON tunz.session_player FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_session_player()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_session_player_track" table="session_player_track" id="Trigger_2d7aaa6" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_session_player_track BEFORE INSERT OR UPDATE ON tunz.session_player_track FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_session_player_track()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_show" table="show" id="Trigger_3523c7a" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_show BEFORE INSERT OR UPDATE ON tunz.show FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_show()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_song" table="song" id="Trigger_2d8f5e3" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_song BEFORE INSERT OR UPDATE ON tunz.song FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_song()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_songwriter" table="songwriter" id="Trigger_3f3cd06" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_songwriter BEFORE INSERT OR UPDATE ON tunz.songwriter FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_songwriter()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_sound_person" table="sound_person" id="Trigger_13358a3" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_sound_person BEFORE INSERT OR UPDATE ON tunz.sound_person FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_sound_person()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_track" table="track" id="Trigger_453935d" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_track BEFORE INSERT OR UPDATE ON tunz.track FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_track()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_venue" table="venue" id="Trigger_5b69ac7" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_venue BEFORE INSERT OR UPDATE ON tunz.venue FOR EACH ROW EXECUTE PROCEDURE tunz.fn_timestamp_update_venue()]]></string>
-		</trigger>
-	</schema>
-	<schema name="wf" catalogname="phile_starter" schemaname="wf" >
-		<table name="workflow" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<column name="version" type="text" decimal="0" jt="12" />
-			<index name="pk_workflow" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-		</table>
-		<table name="workflow_instance" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<column name="state" type="&quot;wf&quot;.&quot;workflow_instance_state_json&quot;" decimal="0" jt="2001" mandatory="y" />
-			<column name="workflow_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_workflow_instance" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_workflow_instance_workflow" to_schema="wf" to_table="workflow" >
-				<fk_column name="workflow_id" pk="id" />
-			</fk>
-		</table>
-		<table name="workflow_step" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="workflow_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<index name="pk_workflow_step" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_workflow_step_workflow" to_schema="wf" to_table="workflow" >
-				<fk_column name="workflow_id" pk="id" />
-			</fk>
-		</table>
-		<table name="workflow_step_dependency" >
-			<column name="id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
-				<defo>shard_1.id_generator()</defo>
-			</column>
-			<column name="app_tenant_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="name" type="text" decimal="0" jt="12" />
-			<column name="parent_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<column name="dependent_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
-			<index name="pk_workflow_step_dependency" unique="PRIMARY_KEY" >
-				<column name="id" />
-			</index>
-			<fk name="fk_workflow_step_dependency_dependent" to_schema="wf" to_table="workflow_step" >
-				<fk_column name="dependent_id" pk="id" />
-			</fk>
-			<fk name="fk_workflow_step_dependency_parent" to_schema="wf" to_table="workflow_step" >
-				<fk_column name="parent_id" pk="id" />
-			</fk>
-		</table>
-		<procedure name="fn_timestamp_update_workflow" id="Procedure_87c32" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION wf.fn_timestamp_update_workflow()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-		</procedure>
-		<procedure name="fn_timestamp_update_workflow_instance" id="Procedure_38c53bb" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION wf.fn_timestamp_update_workflow_instance()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-		</procedure>
-		<procedure name="fn_timestamp_update_workflow_step" id="Procedure_39db498" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION wf.fn_timestamp_update_workflow_step()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-		</procedure>
-		<procedure name="fn_timestamp_update_workflow_step_dependency" id="Procedure_11f2be7" isSystem="false" params_known="n" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION wf.fn_timestamp_update_workflow_step_dependency()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-  BEGIN
-    NEW.updated_at = current_timestamp;
-    RETURN NEW;
-  END; $function$
-]]></string>
-		</procedure>
-		<trigger name="tg_timestamp_update_workflow" table="workflow" id="Trigger_e829f9" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_workflow BEFORE INSERT OR UPDATE ON wf.workflow FOR EACH ROW EXECUTE PROCEDURE wf.fn_timestamp_update_workflow()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_workflow_instance" table="workflow_instance" id="Trigger_1727dce" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_workflow_instance BEFORE INSERT OR UPDATE ON wf.workflow_instance FOR EACH ROW EXECUTE PROCEDURE wf.fn_timestamp_update_workflow_instance()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_workflow_step" table="workflow_step" id="Trigger_59223fc" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_workflow_step BEFORE INSERT OR UPDATE ON wf.workflow_step FOR EACH ROW EXECUTE PROCEDURE wf.fn_timestamp_update_workflow_step()]]></string>
-		</trigger>
-		<trigger name="tg_timestamp_update_workflow_step_dependency" table="workflow_step_dependency" id="Trigger_275afe6" isSystem="false" >
-			<string><![CDATA[CREATE TRIGGER tg_timestamp_update_workflow_step_dependency BEFORE INSERT OR UPDATE ON wf.workflow_step_dependency FOR EACH ROW EXECUTE PROCEDURE wf.fn_timestamp_update_workflow_step_dependency()]]></string>
-		</trigger>
-	</schema>
 	<connector name="phile-starter" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.2.2.jar" driver_desc="Standard" host="0.0.0.0" port="5432" instance="phile_starter" user="postgres" passwd="MTIzNA==" />
 	<layout name="app" id="Layout_537772a" show_relation="columns" >
 		<entity schema="app" name="license_permission" color="3986C1" x="544" y="400" />
@@ -2156,10 +917,7 @@ AS $function$
 		<entity schema="app" name="license_type_permission" color="BED3F4" x="256" y="400" />
 		<entity schema="app" name="license" color="BED3F4" x="560" y="64" />
 	</layout>
-	<layout name="app_jobs" id="Layout_4f3875c" show_relation="columns" >
-		<entity schema="app_jobs" name="job" color="3986C1" x="48" y="48" />
-		<entity schema="app_jobs" name="job_queue" color="3986C1" x="304" y="48" />
-	</layout>
+	<layout name="app_jobs" id="Layout_4f3875c" show_relation="columns" />
 	<layout name="auth" id="Layout_14ed5cd" show_relation="columns" >
 		<entity schema="auth" name="app_tenant" color="BED3F4" x="288" y="48" />
 		<entity schema="auth" name="app_user" color="BED3F4" x="48" y="48" />
@@ -2168,44 +926,20 @@ AS $function$
 		<entity schema="auth" name="token" color="BED3F4" x="288" y="304" />
 	</layout>
 	<layout name="bimo" id="Layout_1ed656f" show_relation="columns" >
-		<entity schema="org" name="contact" color="3986C1" x="1168" y="144" />
-		<entity schema="bimo" name="side_gamer" color="3986C1" x="800" y="608" />
-		<entity schema="bimo" name="gamer" color="BED3F4" x="800" y="176" />
-		<entity schema="bimo" name="gamer_game_preferences" color="3986C1" x="528" y="320" />
-		<entity schema="bimo" name="tournament_entry" color="3986C1" x="400" y="80" />
-		<entity schema="bimo" name="game" color="BED3F4" x="272" y="320" />
-		<entity schema="bimo" name="match" color="BED3F4" x="304" y="576" />
-		<entity schema="bimo" name="side" color="BED3F4" x="528" y="608" />
-		<entity schema="bimo" name="tournament_match" color="3986C1" x="48" y="576" />
-		<entity schema="bimo" name="tournament" color="3986C1" x="48" y="160" />
+		<entity schema="org" name="contact" color="3986C1" x="48" y="80" />
 		<group name="org" color="C4E0F9" >
 			<entity schema="org" name="contact" />
 		</group>
-		<group name="bimo" color="C4E0F9" >
-			<entity schema="bimo" name="side_gamer" />
-			<entity schema="bimo" name="gamer" />
-			<entity schema="bimo" name="gamer_game_preferences" />
-			<entity schema="bimo" name="tournament_entry" />
-			<entity schema="bimo" name="game" />
-			<entity schema="bimo" name="match" />
-			<entity schema="bimo" name="side" />
-			<entity schema="bimo" name="tournament_match" />
-			<entity schema="bimo" name="tournament" />
-		</group>
 	</layout>
-	<layout name="evt" id="Layout_427404d" show_relation="columns" >
-		<entity schema="evt" name="evt" color="3986C1" x="48" y="48" />
-	</layout>
-	<layout name="msg" id="Layout_32c7948" show_relation="columns" >
-		<entity schema="msg" name="message_delivery" color="3986C1" x="368" y="48" />
-		<entity schema="msg" name="message" color="3986C1" x="48" y="48" />
-	</layout>
+	<layout name="evt" id="Layout_427404d" show_relation="columns" />
+	<layout name="msg" id="Layout_32c7948" show_relation="columns" />
 	<layout name="org" id="Layout_24f103c" show_relation="columns" >
-		<entity schema="org" name="facility" color="3986C1" x="544" y="48" />
-		<entity schema="org" name="config_org" color="3986C1" x="928" y="48" />
+		<entity schema="org" name="organization" color="3986C1" x="304" y="464" />
 		<entity schema="org" name="location" color="3986C1" x="304" y="48" />
 		<entity schema="org" name="contact" color="3986C1" x="48" y="48" />
-		<entity schema="org" name="organization" color="3986C1" x="304" y="464" />
+		<entity schema="org" name="facility" color="3986C1" x="544" y="48" />
+		<entity schema="org" name="config_org" color="3986C1" x="928" y="48" />
+		<entity schema="org" name="contact_app_user" color="3986C1" x="48" y="512" />
 	</layout>
 	<layout name="prj" id="Layout_54993eb" show_relation="columns" >
 		<entity schema="prj" name="milestone" color="3986C1" x="560" y="240" />
@@ -2220,35 +954,6 @@ AS $function$
 		<entity schema="prj" name="task_role" color="3986C1" x="432" y="720" />
 		<entity schema="prj" name="prj_note" color="3986C1" x="816" y="688" />
 	</layout>
-	<layout name="tunz" id="Layout_40823ce" show_relation="columns" >
-		<entity schema="tunz" name="venue" color="996699" x="128" y="80" />
-		<entity schema="tunz" name="show" color="BED3F4" x="224" y="352" />
-		<entity schema="tunz" name="song" color="3986C1" x="1776" y="368" />
-		<entity schema="tunz" name="songwriter" color="99CC99" x="1792" y="688" />
-		<entity schema="tunz" name="recording" color="3986C1" x="1552" y="352" />
-		<entity schema="tunz" name="release" color="3986C1" x="1520" y="48" />
-		<entity schema="tunz" name="recording_session" color="3986C1" x="1280" y="384" />
-		<entity schema="tunz" name="session_player" color="99CC99" x="1040" y="608" />
-		<entity schema="tunz" name="producer" color="99CC99" x="1376" y="672" />
-		<entity schema="tunz" name="recording_studio" color="996699" x="1264" y="80" />
-		<entity schema="tunz" name="mastering_engineer" color="99CC99" x="1584" y="608" />
-		<entity schema="tunz" name="mixing_engineer" color="99CC99" x="1344" y="864" />
-		<entity schema="tunz" name="recording_engineer" color="99CC99" x="1136" y="848" />
-		<entity schema="tunz" name="sound_person" color="99CC99" x="48" y="400" />
-		<entity schema="tunz" name="promoter" color="99CC99" x="48" y="624" />
-		<entity schema="tunz" name="booker" color="99CC99" x="208" y="656" />
-		<entity schema="tunz" name="booking" color="3986C1" x="304" y="64" />
-		<entity schema="tunz" name="band" color="3986C1" x="368" y="352" />
-		<entity schema="tunz" name="band_member" color="99CC99" x="368" y="656" />
-		<entity schema="tunz" name="band_member_instrument" color="3986C1" x="544" y="592" />
-		<entity schema="tunz" name="session_player_track" color="3986C1" x="976" y="416" />
-		<entity schema="tunz" name="track" color="3986C1" x="1056" y="144" />
-		<entity schema="tunz" name="instrument" color="3986C1" x="768" y="176" />
-	</layout>
-	<layout name="wf" id="Layout_1a16d55" show_relation="columns" >
-		<entity schema="wf" name="workflow" color="BED3F4" x="48" y="48" />
-		<entity schema="wf" name="workflow_step" color="BED3F4" x="48" y="336" />
-		<entity schema="wf" name="workflow_step_dependency" color="BED3F4" x="336" y="352" />
-		<entity schema="wf" name="workflow_instance" color="BED3F4" x="336" y="48" />
-	</layout>
+	<layout name="tunz" id="Layout_40823ce" show_relation="columns" />
+	<layout name="wf" id="Layout_1a16d55" show_relation="columns" />
 </project>

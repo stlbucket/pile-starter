@@ -26,6 +26,11 @@ BEGIN;
   CREATE FUNCTION org.fn_timestamp_update_facility() RETURNS trigger AS $$
   BEGIN
     NEW.updated_at = current_timestamp;
+    if NEW.app_tenant_id is null then 
+      -- only users with 'SuperAdmin' permission_key will be able to arbitrarily set this value
+      -- rls policy (below) will prevent users from specifying an alternate app_tenant_id
+      NEW.app_tenant_id := auth_fn.current_app_tenant_id();
+    end if;
     RETURN NEW;
   END; $$ LANGUAGE plpgsql;
   --||--
@@ -48,6 +53,8 @@ BEGIN;
     using (app_tenant_id = auth_fn.current_app_tenant_id());
 
 
+  comment on column org.facility.app_tenant_id is
+  E'@omit create'; -- id is always set by the db.  this might change in an event-sourcing scenario
   comment on column org.facility.id is
   E'@omit create';
   comment on column org.facility.created_at is

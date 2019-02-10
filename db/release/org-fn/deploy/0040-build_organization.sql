@@ -3,7 +3,7 @@
 
 BEGIN;
 
-create function org_fn.build_organization(
+create or replace function org_fn.build_organization(
   _name text,
   _external_id text
 )

@@ -3,7 +3,7 @@
 
 BEGIN;
 
-  create function org_fn.build_contact(
+  create or replace function org_fn.build_contact(
     _first_name text
     ,_last_name text
     ,_email text
