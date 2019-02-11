@@ -49,8 +49,11 @@ BEGIN;
   --||--
   alter table org.facility enable row level security;
   --||--
-  create policy select_facility on org.facility for all
-    using (app_tenant_id = auth_fn.current_app_tenant_id());
+  create policy all_facility_app_user on org.facility for all to app_user  -- sql action could change according to your needs
+  using (app_tenant_id = auth_fn.current_app_tenant_id());  -- this function could be replaced entirely or on individual policies as needed
+
+  create policy super_aadmin_facility_app_user on org.facility for all to app_super_admin
+  using (1 = 1);
 
 
   comment on column org.facility.app_tenant_id is

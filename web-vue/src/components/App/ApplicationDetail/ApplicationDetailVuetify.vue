@@ -1,17 +1,17 @@
 <template>
   <entity-detail-vuetify
     :fields="fields"
-    :entity="license"
+    :entity="application"
   ></entity-detail-vuetify>
 </template>
 
 <script>
-import LicenseDetailScript from './LicenseDetailScript'
+import ApplicationDetailScript from './ApplicationDetailScript'
 import EntityDetailVuetify from '@/components/_common/EntityDetailVuetify'
 
 export default {
-  name: "LicenseDetail",
-  mixins: [LicenseDetailScript],
+  name: "ApplicationDetail",
+  mixins: [ApplicationDetailScript],
   components: {
     EntityDetailVuetify
   },
@@ -21,6 +21,10 @@ export default {
         {
           name: "name",
           label: "Name"
+        },
+        {
+          name: "key",
+          label: "Key"
         },
         {
           name: "externalId",

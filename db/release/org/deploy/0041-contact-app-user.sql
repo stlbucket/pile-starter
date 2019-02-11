@@ -47,8 +47,11 @@ BEGIN;
   --||--
   alter table org.contact_app_user enable row level security;
   --||--
-  create policy select_contact_app_user on org.contact_app_user for all
-    using (app_tenant_id = auth_fn.current_app_tenant_id());
+  create policy all_contact_app_user on org.contact_app_user for all to app_user  -- sql action could change according to your needs
+  using (app_tenant_id = auth_fn.current_app_tenant_id());  -- this function could be replaced entirely or on individual policies as needed
+
+  create policy super_aadmin_contact_app_user on org.contact_app_user for all to app_super_admin
+  using (1 = 1);
 
   comment on column org.contact_app_user.app_tenant_id is
   E'@omit create'; -- id is always set by the db.  this might change in an event-sourcing scenario

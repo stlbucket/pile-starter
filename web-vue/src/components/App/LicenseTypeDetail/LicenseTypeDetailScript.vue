@@ -1,9 +1,9 @@
 <script>
 
 export default {
-  name: "OrganizationDetailScript",
+  name: "LicenseTypeDetailScript",
   props: {
-    organization: { 
+    licenseType: { 
       type: Object,
       required: true
     }
@@ -13,6 +13,9 @@ export default {
   methods: {
   },
   computed: { 
+    name () {
+      return this.licenseType.name || 'N/A'
+    }
   },
   data () {
     return {

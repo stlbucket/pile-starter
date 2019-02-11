@@ -13,7 +13,10 @@ export default {
   },
   methods: {
   },
-  computed: { 
+  computed: {
+    location () {
+      return this.contact.location || { name: 'N/A' }
+    }
   },
   data () {
     return {

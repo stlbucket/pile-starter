@@ -14,6 +14,15 @@ export default {
   methods: {
   },
   computed: { 
+    contacts () {
+      return this.organization.contacts ? this.organization.contacts.nodes || [] : []
+    },
+    facilities () {
+      return this.organization.facilities ? this.organization.facilities.nodes || [] : []
+    },
+    location () {
+      return this.organization.location || { name: 'N/A' }
+    }
   },
   data () {
     return {

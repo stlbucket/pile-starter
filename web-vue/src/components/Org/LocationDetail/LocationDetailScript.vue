@@ -1,9 +1,9 @@
 <script>
 
 export default {
-  name: "OrganizationDetailScript",
+  name: "LocationDetailScript",
   props: {
-    organization: { 
+    location: { 
       type: Object,
       required: true
     }
@@ -13,6 +13,9 @@ export default {
   methods: {
   },
   computed: { 
+    name () {
+      return this.location.name || 'N/A'
+    }
   },
   data () {
     return {

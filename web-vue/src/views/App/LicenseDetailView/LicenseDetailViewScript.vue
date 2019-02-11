@@ -13,12 +13,38 @@ export default {
   },
   methods: {
   },
-  computed: { 
+  computed: {
+    licenseType () {
+      return this.license.licenseType
+    },
+    application () {
+      return this.license.licenseType.application
+    },
+    organization () {
+      return this.license.organization
+    },
+    assignedToContact () {
+      return this.license.assignedToAppUserContact.contact
+    }
   },
   data () {
     return {
       license: {
-        name: 'N/A'
+        name: 'N/A',
+        organization: {
+          name: 'N/A'
+        },
+        licenseType: {
+          name: 'N/A',
+          application: {
+            name: 'N/A'
+          }
+        },
+        assignedToAppUserContact: {
+          contact: {
+            firstName: 'N/A'
+          }
+        }
       }
     }
   },
@@ -33,6 +59,7 @@ export default {
       },
       update (data) {
         this.license = data.licenseById
+        console.log('license', this.license)
       }
     }
   }

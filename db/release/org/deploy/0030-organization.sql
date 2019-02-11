@@ -67,11 +67,11 @@ begin;
   -- enable row-level security
   alter table org.organization enable row level security;
   -- define a security policy.  your application may require more complexity.
-  create policy all_organization on org.organization for all  -- sql action could change according to your needs
+  create policy all_organization on org.organization for all to app_user  -- sql action could change according to your needs
   using (app_tenant_id = auth_fn.current_app_tenant_id());  -- this function could be replaced entirely or on individual policies as needed
 
-  create policy super_aadmin_organization on org.organization for all to app_super_admin  -- sql action could change according to your needs
-  using (true);  -- this function could be replaced entirely or on individual policies as needed
+  create policy super_aadmin_organization on org.organization for all to app_super_admin
+  using (1 = 1);
 
 
   -- postgraphile smart comments to configure the API:   https://www.graphile.org/postgraphile/smart-comments/

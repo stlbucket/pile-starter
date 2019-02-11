@@ -1,42 +1,53 @@
 <template>
-  <div>
-    <h1>Name: {{ fullName }}</h1>
-    <hr>
-    <v-textarea
-      :value="JSON.stringify(contact,0,2)"
-      auto-grow
-    ></v-textarea>
-    <!-- <v-tabs
-      dark
-      slider-color="yellow"
-    >
-      <v-tab
-        key="facility-list"
-        ripple
-      >
-        Facilities
-      </v-tab>
-      <v-tab-item
-        key="facility-list"
-      >
-        <facility-list
-          :facilities="facilities"
-        ></facility-list>
-      </v-tab-item>
-    </v-tabs> -->
-  </div>
+  <entity-detail-vuetify
+    :fields="fields"
+    :entity="contact"
+  ></entity-detail-vuetify>
 </template>
 
 <script>
 import ContactDetailScript from './ContactDetailScript'
-import ContactList from '../ContactList/ContactListVuetify'
-
+import EntityDetailVuetify from '@/components/_common/EntityDetailVuetify'
 
 export default {
   name: "ContactDetail",
   mixins: [ContactDetailScript],
   components: {
-    ContactList
+    EntityDetailVuetify
+  },
+  data () {
+    return {
+      fields: [
+        {
+          name: "firstName",
+          label: "First Name"
+        },
+        {
+          name: "lastName",
+          label: "Last Name"
+        },
+        {
+          name: "email",
+          label: "Email"
+        },
+        {
+          name: "cellPhone",
+          label: "Cell Phone"
+        },
+        {
+          name: "officePhone",
+          label: "Office Phone"
+        },
+        {
+          name: "title",
+          label: "Title"
+        },
+        {
+          name: "nickname",
+          label: "Nickname"
+        },
+      ]
+    }
   }
 }
 </script>

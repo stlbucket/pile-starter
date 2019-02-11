@@ -14,6 +14,9 @@ export default {
   methods: {
   },
   computed: { 
+    location () {
+      return this.facility.location || { name: 'N/A' }
+    }
   },
   data () {
     return {
