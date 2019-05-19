@@ -1,0 +1,5 @@
+**/node_modules
+**/**/sqitch.conf
+**/.env
+cmd.config
+.idea/
