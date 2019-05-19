@@ -10,5 +10,5 @@ echo ""
 for i in ${packages[@]};
 do
   echo "CONFIGURING PACKAGE ------------------------------------------------------------" $i
-  (cd ./"$i"/ && sqitch engine add pg "$database")
+  (cd ./release/"$i"/ && sqitch engine add pg "$database")
 done
