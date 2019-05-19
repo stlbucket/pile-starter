@@ -1,0 +1,18 @@
+organization_user: stlbucket
+organization_name: stlbucket
+organization_url: https://dev.azure.com/stlbucket
+project_name: tunz
+
+resource_group_name_base: tunz-rg
+# traffic_manager_profile_name: tunz-tm-profile
+# traffic_manager_endpoint_name: tunz-tm-endpoint
+appservice_plan_name_base: tunz-asp
+container_registry_name: tunzcr
+docker_image_name: tunz-api
+location: westus2
+storage_account_name: tunzsa
+storage_share_name_base: web-dist
+appservice_name: tunz
+db_admin_user_name: tunzadmin
+db_admin_user_password: LL38f7ooLL38f7oo
+db_name: tunz

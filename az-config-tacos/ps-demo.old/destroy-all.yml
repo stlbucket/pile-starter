@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ./config.yml
+  tasks: 
+  # master resources
+  - name: Delete master resource group
+    shell: >
+      az group delete 
+      --name "{{ resource_group_name_base }}-master"
+      --yes
+
+  - import_tasks: ./tasks/destroy-environment.yml
+    vars:
+      env: dev
+
+  # - import_tasks: ./destroy-environment.yml
+  #   vars:
+  #     env: stage

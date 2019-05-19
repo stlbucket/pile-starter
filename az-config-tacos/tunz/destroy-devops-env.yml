@@ -1,0 +1,24 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ./config.yml
+  tasks:
+    - name: get the project
+      shell: >
+        az devops project show
+        --organization "{{ organization_url }}"
+        --project "{{ project_name }}"
+      register: project_result
+
+    - name: parse default repo
+      set_fact: 
+        project: "{{ project_result.stdout | from_json }}"
+
+    - debug: var=project
+
+    - name: delete devops project for {{ project_name }}
+      shell: >
+        az devops project delete 
+        --id "{{ project.id }}"
+        --organization "{{ organization_url }}"
+        --yes

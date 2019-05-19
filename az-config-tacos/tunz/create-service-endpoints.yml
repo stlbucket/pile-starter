@@ -1,0 +1,39 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ./config.yml
+  tasks:
+
+    - name: Get service pricipals
+      shell: >
+        az ad sp list
+        --query [?contains(signInAudience, 'MyOrg')].{appDisplayName: appDisplayName}
+      register: service_principals_list
+
+    - name: convert sp to json
+      set_fact: 
+        sp_json: "{{ service_principals_list.stdout | from_json }}"
+
+    # - name: get the key
+    #   set_fact: 
+    #     access_key: "{{ keys_result[0].value }}"
+
+    - name: the key
+      debug:
+        msg: "{{ sp_json[0] }}"
+
+    # -name: create master resource group service endpoint
+    #   shell: >
+    #     az devops service-endpoint create --authorization-scheme ServicePrincipal
+    #     --name
+    #     --service-endpoint-type azurerm
+    #     [--azure-rm-service-principal-id]
+    #     [--azure-rm-service-principal-key]
+    #     [--azure-rm-subscription-id]
+    #     [--azure-rm-subscription-name]
+    #     [--azure-rm-tenant-id]
+    #     [--detect {off, on}]
+    #     [--github-access-token]
+    #     [--github-url]
+    #     [--org]
+    #     [--project]

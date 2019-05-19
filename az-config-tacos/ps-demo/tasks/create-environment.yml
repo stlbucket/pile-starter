@@ -1,0 +1,132 @@
+# api-{{ env }}
+- name: Create {{ env }} api resource group
+  shell: >
+    az group create 
+    --location "{{ location }}"
+    --name "{{ resource_group_name_base }}-api-{{ env }}"
+
+- name: Create {{ env }} app service plan
+  shell: >
+    az appservice plan create 
+    --name "{{ appservice_plan_name_base }}-api-{{ env }}"
+    --resource-group "{{ resource_group_name_base }}-api-{{ env }}"
+    --is-linux
+    --sku B1
+
+- name: Create {{ env }} storage container
+  shell: >
+    az storage container create
+    --name "{{ storage_share_name_base }}-{{ env }}"
+    --account-name {{ storage_account_name }}
+    --account-key {{ access_key }}
+
+- name: Create {{ env }} web app
+  shell: >
+    az webapp create
+    --name "{{ appservice_name }}-api-{{ env }}"
+    --plan "{{ appservice_plan_name_base }}-api-{{ env }}"
+    --resource-group "{{ resource_group_name_base }}-api-{{ env }}"
+    --deployment-container-image-name "{{ container_registry_name }}/azurecr.id/{{ docker_image_name }}:latest"
+  register: web_app
+
+- name: Get acr credentials
+  shell: >
+    az acr credential show 
+    --name "{{ container_registry_name }}"
+  register: acr_credential_set
+
+- name: get the value
+  set_fact: 
+    acr_credential: "{{ (acr_credential_set.stdout | from_json).passwords[0].value  }}"
+
+- name: report acr creds
+  debug:
+    msg: "{{ acr_credential }}"
+
+- name: configure web app docker container
+  shell: >
+    az webapp config container set 
+    --name "{{ appservice_name }}-api-{{ env }}"
+    --resource-group "{{ resource_group_name_base }}-api-{{ env }}"
+    --docker-custom-image-name "{{ container_registry_name }}.azurecr.io/{{ docker_image_name }}:latest"
+    --docker-registry-server-url "https:/{{ container_registry_name }}.azurecr.io"
+    --docker-registry-server-user "{{ container_registry_name }}"
+    --docker-registry-server-password "{{ acr_credential }}"
+
+- name: add storage account to app service to host spa
+  shell: >
+    az webapp config storage-account add 
+    --resource-group "{{ resource_group_name_base }}-api-{{ env }}"
+    --name "{{ appservice_name }}-api-{{ env }}" 
+    --custom-id "{{ appservice_name }}-web-dist-{{ env }}" 
+    --storage-type AzureBlob 
+    --share-name "{{ storage_share_name_base }}-{{ env }}" 
+    --account-name "{{ storage_account_name }}" 
+    --access-key "{{ access_key }}" 
+    --mount-path web-dist
+
+# db-{{ env }}
+- name: Create {{ env }} db resource group
+  shell: >
+    az group create 
+    --location "{{ location }}"
+    --name "{{ resource_group_name_base }}-db-{{ env }}"
+
+- name: create a postgres database server
+  shell: >
+    az postgres server create 
+    --location {{ location }}
+    --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+    --name "{{ appservice_name }}-db-{{ env }}"
+    --admin-user "{{ db_admin_user_name }}"
+    --admin-password "{{ db_admin_user_password }}"
+    --sku-name GP_Gen5_2 
+    # --ssl-enforcement Disabled \ 
+    # --backup-retention 10 
+    # --geo-redundant-backup Enabled 
+    # --storage-size 51200 
+    # --tags "key=value" 
+    --version 10
+
+- name: create a postgres database on the new server
+  shell: >
+    az postgres db create 
+    --name "{{ db_name }}"
+    --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+    --server-name "{{ appservice_name }}-db-{{ env }}"
+  register: db
+
+- name: the db
+  debug:
+    msg: "{{ db }}"
+
+    
+# a vnet will likely be used for real projects - phile starter just exposes the db server to azure resources
+# - name: create a vnet for the database
+#   shell: >
+#     az network vnet create 
+#     --name "{{ appservice_name }}-vnet-{{ env }}"
+#     --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+#     --address-prefixes 10.0.0.0/16
+#     --location "{{ location }}"
+#   register: vnet
+
+# - name: create a service endpoint for vnet
+#   shell: >
+#     az network vnet subnet create
+#     --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+#     --name "{{ appservice_name }}-service-endpoint-subnet-{{ env }}"
+#     --vnet-name "{{ appservice_name }}-vnet-{{ env }}"
+#     --address-prefix 10.0.1.0/24
+#     --service-endpoints Microsoft.SQL  
+#   register: service_endpoint
+
+# - name: create a vnet-rule on db server to secure it to the subnet
+#   shell: >
+#     az postgres server vnet-rule create
+#     --name "{{ appservice_name }}-vnet-rule-db-{{ env }}"
+#     --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+#     --server-name "{{ appservice_name }}-db-{{ env }}"
+#     --vnet-name "{{ appservice_name }}-vnet-{{ env }}"
+#     --subnet "{{ appservice_name }}-service-endpoint-subnet-{{ env }}"
+#   register: vnet_rule

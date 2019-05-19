@@ -1,0 +1,15 @@
+- name: Get storage container keys
+  shell: az storage account keys list --account-name "{{ storage_account_name }}" 
+  register: storage_container_keys
+
+- name: convert keys to json
+  set_fact: 
+    keys_result: "{{ storage_container_keys.stdout | from_json }}"
+
+- name: get the key
+  set_fact: 
+    access_key: "{{ keys_result[0].value }}"
+
+- name: the key
+  debug:
+    msg: "{{ access_key }}"
