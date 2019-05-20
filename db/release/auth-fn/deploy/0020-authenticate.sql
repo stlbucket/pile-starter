@@ -24,7 +24,7 @@ BEGIN;
         RETURN ('app_sync', _app_user.id, _app_user.app_tenant_id, null)::auth.jwt_token;
       END IF;
   
-      RAISE EXCEPTION 'Invalid permission key: %', _soro_user.permission_key;
+      RAISE EXCEPTION 'Invalid permission key: %', _app_user.permission_key;
     ELSE
       RAISE EXCEPTION 'Invalid username or password';
     END IF;

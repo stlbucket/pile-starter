@@ -25,6 +25,11 @@ BEGIN;
   CREATE FUNCTION app.fn_timestamp_update_license_permission() RETURNS trigger AS $$
   BEGIN
     NEW.updated_at = current_timestamp;
+    if NEW.app_tenant_id is null then 
+      -- only users with 'SuperAdmin' permission_key will be able to arbitrarily set this value
+      -- rls policy (below) will prevent users from specifying an alternate app_tenant_id
+      NEW.app_tenant_id := auth_fn.current_app_tenant_id();
+    end if;
     RETURN NEW;
   END; $$ LANGUAGE plpgsql;
   --||--
@@ -43,8 +48,11 @@ BEGIN;
   --||--
   alter table app.license_permission enable row level security;
   --||--
-  create policy select_license_permission on app.license_permission for all
-    using (app_tenant_id = auth_fn.current_app_tenant_id());
+  create policy all_license_permission on app.license_permission for all to app_user  -- sql action could change according to your needs
+  using (app_tenant_id = auth_fn.current_app_tenant_id());  -- this function could be replaced entirely or on individual policies as needed
+
+  create policy super_aadmin_license_permission on app.license_permission for all to app_super_admin
+  using (1 = 1);
 
   -- comment on table app.license_permission is E'@omit create,update,delete';
 

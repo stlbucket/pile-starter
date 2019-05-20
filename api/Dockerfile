@@ -1,0 +1,26 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY . .
+
+ENV PORT=8090
+ENV APOLLO_ENGINE_API_KEY="YOUR_API_KEY"
+ENV POSTGRAPHILE_SCHEMAS="auth,auth_fn,org,org_fn,app,prj"
+ENV POSTGRES_CONNECTION="postgres://postgres:1234@0.0.0.0/phile_starter"
+ENV DEFAULT_ROLE="app_anonymous"
+ENV JWT_SECRET="SUPERSECRET-SUPERSECRET-SUPERSECRET"
+ENV JWT_PG_TYPE_IDENTIFIER="auth.jwt_token"
+ENV EXTENDED_ERRORS="hint, detail, errcode"
+ENV DISABLE_DEFAULT_MUTATIONS="false"
+ENV DYNAMIC_JSON="true"
+ENV ENABLE_APOLLO_ENGINE="false"
+ENV WATCH_PG="true"
+ENV GRAPHIQL="true"
+ENV ENABLE_CORS="true"
+
+RUN yarn install
+
+EXPOSE $PORT
+
+ENTRYPOINT ["node", "server.js"]

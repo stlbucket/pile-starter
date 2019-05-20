@@ -8,12 +8,14 @@ CREATE TABLE IF NOT EXISTS prj.task (
   updated_at timestamp NOT NULL,
   app_tenant_id bigint NOT NULL,
   identifier text,
-  name text,
+  name text NOT NULL,
   description text,
   project_id bigint NULL,
   milestone_id bigint NULL,
   due_at timestamp with time zone null,
   completed_at timestamp with time zone null,
+  CHECK (name <> ''),
+  CONSTRAINT uq_task_milestone_and_name UNIQUE (milestone_id, name),
   CONSTRAINT pk_task PRIMARY KEY (id)
 );
 --||--
@@ -27,7 +29,7 @@ alter table prj.task enable row level security;
 create policy select_task on prj.task for select
   using (app_tenant_id = auth_fn.current_app_tenant_id());
 --||--
-GRANT select ON TABLE prj.task TO soro_user;
+GRANT select ON TABLE prj.task TO app_user;
 
 comment on table prj.task is E'@omit create,update,delete';
 

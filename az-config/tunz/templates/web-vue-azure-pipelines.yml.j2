@@ -1,0 +1,26 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+# Azure File Copy
+# Copy files to Azure blob or VM(s)
+- task: AzureFileCopy@3
+  inputs:
+    sourcePath: ./dist/
+    azureSubscription: {{ resource_group_name_base }}-master
+    destination: azureBlob
+    storage: {{ storage_account_name }}
+    containerName: {{ storage_share_name_base }}-dev

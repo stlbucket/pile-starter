@@ -1,7 +1,7 @@
-const {PgMutationUpsertPlugin} = require("@fullstackio/postgraphile-upsert-plugin")
+// const {PgMutationUpsertPlugin} = require("@fullstackio/postgraphile-upsert-plugin")
 
 module.exports = {
-  coolJson: require('./cool-json'),
+  // coolJson: require('./cool-json'),
   filter:   require('postgraphile-plugin-connection-filter'),
-  upsert: PgMutationUpsertPlugin
+  // upsert: PgMutationUpsertPlugin
 }

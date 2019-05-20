@@ -1,0 +1,18 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ./config.yml
+  tasks:
+  - import_tasks: ./tasks/master-resources.yml
+  - import_tasks: ./tasks/storage-keys.yml
+  - import_tasks: ./tasks/create-environment.yml
+    vars:
+      env: dev
+
+  # - import_tasks: ./create-environment.yml
+  #   vars:
+  #     env: stage
+
+  # - import_tasks: ./create-environment.yml
+  #   vars:
+  #     env: prod

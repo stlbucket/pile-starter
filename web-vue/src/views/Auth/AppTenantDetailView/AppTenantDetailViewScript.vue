@@ -14,11 +14,23 @@ export default {
   methods: {
   },
   computed: { 
+    organization () {
+      return this.appTenant.organization
+    },
+    licenses () {
+      return this.appTenant.licenses.nodes
+    }
   },
   data () {
     return {
       appTenant: {
-        name: 'N/A'
+        name: 'N/A',
+        organization: {
+          name: 'N/A'
+        },
+        licenses: {
+          nodes: []
+        }
       }
     }
   },
@@ -33,6 +45,8 @@ export default {
       },
       update (data) {
         this.appTenant = data.appTenantById
+        console.log('app', this.appTenant)
+
       }
     }
   }

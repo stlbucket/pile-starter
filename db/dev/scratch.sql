@@ -1,5 +1,10 @@
-  -- comment on TABLE org.organization is E'@foreignKey (actual_app_tenant_id) references auth.vw_app_tenant(id)';
-
-
-  create policy super_aadmin_organization on org.organization for all to app_super_admin  -- sql action could change according to your needs
-  using (true);  -- this function could be replaced entirely or on individual policies as needed
+  comment on column org.contact.id is
+  E'@omit create';
+  comment on column org.contact.created_at is
+  E'@omit create,update';
+  comment on column org.contact.updated_at is
+  E'@omit create,update';
+  comment on column org.contact.organization_id is
+  E'@omit create,update';
+  comment on column org.contact.app_tenant_id is
+  E'@omit create, update'; -- id is always set by the db.  this might change in an event-sourcing scenario

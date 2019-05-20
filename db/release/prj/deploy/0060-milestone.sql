@@ -9,11 +9,13 @@ CREATE TABLE IF NOT EXISTS prj.milestone (
   updated_at timestamp NOT NULL,
   app_tenant_id bigint NOT NULL,
   identifier text,
-  name text,
+  name text NOT NULL,
   description text,
   project_id bigint NULL,
   due_at timestamp with time zone null,
   completed_at timestamp with time zone null,
+  CHECK (name <> ''),
+  CONSTRAINT uq_milestone_project_and_name UNIQUE (project_id, name),
   CONSTRAINT pk_milestone PRIMARY KEY (id)
 );
 --||--

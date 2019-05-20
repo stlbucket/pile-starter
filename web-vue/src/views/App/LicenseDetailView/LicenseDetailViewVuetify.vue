@@ -8,7 +8,7 @@
             :license="license"
           ></license-detail-component>
           <v-expansion-panel>
-            <v-expansion-panel-content key="organization">
+            <!-- <v-expansion-panel-content key="organization">
               <div slot="header">Organization</div>
               <v-card raised>
                 <organization-detail-component
@@ -23,7 +23,7 @@
                   :contact="assignedToContact"
                 ></contact-detail-component>
               </v-card>
-            </v-expansion-panel-content>
+            </v-expansion-panel-content> -->
             <v-expansion-panel-content key="application">
               <div slot="header">Application</div>
               <v-card raised>
@@ -41,6 +41,28 @@
               </v-card>
             </v-expansion-panel-content>
           </v-expansion-panel>
+        </v-flex>
+        <v-flex xs4>
+          <v-card raised>
+            <v-card-title>Owner Organization</v-card-title>
+            <organization-detail-component
+              :organization="organization"
+            ></organization-detail-component>
+          </v-card>
+          <v-card raised>
+            <v-card-title>Assigned To</v-card-title>
+            <contact-detail-component
+              :contact="assignedToContact"
+            ></contact-detail-component>
+          </v-card>
+          <!-- <v-expansion-panel expand>
+            <v-expansion-panel-content key="organization" value="true">
+              <div slot="header">Organization</div>
+            </v-expansion-panel-content>
+            <v-expansion-panel-content key="assignedToContact" value="true">
+              <div slot="header">Assigned To</div>
+            </v-expansion-panel-content>
+          </v-expansion-panel> -->
         </v-flex>
       </v-layout>
     </v-card>

@@ -8,12 +8,12 @@
     - name: create azure-pipelines.yml file for api repo
       template:
         src: templates/api-azure-pipelines.yml.j2
-        dest: ../api/azure-pipelines.yml
+        dest: ../../api/azure-pipelines.yml
 
     - name: create azure-pipelines.yml file for web-vue repo
       template:
         src: templates/web-vue-azure-pipelines.yml.j2
-        dest: ../web-vue/azure-pipelines.yml
+        dest: ../../web-vue/azure-pipelines.yml
 
     - import_tasks: ./tasks/initialize-devops-git-repo.yml
       vars:

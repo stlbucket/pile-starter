@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ./config.yml
+  tasks:
+ 
+  - import_tasks: ./tasks/destroy-environment.yml
+    vars:
+      env: "{{ env }}"

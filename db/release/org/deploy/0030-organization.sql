@@ -37,7 +37,6 @@ begin;
       -- only users with 'SuperAdmin' permission_key will be able to arbitrarily set this value
       -- rls policy (below) will prevent users from specifying an alternate app_tenant_id
       NEW.app_tenant_id := auth_fn.current_app_tenant_id();
-      NEW.app_tenant_id := auth_fn.current_app_tenant_id();
     end if;
 
     NEW.updated_at = current_timestamp;

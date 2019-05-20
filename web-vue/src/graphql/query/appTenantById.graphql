@@ -1,43 +1,69 @@
-query AppTenantById(
-  $id: BigInt!
-) {
+query AppTenantById($id: BigInt!) {
   appTenantById(id: $id) {
-      id
-      name
-      organization: organizationByActualAppTenantId {
+    id
+    name
+    licenses: licensesByAppTenantId {
+      nodes {
         id
         name
-        primaryContact: contactByPrimaryContactId {
-            id
-            firstName
-            lastName
-            email
-            title
-            cellPhone
-            officePhone
-          }
-          contacts: contactsByOrganizationId {
-          nodes {
-            id
-            firstName
-            lastName
-            email
-            title
-            cellPhone
-            officePhone
-          }
-        }
-        location: locationByLocationId {
+        organization: organizationByOrganizationId {
           id
           name
-          address1
-          address2
-          city
-          state
-          zip
-          lat
-          lon
+        }
+        licenseType: licenseTypeByLicenseTypeId {
+          id
+          name
+          key
+          application: applicationByApplicationId {
+            id
+            name
+            key
+          }
+        }
+        assignedToAppUserContact: contactAppUserByAssignedToAppUserId {
+          contact: contactByContactId {
+            id
+            firstName
+            lastName
+            email
+          }
         }
       }
+    }
+    organization: organizationByActualAppTenantId {
+      id
+      name
+      primaryContact: contactByPrimaryContactId {
+        id
+        firstName
+        lastName
+        email
+        title
+        cellPhone
+        officePhone
+      }
+      contacts: contactsByOrganizationId {
+        nodes {
+          id
+          firstName
+          lastName
+          email
+          title
+          cellPhone
+          officePhone
+        }
+      }
+      location: locationByLocationId {
+        id
+        name
+        address1
+        address2
+        city
+        state
+        zip
+        lat
+        lon
+      }
+    }
   }
 }
