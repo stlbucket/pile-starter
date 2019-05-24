@@ -1,0 +1,45 @@
+# master resources
+- name: Create master resource group
+  shell: >
+    az group create 
+    --location "{{ location }}"
+    --name "{{ resource_group_name_base }}-master"
+
+- name: Create keyvault
+  shell: >
+    az keyvault create 
+    --location "{{ location }}"
+    --name "{{ project_name }}-keyvault"
+    --resource-group "{{ resource_group_name_base }}-master"
+    --enabled-for-deployment true
+  register: keyvault
+
+- name: Create a service principal
+  shell: >
+    az ad sp create-for-rbac 
+    --keyvault "{{ project_name }}-keyvault"
+    --cert "{{ project_name }}-sp-cert"
+    --create-cert
+    --name "{{ project_name }}-service-principal"
+
+- name: Create app service plan
+  shell: >
+    az appservice plan create 
+    --name "{{ appservice_plan_name_base }}-master"
+    --resource-group "{{ resource_group_name_base }}-master"
+
+- name: Create storage account
+  shell: >
+    az storage account create 
+    --name "{{ storage_account_name }}"
+    --resource-group "{{ resource_group_name_base }}-master"
+    --location "{{ location }}"
+
+- name: Create container registry
+  shell: >
+    az acr create 
+    --name "{{ container_registry_name }}"
+    --resource-group "{{ resource_group_name_base }}-master"
+    --location "{{ location }}"
+    --sku Basic 
+    --admin-enabled true

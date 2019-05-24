@@ -1,0 +1,49 @@
+- name: create devops project for {{ project_name }}
+  shell: >
+    az devops project create 
+    --name "{{ project_name }}"
+    --organization "{{ organization_url }}"
+
+- name: create repo for {{ project_name }}
+  shell: >
+    az repos create 
+    --name "{{ item }}"
+    --project "{{ project_name }}"
+    --organization "{{ organization_url }}"
+  loop:
+    - api
+    - db
+    - web-vue
+    - cli
+    - az-config
+
+- name: get the default repo
+  shell: >
+    az repos show
+    --organization "{{ organization_url }}"
+    --project "{{ project_name }}"
+    --repository "{{ project_name }}"
+  register: default_repo_result
+
+- name: parse default repo
+  set_fact: 
+    default_repo: "{{ default_repo_result.stdout | from_json }}"
+
+- name: delete default repo for {{ project_name }}
+  shell: >
+    az repos delete
+    --id "{{ default_repo.id }}"
+    --project "{{ project_name }}"
+    --organization "{{ organization_url }}"
+    --yes
+
+- include_tasks: ./initialize-devops-git-repo.yml
+  vars:
+    repo_name: "{{ item.repo_name }}"
+    pipeline_template: "{{ item.pipeline_template }}"
+  loop:
+  - { repo_name: api, pipeline_template: api-azure-pipelines.yml.j2 }
+  - { repo_name: db, pipeline_template: none  }
+  - { repo_name: cli, pipeline_template: none  }
+  - { repo_name: web-vue, pipeline_template: web-vue-azure-pipelines.yml.j2 }
+  - { repo_name: az-config, pipeline_template: none  }

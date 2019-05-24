@@ -1,0 +1,45 @@
+- debug: var=repo_name
+- debug: var=pipeline_template
+
+- name: Template a file to /etc/files.conf
+  template:
+    src: ./templates/{{ repo_name }}-azure-pipelines.yml.j2
+    dest: ../../{{ repo_name }}/azure-pipelines.yml
+  when: pipeline_template != "none"
+
+- name: initialize git repository for {{ repo_name }}
+  shell: >
+    cd ../../{{ repo_name }} && rm -rf .git
+
+- name: initialize git repository for {{ repo_name }}
+  shell: >
+    cd ../../{{ repo_name }} && git init
+
+- name: initialize git repository for {{ repo_name }}
+  shell: >
+    cd ../../{{ repo_name }} && git add .
+
+- name: initialize git repository for {{ repo_name }}
+  shell: >
+    cd ../../{{ repo_name }} && git commit -am 'init-commit-into-git'
+
+# - name: initialize git repository for {{ repo_name }}
+#   shell: >
+#     cd ../../{{ repo_name }} && rm -rf .git  && git init && git add . && git commit -am 'init-commit-into-git'
+
+- name: git remote add origin
+  shell: >
+    cd ../../{{ repo_name }} && 
+    git remote add origin git@ssh.dev.azure.com:v3/{{ organization_name }}/{{ project_name }}/{{ repo_name }}
+
+- name: git push
+  shell: >
+    cd ../../{{ repo_name }} && git push -u origin --all
+
+- name: create dev branch
+  shell: >
+    cd ../../{{ repo_name }} && git checkout -b dev && git push --set-upstream origin dev
+
+- name: create dev branch
+  shell: >
+    cd ../../{{ repo_name }} && git checkout -b stage && git push --set-upstream origin stage

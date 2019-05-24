@@ -1,0 +1,47 @@
+# THESE ARE THE VARIABLES YOU NEED TO CHANGE
+organization_user: stlbucket
+organization_name: fnbucket
+organization_url: https://dev.azure.com/fnbucket
+project_name: ps-demo
+project_no_hyphens: psdemo   #
+db_name: ps_demo
+location: westus2
+db_admin_user_password: LL38f7ooLL38f7oo
+super_admin_role: app_super_admin
+schemata:
+  - app-roles
+  - shard
+  - auth
+  - auth-fn 
+  - org
+  - org-fn
+  - app
+  - prj
+  - tunz
+  - core-data
+  - core-data-test
+# THOSE WERE THE VARIABLES YOU NEED TO CHANGE
+
+
+
+# THESE VARIABLES ARE USED IN TASKS THROUGHOUT THE PROJECT BUT ARE DERIVED FROM THOSE ABOVE
+
+resource_group_name_base: "{{ project_name }}-rg"
+appservice_plan_name_base: "{{ project_name }}-asp"
+appservice_name: "{{ project_name }}"
+docker_image_name: "{{ project_name }}-api"
+ad_app_display_name: "{{ project_name }}-ad-app"
+# traffic_manager_profile_name: {{ project_name }}-tm-profile
+# traffic_manager_endpoint_name: {{ project_name }}-tm-endpoint
+
+
+db_admin_user_name: "{{ project_no_hyphens }}admin"
+container_registry_name: "{{ project_no_hyphens }}cr"
+storage_account_name: "{{ project_no_hyphens }}sa"
+
+
+
+
+# THESE COULD BE CONSIDERED GLOBAL VARIABLES
+storage_share_name_base: web-dist
+# managed_repos: 

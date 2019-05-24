@@ -37,3 +37,10 @@ grant app_super_admin to psdemoadmin;
 
 
 az devops service-endpoint list --project phile-starter --organization https://dev.azure.com/stlbucket --output table
+
+az devops service-endpoint list --project tunz --organization https://dev.azure.com/stlbucket --output table
+
+
+requires ansible 2.8
+sudo pip install ansible --upgrade
+sudo pip install psycopg2

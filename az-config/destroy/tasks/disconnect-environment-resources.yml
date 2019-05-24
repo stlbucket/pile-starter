@@ -1,0 +1,7 @@
+- name: allow db access to azure portal resources
+  shell: >
+    az postgres server firewall-rule delete 
+    --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+    --server-name "{{ appservice_name }}-db-{{ env }}"
+    --name "{{ appservice_name }}-db-{{ env }}-allow-azure-ips"
+    --yes

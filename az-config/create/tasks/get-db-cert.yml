@@ -1,0 +1,57 @@
+    # - name: Download foo.conf
+    #   get_url:
+    #     url: https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt
+    #     dest: ../../BaltimoreCyberTrustRoot.crt
+
+    # - name: Decode cert file
+    #   shell: >
+    #     openssl x509 -inform DER -in ../../BaltimoreCyberTrustRoot.crt -text -out ../../root.crt
+
+    # - name: get the db server
+    #   shell: >
+    #     az postgres server show
+    #     --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+    #     --name "{{ appservice_name }}-db-{{ env }}"
+    #   register: server_result
+
+    # - name: parse server_result
+    #   set_fact: 
+    #     db_server: "{{ server_result.stdout | from_json }}"
+
+    # - name: get current ip address
+    #   shell: >
+    #     dig +short myip.opendns.com @resolver1.opendns.com
+    #   register: current_ip
+
+    # - name: allow db access to current machine
+    #   shell: >
+    #     az postgres server firewall-rule create 
+    #     --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+    #     --server-name "{{ appservice_name }}-db-{{ env }}"
+    #     --name "{{ appservice_name }}-db-{{ env }}-allow-azure-ips"
+    #     --start-ip-address "{{ current_ip.stdout }}"
+    #     --end-ip-address "{{ current_ip.stdout }}"
+
+    # - name: Simple select query to db
+    #   postgresql_query:
+    #     login_host: "{{ db_server.fullyQualifiedDomainName }}"
+    #     login_user: "{{ db_admin_user_name }}@{{db_server.fullyQualifiedDomainName}}"
+    #     login_password: "{{ db_admin_user_password }}"
+    #     ca_cert: ../../root.crt
+    #     ssl_mode: require
+    #     db: "{{ db_name }}"
+    #     query: SELECT version()
+
+    - name: deploy database
+      shell: >
+        cd ../../db/release/app-roles && 
+        sqitch deploy
+        --target db:pg://psdemoadmin@ps-demo-db-dev:LL38f7ooLL38f7oo@ps-demo-db-dev.postgres.database.azure.com/ps_demo
+        --plan-file  sqitch.plan
+
+
+    # - name: deploy database
+    #   shell: >
+    #     cd ../../db/release && 
+    #     sqitch deploy 
+    #     --target app-roles

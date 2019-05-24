@@ -1,0 +1,25 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ../config.yml
+  tasks:
+    - import_tasks: ./tasks/create-devops-project-and-repos.yml
+    - import_tasks: ./tasks/create-master-resources.yml
+    - import_tasks: ./tasks/retrieve-storage-keys.yml
+
+    - include_tasks: ./tasks/create-environment-resources.yml
+      vars:
+        env: "{{ item.env_name }}"
+      with_items:
+        - { 
+            env_name: dev
+          }
+        # - stage
+
+    # - import_tasks: ./tasks/create-environment.yml
+    #   vars:
+    #     env: stage
+
+    # - import_tasks: ./tasks/create-environment.yml
+    #   vars:
+    #     env: prod

@@ -20,7 +20,7 @@ steps:
 - task: AzureFileCopy@3
   inputs:
     sourcePath: ./dist/
-    azureSubscription: tunz-rg-master
+    azureSubscription: ps-demo-rg-master
     destination: azureBlob
-    storage: tunzsa
+    storage: psdemosa
     containerName: web-dist-dev

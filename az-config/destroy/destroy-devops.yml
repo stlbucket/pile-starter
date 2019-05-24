@@ -1,0 +1,7 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ../config.yml
+  tasks: 
+    # devops project
+    - import_tasks: ./tasks/destroy-devops-project.yml

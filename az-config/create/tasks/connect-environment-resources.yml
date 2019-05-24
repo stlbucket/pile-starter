@@ -1,0 +1,30 @@
+    - name: Find service principal
+      shell: >
+        az ad sp list 
+        --query "[?displayName == '{{ project_name }}-service-principal']"
+      register: sp_result
+
+    - name: convert keys to json
+      set_fact: 
+        sp_json: "{{ sp_result.stdout | from_json }}"
+
+    - name: Parse service principal
+      set_fact: 
+        service_principal_id: "{{ sp_json[0].objectId }}"
+        
+    - debug: var=service_principal_id
+
+
+# az devops service-endpoint create --authorization-scheme {PersonalAccessToken, ServicePrincipal}
+#                                   --name
+#                                   --service-endpoint-type {azurerm, github}
+#                                   [--azure-rm-service-principal-id]
+#                                   [--azure-rm-service-principal-key]
+#                                   [--azure-rm-subscription-id]
+#                                   [--azure-rm-subscription-name]
+#                                   [--azure-rm-tenant-id]
+#                                   [--detect {off, on}]
+#                                   [--github-access-token]
+#                                   [--github-url]
+#                                   [--org]
+#                                   [--project]

@@ -10,8 +10,8 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  dockerId: tunzcr
-  imageName: tunz-api
+  dockerId: psdemocr
+  imageName: ps-demo-api
 
 steps:
 - task: NodeTool@0
