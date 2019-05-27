@@ -1,0 +1,12 @@
+schemata:
+  - app-roles
+  - shard
+  - auth
+  - auth-fn 
+  - org
+  - org-fn
+  - app
+  - prj
+  - tunz
+  - core-data
+  - core-data-test

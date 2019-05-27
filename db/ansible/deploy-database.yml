@@ -1,0 +1,34 @@
+- hosts: localhost
+  connection: local
+  vars_files: 
+    - ./config.yml
+  tasks:
+  - name: deploy database
+    shell: >
+      cd ../release/{{ item }} && 
+      sqitch deploy
+      --target "db:pg://postgres:1234@postgresqldb/phile_starter"
+      --plan-file  sqitch.plan
+    loop: "{{ schemata }}"
+
+  # - name: get the db server
+  #   shell: >
+  #     az postgres server show
+  #     --resource-group "{{ resource_group_name_base }}-db-{{ env }}"
+  #     --name "{{ appservice_name }}-db-{{ env }}"
+  #   register: server_result
+
+  # - name: parse server_result
+  #   set_fact: 
+  #     db_server: "{{ server_result.stdout | from_json }}"
+    
+
+  # - name: GRANT super admin role to db admin user - this is for postgraphile security
+  #   postgresql_query:
+  #     login_host: "{{ db_server.fullyQualifiedDomainName }}"
+  #     login_user: "{{ db_admin_user_name }}{{ env }}@{{db_server.fullyQualifiedDomainName}}"
+  #     login_password: "{{ db_admin_user_password }}"
+  #     ca_cert: ../../../root.crt
+  #     ssl_mode: require
+  #     db: "{{ db_name }}"
+  #     query: "GRANT {{ super_admin_role }} TO {{ db_admin_user_name }}{{ env }};"

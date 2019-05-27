@@ -1,0 +1,8 @@
+%syntax-version=1.0.0
+%project=leaf
+%uri=phile-starter/leaf
+
+0010-schema [auth:0020-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # schema for raw leaf data
+0020-lf-import-result [0010-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # lookup for import result - in lieu of enumerable
+0021-lf-mme-type [0010-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # lookup for import result - in lieu of enumerable
+0030-mme [0020-lf-import-result] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # leaf mme records

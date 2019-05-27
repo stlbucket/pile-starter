@@ -1,4 +1,4 @@
-// require('./.env')
+require('./.env')
 const {ApolloEngine} = require('apollo-engine');
 const express = require("express");
 const {postgraphile, makePluginHook} = require("postgraphile");
@@ -33,7 +33,7 @@ try {
     // this object will be passed to the TLSSocket constructor
     ssl : {
       rejectUnauthorized : false,
-      ca   : fs.readFileSync("root.crt").toString(),
+      ca   : fs.readFileSync("../../root.crt").toString(),
       // key  : fs.readFileSync("/path/to/client-key/maybe/postgresql.key").toString(),
       // cert : fs.readFileSync("/path/to/client-certificates/maybe/postgresql.crt").toString(),
     }
@@ -44,7 +44,8 @@ try {
   });
   
   app.use(postgraphile(
-    azcon
+    // azcon
+    connection
     ,schemas
     ,{
       pluginHook

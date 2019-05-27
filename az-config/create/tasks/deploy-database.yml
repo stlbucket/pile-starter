@@ -1,12 +1,12 @@
 # - debug: var=schemata
 
-# - name: deploy database
-#   shell: >
-#     cd ../../db/release/{{ item }} && 
-#     sqitch deploy
-#     --target "db:pg://{{ db_admin_user_name }}{{ env }}@{{ appservice_name }}-db-{{ env }}:{{ db_admin_user_password }}@{{ appservice_name }}-db-{{ env }}.postgres.database.azure.com/ps_demo"
-#     --plan-file  sqitch.plan
-#   loop: "{{ schemata }}"
+- name: deploy database
+  shell: >
+    cd ../../db/release/{{ item }} && 
+    sqitch deploy
+    --target "db:pg://{{ db_admin_user_name }}{{ env }}@{{ appservice_name }}-db-{{ env }}:{{ db_admin_user_password }}@{{ appservice_name }}-db-{{ env }}.postgres.database.azure.com/ps_demo"
+    --plan-file  sqitch.plan
+  loop: "{{ schemata }}"
 
 - name: get the db server
   shell: >

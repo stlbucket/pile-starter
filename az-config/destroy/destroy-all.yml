@@ -6,6 +6,11 @@
     # devops project
     - import_tasks: ./tasks/destroy-devops-project.yml
 
+    # dev environment
+    - import_tasks: ./tasks/destroy-environment.yml
+      vars:
+        env: dev
+
     # master resources
     - name: Delete master resource group
       shell: >
@@ -13,29 +18,24 @@
         --name "{{ resource_group_name_base }}-master"
         --yes
 
-    - name: Find service principal
-      shell: >
-        az ad sp list 
-        --query "[?displayName == 'ps-demo-service-principal']"
-      register: sp_result
+    # - name: Find service principal
+    #   shell: >
+    #     az ad sp list 
+    #     --query "[?displayName == 'ps-demo-service-principal']"
+    #   register: sp_result
 
-    - name: convert keys to json
-      set_fact: 
-        sp_json: "{{ sp_result.stdout | from_json }}"
+    # - name: convert keys to json
+    #   set_fact: 
+    #     sp_json: "{{ sp_result.stdout | from_json }}"
 
-    - name: Parse service principal
-      set_fact: 
-        service_principal_id: "{{ sp_json[0].objectId }}"
+    # - name: Parse service principal
+    #   set_fact: 
+    #     service_principal_id: "{{ sp_json[0].objectId }}"
         
-    - debug: var=service_principal_id
+    # - debug: var=service_principal_id
 
-    # service principal
-    - name: Delete service principal
-      shell: >
-        az ad sp delete
-        --id "{{ service_principal_id }}"
-
-    # dev environment
-    - import_tasks: ./tasks/destroy-environment.yml
-      vars:
-        env: dev
+    # # service principal
+    # - name: Delete service principal
+    #   shell: >
+    #     az ad sp delete
+    #     --id "{{ service_principal_id }}"

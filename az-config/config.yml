@@ -7,6 +7,7 @@ project_no_hyphens: psdemo   #
 db_name: ps_demo
 location: westus2
 db_admin_user_password: LL38f7ooLL38f7oo
+service_principal_password: LL38f7ooLL38f7oo
 super_admin_role: app_super_admin
 schemata:
   - app-roles
@@ -18,6 +19,7 @@ schemata:
   - app
   - prj
   - tunz
+  - leaf
   - core-data
   - core-data-test
 # THOSE WERE THE VARIABLES YOU NEED TO CHANGE

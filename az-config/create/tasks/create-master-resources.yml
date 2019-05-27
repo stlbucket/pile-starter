@@ -14,14 +14,6 @@
     --enabled-for-deployment true
   register: keyvault
 
-- name: Create a service principal
-  shell: >
-    az ad sp create-for-rbac 
-    --keyvault "{{ project_name }}-keyvault"
-    --cert "{{ project_name }}-sp-cert"
-    --create-cert
-    --name "{{ project_name }}-service-principal"
-
 - name: Create app service plan
   shell: >
     az appservice plan create 
@@ -43,3 +35,12 @@
     --location "{{ location }}"
     --sku Basic 
     --admin-enabled true
+
+# - name: Create a service principal  -- this should use better certs so doing it with a password for now
+#   shell: >
+#     az ad sp create-for-rbac 
+#     --keyvault "{{ project_name }}-keyvault"
+#     --cert "{{ project_name }}-sp-cert"
+#     --create-cert
+#     --name "{{ project_name }}-service-principal"
+
