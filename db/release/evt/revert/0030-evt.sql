@@ -7,5 +7,6 @@ BEGIN;
 
   --||--
   DROP FUNCTION IF EXISTS evt.fn_timestamp_update_evt();
-  
+
 COMMIT;
+  

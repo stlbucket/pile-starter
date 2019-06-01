@@ -5,9 +5,8 @@ BEGIN;
   SELECT
     id,
     created_by_app_user_id,
-    created_at,
+    captured_at,
     updated_at,
-    name,
     params,
     outcomes,
     result

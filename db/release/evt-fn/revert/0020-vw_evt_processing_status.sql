@@ -2,6 +2,6 @@
 
 BEGIN;
 
-  DROP VIEW IF EXISTS evt_fn.vw_evt_processing_status;
+  -- DROP VIEW IF EXISTS evt_fn.vw_evt_processing_status;
 
 COMMIT;

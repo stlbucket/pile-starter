@@ -7,7 +7,7 @@
     shell: >
       cd ../release/{{ item }} && 
       sqitch deploy
-      --target "db:pg://postgres:1234@postgresqldb/phile_starter"
+      --target "db:pg://postgres:1234@0.0.0.0/phile_starter"
       --plan-file  sqitch.plan
     loop: "{{ schemata }}"
 

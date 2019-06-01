@@ -15,11 +15,13 @@ export default {
     items () {
       return this.appTenants.map(
         appTenant => {
-          const location = appTenant.organization.location || {
+          const organization = appTenant.organization || {}
+
+          const location = organization.location || {
             city: 'N/A'
           }
 
-          const primaryContact = appTenant.organization.primaryContact || {
+          const primaryContact = organization.primaryContact || {
             firstName: 'N/A',
             lastName: ''
           }

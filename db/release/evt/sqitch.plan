@@ -4,4 +4,6 @@
 
 0010-schema [auth:0020-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # schema for event driven microservice support
 0020-evt-processing-result [0010-schema] 2018-04-22T21:04:59Z Kevin Burkett <stlbucket@gmail.com> # enum for event processing result
+0021-evt-ordering-field [0010-schema] 2018-04-22T21:04:59Z Kevin Burkett <stlbucket@gmail.com> # enum for ordering field
+0025-evt-type [0010-schema] 2018-04-22T21:04:59Z Kevin Burkett <stlbucket@gmail.com> # definitions for event type
 0030-evt [0020-evt-processing-result] 2018-04-22T21:09:12Z Kevin Burkett <stlbucket@gmail.com> # any kind of event

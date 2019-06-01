@@ -1,0 +1,40 @@
+{
+  "name": "sync",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/datastore": "^1.4.0",
+    "apollo-boost": "0.1.14",
+    "apollo-cache-inmemory": "^1.4.3",
+    "apollo-client": "^2.4.13",
+    "apollo-link-http": "^1.5.11",
+    "apollo-utilities": "1.0.23",
+    "axios": "^0.17.1",
+    "bluebird": "3.5.1",
+    "command-line-args": "^5.0.2",
+    "execa": "^0.10.0",
+    "express": "^4.16.3",
+    "fbkt-clog": "^1.0.5",
+    "graphile-utils": "4.3.1",
+    "moment": "^2.19.3",
+    "node-ansible": "^0.5.5",
+    "node-fetch": "^2.1.1",
+    "open": "0.0.5",
+    "p-limit": "^2.0.0",
+    "pg": "^6.2.2",
+    "pg-escape": "^0.2.0",
+    "pg-pool": "^1.7.1",
+    "pm2": "^3.0.0",
+    "postgraphile": "4.3.3",
+    "postgraphile-plugin-connection-filter": "1.0.0-beta.27",
+    "twilio": "^3.19.2"
+  },
+  "resolutions": {
+    "graphql": "^0.13.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}

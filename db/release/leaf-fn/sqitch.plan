@@ -1,0 +1,6 @@
+%syntax-version=1.0.0
+%project=leaf
+%uri=phile-starter/leaf
+
+0010-schema [auth:0020-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # schema for leaf import functions
+0020-consume-mme-capture-event [0010-schema] 2018-04-22T20:55:22Z Kevin Burkett <stlbucket@gmail.com> # lookup for import result - process mme 

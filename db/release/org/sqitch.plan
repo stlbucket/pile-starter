@@ -10,3 +10,6 @@
 0050-config-org [0040-contact] 2018-04-15T22:56:18Z Kevin Burkett <stlbucket@gmail.com> # config for org schema
 0060-facility [0050-config-org] 2018-04-18T22:10:55Z Kevin Burkett <stlbucket@gmail.com> # any type of facility
 0070-organization-primary-contact [0060-facility] 2018-04-18T22:10:55Z Kevin Burkett <stlbucket@gmail.com> # primary contact for an organization
+0080-affiliation [0040-contact] 2018-04-18T22:10:55Z Kevin Burkett <stlbucket@gmail.com> # a grouping of organizations
+0090-affiliation-organization [0080-affiliation] 2018-04-18T22:10:55Z Kevin Burkett <stlbucket@gmail.com> # a member organization for an affiliation
+0100-affiliation-contact [0080-affiliation] 2018-04-18T22:10:55Z Kevin Burkett <stlbucket@gmail.com> # a member contactß for an affiliation

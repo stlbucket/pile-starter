@@ -5,6 +5,8 @@ schemata:
   - auth-fn 
   - org
   - org-fn
+  - evt
+  - evt-fn
   - app
   - prj
   - tunz

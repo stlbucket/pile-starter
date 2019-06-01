@@ -1,0 +1,11 @@
+process.env.PORT = 3008
+process.env.CLOUD_BUCKET = "wa-sync-ui"
+process.env.DB_CONNECTION_STRING = 'postgres://soro:soro$Secret@0.0.0.0/soro_sales'
+process.env.PG_DEFAULT_ROLE = 'soro_anonymous'
+process.env.GRAPHIQL = false
+process.env.JWT_PG_TYPE_IDENTIFIER = 'soro.jwt_token'
+process.env.JWT_SECRET = 'S*PERDuPER$#(R#T'
+process.env.DISABLE_DEFAULT_MUTATIONS = true
+process.env.CONFIRM_QUOTE_URL_BASE = 'http://localhost:8080/#/confirm-quote/'
+process.env.MAILGUN_API_KEY = 'MAILGUN_API_KEY'
+process.env.MAILGUN_DOMAIN = 'mg.soro.biz'

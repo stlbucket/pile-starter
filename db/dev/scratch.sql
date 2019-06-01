@@ -1,10 +1,13 @@
-  comment on column org.contact.id is
-  E'@omit create';
-  comment on column org.contact.created_at is
-  E'@omit create,update';
-  comment on column org.contact.updated_at is
-  E'@omit create,update';
-  comment on column org.contact.organization_id is
-  E'@omit create,update';
-  comment on column org.contact.app_tenant_id is
-  E'@omit create, update'; -- id is always set by the db.  this might change in an event-sourcing scenario
+  insert into evt.evt_type(
+    id
+    ,ordering_field
+    ,consume_handler
+    ,revert_handler
+  )
+  values (
+    'leaf.mme.capture'
+    ,'updated_at'
+    ,'leaf.lf_consume_mme'
+    ,null
+  )
+  ;

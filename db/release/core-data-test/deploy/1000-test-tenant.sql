@@ -5,6 +5,7 @@ BEGIN;
       ('Test Tenant 001', 'test-001')
       ,('Test Tenant 002', 'test-002')
       ,('Test Tenant 003', 'test-003')
+      ,('WA LEAF', 'leaf-wa')
     on conflict (identifier)
     do nothing
     ;
@@ -47,7 +48,7 @@ BEGIN;
       ,'User'
     )
     ,(
-    (select id from auth.app_tenant where identifier = 'test-003')
+      (select id from auth.app_tenant where identifier = 'test-003')
       ,'testAdmin003'
       ,'testAdmin003@blah.blah'
       ,public.crypt('badpassword', public.gen_salt('bf'))
@@ -57,6 +58,20 @@ BEGIN;
       (select id from auth.app_tenant where identifier = 'test-003')
       ,'testUser003'
       ,'testUser003@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
+      ,'User'
+    )
+    ,(
+      (select id from auth.app_tenant where identifier = 'leaf-wa')
+      ,'leafWaAdmin'
+      ,'leafWaAdmin@blah.blah'
+      ,public.crypt('badpassword', public.gen_salt('bf'))
+      ,'Admin'
+    )
+    ,(
+      (select id from auth.app_tenant where identifier = 'leaf-wa')
+      ,'leafWaUser'
+      ,'leafWaUser@blah.blah'
       ,public.crypt('badpassword', public.gen_salt('bf'))
       ,'User'
     )
@@ -77,6 +92,7 @@ BEGIN;
       ,ten.identifier || '-org'
     from auth.app_tenant ten
     where ten.identifier like 'test%'
+    or ten.identifier like 'leaf%'
     on conflict(actual_app_tenant_id)
     do nothing
     ;
@@ -98,6 +114,7 @@ BEGIN;
       ,au.username
     from auth.app_user au
     where au.username like 'test%'
+    or au.username like 'leaf%'
     on conflict
     do nothing
     ;
@@ -116,6 +133,7 @@ BEGIN;
     from org.contact c
     join auth.app_user au on au.username = c.external_id
     where au.username like 'test%'
+    or au.username like 'leaf%'
     on conflict(username)
     do nothing
     ;

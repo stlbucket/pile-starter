@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "soro-webapp-164421",
+  "private_key_id": "1f818381d118b378a2797bd0a7fcd9607fa22b4c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCuQRHs4MSHUQQ+\nllUMJs3JZk9Ry+Vp8WYaVnj76+uLTe2Cre+5vFvct5b5SRZU93S4D+BeU8zAGiSD\n2/345k2GfBneoIqg+I7rQ1sbSqe0WuBlcvvaWaRQ2iwRhF0hco5YNHob3ENfvkq1\nkff6RWRv7FPeKjU6YJduRZdadYUmmpP179UNuDtmajE4vQ9gCEqVnbCLQq6WO2Z4\n3xAIQ1oG/a/rLSnyAPVVp9qdHWTMRY+J1LeYy0MKPLJSBzTvhLqb7vCETrfH5zaJ\nQeZxIYMCFpKQoUUosIcra0sXeCwQwAk29h+KsswdGiy4h6p7+2KU7tTjov2w8fiE\nOyBorwmDAgMBAAECgf8a4u9hHU01k8qT3Z5Bwbr+2Epk1JERR635Yl5IgJ5XYC7F\nexECF44VAD7LN/u6IHRh8hEsfMGa4m2/6rHFNcPAfGWBdEPvkmp64mmsTFiT+3Gk\nNZmmly5DS2aBTWsRPhu4gGBW7CV5IGNmoJ8ifpKAsnY+UUTlPQIggZxY2Mkyq2Vy\nrKE/AM+cl/t8Rs6P1Q9UH3Ewv+Q1VHhGJsG/0kUW0i7UBIAMhuBpcDmXM+xn+KCv\nD4xli6XxmH4h4PJ6DdwzGp0TjHfIWoyYC7EK9JW3j7FL7Seu9EVcKe56pj68izxb\nSfXsApwzGlmd4oc4HnbaQC3sK0yOb2I3u11LHgECgYEA8A1qjFQWOhonzfiOFEwt\nBbBiVnBNkU7/SS3Yxy79+2iW5ucL/q9EtOT0IXpMa3adrc5IPEleW0xy2GjvSNwb\nRm/BCtSXWBYC/8+Wp1X10x930t7Mi9/L3xDhih28xS9KwBNmyGRZnvN7d5d/lvU0\nJ/BbGoZ3RGGmi3kxjDCdA4MCgYEAudSetC1tyXcA980WZw+21az1i+xZChusYKt0\nQwLkB7R+8iz06gT9i151REorneTrtpnsMQ4BrXtlzrYUKpUGDhJ84Ub35aYV6Urg\nfBo30mnGOIOxZFHoMWi7tlPxCaVBngl512dY9/RkDnCFhEUDnArhSxBhYFq9O3H8\nFazZAgECgYEApC8I6OG6MhMhlmaiBo/zWyjAmY5F/1SgllSdJ96kKAfo7hSox5Do\n1TCjKSKUkguW3QFxtooX1yn6grmCr7qbjRlyVw4AVWb4ti4tRFYuxC+JrNhl3mU6\n816AZA7ixZsK7URX0EeSZHzzvWAJDB65hXeHWCUP/d0sI8jIcrHtMjECgYEApPeG\nZ8cIdlfJqTIMWDOQCMJBPRT0uk90yGCMlkyDp/9ozo5wYStK9aVGDviVHdcyFWkx\nTx7zCFHKQCZNYrvmoylwaQB6Ywj83JyXCjSwJ3+080idesRnjy09ro94JCrrRGN/\nIWTii0QOau8i6BfoK2dRNzT0bPhAkvwOYCOQhgECgYBqrgirtFi/2NX5h4UGYSYB\nRx7pO58ySZTPYF50cKB2Q+YtFtHe6oTBS1EIPx9nGhzPAVnAxj+LzKBatgzwr28o\nemfN3+EPzQyAI2U9yyCw4pdCPvHE2gVIs4VseFEYpaJArFLBL2rUzx5ojhXsT8vk\n3OYGD+TZwkDgABK5jpqBjw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "leaf-sync@soro-webapp-164421.iam.gserviceaccount.com",
+  "client_id": "102366257876105583368",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/leaf-sync%40soro-webapp-164421.iam.gserviceaccount.com"
+}

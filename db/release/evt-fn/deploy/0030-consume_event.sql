@@ -9,25 +9,25 @@ BEGIN;
   DECLARE
     _app_user auth.app_user;
     _evt evt.evt;
-    _vw_evt_status evt_fn.vw_evt_processing_status;
+    -- _vw_evt_status evt_fn.vw_evt_processing_status;
     _result jsonb;
     _sql text;
   BEGIN
-    SELECT *
-    INTO _evt
-    FROM evt.evt
-    WHERE id = _evt_id;
+    -- SELECT *
+    -- INTO _evt
+    -- FROM evt.evt
+    -- WHERE id = _evt_id;
 
-    SELECT *
-    INTO _app_user
-    FROM auth.app_user
-    WHERE id = _evt.created_by_app_user_id;
+    -- SELECT *
+    -- INTO _app_user
+    -- FROM auth.app_user
+    -- WHERE id = _evt.created_by_app_user_id;
 
-    SELECT *
-    INTO _vw_evt_status
-    FROM evt_fn.vw_evt_processing_status
-    WHERE app_tenant_id = _app_user.app_tenant_id
-    AND event_name = _evt.name;
+    -- SELECT *
+    -- INTO _vw_evt_status
+    -- FROM evt_fn.vw_evt_processing_status
+    -- WHERE app_tenant_id = _app_user.app_tenant_id
+    -- AND event_name = _evt.name;
 
 --     IF _vw_evt_status.status = 'Error' THEN
 --         _sql := 'INSERT INTO evt.evt(app_tenant_id,created_by_app_user_id,name,params,result) SELECT ''' || _app_user.app_tenant_id || ''',''' || _app_user.id || ''',''' || _evt.name || ''',''' || _evt.params || ''',''Captured'' RETURNING id;';

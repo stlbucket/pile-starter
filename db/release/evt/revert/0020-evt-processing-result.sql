@@ -2,6 +2,6 @@
 
 BEGIN;
 
-  DROP TYPE IF EXISTS evt.evt_processing_result CASCADE;
+  DROP TABLE IF EXISTS evt.evt_processing_result CASCADE;
 
 COMMIT;
