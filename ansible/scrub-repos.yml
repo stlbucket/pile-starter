@@ -1,0 +1,13 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: remove .git folders
+      shell: >
+        cd ../{{ item }} && rm -rf node_modules
+      with_items:
+        - api
+        - db
+        - cli
+        - web-vue
+        - az-config
+        - sync   

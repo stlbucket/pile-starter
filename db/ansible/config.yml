@@ -8,7 +8,5 @@ schemata:
   - evt
   - evt-fn
   - app
-  - prj
-  - tunz
   - core-data
   - core-data-test

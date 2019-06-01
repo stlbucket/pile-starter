@@ -48,10 +48,25 @@ BEGIN;
 
     DO $$
     BEGIN
+        PERFORM true FROM pg_roles WHERE rolname = 'app_anchor_admin';
+        IF NOT FOUND THEN
+            CREATE ROLE app_anchor_admin;
+
+            GRANT app_demon TO app_anchor_admin;
+            GRANT app_anonymous TO app_anchor_admin;
+            GRANT app_user TO app_anchor_admin;
+        END IF;
+
+    END;
+    $$;
+
+    DO $$
+    BEGIN
         PERFORM true FROM pg_roles WHERE rolname = 'app_super_admin';
         IF NOT FOUND THEN
             CREATE ROLE app_super_admin;
-
+            
+            GRANT app_anchor_admin to app_super_admin;
             GRANT app_admin TO app_super_admin;
             GRANT app_demon TO app_super_admin;
             GRANT app_anonymous TO app_super_admin;

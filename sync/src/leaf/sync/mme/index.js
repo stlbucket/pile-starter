@@ -9,13 +9,14 @@ async function sync (options) {
   // const mmes = (await endpoint.list()).data//.slice(0,1)
 
   const mmes = require('./mmes')
+  const loadmmes = mmes.slice(0, 20)
   
   // clog('mmes',  mmes)
   // process.exit()
 
   return Promise.mapSeries(
     // filtered,
-    mmes,
+    loadmmes,
     mme => {
       return captureEvent(mme)
     }
