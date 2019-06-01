@@ -39,7 +39,6 @@ BEGIN;
         IF NOT FOUND THEN
             CREATE ROLE app_admin;
 
-            GRANT app_demon TO app_admin;
             GRANT app_user TO app_admin;
             GRANT app_anonymous TO app_admin;
         END IF;
@@ -48,13 +47,14 @@ BEGIN;
 
     DO $$
     BEGIN
-        PERFORM true FROM pg_roles WHERE rolname = 'app_anchor_admin';
+        PERFORM true FROM pg_roles WHERE rolname = 'app_tenant_admin';
         IF NOT FOUND THEN
-            CREATE ROLE app_anchor_admin;
+            CREATE ROLE app_tenant_admin;
 
-            GRANT app_demon TO app_anchor_admin;
-            GRANT app_anonymous TO app_anchor_admin;
-            GRANT app_user TO app_anchor_admin;
+            GRANT app_admin TO app_tenant_admin;
+            GRANT app_demon TO app_tenant_admin;
+            GRANT app_anonymous TO app_tenant_admin;
+            GRANT app_user TO app_tenant_admin;
         END IF;
 
     END;
@@ -66,7 +66,7 @@ BEGIN;
         IF NOT FOUND THEN
             CREATE ROLE app_super_admin;
             
-            GRANT app_anchor_admin to app_super_admin;
+            GRANT app_tenant_admin to app_super_admin;
             GRANT app_admin TO app_super_admin;
             GRANT app_demon TO app_super_admin;
             GRANT app_anonymous TO app_super_admin;
